@@ -378,6 +378,12 @@ a {
     gap: 16px;
 }
 
+.feature-grided {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
 .feature-card {
     border: 1px solid #e0e4ef;
     border-radius: 18px;
@@ -389,12 +395,35 @@ a {
 
 .feature-plan {
     border: 1px solid #e0e4ef;
-    border-radius: 18px;
     padding: 27px;
     min-height: 340px;
     transition: 0.25s;
-    background: #4486f2;
+    border-top: #4486f2 solid 3px;
+    background: #162033;
     color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 20px 45px rgba(68, 135, 242, 0.795);
+}
+
+.feature-plan.destaque {
+    transform: translateY(-15px);
+}
+
+.feature-plan-content {
+    padding: 30px;
+    border-radius: 10px;
+    background: #4486f2;
+    flex: 1;
+    min-height: 0;
+}
+
+.feature-plan-content h3 {
+    border-bottom: #162033 solid 4px;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 20px;
+    margin-top: 0;
 }
 
 .feature-card:hover {
@@ -419,14 +448,11 @@ a {
 }
 
 .icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    background: #edf0ff;
-    color: #405de0;
-    display: grid;
-    place-items: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
     font-size: 22px;
+    padding-bottom: 20px;
 }
 
 .featured .icon {
