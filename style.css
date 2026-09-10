@@ -466,17 +466,6 @@ a {
     padding-bottom: 20px;
 }
 
-.featured .icon {
-    background: #516ef4;
-    color: white;
-}
-
-.number {
-    float: right;
-    color: #8390ad;
-    font-size: 12px;
-}
-
 .feature-card h3 {
     font-size: 23px;
     margin: 55px 0 12px;
@@ -681,15 +670,6 @@ a {
     background: #fafbff;
 }
 
-.about-mark {
-    width: 180px;
-    height: 180px;
-    display: grid;
-    place-items: center;
-    background: transparent;
-    box-shadow: none;
-}
-
 .about p {
     max-width: 760px;
     color: #687185;
@@ -752,15 +732,7 @@ footer p {
     font-size: 12px;
 }
 
-.footer-links {
-    display: flex;
-    gap: 25px;
-    color: #adb5c8;
-    font-size: 12px;
-    align-items: center;
-}
-
-footer > small {
+.copyrights {
     display: block;
     margin-top: 30px;
     color: #8993a8;
@@ -884,6 +856,7 @@ footer > small {
     }
 }
 
+@media (max-width: 950px) {
 .about-mark {
     width: 180px !important;
     height: 180px !important;
@@ -891,48 +864,27 @@ footer > small {
     place-items: center;
     background: transparent;
     box-shadow: none;
+    filter: drop-shadow(10px 12px 0 #dfe5ff) !important;
+}
 }
 
-.about-mark img {
+@media (max-width: 600px) {
+.about-mark {
+   
     width: 140px !important;
     height: 140px !important;
     display: block;
     object-fit: contain;
     object-position: center;
+    filter: drop-shadow(10px 12px 0 #dfe5ff) !important;
+}
 }
 
-.about .about-mark {
-    width: 180px !important;
-    height: 180px !important;
-    display: grid !important;
-    place-items: center !important;
-    background: transparent !important;
-    box-shadow: none;
-    overflow: visible !important;
-}
-
-.about .about-mark > img {
+.about-mark > img {
     width: 250px !important;
     height: 250px !important;
     object-fit: contain !important;
     object-position: center !important;
     display: block !important;
-}
-
-.about .about-mark {
-    box-shadow: none !important;
-    overflow: visible !important;
-}
-
-.about .about-mark > img {
     filter: drop-shadow(10px 12px 0 #dfe5ff) !important;
-}
-
-@keyframes destacarCard {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
 }
