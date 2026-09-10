@@ -15,11 +15,11 @@
   <header class="header">
     <a class="logo" href="#inicio">LOGOS</a>
     <nav id="nav">
-      <a href="#inicio">Início</a>
-      <a href="#recursos">Recursos</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#blog">Blog</a>
-      <a href="#sobre">Sobre</a>
+      <a href="index.html#inicio">Início</a>
+      <a href="index.html#recursos">Recursos</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="index.html#sobre">Sobre</a>
     </nav>
     <a class="header-btn" href="#contato">Conheça a LOGOS</a>
     <button class="menu-btn" aria-label="Abrir menu">☰</button>
@@ -118,25 +118,28 @@
       </div>
     </section>
 
-     <section id="recursos" class="features">
+     <section id="planos" class="features">
       <div class="section-heading">
-        <span class="section-label">RECURSOS</span>
-        <h2>Tudo o que sua equipe precisa,<br><span>em um só lugar</span></h2>
+        <span class="section-label">PLANOS</span>
+        <h2>Escolha o plano que melhor se adapta às necessidades da sua equipe,<br><span>em um só lugar</span></h2>
       </div>
       <div class="feature-grided">
         <article class="feature-plan">
           <div class="icon"><i class="fa-solid fa-tag" style="color: #4486f2; margin-right: 10px;"></i> Plano Gratuito</div>
           <div class="feature-plan-content">
           <h3>R$ 0/mês</h3>
+          <ul>
           <li>até 3 usuários</li>
           <li>até 3 clientes</li>
           <li>até 500 contatos de mailing</li>
           <li>até 500 clippings/ano</li>
+          </ul>
           </div>
         </article>
         <article class="feature-plan destaque">
           <div class="icon"><i class="fa-solid fa-tag" style="color: #4486f2; margin-right: 10px;"></i> Plano Básico</div>
           <div class="feature-plan-content"><h3>R$ 49/mês</h3>
+            <ul>
             <li>até 5 usuários</li>
             <li>até 15 clientes </li>
             <li>até 1.000 contatos de mailing</li>
@@ -145,11 +148,13 @@
             <li>até 300 slides de relatórios</li>
             <li>até 5 GB de armazenamento</li>
             <li>gestão de releases</li>
+            </ul>
             </div>
         </article>
         <article class="feature-plan">
           <div class="icon"><i class="fa-solid fa-tag" style="color: #4486f2; margin-right: 10px;"></i> Plano Profissional</div>
           <div class="feature-plan-content"><h3>R$ 149/mês</h3>
+            <ul>
             <li>até 10 usuários</li>
             <li> até 40 clientes</li>
             <li> até 8000 contatos de mailing</li>
@@ -159,6 +164,7 @@
             <li> até 20 GB de armazenamento</li>
             <li> gestão de releases</li>
             <li> histórico de envios</li>
+            </ul>
             </div>
         </article>
       </div>
@@ -178,7 +184,7 @@
 
     <section id="sobre" class="about">
 <div class="about-mark">
-    <img src="logo.png.png" alt="LOGOS">
+    <img src="logo.png" alt="LOGOS">
 </div>
       <div><span class="section-label">SOBRE O LOGOS</span><h2>Tecnologia que entende<br>o trabalho de um <span>assessor.</span></h2><p>O LOGOS nasceu para aproximar tecnologia e assessoria de imprensa. A proposta é reunir em uma solução mobile as tarefas que fazem parte do dia a dia de jornalistas e assessores, com uma experiência simples, moderna e integrada</p></div>
     </section>
@@ -194,10 +200,12 @@
       </section>
   </main>
 
-  <footer>
+  <footer class="footer">
+    <div class="footer-content">
     <div class="f">
-    <div><a class="logo" href="#inicio">LOGOS</a><p>O princípio de toda ideia.</p></div>
-
+    <div class="logo">
+      <a href="index.html#inicio">LOGOS</a><p>O princípio de toda ideia.</p>
+    </div>
     <div class="social">
       <p>Redes sociais:</p>
       <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -212,7 +220,10 @@
     </div>
     </div>
 
-    <small>© 2026 LOGOS Todos os direitos reservados.</small>
+      <div class="copyrights">
+        <small>© 2026 LOGOS Todos os direitos reservados.</small>
+      </div>
+    </div>
   </footer>
   <script src="script.js"></script>
 </body>
