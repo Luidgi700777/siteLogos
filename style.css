@@ -1226,6 +1226,149 @@ footer .social {
     color: white;
 }
 
+/* MAILING */
+
+.mailing-screen-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    margin-bottom: 16px;
+}
+
+.mailing-screen-head span {
+    color: var(--blue);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.mailing-screen-head strong {
+    font-size: 21px;
+}
+
+.mailing-search {
+    padding: 11px 12px;
+
+    border: 1px solid #dfe4f1;
+    border-radius: 10px;
+
+    color: #8a91a1;
+    background: #fff;
+
+    font-size: 9px;
+}
+
+.mailing-filters {
+    display: flex;
+    gap: 6px;
+
+    margin: 10px 0 13px;
+
+    overflow: hidden;
+}
+
+.mailing-filters span {
+    padding: 5px 8px;
+
+    border-radius: 10px;
+
+    background: #eef2ff;
+    color: var(--blue);
+
+    font-size: 7px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.mailing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mailing-contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px;
+
+    border: 1px solid #dfe4f1;
+    border-radius: 11px;
+
+    background: #fff;
+}
+
+.mailing-avatar {
+    width: 35px;
+    height: 35px;
+
+    flex: 0 0 35px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: #293a78;
+    color: white;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.mailing-contact > div:last-child {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.mailing-contact strong {
+    font-size: 11px;
+}
+
+.mailing-contact small {
+    margin: 2px 0;
+
+    color: #788094;
+
+    font-size: 8px;
+}
+
+.mailing-contact span {
+    color: var(--blue);
+
+    font-size: 7px;
+    font-weight: 700;
+}
+
+.mailing-summary {
+    margin-top: 12px;
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #f4f6ff;
+}
+
+.mailing-summary strong {
+    margin-right: 5px;
+
+    color: var(--blue);
+
+    font-size: 19px;
+}
+
+.mailing-summary span {
+    color: #737b8d;
+
+    font-size: 9px;
+}
+
 /* PÁGINAS DE MÓDULOS - FIM */
 
 /* TABLET */
