@@ -1369,6 +1369,130 @@ footer .social {
     font-size: 9px;
 }
 
+/* RELEASES */
+
+.release-screen-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    margin-bottom: 14px;
+}
+
+.release-screen-head span {
+    color: var(--blue);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.release-screen-head strong {
+    font-size: 21px;
+}
+
+.release-toolbar {
+    display: flex;
+    gap: 6px;
+
+    margin-bottom: 12px;
+}
+
+.release-toolbar span {
+    padding: 5px 8px;
+
+    border-radius: 10px;
+
+    background: #eef2ff;
+    color: var(--blue);
+
+    font-size: 7px;
+    font-weight: 700;
+}
+
+.release-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.release-item {
+    padding: 11px 12px;
+
+    border: 1px solid #dfe4f1;
+    border-radius: 11px;
+
+    background: #fff;
+}
+
+.release-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+}
+
+.release-item-top small {
+    color: #8a91a1;
+
+    font-size: 7px;
+}
+
+.release-status {
+    padding: 4px 6px;
+
+    border-radius: 5px;
+
+    font-size: 7px;
+    font-weight: 800;
+}
+
+.release-status.draft {
+    background: #f0f1f5;
+    color: #6c7280;
+}
+
+.release-status.ready {
+    background: #eef2ff;
+    color: var(--blue);
+}
+
+.release-status.sent {
+    background: #e8f7ef;
+    color: #31845a;
+}
+
+.release-item > strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.release-client {
+    color: #788094;
+
+    font-size: 8px;
+}
+
+.release-new {
+    margin-top: 11px;
+    padding: 11px;
+
+    border-radius: 10px;
+
+    background: #293a78;
+    color: white;
+
+    text-align: center;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
 /* PÁGINAS DE MÓDULOS - FIM */
 
 /* TABLET */
