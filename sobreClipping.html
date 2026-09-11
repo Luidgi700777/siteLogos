@@ -9,14 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/3ab5908453.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
-    <a class="logo" href="index.html#inicio">LOGOS</a>
+    <a class="logo" href="index.html">LOGOS</a>
     <nav id="nav">
       <a href="index.html#inicio">Início</a>
       <a href="index.html#recursos">Recursos</a>
       <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#planos">Planos</a>
       <a href="index.html#blog">Blog</a>
       <a href="index.html#sobre">Sobre</a>
     </nav>
@@ -25,36 +27,329 @@
   </header>
 
   <main>
-    <section id="sobreClipping" class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">CLIPPING COM O LOGOS</div>
-        <h1><strong>Organize e monitore</strong> notícias e menções<br></h1>
-        <h3>registre informações relevantes e mantenha o histórico de cada cliente sempre acessível.</h3>
-        <p>O que é o Clipping? Clipping é o processo de coleta e organização de menções da sua marca na imprensa e mídias sociais. Com o LOGOS, você pode monitorar automaticamente todas as menções da sua marca e organizar as informações de forma clara e acessível.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="index.html#recursos">Conheça as funcionalidades →</a>
-          <a class="btn secondary" href="index.html#contato">Fale com a gente</a>
+
+  <!-- HERO -->
+  <section class="module-hero">
+    <div class="module-hero-copy">
+      <span class="section-label">CLIPPING COM O LOGOS</span>
+
+      <h1>
+        Organize a repercussão dos seus clientes
+        <span>em um só lugar.</span>
+      </h1>
+
+      <p>
+        Registre notícias, matérias e menções na mídia, associe cada
+        conteúdo ao cliente correto e mantenha todo o histórico de
+        clipping organizado e acessível pela equipe.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#como-funciona">
+          Ver como funciona →
+        </a>
+
+        <a class="btn secondary" href="index.html#planos">
+          Conhecer os planos
+        </a>
+      </div>
+    </div>
+
+    <div class="module-preview">
+      <div class="glow"></div>
+
+      <div class="phone clipping-phone">
+
+        <div class="phone-top">
+          <span>LOGOS</span>
+          <span>●</span>
         </div>
+
+        <div class="clipping-screen-head">
+          <span>CLIPPING</span>
+          <strong>Últimas menções</strong>
+        </div>
+
+        <div class="clipping-list">
+
+          <div class="clipping-item">
+            <span class="clipping-tag">PORTAL</span>
+            <strong>Empresa anuncia novo projeto</strong>
+            <small>Portal de Notícias • Hoje</small>
+          </div>
+
+          <div class="clipping-item">
+            <span class="clipping-tag">JORNAL</span>
+            <strong>Marca ganha destaque no setor</strong>
+            <small>Jornal Regional • Ontem</small>
+          </div>
+
+          <div class="clipping-item">
+            <span class="clipping-tag">REVISTA</span>
+            <strong>Especialistas analisam nova tendência</strong>
+            <small>Revista Negócios • 08 set.</small>
+          </div>
+
+        </div>
+
+        <div class="clipping-summary">
+          <span>
+            <strong>18</strong>
+            clippings
+          </span>
+
+          <span>
+            <strong>7</strong>
+            veículos
+          </span>
+        </div>
+
+        <div class="phone-nav">
+          <span>⌂<small>Início</small></span>
+          <span>▱<small>Clipping</small></span>
+          <span>♧<small>Mailing</small></span>
+          <span>▤<small>Releases</small></span>
+          <span>•••<small>Mais</small></span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- O QUE É -->
+  <section class="module-intro">
+    <div>
+      <span class="section-label">O QUE É CLIPPING?</span>
+
+      <h2>
+        Saiba onde seu cliente
+        <span>apareceu na mídia.</span>
+      </h2>
+    </div>
+
+    <div class="module-intro-text">
+      <p>
+        Na assessoria de imprensa, clipping é o registro das matérias,
+        notícias e outras publicações em que um cliente, marca ou pauta
+        foi mencionado.
+      </p>
+
+      <p>
+        Em vez de manter links espalhados em mensagens, planilhas e
+        documentos, o LOGOS permite concentrar essas informações em
+        um histórico organizado.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" class="module-section module-flow">
+
+    <div class="module-heading">
+      <span class="section-label">COMO FUNCIONA</span>
+
+      <h2>
+        Do registro da matéria ao
+        <span>resultado apresentado.</span>
+      </h2>
+    </div>
+
+    <div class="module-step-grid">
+
+      <article class="module-step">
+        <span>01</span>
+        <h3>Registre</h3>
+        <p>
+          Adicione a matéria, link, veículo, data e demais informações
+          importantes do clipping.
+        </p>
+      </article>
+
+      <article class="module-step">
+        <span>02</span>
+        <h3>Relacione</h3>
+        <p>
+          Associe o clipping ao cliente correspondente e mantenha cada
+          histórico separado e organizado.
+        </p>
+      </article>
+
+      <article class="module-step">
+        <span>03</span>
+        <h3>Acompanhe</h3>
+        <p>
+          Consulte os registros anteriores e acompanhe a repercussão
+          conquistada ao longo do tempo.
+        </p>
+      </article>
+
+      <article class="module-step">
+        <span>04</span>
+        <h3>Apresente</h3>
+        <p>
+          Utilize os dados registrados como base para gerar relatórios
+          e demonstrar os resultados da assessoria.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- BENEFÍCIOS -->
+  <section class="module-section module-benefits">
+
+    <div class="module-heading">
+      <span class="section-label">BENEFÍCIOS</span>
+
+      <h2>
+        Menos informação perdida.
+        <span>Mais controle.</span>
+      </h2>
+    </div>
+
+    <div class="module-benefit-grid">
+
+      <article class="module-benefit-card">
+        <span>01</span>
+        <h3>Histórico centralizado</h3>
+        <p>
+          Todos os registros de mídia ficam associados ao cliente e
+          disponíveis para consulta.
+        </p>
+      </article>
+
+      <article class="module-benefit-card">
+        <span>02</span>
+        <h3>Organização da equipe</h3>
+        <p>
+          Reduza a dependência de planilhas, mensagens e arquivos
+          espalhados entre diferentes pessoas.
+        </p>
+      </article>
+
+      <article class="module-benefit-card">
+        <span>03</span>
+        <h3>Dados para relatórios</h3>
+        <p>
+          Aproveite as informações dos clippings na construção de
+          relatórios para seus clientes.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- INTEGRAÇÃO -->
+  <section class="module-integration">
+
+    <div class="module-heading">
+      <span class="section-label">TUDO CONECTADO</span>
+
+      <h2>
+        O clipping não trabalha
+        <span>sozinho.</span>
+      </h2>
+
+      <p>
+        No LOGOS, cada módulo faz parte do mesmo fluxo de trabalho.
+        Você organiza contatos, produz conteúdo, registra a repercussão
+        e transforma os resultados em relatórios.
+      </p>
+    </div>
+
+    <div class="integration-flow">
+
+      <div>
+        <strong>Mailing</strong>
+        <span>Contatos</span>
       </div>
 
-      <div class="app-preview">
-        <div class="glow"></div>
-        <div class="phone">
-          <div class="phone-top"><span>LOGOS</span><span>●</span></div>
-          <div class="greeting">Olá, <b>assessor</b></div>
-          <div class="overview-title">Visão geral</div>
-          <div class="mini-grid">
-            <div class="mini-card"><i>▤</i><b>0</b><span>Releases</span></div>
-            <div class="mini-card"><i>▱</i><b>0</b><span>Clippings</span></div>
-            <div class="mini-card"><i>♧</i><b>0</b><span>Mailing</span></div>
-            <div class="mini-card"><i>▦</i><b>0</b><span>Clientes</span></div>
-          </div>
-          <div class="employee-card"><i>♙</i><strong>3</strong><span>Funcionários</span><b>→</b></div>
-          <div class="manage">GERENCIAR CONVITES</div>
-          <div class="phone-nav"><span>⌂<small>Início</small></span><span>▱<small>Clipping</small></span><span>♧<small>Mailing</small></span><span>▤<small>Releases</small></span><span>•••<small>Mais</small></span></div>
-        </div>
+      <b>→</b>
+
+      <div>
+        <strong>Releases</strong>
+        <span>Conteúdo</span>
       </div>
-    </section>
-    </main>
+
+      <b>→</b>
+
+      <div class="active">
+        <strong>Clipping</strong>
+        <span>Repercussão</span>
+      </div>
+
+      <b>→</b>
+
+      <div>
+        <strong>Relatórios</strong>
+        <span>Resultados</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="module-cta">
+
+    <div>
+      <span class="section-label">LOGOS</span>
+
+      <h2>
+        Transforme repercussão em
+        <span>informação organizada.</span>
+      </h2>
+
+      <p>
+        Conheça os planos do LOGOS e leve sua rotina de assessoria
+        para uma plataforma integrada.
+      </p>
+    </div>
+
+    <div class="module-cta-actions">
+      <a class="btn light" href="index.html#planos">
+        Conhecer os planos →
+      </a>
+
+      <a class="btn module-outline" href="index.html#baixar-app">
+        Aplicativo LOGOS
+      </a>
+    </div>
+
+  </section>
+
+</main>
+
+    <footer class="footer">
+    <div class="footer-content">
+    <div class="f">
+    <div class="logo">
+      <a href="index.html#inicio">LOGOS</a><p>O princípio de toda ideia.</p>
+    </div>
+    <div class="social">
+      <a href="#"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#"><i class="fa-brands fa-github"></i></a>
+      <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+
+    <div class="contact">
+      <p>Contatos:</p>
+      <p>E-mail: contato@logos.com</p>
+      <p>Telefone: (11) 99999-9999</p>
+    </div>
+    </div>
+
+      <div class="copyrights">
+        <small>© 2026 LOGOS Todos os direitos reservados.</small>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
