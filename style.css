@@ -465,6 +465,7 @@ a {
     display: flex;
     flex-direction: column;
     box-shadow: 2px 20px 45px rgba(68, 135, 242, 0.795);
+    position: relative;
 }
 
 @media (min-width: 951px) {
@@ -479,6 +480,49 @@ a {
     background: #4486f2;
     flex: 1;
     min-height: 0;
+}
+
+.plan-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20px;
+    padding: 14px 20px;
+
+    border-radius: 9px;
+
+    background: #5270e9;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    transition: 0.2s;
+}
+
+.plan-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    background: var(--blue-light);
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+.plan-btn:hover {
+    transform: translateY(-2px);
+    background: #f2f5ff;
 }
 
 .feature-plan-content h3 {
