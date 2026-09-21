@@ -775,8 +775,8 @@ a {
 /* SOBRE - INÍCIO */
 .about {
     padding: 110px 8%;
-    display: grid;
-    grid-template-columns: 230px 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 60px;
     align-items: center;
     background: #fafbff;
@@ -788,12 +788,77 @@ a {
     object-fit: contain;
     filter: drop-shadow(10px 12px 0 #dfe5ff);
 }
+.about-content{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
 
 .about p {
     max-width: 760px;
     color: #687185;
     line-height: 1.8;
     font-size: 16px;
+}
+
+.sobre-nos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.integrantes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.img-nos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.intum,
+.intdois,
+.inttres {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+}
+
+.intum img,
+.intdois img,
+.inttres img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.intum p,
+.intdois p,
+.inttres p {
+    margin-top: 20px;
+    text-align: center;
+}
+.img-nos p {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    gap: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+    
 }
 /* SOBRE - FIM */
 
@@ -830,6 +895,144 @@ a {
     color: #8ea3ff;
 }
 /* CTA - FIM */
+
+/* FORMULÁRIO MINIMIZADO - INÍCIO */
+.form-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e0e4ef;
+    background: #f8f9ff;
+}
+
+.form-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text);
+}
+
+.close-form {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #697184;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.close-form:hover {
+    background: rgba(82, 112, 233, 0.1);
+    color: var(--blue);
+}
+
+.demo-form {
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border: 1px solid #e0e4ef;
+    border-radius: 8px;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(82, 112, 233, 0.1);
+}
+
+.demo-form .btn {
+    width: 100%;
+    margin-top: 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.demo-form .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(81, 110, 244, 0.3);
+}
+
+.demo-form .btn:active {
+    transform: translateY(0);
+}
+/* FORMULÁRIO MINIMIZADO - FIM */
 
 /* FOOTER - INÍCIO */
 footer {
