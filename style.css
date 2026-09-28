@@ -1,40 +1,4 @@
-/* Reset/base - Início */
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        margin: 0;
-        font-family: Inter, Arial, sans-serif;
-        color: var(--text);
-        background: var(--background);
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    button,
-    input,
-    textarea,
-    select {
-        font: inherit;
-    }
-
-    img {
-        display: block;
-        max-width: 100%;
-    }
-
+/* Váriaveis */
 :root {
     /* Paleta de Cores */
     --navy: #07203c;
@@ -72,6 +36,44 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.25s ease;
 }
+/* Váriaveis */
+
+/* Reset/base - Início */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family: Inter, Arial, sans-serif;
+        color: var(--text);
+        background: var(--background);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
 /* Reset/base - Início */
 
 /* Tipografia - Elementos Compartilhados */
@@ -84,11 +86,11 @@
 }
 
 .hero h1 strong,
-.section-heading span,
-.problem span,
-.workflow span,
-.about span,
-.cta span {
+.section-heading h2 span,
+.problem h2 span,
+.workflow h2 span,
+.about h2 span,
+.cta h2 span {
      color: var(--blue);
 }
 
@@ -306,7 +308,7 @@
     border: 8px solid #172342;
     border-radius: 38px;
     background: #fffdfc;
-    box-shadow: 0px 35px 80px rgba(30, 48, 105, 0.22);
+    box-shadow: var(--shadow-phone);
     padding: 28px 18px 0;
     overflow: hidden;
 }
@@ -562,7 +564,7 @@
 .feature-plan-content {
     padding: 30px;
     border-radius: 10px;
-    background: #4486f2;
+    background: var(--blue-light);
     flex: 1;
     min-height: 0;
 }
@@ -668,7 +670,7 @@
     border-radius: 10px;
     border: 1px solid var(--border);
 
-    background: #f6f8ff;
+    background: var(--background-soft);
     color: var(--navy);
 
     font-size: 14px;
@@ -682,7 +684,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 90px;
-    background: #f6f8ff;
+    background: var(--background-soft);
 }
 
 .workflow-copy > p {
@@ -765,7 +767,7 @@
 .bars i {
     display: block;
     flex: 1;
-    background: #4486f2;
+    background: var(--blue-light);
     border-radius: 7px 7px 0 0;
     opacity: 0.8;
 }
@@ -1312,7 +1314,7 @@ footer .social {
 /* Benefícios */
 
 .module-benefits {
-    background: #f6f8ff;
+    background: var(--background-soft);
 }
 
 .module-benefit-grid {
