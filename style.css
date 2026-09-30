@@ -2281,6 +2281,38 @@ footer .social {
 }
 /* Tablet */
 
+/* Tablet Menor */
+@media (max-width: 800px) {
+    .hero {
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 7vw, 55px);
+    }
+
+    .hero-copy > p {
+        font-size: 17px;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .workflow {
+        gap: 50px;
+    }
+
+    .dashboard {
+        width: 100%;
+    }
+}
+/* Tablet Menor */
+
 /* Celular */
 @media (max-width: 600px) {
     .header {
@@ -2338,6 +2370,7 @@ footer .social {
     .feature-plan:hover,
     .feature-plan.destaque:hover {
         transform: none;
+        box-shadow: none;
     }
 
     .about-mark {
