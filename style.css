@@ -45,7 +45,7 @@
 /* Variáveis */
 
 /* Animações */
-    @keyframes phoneFloat {
+@keyframes phoneFloat {
     0%,
     100% {
         transform: translateY(0);
@@ -56,60 +56,54 @@
     }
 }
 
-    @keyframes glowPulse {
-        0%,
-        100% {
-            transform: scale(1);
-            opacity: 0.7;
-        }
-
-        50% {
-            transform: scale(1.08);
-            opacity: 0.9;
-        }
+@keyframes glowPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
     }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 0.9;
+    }
+}
 /* Animações */
 
 /* Reset/base - Início */
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        margin: 0;
-        font-family: Inter, Arial, sans-serif;
-        color: var(--text);
-        background: var(--background);
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    section[id] {
-        scroll-margin-top: calc(var(--header-height) + 20px);
-    }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    button,
-    input,
-    textarea,
-    select {
-        font: inherit;
-    }
-
-    img {
-        display: block;
-        max-width: 100%;
-    }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    font-family: Inter, Arial, sans-serif;
+    color: var(--text);
+    background: var(--background);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+section[id] {
+    scroll-margin-top: calc(var(--header-height) + 20px);
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+img {
+    display: block;
+    max-width: 100%;
+}
 /* Reset/base - Início */
 
 /* Tipografia - Elementos Compartilhados */
@@ -598,6 +592,8 @@
 
     box-shadow: var(--shadow-card);
 
+    overflow: hidden;
+
     transition:
         transform var(--transition-normal),
         background-color var(--transition-normal),
@@ -608,9 +604,33 @@
 .feature-card h3 {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-size: 23px;
     margin: 55px 0 12px;
+}
+
+.feature-card h3 i {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: var(--radius-sm);
+
+    background: var(--blue-soft);
+    color: var(--blue);
+
+    font-size: 16px;
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.feature-card:hover h3 i {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
 }
 
 .feature-card p {
@@ -620,11 +640,19 @@
 }
 
 .feature-card a {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+
     margin-top: 28px;
+
     font-size: 13px;
     font-weight: 800;
+
     color: var(--blue-light);
+
+    transition:
+        transform var(--transition-fast),
+        color var(--transition-fast);
 }
 
 .feature-card:hover {
@@ -640,6 +668,10 @@
 
 .feature-card:hover a {
     color: var(--white);
+}
+
+.feature-card a:hover {
+    transform: translateX(4px);
 }
 /* Recursos */
 
@@ -672,6 +704,15 @@
 .feature-plan.destaque {
     transform: translateY(-15px);
 }
+}
+
+.feature-plan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(38, 57, 110, 0.16);
+}
+
+.feature-plan.destaque:hover {
+    transform: translateY(-20px);
 }
 
 .feature-plan-content {
@@ -840,12 +881,24 @@
 }
 
 .dashboard {
-    background: #fff;
-    border: 1px solid #dfe4f1;
-    border-radius: 22px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+
     padding: 28px;
+
     align-self: center;
-    box-shadow: 0 25px 60px rgba(38, 57, 110, 0.1);
+
+    box-shadow: var(--shadow-card);
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.dashboard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 45px rgba(38, 57, 110, 0.14);
 }
 
 .dash-head {
@@ -883,9 +936,23 @@
 .bars i {
     display: block;
     flex: 1;
+
     background: var(--blue-light);
+
     border-radius: 7px 7px 0 0;
+
     opacity: 0.8;
+
+    transform-origin: bottom;
+
+    transition:
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+.bars i:hover {
+    transform: scaleY(1.04);
+    opacity: 1;
 }
 
 .dash-legend {
@@ -2265,6 +2332,11 @@ footer .social {
     }
     
     .feature-plan.destaque {
+        transform: none;
+    }
+
+    .feature-plan:hover,
+    .feature-plan.destaque:hover {
         transform: none;
     }
 
