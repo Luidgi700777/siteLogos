@@ -35,6 +35,11 @@
     /* Transições */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.25s ease;
+
+    /* Layout */
+    --page-padding: 8%;
+    --section-padding: 110px;
+    --section-padding-mobile: 70px;
 }
 /* Váriaveis */
 
@@ -453,7 +458,7 @@
 
 /* Problema */
 .problem {
-    padding: 105px 8%;
+    padding: var(--section-padding) var(--page-padding);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 100px;
@@ -471,7 +476,7 @@
 
 /* Recursos */
 .features {
-    padding: 110px 8%;
+    padding: var(--section-padding) var(--page-padding);
 }
 
 .section-heading {
@@ -680,7 +685,7 @@
 
 /* Workflow */
 .workflow {
-    padding: 110px 8%;
+    padding: var(--section-padding) var(--page-padding);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 90px;
@@ -784,7 +789,7 @@
 /* Blog */
 .blog {
     background: #fff;
-    padding: 110px 8%;
+    padding: var(--section-padding) var(--page-padding);
 }
 
 .blog-grid {
@@ -861,7 +866,7 @@
 
 /* Sobre */
 .about {
-    padding: 110px 8%;
+    padding: var(--section-padding) var(--page-padding);
     background: #fafbff;
 }
 
@@ -1215,7 +1220,7 @@ footer .social {
 /* Intro */
 
 .module-intro {
-    padding: 105px 8%;
+    padding: var(--section-padding) var(--page-padding);
 
     display: grid;
     grid-template-columns: 0.85fr 1.15fr;
@@ -1255,7 +1260,7 @@ footer .social {
 /* Conteúdo */
 
 .module-section {
-    padding: 110px 8%;
+    padding: var(--section-padding) var(--page-padding);
 }
 
 .module-heading {
@@ -1328,8 +1333,7 @@ footer .social {
 /* Integração */
 
 .module-integration {
-    padding: 110px 8%;
-
+    padding: var(--section-padding) var(--page-padding);
     background: #fff;
 }
 
@@ -1981,7 +1985,7 @@ footer .social {
 
     .hero {
         min-height: auto;
-        padding-top: 70px;
+        padding-top: var(--section-padding-mobile);
         gap: 45px;
     }
 
@@ -2180,22 +2184,22 @@ footer .social {
     .workflow,
     .blog,
     .about {
-        padding-top: 70px;
-        padding-bottom: 70px;
+        padding-top: var(--section-padding-mobile);
+        padding-bottom: var(--section-padding-mobile);
     }
 
     .problem {
-        padding-top: 70px;
-        padding-bottom: 70px;
+        padding-top: var(--section-padding-mobile);
+        padding-bottom: var(--section-padding-mobile);
     }
 
     .cta {
-        padding-top: 65px;
-        padding-bottom: 65px;
+        padding-top: var(--section-padding-mobile);
+        padding-bottom: var(--section-padding-mobile);
     }
 
     .hero {
-        padding-bottom: 65px;
+        padding-bottom: var(--section-padding-mobile);
     }
 
     .hero h1 {
@@ -2215,7 +2219,7 @@ footer .social {
     }
 
     .hero-stats {
-         display: grid;
+        display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
         width: 100%;
@@ -2343,8 +2347,8 @@ footer .social {
     }
 
     .module-hero {
-        padding-top: 65px;
-        padding-bottom: 70px;
+        padding-top: var(--section-padding-mobile);
+        padding-bottom: var(--section-padding-mobile);
     }
 
     .module-hero-copy h1 {
@@ -2355,8 +2359,8 @@ footer .social {
     .module-intro,
     .module-section,
     .module-integration {
-        padding-top: 70px;
-        padding-bottom: 70px;
+        padding-top: var(--section-padding-mobile);
+        padding-bottom: var(--section-padding-mobile);
     }
 
     .module-step-grid,
@@ -2383,8 +2387,8 @@ footer .social {
     }
 
     .module-cta {
-        padding-top: 65px;
-        padding-bottom: 65px;
+        padding-top: var(--section-padding-mobile);
+        padding-bottom: var(--section-padding-mobile);
     }
 
     .module-cta-actions {
