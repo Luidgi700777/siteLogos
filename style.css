@@ -1060,23 +1060,6 @@ img {
     overflow: hidden;
 }
 
-.about-mark::before {
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    border-radius: 50%;
-
-    background: var(--blue-soft);
-
-    filter: blur(10px);
-
-    opacity: 0.9;
-}
-
 .about-mark > img {
     position: relative;
     z-index: 1;
@@ -2575,10 +2558,19 @@ footer .social a:hover {
     }
 
     .about-mark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         width: 220px;
         height: 220px;
 
         flex: 0 0 220px;
+    }
+
+    .about-mark > img {
+        width: 170px;
+        height: 170px;
     }
 
     .about-content {
@@ -2588,6 +2580,76 @@ footer .social a:hover {
 
     .about-copy {
         width: 100%;
+    }
+
+    .team-heading {
+        max-width: 700px;
+
+        text-align: center;
+
+        margin-bottom: 10px;
+    }
+
+    .team-heading h2 {
+        margin: 15px 0;
+
+        font-size: clamp(36px, 4vw, 48px);
+
+        line-height: 1.1;
+        letter-spacing: -2px;
+    }
+
+    .team-heading h2 span {
+        color: var(--blue);
+    }
+
+    .team-heading p {
+        max-width: 600px;
+
+        margin: 0 auto;
+
+        color: var(--text-muted);
+
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .intum h3,
+    .intdois h3,
+    .inttres h3 {
+        margin: 22px 0 4px;
+    
+        color: var(--text);
+    
+        font-size: 21px;
+        font-weight: 800;
+    }
+    
+    .integrante-cargo {
+        color: var(--blue);
+    
+        font-size: 12px;
+        font-weight: 800;
+    
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+    .intum p,
+    .intdois p,
+    .inttres p {
+        margin: 15px 0 0;
+    
+        max-width: 240px;
+    
+        text-align: center;
+    
+        color: var(--text-muted);
+    
+        font-size: 14px;
+        font-weight: 400;
+    
+        line-height: 1.7;
     }
 
     .features,
