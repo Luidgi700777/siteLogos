@@ -446,7 +446,7 @@ img {
 .mini-card i {
     font-style: normal;
     background: #2b3b79;
-    color: white;
+    color: var(--white);
     width: 34px;
     height: 34px;
     border-radius: 10px;
@@ -981,7 +981,7 @@ img {
     border: 1px solid #e0e4ef;
     border-radius: 18px;
     overflow: hidden;
-    background: white;
+    background: var(--white);
 }
 
 .post-image {
@@ -999,7 +999,7 @@ img {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.5px;
-    color: white;
+    color: var(--white);
 }
 
 .gradient-one {
@@ -1205,8 +1205,8 @@ img {
 }
 
 .form-container {
-    background: white;
-    border-radius: 12px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     max-width: 420px;
     width: 90%;
@@ -1219,8 +1219,8 @@ img {
     align-items: center;
     justify-content: space-between;
     padding: 20px 24px;
-    border-bottom: 1px solid #e0e4ef;
-    background: #f8f9ff;
+    border-bottom: 1px solid var(--border);
+    background: var(--background-soft);
 }
 
 .form-header h3 {
@@ -1269,8 +1269,8 @@ img {
 
 .form-group input {
     padding: 10px 12px;
-    border: 1px solid #e0e4ef;
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     font-family: Inter, Arial, sans-serif;
     font-size: 14px;
     color: var(--text);
@@ -1305,9 +1305,9 @@ img {
 
 /* Footer */
 footer {
-    padding: 55px 8%;
+    padding: 55px var(--page-padding);
     background: #0d1528;
-    color: white;
+    color: var(--white);
 }
 
 footer .f {
@@ -1322,7 +1322,7 @@ footer .logo {
 }
 
 footer p {
-    color: #8993a8;
+    color: var(--text-light);
     font-size: 12px;
 }
 
@@ -1332,12 +1332,36 @@ footer .social {
     font-size: 18px;
 }
 
+footer .social a {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: var(--text-light);
+
+    transition:
+        transform var(--transition-fast),
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+footer .social a:hover {
+    transform: translateY(-3px);
+
+    background: var(--blue-soft);
+    color: var(--blue);
+}
+
 .copyrights {
     display: block;
     margin-top: 30px;
-    color: #8993a8;
+    color: var(--text-light);
     font-size: 12px;
-    border-top: 1px solid #07203c;
+    border-top: 1px solid var(--navy);
     padding: 10px;
 }
 /* Footer */
@@ -1346,7 +1370,7 @@ footer .social {
 
 .module-hero {
     min-height: 720px;
-    padding: 80px 8%;
+    padding: 80px var(--page-padding);
 
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
@@ -1407,7 +1431,7 @@ footer .social {
     align-items: start;
 
     background: #121b32;
-    color: white;
+    color: var(--white);
 }
 
 .module-intro h2,
@@ -1576,7 +1600,7 @@ footer .social {
     gap: 50px;
 
     background: var(--navy);
-    color: white;
+    color: var(--white);
 }
 
 .module-cta .section-label {
@@ -1603,7 +1627,18 @@ footer .social {
 .module-outline {
     border: 1px solid #53617b;
 
-    color: white;
+    color: var(--white);
+
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.module-outline:hover {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
 }
 
 /* Cta */
@@ -1793,7 +1828,7 @@ footer .social {
     border-radius: 10px;
 
     background: #293a78;
-    color: white;
+    color: var(--white);
 
     font-size: 9px;
     font-weight: 800;
@@ -1966,7 +2001,7 @@ footer .social {
     border-radius: 10px;
 
     background: #293a78;
-    color: white;
+    color: var(--white);
 
     text-align: center;
 
@@ -2004,7 +2039,7 @@ footer .social {
     border-radius: 12px;
 
     background: #293a78;
-    color: white;
+    color: var(--white);
 }
 
 .report-main-number strong {
@@ -2109,7 +2144,7 @@ footer .social {
     border-radius: 10px;
 
     background: #293a78;
-    color: white;
+    color: var(--white);
 
     text-align: center;
 
