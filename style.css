@@ -44,6 +44,32 @@
 }
 /* Variáveis */
 
+/* Animações */
+    @keyframes phoneFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+    @keyframes glowPulse {
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.7;
+        }
+
+        50% {
+            transform: scale(1.08);
+            opacity: 0.9;
+        }
+    }
+/* Animações */
+
 /* Reset/base - Início */
     *,
     *::before,
@@ -181,20 +207,34 @@
     background: var(--navy);
     color: var(--white);
     box-shadow: 0 12px 28px rgba(81, 110, 244, 0.20);
+
+    transition:
+        transform var(--transition-fast),
+        background-color var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
 .primary:hover {
     background: var(--navy-dark);
+    box-shadow: 0 16px 35px rgba(81, 110, 244, 0.28);
 }
 
 .secondary {
-    border: 1px solid #d8dce9;
+    border: 1px solid var(--border);
     background: var(--white);
+    color: var(--text);
+
+    transition:
+        transform var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
 .secondary:hover {
     border-color: var(--blue);
     color: var(--blue);
+    box-shadow: 0 8px 22px rgba(82, 112, 233, 0.10);
 }
 /* Botões */
 
@@ -346,6 +386,8 @@
     background: #dfe5ff;
     filter: blur(60px);
     opacity: 0.8;
+
+    animation: glowPulse 5s ease-in-out infinite;
 }
 
 .phone {
@@ -358,6 +400,7 @@
     box-shadow: var(--shadow-phone);
     padding: 28px 18px 0;
     overflow: hidden;
+    animation: phoneFloat 5s ease-in-out infinite;
 }
 
 .phone:before {
@@ -2180,7 +2223,6 @@ footer .social {
     .phone {
     width: 100%;
     max-width: 315px;
-    transform: none;
     margin: 0 auto;
     }
 
@@ -2480,3 +2522,16 @@ footer .social {
 /* celular */
 
 /* Responsividade */
+
+/* Config do Usuário */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* Config do Usuário */
