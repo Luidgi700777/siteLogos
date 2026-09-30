@@ -40,8 +40,9 @@
     --page-padding: 8%;
     --section-padding: 110px;
     --section-padding-mobile: 70px;
+    --header-height: 78px;
 }
-/* Váriaveis */
+/* Variáveis */
 
 /* Reset/base - Início */
     *,
@@ -61,6 +62,10 @@
         background: var(--background);
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
+    }
+
+    section[id] {
+        scroll-margin-top: calc(var(--header-height) + 20px);
     }
 
     a {
@@ -152,11 +157,23 @@
 .menu-btn {
     display: none;
 
+    width: 42px;
+    height: 42px;
+
     border: 0;
-    background: transparent;
+    background: var(--radius-sm);
 
     font-size: 25px;
     cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.menu-btn:hover {
+    background: var(--blue-soft);
+    color: var(--blue);
 }
 
 .primary {
@@ -182,8 +199,8 @@
 
 /* Header */
 .header {
-    height: 78px;
-    padding: 0 6%;
+    --header-height: 78px;
+    padding: 0 var(--page-padding);
 
     display: flex;
     align-items: center;
@@ -207,6 +224,7 @@
 
 .header nav {
     display: flex;
+    align-items: center;
     gap: 30px;
 
     color: #596174;
@@ -216,11 +234,34 @@
 }
 
 .header nav a {
+    position: relative;
+    padding: 8px 0;
     transition: color var(--transition-fast);
 }
 
 .header nav a:hover {
     color: var(--blue);
+}
+
+.header nav a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: var(--blue);
+
+    transition: width var(--transition-fast);
+}
+
+.header nav a:hover::after {
+    width: 100%;
 }
 
 :focus-visible {
@@ -386,7 +427,7 @@
 
 .employee-card {
     margin-top: 10px;
-    height: 78px;
+    --header-height: 78px;
     border: 2px solid #7990f5;
     border-radius: 15px;
     display: flex;
@@ -1984,14 +2025,14 @@ footer .social {
     .header nav.open {
         display: flex;
         position: absolute;
-        top: 78px;
+        top: var(--header-height);
         left: 0;
         right: 0;
 
         flex-direction: column;
         gap: 0;
 
-        padding: 12px 6% 18px;
+        padding: 12px var(--page-padding) 18px;
 
         background: rgba(255, 255, 255, 0.98);
         border-bottom: 1px solid #e9ebf4;
@@ -2001,6 +2042,11 @@ footer .social {
 
     .header nav.open a {
         padding: 13px 0;
+        border-bottom: 1px solid var(--border-soft);
+    }
+
+    .header nav.open a:last-child {
+        border-bottom: 0;
     }
 
     .hero,
