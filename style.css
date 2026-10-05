@@ -1165,6 +1165,7 @@ img {
 
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 
     padding: 28px 22px;
@@ -1241,6 +1242,17 @@ img {
     box-shadow:
         0 0 0 1px rgba(82, 112, 233, 0.35),
         0 16px 35px rgba(38, 57, 110, 0.18);
+}
+
+.intum h3,
+.intdois h3,
+.inttres h3 {
+    margin: 22px 0 4px;
+
+    color: var(--text);
+
+    font-size: 21px;
+    font-weight: 800;
 }
 
 .integrante-cargo {
@@ -2664,17 +2676,6 @@ footer .social a:hover {
     .intdois,
     .inttres {
         min-height: 0;
-    }
-
-    .intum h3,
-    .intdois h3,
-    .inttres h3 {
-        margin: 22px 0 4px;
-    
-        color: var(--text);
-    
-        font-size: 21px;
-        font-weight: 800;
     }
     
     .integrante-cargo {
