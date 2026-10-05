@@ -69,6 +69,37 @@ if (demoForm) {
         const cnpj = document.querySelector('#cnpj');
         const phone = document.querySelector('#phone');
 
+        // Máscara do CNPJ
+        cnpj.addEventListener('input', () => {
+            let valor = cnpj.value.replace(/\D/g, '');
+        
+            valor = valor.substring(0, 14);
+        
+            valor = valor.replace(/^(\d{2})(\d)/, '$1.$2');
+            valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+            valor = valor.replace(/\.(\d{3})(\d)/, '.$1/$2');
+            valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
+        
+            cnpj.value = valor;
+        });
+        
+        // Máscara do telefone
+        phone.addEventListener('input', () => {
+            let valor = phone.value.replace(/\D/g, '');
+        
+            valor = valor.substring(0, 11);
+        
+            if (valor.length <= 10) {
+                valor = valor.replace(/^(\d{2})(\d)/, '($1) $2');
+                valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
+            } else {
+                valor = valor.replace(/^(\d{2})(\d)/, '($1) $2');
+                valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+        
+            phone.value = valor;
+        });
+
         const fields = [name, email, cnpj, phone];
 
         fields.forEach((field) => {
