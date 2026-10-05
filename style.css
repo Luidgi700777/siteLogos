@@ -1091,7 +1091,7 @@ img {
     display: flex;
     align-items: center;
 
-    gap: 75px;
+    gap: 60px;
 }
 
 .about p {
@@ -1109,17 +1109,6 @@ img {
     align-items: center;
 
     background: var(--white);
-}
-
-.sobre-nos > .section-label {
-    margin: 0;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-    color: var(--blue);
 }
 
 .team-heading {
@@ -1188,6 +1177,8 @@ img {
     background: var(--white);
 
     box-shadow: var(--shadow-card);
+
+    overflow: hidden;
 
     transition:
         transform var(--transition-normal),
@@ -2612,7 +2603,7 @@ footer .social a:hover {
 
     .img-nos {
         width: 100%;
-        max-width: 320px;
+        max-width: 360px;
 
         grid-template-columns: 1fr;
 
