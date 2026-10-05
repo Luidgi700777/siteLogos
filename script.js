@@ -59,10 +59,85 @@ if (openFormBtn && formModal) {
 
     // Enviar formulário
     const demoForm = document.querySelector('.demo-form');
+
+if (demoForm) {
     demoForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Obrigado! Entraremos em contato em breve.');
-        formModal.classList.remove('active');
+
+        const name = document.querySelector('#name');
+        const email = document.querySelector('#email');
+        const cnpj = document.querySelector('#cnpj');
+        const phone = document.querySelector('#phone');
+
+        const fields = [name, email, cnpj, phone];
+
+        fields.forEach((field) => {
+            field.classList.remove('input-error');
+
+            const error = field.parentElement.querySelector('.form-error');
+
+            if (error) {
+                error.remove();
+            }
+        });
+
+        const oldStatus = demoForm.querySelector('.form-status');
+
+        if (oldStatus) {
+            oldStatus.remove();
+        }
+
+        let formularioValido = true;
+
+        const mostrarErro = (campo, mensagem) => {
+            campo.classList.add('input-error');
+
+            const error = document.createElement('span');
+
+            error.className = 'form-error';
+            error.textContent = mensagem;
+
+            campo.parentElement.appendChild(error);
+
+            formularioValido = false;
+        };
+
+        if (name.value.trim().length < 3) {
+            mostrarErro(
+                name,
+                'Digite seu nome completo.'
+            );
+        }
+
+        if (!email.validity.valid) {
+            mostrarErro(
+                email,
+                'Digite um e-mail válido.'
+            );
+        }
+
+        const cnpjNumeros = cnpj.value.replace(/\D/g, '');
+
+        if (cnpjNumeros.length !== 14) {
+            mostrarErro(
+                cnpj,
+                'Digite um CNPJ válido com 14 números.'
+            );
+        }
+
+        if (!formularioValido) {
+            return;
+        }
+
+        const status = document.createElement('div');
+
+        status.className = 'form-status';
+
+        status.textContent =
+            'Dados validados com sucesso. O envio para o servidor será conectado em uma etapa futura.';
+
+        demoForm.appendChild(status);
         demoForm.reset();
     });
+}
 }

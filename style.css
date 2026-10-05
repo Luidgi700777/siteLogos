@@ -1457,6 +1457,33 @@ img {
     box-shadow: 0 0 0 3px rgba(82, 112, 233, 0.1);
 }
 
+.form-group input.input-error {
+    border-color: #d94b63;
+    box-shadow: 0 0 0 3px rgba(217, 75, 99, 0.10);
+}
+
+.form-error {
+    margin-top: 6px;
+
+    color: #d94b63;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.form-status {
+    margin-top: 15px;
+    padding: 12px 14px;
+
+    border-radius: var(--radius-sm);
+
+    background: var(--blue-soft);
+    color: var(--navy);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 .demo-form .btn {
     width: 100%;
     margin-top: 8px;
