@@ -2,6 +2,7 @@ const menu = document.querySelector('.menu-btn');
 const nav = document.querySelector('#nav');
 
 if (menu && nav) {
+    // abrir menu no celular e tablet
     menu.addEventListener('click', () => {
         const aberto = nav.classList.toggle('open');
 
@@ -12,12 +13,23 @@ if (menu && nav) {
         );
     });
 
+    // navegação pelas seções do site
     document.querySelectorAll('#nav a').forEach(link => {
         link.addEventListener('click', () => {
             nav.classList.remove('open');
             menu.setAttribute('aria-expanded', 'false');
             menu.setAttribute('aria-label', 'Abrir menu');
         });
+    });
+
+    // tecla esc para fechar menu
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('open')) {
+            nav.classList.remove('open');
+
+            menu.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-label', 'Abrir menu');
+        }
     });
 }
 

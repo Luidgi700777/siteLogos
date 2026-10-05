@@ -1142,12 +1142,6 @@ img {
     line-height: 1.7;
 }
 
-.integrantes{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
 .img-nos {
     max-width: 1000px;
     margin: 45px auto 0;
