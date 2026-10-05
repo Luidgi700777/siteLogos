@@ -39,21 +39,46 @@ const formModal = document.querySelector('#form-modal');
 const closeFormBtn = document.querySelector('.close-form');
 
 if (openFormBtn && formModal) {
+    let elementoAnterior = null;
+
+    const fecharModal = () => {
+        formModal.classList.remove('active');
+        document.body.style.overflow = '';
+
+        if (elementoAnterior) {
+            elementoAnterior.focus();
+        }
+    };
+
     // Abrir formulário
     openFormBtn.addEventListener('click', (e) => {
         e.preventDefault();
+
+        elementoAnterior = document.activeElement;
+
         formModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        closeFormBtn.focus();
     });
 
     // Fechar formulário pelo botão X
-    closeFormBtn.addEventListener('click', () => {
-        formModal.classList.remove('active');
-    });
+    closeFormBtn.addEventListener('click', fecharModal);
 
     // Fechar formulário ao clicar fora dele
     formModal.addEventListener('click', (e) => {
         if (e.target === formModal) {
-            formModal.classList.remove('active');
+            fecharModal();
+        }
+    });
+
+    // Fechar formulário com a tecla Esc
+    document.addEventListener('keydown', (e) => {
+        if (
+            e.key === 'Escape' &&
+            formModal.classList.contains('active')
+        ) {
+            fecharModal();
         }
     });
 
