@@ -1099,14 +1099,10 @@ img {
     padding: var(--section-padding) var(--page-padding);
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 
-    flex-direction: column;
-
     background: var(--white);
-
-    gap: 10px;
 }
 
 .sobre-nos > .section-label {
@@ -1118,6 +1114,37 @@ img {
     letter-spacing: 2px;
 
     color: var(--blue);
+}
+
+.team-heading {
+    max-width: 700px;
+
+    text-align: center;
+
+    margin: 0 auto;
+}
+
+.team-heading h2 {
+    margin: 15px 0;
+
+    font-size: clamp(36px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.team-heading h2 span {
+    color: var(--blue);
+}
+
+.team-heading p {
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    color: var(--text-muted);
+
+    font-size: 16px;
+    line-height: 1.7;
 }
 
 .integrantes{
@@ -1146,6 +1173,8 @@ img {
     align-items: center;
 
     padding: 28px 22px;
+
+    min-height: 430px;
 
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -1204,23 +1233,33 @@ img {
 
 .integrante-cargo {
     color: var(--blue);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
 }
 
 .intum p,
 .intdois p,
 .inttres p {
-    margin: 22px 0 0;
+    margin: 15px 0 0;
+    padding-top: 16px;
+
+    border-top: 1px solid var(--border);
+
+    max-width: 240px;
 
     text-align: center;
 
-    color: var(--text);
+    color: var(--text-muted);
 
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 400;
 
-    line-height: 1.5;
-
-    max-width: 250px;
+    line-height: 1.7;
 }
 
 .about-copy {
@@ -2587,11 +2626,16 @@ footer .social a:hover {
     }
 
     .team-heading {
-        max-width: 700px;
+        max-width: 100%;
 
         text-align: center;
 
         margin-bottom: 10px;
+    }
+
+    .team-heading h2 {
+        font-size: 34px;
+        letter-spacing: -1.5px;
     }
 
     .team-heading p {
@@ -2601,8 +2645,14 @@ footer .social a:hover {
 
         color: var(--text-muted);
 
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1.7;
+    }
+
+    .intum,
+    .intdois,
+    .inttres {
+        min-height: 0;
     }
 
     .intum h3,
