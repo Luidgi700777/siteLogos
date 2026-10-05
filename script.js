@@ -60,115 +60,115 @@ if (openFormBtn && formModal) {
     // Enviar formulário
     const demoForm = document.querySelector('.demo-form');
 
-if (demoForm) {
-    demoForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.querySelector('#name');
-        const email = document.querySelector('#email');
-        const cnpj = document.querySelector('#cnpj');
-        const phone = document.querySelector('#phone');
-
-        // Máscara do CNPJ
-        cnpj.addEventListener('input', () => {
-            let valor = cnpj.value.replace(/\D/g, '');
+    if (demoForm) {
+            const name = document.querySelector('#name');
+            const email = document.querySelector('#email');
+            const cnpj = document.querySelector('#cnpj');
+            const phone = document.querySelector('#phone');
         
-            valor = valor.substring(0, 14);
-        
-            valor = valor.replace(/^(\d{2})(\d)/, '$1.$2');
-            valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-            valor = valor.replace(/\.(\d{3})(\d)/, '.$1/$2');
-            valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
-        
-            cnpj.value = valor;
-        });
-        
-        // Máscara do telefone
-        phone.addEventListener('input', () => {
-            let valor = phone.value.replace(/\D/g, '');
-        
-            valor = valor.substring(0, 11);
-        
-            if (valor.length <= 10) {
-                valor = valor.replace(/^(\d{2})(\d)/, '($1) $2');
+            // Máscara do CNPJ
+            cnpj.addEventListener('input', () => {
+                let valor = cnpj.value.replace(/\D/g, '');
+            
+                valor = valor.substring(0, 14);
+            
+                valor = valor.replace(/^(\d{2})(\d)/, '$1.$2');
+                valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                valor = valor.replace(/\.(\d{3})(\d)/, '.$1/$2');
                 valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
-            } else {
-                valor = valor.replace(/^(\d{2})(\d)/, '($1) $2');
-                valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
+            
+                cnpj.value = valor;
+            });
+            
+            // Máscara do telefone
+            phone.addEventListener('input', () => {
+                let valor = phone.value.replace(/\D/g, '');
+            
+                valor = valor.substring(0, 11);
+            
+                if (valor.length <= 10) {
+                    valor = valor.replace(/^(\d{2})(\d)/, '($1) $2');
+                    valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
+                } else {
+                    valor = valor.replace(/^(\d{2})(\d)/, '($1) $2');
+                    valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
+                }
+            
+                phone.value = valor;
+            });
+
+        demoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const fields = [name, email, cnpj, phone];
+
+            fields.forEach((field) => {
+                field.classList.remove('input-error');
+
+                const error = field.parentElement.querySelector('.form-error');
+
+                if (error) {
+                    error.remove();
+                }
+            });
+
+            const oldStatus = demoForm.querySelector('.form-status');
+
+            if (oldStatus) {
+                oldStatus.remove();
             }
-        
-            phone.value = valor;
-        });
 
-        const fields = [name, email, cnpj, phone];
+            let formularioValido = true;
 
-        fields.forEach((field) => {
-            field.classList.remove('input-error');
+            const mostrarErro = (campo, mensagem) => {
+                campo.classList.add('input-error');
 
-            const error = field.parentElement.querySelector('.form-error');
+                const error = document.createElement('span');
 
-            if (error) {
-                error.remove();
+                error.className = 'form-error';
+                error.textContent = mensagem;
+
+                campo.parentElement.appendChild(error);
+
+                formularioValido = false;
+            };
+
+            if (name.value.trim().length < 3) {
+                mostrarErro(
+                    name,
+                    'Digite seu nome completo.'
+                );
             }
+
+            if (!email.validity.valid) {
+                mostrarErro(
+                    email,
+                    'Digite um e-mail válido.'
+                );
+            }
+
+            const cnpjNumeros = cnpj.value.replace(/\D/g, '');
+
+            if (cnpjNumeros.length !== 14) {
+                mostrarErro(
+                    cnpj,
+                    'Digite um CNPJ válido com 14 números.'
+                );
+            }
+
+            if (!formularioValido) {
+                return;
+            }
+
+            const status = document.createElement('div');
+
+            status.className = 'form-status';
+
+            status.textContent =
+                'Dados validados com sucesso. O envio para o servidor será conectado em uma etapa futura.';
+
+            demoForm.appendChild(status);
+            demoForm.reset();
         });
-
-        const oldStatus = demoForm.querySelector('.form-status');
-
-        if (oldStatus) {
-            oldStatus.remove();
-        }
-
-        let formularioValido = true;
-
-        const mostrarErro = (campo, mensagem) => {
-            campo.classList.add('input-error');
-
-            const error = document.createElement('span');
-
-            error.className = 'form-error';
-            error.textContent = mensagem;
-
-            campo.parentElement.appendChild(error);
-
-            formularioValido = false;
-        };
-
-        if (name.value.trim().length < 3) {
-            mostrarErro(
-                name,
-                'Digite seu nome completo.'
-            );
-        }
-
-        if (!email.validity.valid) {
-            mostrarErro(
-                email,
-                'Digite um e-mail válido.'
-            );
-        }
-
-        const cnpjNumeros = cnpj.value.replace(/\D/g, '');
-
-        if (cnpjNumeros.length !== 14) {
-            mostrarErro(
-                cnpj,
-                'Digite um CNPJ válido com 14 números.'
-            );
-        }
-
-        if (!formularioValido) {
-            return;
-        }
-
-        const status = document.createElement('div');
-
-        status.className = 'form-status';
-
-        status.textContent =
-            'Dados validados com sucesso. O envio para o servidor será conectado em uma etapa futura.';
-
-        demoForm.appendChild(status);
-        demoForm.reset();
-    });
-}
-}
+    }
+    }
