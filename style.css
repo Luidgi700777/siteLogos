@@ -919,19 +919,7 @@ img {
 /* Planos */
 
 /* Workflow */
-.workflow {
-    padding: var(--section-padding) var(--page-padding);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 90px;
-    background: var(--background-soft);
-}
 
-.workflow-copy > p {
-    max-width: 570px;
-    color: var(--text-muted);
-    line-height: 1.8;
-}
 /* Workflow */
 
 /* Blog */

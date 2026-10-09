@@ -120,12 +120,245 @@
       </div>
     </section>
 
-    <section id="como-funciona" class="workflow">
-      <div class="workflow-copy">
+    
+<!-- Como funciona - Simulador LOGOS -->
+<section id="como-funciona" class="app-tour">
+
+    <!-- Apresentação da seção -->
+    <div class="app-tour-heading">
         <span class="section-label">COMO FUNCIONA</span>
-        <h2>Da informação ao <span>resultado</span></h2>
-        <p>O LOGOS acompanha o fluxo da assessoria: você organiza os contatos, registra a repercussão, produz conteúdo e transforma tudo em informação útil para seus clientes.</p>
-    </section>
+
+        <h2>
+            Conheça o LOGOS <span>por dentro.</span>
+        </h2>
+
+        <p>
+            Explore as telas e descubra como as ferramentas
+            do LOGOS ajudam a organizar a rotina de uma
+            assessoria de imprensa.
+        </p>
+    </div>
+
+    <!-- Simulador do aplicativo -->
+    <div
+        class="app-simulator"
+        role="region"
+        aria-label="Demonstração interativa do aplicativo LOGOS"
+    >
+
+        <div class="app-screen" id="app-screen">
+
+            <!-- Cabeçalho do aplicativo -->
+            <header class="app-header">
+
+                <div class="app-header-info">
+                    <span class="app-brand">LOGOS</span>
+
+                    <h3 class="app-screen-title" id="app-screen-title">
+                        Olá, luidgi
+                    </h3>
+                </div>
+
+                <div class="app-header-actions">
+
+                    <button
+                        type="button"
+                        class="app-settings-btn"
+                        data-screen="configuracoes"
+                        aria-label="Abrir configurações"
+                    >
+                        <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                    </button>
+
+                    <span
+                        class="app-avatar"
+                        aria-label="Usuário da demonstração"
+                    >
+                        L
+                    </span>
+
+                </div>
+
+            </header>
+
+            <!-- Conteúdo que mudará conforme a navegação -->
+            <div class="app-content" id="app-content">
+
+                <!-- Tela inicial -->
+                <div class="app-home" data-view="inicio">
+
+                    <h4 class="app-home-heading">
+                        Visão geral
+                    </h4>
+
+                    <!-- Grade dos quatro cartões -->
+                    <div class="app-overview-grid">
+
+                        <!-- Releases -->
+                        <button
+                            type="button"
+                            class="app-overview-card"
+                            disabled
+                            title="Releases ainda não disponível nesta demonstração"
+                        >
+                            <span class="app-overview-icon">
+                                <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="app-overview-info">
+                                <span class="app-overview-number">0</span>
+                                <span class="app-overview-label">Releases</span>
+                            </span>
+
+                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
+                        </button>
+
+                        <!-- Clippings -->
+                        <button
+                            type="button"
+                            class="app-overview-card"
+                            data-screen="clipping"
+                        >
+                            <span class="app-overview-icon">
+                                <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="app-overview-info">
+                                <span class="app-overview-number" data-count="clippings">0</span>
+                                <span class="app-overview-label">Clippings</span>
+                            </span>
+
+                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
+                        </button>
+
+                        <!-- Contatos -->
+                        <button
+                            type="button"
+                            class="app-overview-card"
+                            data-screen="mailing"
+                        >
+                            <span class="app-overview-icon">
+                                <i class="fa-solid fa-users" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="app-overview-info">
+                                <span class="app-overview-number" data-count="contatos">0</span>
+                                <span class="app-overview-label">Contatos</span>
+                            </span>
+
+                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
+                        </button>
+
+                        <!-- Clientes -->
+                        <button
+                            type="button"
+                            class="app-overview-card"
+                            data-screen="clientes"
+                        >
+                            <span class="app-overview-icon">
+                                <i class="fa-solid fa-building" aria-hidden="true"></i>
+                            </span>
+
+                            <span class="app-overview-info">
+                                <span class="app-overview-number" data-count="clientes">0</span>
+                                <span class="app-overview-label">Clientes</span>
+                            </span>
+
+                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
+                        </button>
+
+                    </div>
+
+                    <!-- Funcionários -->
+                    <button
+                        type="button"
+                        class="app-overview-card app-overview-card-wide"
+                        data-screen="funcionarios"
+                    >
+                        <span class="app-overview-icon">
+                            <i class="fa-solid fa-user-group" aria-hidden="true"></i>
+                        </span>
+
+                        <span class="app-overview-info">
+                            <span class="app-overview-number" data-count="funcionarios">0</span>
+                            <span class="app-overview-label">Funcionários</span>
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
+                    </button>
+
+                    <!-- Convites -->
+                    <button
+                        type="button"
+                        class="app-manage-invites"
+                        data-screen="convites"
+                    >
+                        GERENCIAR CONVITES
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Barra de navegação inferior -->
+            <nav class="app-bottom-nav" aria-label="Navegação do aplicativo">
+
+                <button
+                    type="button"
+                    class="app-nav-item app-nav-active"
+                    data-screen="inicio"
+                    aria-current="page"
+                >
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    <span>Início</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="app-nav-item"
+                    data-screen="clipping"
+                >
+                    <i class="fa-regular fa-file" aria-hidden="true"></i>
+                    <span>Clipping</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="app-nav-item"
+                    data-screen="mailing"
+                >
+                    <i class="fa-solid fa-users" aria-hidden="true"></i>
+                    <span>Mailing</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="app-nav-item"
+                    disabled
+                    title="Releases ainda não disponível nesta demonstração"
+                >
+                    <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+                    <span>Releases</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="app-nav-item"
+                    data-screen="mais"
+                >
+                    <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                    <span>Mais</span>
+                </button>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Como funciona - Simulador LOGOS -->
+
 
      <section id="planos" class="features">
       <div class="section-heading">
