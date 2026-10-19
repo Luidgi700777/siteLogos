@@ -155,7 +155,7 @@
                     <span class="app-brand">LOGOS</span>
 
                     <h3 class="app-screen-title" id="app-screen-title">
-                        Olá, luidgi
+                        Olá, Luidgi
                     </h3>
                 </div>
 
@@ -184,175 +184,248 @@
             <!-- Conteúdo que mudará conforme a navegação -->
             <div class="app-content" id="app-content">
 
-                <!-- Tela inicial -->
-                <div class="app-home" data-view="inicio">
+            
+<!-- Tela inicial -->
+<div class="app-home" data-view="inicio">
 
-                    <h4 class="app-home-heading">
-                        Visão geral
-                    </h4>
+    <!-- Visão geral -->
+    <section class="app-home-overview">
 
-                    <!-- Grade dos quatro cartões -->
-                    <div class="app-overview-grid">
+        <h4 class="app-home-heading">
+            Visão geral
+        </h4>
 
-                        <!-- Releases -->
-                        <button
-                            type="button"
-                            class="app-overview-card"
-                            disabled
-                            title="Releases ainda não disponível nesta demonstração"
-                        >
-                            <span class="app-overview-icon">
-                                <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
-                            </span>
+        <div class="app-overview-grid">
 
-                            <span class="app-overview-info">
-                                <span class="app-overview-number">0</span>
-                                <span class="app-overview-label">Releases</span>
-                            </span>
+            <!-- Relatórios -->
+            <button type="button"
+                    class="app-overview-card"
+                    data-screen="relatorios">
 
-                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
-                        </button>
+                <span class="app-overview-top">
+                    <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
 
-                        <!-- Clippings -->
-                        <button
-                            type="button"
-                            class="app-overview-card"
-                            data-screen="clipping"
-                        >
-                            <span class="app-overview-icon">
-                                <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
-                            </span>
+                <span class="app-overview-info">
+                    <span class="app-overview-number" data-count="relatorios">1</span>
+                    <span class="app-overview-label">Relatórios</span>
+                    <span class="app-overview-description">cadastrados</span>
+                </span>
+            </button>
 
-                            <span class="app-overview-info">
-                                <span class="app-overview-number" data-count="clippings">0</span>
-                                <span class="app-overview-label">Clippings</span>
-                            </span>
+            <!-- Clippings -->
+            <button type="button"
+                    class="app-overview-card"
+                    data-screen="clipping">
 
-                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
-                        </button>
-
-                        <!-- Contatos -->
-                        <button
-                            type="button"
-                            class="app-overview-card"
-                            data-screen="mailing"
-                        >
-                            <span class="app-overview-icon">
-                                <i class="fa-solid fa-users" aria-hidden="true"></i>
-                            </span>
-
-                            <span class="app-overview-info">
-                                <span class="app-overview-number" data-count="contatos">0</span>
-                                <span class="app-overview-label">Contatos</span>
-                            </span>
-
-                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
-                        </button>
-
-                        <!-- Clientes -->
-                        <button
-                            type="button"
-                            class="app-overview-card"
-                            data-screen="clientes"
-                        >
-                            <span class="app-overview-icon">
-                                <i class="fa-solid fa-building" aria-hidden="true"></i>
-                            </span>
-
-                            <span class="app-overview-info">
-                                <span class="app-overview-number" data-count="clientes">0</span>
-                                <span class="app-overview-label">Clientes</span>
-                            </span>
-
-                            <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
-                        </button>
-
-                    </div>
-
-                    <!-- Funcionários -->
-                    <button
-                        type="button"
-                        class="app-overview-card app-overview-card-wide"
-                        data-screen="funcionarios"
-                    >
-                        <span class="app-overview-icon">
-                            <i class="fa-solid fa-user-group" aria-hidden="true"></i>
-                        </span>
-
-                        <span class="app-overview-info">
-                            <span class="app-overview-number" data-count="funcionarios">0</span>
-                            <span class="app-overview-label">Funcionários</span>
-                        </span>
-
-                        <i class="fa-solid fa-chevron-right app-overview-arrow" aria-hidden="true"></i>
-                    </button>
-
-                    <!-- Convites -->
-                    <button
-                        type="button"
-                        class="app-manage-invites"
-                        data-screen="convites"
-                    >
-                        GERENCIAR CONVITES
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- Barra de navegação inferior -->
-            <nav class="app-bottom-nav" aria-label="Navegação do aplicativo">
-
-                <button
-                    type="button"
-                    class="app-nav-item app-nav-active"
-                    data-screen="inicio"
-                    aria-current="page"
-                >
-                    <i class="fa-solid fa-house" aria-hidden="true"></i>
-                    <span>Início</span>
-                </button>
-
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    data-screen="clipping"
-                >
-                    <i class="fa-regular fa-file" aria-hidden="true"></i>
-                    <span>Clipping</span>
-                </button>
-
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    data-screen="mailing"
-                >
-                    <i class="fa-solid fa-users" aria-hidden="true"></i>
-                    <span>Mailing</span>
-                </button>
-
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    disabled
-                    title="Releases ainda não disponível nesta demonstração"
-                >
+                <span class="app-overview-top">
                     <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
-                    <span>Releases</span>
-                </button>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
 
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    data-screen="mais"
-                >
-                    <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
-                    <span>Mais</span>
-                </button>
+                <span class="app-overview-info">
+                    <span class="app-overview-number" data-count="clippings">1</span>
+                    <span class="app-overview-label">Clippings</span>
+                    <span class="app-overview-description">cadastrados</span>
+                </span>
+            </button>
 
-            </nav>
+            <!-- Veículos -->
+            <button type="button"
+                    class="app-overview-card"
+                    data-screen="veiculos">
+
+                <span class="app-overview-top">
+                    <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-overview-info">
+                    <span class="app-overview-number" data-count="veiculos">1</span>
+                    <span class="app-overview-label">Veículos</span>
+                    <span class="app-overview-description">cadastrados</span>
+                </span>
+            </button>
+
+            <!-- Clientes -->
+            <button type="button"
+                    class="app-overview-card"
+                    data-screen="clientes">
+
+                <span class="app-overview-top">
+                    <i class="fa-solid fa-building" aria-hidden="true"></i>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-overview-info">
+                    <span class="app-overview-number" data-count="clientes">1</span>
+                    <span class="app-overview-label">Clientes</span>
+                    <span class="app-overview-description">ativos</span>
+                </span>
+            </button>
+
+            <!-- Contatos -->
+            <button type="button"
+                    class="app-overview-card"
+                    data-screen="mailing">
+
+                <span class="app-overview-top">
+                    <i class="fa-solid fa-users" aria-hidden="true"></i>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-overview-info">
+                    <span class="app-overview-number" data-count="contatos">1</span>
+                    <span class="app-overview-label">Contatos</span>
+                    <span class="app-overview-description">ativos</span>
+                </span>
+            </button>
+
+            <!-- Equipe -->
+            <button type="button"
+                    class="app-overview-card"
+                    data-screen="funcionarios">
+
+                <span class="app-overview-top">
+                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-overview-info">
+                    <span class="app-overview-number" data-count="funcionarios">1</span>
+                    <span class="app-overview-label">Equipe</span>
+                    <span class="app-overview-description">na assessoria</span>
+                </span>
+            </button>
 
         </div>
+    </section>
+
+    <!-- Para revisar -->
+    <section class="app-home-review">
+
+        <h4 class="app-home-heading">
+            Para revisar
+        </h4>
+
+        <div class="app-review-card">
+
+            <div class="app-review-status">
+                <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
+
+                <div>
+                    <strong>Nenhuma revisão pendente</strong>
+                    <small>Os relatórios estão em dia.</small>
+                </div>
+            </div>
+
+            <button type="button"
+                    class="app-review-link"
+                    data-screen="relatorios">
+
+                <span>VER RELATÓRIOS</span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- Acesso rápido -->
+    <section class="app-home-shortcuts">
+
+        <h4 class="app-home-heading">
+            Acesso rápido
+        </h4>
+
+        <div class="app-shortcut-list">
+
+            <button type="button"
+                    class="app-shortcut-item"
+                    data-screen="novo-relatorio">
+
+                <span class="app-shortcut-icon">
+                    <i class="fa-regular fa-square-plus" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-shortcut-info">
+                    <strong>Novo relatório</strong>
+                    <small>Escolha o cliente e o período</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
+            <button type="button"
+                    class="app-shortcut-item"
+                    data-screen="novo-clipping">
+
+                <span class="app-shortcut-icon">
+                    <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-shortcut-info">
+                    <strong>Novo clipping</strong>
+                    <small>Cadastre uma matéria</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
+            <button type="button"
+                    class="app-shortcut-item"
+                    data-screen="novo-contato">
+
+                <span class="app-shortcut-icon">
+                    <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-shortcut-info">
+                    <strong>Novo contato</strong>
+                    <small>Cadastre um jornalista no mailing</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
+            <button type="button"
+                    class="app-shortcut-item"
+                    data-screen="importar-clippings">
+
+                <span class="app-shortcut-icon">
+                    <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-shortcut-info">
+                    <strong>Importar clippings</strong>
+                    <small>Adicione matérias em lote</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
+            <button type="button"
+                    class="app-shortcut-item"
+                    data-screen="convites">
+
+                <span class="app-shortcut-icon">
+                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                </span>
+
+                <span class="app-shortcut-info">
+                    <strong>Convites</strong>
+                    <small>Gerencie e convide colaboradores</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
+        </div>
+    </section>
+
+</div>
+<!-- Tela inicial -->
+
 
     </div>
 
