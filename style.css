@@ -1117,36 +1117,39 @@ img {
 
 /* Tela inicial */
 .app-home {
-    padding: 18px 19px 30px;
+    padding: 18px 14px 30px;
 }
 
 .app-home-heading {
-    margin: 0 0 18px;
+    margin: 0 0 11px;
 
     color: #161c29;
-    font-size: 23px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
 }
+
 
 /* Grade de cartões */
 .app-overview-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 8px;
 }
 
+/* Cartões da visão geral */
 .app-overview-card {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
 
     min-width: 0;
-    min-height: 100px;
-    padding: 13px 12px;
+    min-height: 112px;
 
-    border: 2px solid #6578ff;
-    border-radius: 17px;
+    padding: 11px 12px;
+
+    border: 1px solid #a5b1ff;
+    border-radius: 14px;
 
     background: transparent;
     color: #161c29;
@@ -1159,102 +1162,227 @@ img {
         border-color var(--transition-fast);
 }
 
-.app-overview-card:not(:disabled):hover {
+.app-overview-card:hover {
     background: #f0f2ff;
+    border-color: #6578ff;
 }
 
-.app-overview-card:disabled {
-    opacity: 1;
-    cursor: default;
+/* Ícone e seta superior */
+.app-overview-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin-bottom: 5px;
 }
 
-/* Ícone de cada cartão */
-.app-overview-icon {
-    flex-shrink: 0;
-
-    width: 48px;
-    height: 48px;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 12px;
-
-    background: #293a78;
-    color: #fff;
-
-    font-size: 21px;
+.app-overview-top i:first-child {
+    color: #5270ff;
+    font-size: 17px;
 }
 
-/* Número e descrição */
+.app-overview-top i:last-child {
+    color: #858585;
+    font-size: 12px;
+}
+
+/* Informações do cartão */
 .app-overview-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
-    flex: 1;
     min-width: 0;
-    gap: 0;
 }
 
 .app-overview-number {
-    color: #5270e9;
-
-    font-size: 30px;
+    color: #5270ff;
+    font-size: 25px;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.05;
 }
 
 .app-overview-label {
+    margin-top: 3px;
+
     color: #161c29;
     font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.app-overview-description {
+    margin-top: 2px;
+
+    color: #898989;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* Seção Para revisar */
+.app-home-review {
+    margin-top: 20px;
+}
+
+.app-review-card {
+    padding: 14px 13px 11px;
+
+    border: 1px solid #6578ff;
+    border-radius: 14px;
+
+    background: transparent;
+}
+
+.app-review-status {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.app-review-status > i {
+    flex-shrink: 0;
+
+    color: #009b72;
+    font-size: 20px;
+}
+
+.app-review-status > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.app-review-status strong {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.app-review-status small {
+    color: #898989;
+    font-size: 11px;
     line-height: 1.5;
 }
 
-.app-overview-arrow {
-    flex-shrink: 0;
-    font-size: 13px;
-}
+.app-review-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-/* Cartão largo de funcionários */
-.app-overview-card-wide {
     width: 100%;
-    min-height: 105px;
     margin-top: 12px;
+    padding: 11px 0 0;
 
-    padding: 15px 19px;
-}
+    border: none;
+    border-top: 1px solid #d5dbff;
 
-.app-overview-card-wide .app-overview-icon {
-    margin-right: 2px;
-}
+    background: transparent;
+    color: #5270ff;
 
-/* Gerenciar convites */
-.app-manage-invites {
-    width: 100%;
-    min-height: 50px;
-
-    margin-top: 18px;
-    padding: 12px;
-
-    border: 0;
-    border-radius: 12px;
-
-    background: #293a78;
-    color: #fff;
-
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 800;
 
-    text-align: center;
+    text-align: left;
+    cursor: pointer;
+}
+
+/* Seção Acesso rápido */
+.app-home-shortcuts {
+    margin-top: 20px;
+}
+
+.app-shortcut-list {
+    padding: 0 12px;
+
+    border: 1px solid #a5b1ff;
+    border-radius: 14px;
+
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Opções do acesso rápido */
+.app-shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 64px;
+
+    padding: 10px 0;
+
+    border: none;
+    border-bottom: 1px solid #d5dbff;
+
+    background: transparent;
+    color: #161c29;
+
+    text-align: left;
     cursor: pointer;
 
     transition: background-color var(--transition-fast);
 }
 
-.app-manage-invites:hover {
-    background: #1d2859;
+.app-shortcut-item:last-child {
+    border-bottom: none;
 }
+
+.app-shortcut-item:hover {
+    background: #f0f2ff;
+}
+
+/* Ícones dos atalhos */
+.app-shortcut-icon {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+    background: #edf0ff;
+    color: #5270ff;
+
+    font-size: 17px;
+}
+
+/* Texto dos atalhos */
+.app-shortcut-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    min-width: 0;
+    gap: 2px;
+}
+
+.app-shortcut-info strong {
+    color: #161c29;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.app-shortcut-info small {
+    color: #898989;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* Setas dos atalhos */
+.app-shortcut-item > i:last-child {
+    flex-shrink: 0;
+
+    color: #858585;
+    font-size: 13px;
+}
+/* Grade de cartões */
+
 
 /* Navegação inferior do aplicativo */
 .app-bottom-nav {
@@ -1352,27 +1480,25 @@ img {
     }
 
     .app-overview-card {
-        gap: 6px;
-        padding: 10px 8px;
+        min-height: 104px;
+        padding: 9px;
     }
-
-    .app-overview-icon {
-        width: 39px;
-        height: 39px;
-        font-size: 17px;
-    }
-
+    
     .app-overview-number {
-        font-size: 26px;
+        font-size: 24px;
     }
-
+    
     .app-overview-label {
-        font-size: 11px;
+        font-size: 12px;
+    }
+    
+    .app-shortcut-item {
+        gap: 9px;
     }
 
-    .app-overview-card-wide {
-        padding: 12px;
-    }
+.app-shortcut-info small {
+    font-size: 10px;
+}
 
     .app-header-actions {
         gap: 10px;
