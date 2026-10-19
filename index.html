@@ -540,6 +540,117 @@
 </div>
 <!-- Tela Mais -->
 
+
+<!-- Tela Clientes -->
+<div class="app-clients" data-view="clientes" hidden>
+
+    <!-- Pesquisa e filtros -->
+    <div class="app-clients-search">
+
+        <div class="app-clients-search-field">
+            <input
+                type="search"
+                id="app-clients-query"
+                placeholder="Buscar clientes..."
+                aria-label="Buscar clientes"
+            >
+
+            <button
+                type="button"
+                class="app-clients-search-btn"
+                data-action="buscar-clientes"
+                aria-label="Pesquisar clientes"
+            >
+                <i class="fa-solid fa-magnifying-glass"
+                   aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <button
+            type="button"
+            class="app-clients-filter-btn"
+            data-action="filtrar-clientes"
+            aria-label="Abrir filtros de clientes"
+        >
+            <i class="fa-solid fa-sliders"
+               aria-hidden="true"></i>
+        </button>
+
+    </div>
+
+    <!-- Quantidade e cadastro -->
+    <div class="app-clients-toolbar">
+
+        <span class="app-clients-count" id="app-clients-count">
+            1 cliente
+        </span>
+
+        <button
+            type="button"
+            class="app-clients-new-btn"
+            data-screen="novo-cliente"
+        >
+            NOVO
+        </button>
+
+    </div>
+
+    <!-- Seleção múltipla -->
+    <button
+        type="button"
+        class="app-clients-select-btn"
+        data-action="selecionar-clientes"
+    >
+        <i class="fa-regular fa-circle-check"
+           aria-hidden="true"></i>
+
+        <span>SELECIONAR CLIENTES</span>
+    </button>
+
+    <!-- Listagem -->
+    <div class="app-clients-list">
+
+        <!-- Cliente demonstrativo -->
+        <button
+            type="button"
+            class="app-client-card"
+            data-screen="detalhes-cliente"
+            data-client-id="cliente-cleiton"
+        >
+
+            <span class="app-client-icon">
+                <i class="fa-solid fa-briefcase"
+                   aria-hidden="true"></i>
+            </span>
+
+            <span class="app-client-info">
+
+                <strong class="app-client-name">
+                    Cleiton
+                </strong>
+
+                <small class="app-client-description">
+                    Varejo · Ativo
+                </small>
+
+                <small class="app-client-clippings">
+                    1 clipping · 2026
+                </small>
+
+            </span>
+
+            <i
+                class="fa-solid fa-chevron-right app-client-arrow"
+                aria-hidden="true"
+            ></i>
+
+        </button>
+
+    </div>
+
+</div>
+<!-- Tela Clientes -->
+
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
 
