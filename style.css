@@ -1838,6 +1838,35 @@ img {
 
 }
 
+
+/* Busca de clientes */
+/* Ocultar cartões que não correspondem à pesquisa */
+.app-client-card[hidden],
+.app-clients-empty[hidden] {
+    display: none !important;
+}
+
+/* Mensagem de busca sem resultados */
+.app-clients-empty {
+    margin: 15px 0;
+    padding: 18px 12px;
+
+    border: 1px solid #6578ff;
+    border-radius: 13px;
+
+    color: #898989;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Destaque ao pesquisar */
+.app-clients-search-field:focus-within {
+    border-color: #5270ff;
+    box-shadow: 0 0 0 2px rgba(82, 112, 233, 0.12);
+}
+
+/* Busca de clientes */
+
 /* Tela Clientes */
 
 

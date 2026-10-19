@@ -417,3 +417,89 @@ if (appSimulator) {
 }
 
 // Simulador LOGOS - Navegação
+
+
+// Simulador LOGOS - Pesquisa de Clientes
+
+const appClientsView = document.querySelector('.app-clients');
+
+if (appClientsView) {
+
+    const appClientsQuery = appClientsView.querySelector('#app-clients-query');
+
+    const appClientsSearchBtn = appClientsView.querySelector(
+        '.app-clients-search-btn'
+    );
+
+    const appClientsCount = appClientsView.querySelector(
+        '#app-clients-count'
+    );
+
+    const appClientsEmpty = appClientsView.querySelector(
+        '#app-clients-empty'
+    );
+
+    // Normalizar texto para facilitar a pesquisa
+    const normalizarTexto = (texto) => {
+        return texto
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim();
+    };
+
+    // Pesquisar clientes
+    const pesquisarClientes = () => {
+
+        const pesquisa = normalizarTexto(appClientsQuery.value);
+
+        const clientes = appClientsView.querySelectorAll(
+            '.app-client-card'
+        );
+
+        let encontrados = 0;
+
+        clientes.forEach((cliente) => {
+
+            const nome = cliente.querySelector('.app-client-name');
+
+            const nomeCliente = normalizarTexto(
+                nome ? nome.textContent : ''
+            );
+
+            const encontrado = nomeCliente.includes(pesquisa);
+
+            cliente.hidden = !encontrado;
+
+            if (encontrado) {
+                encontrados++;
+            }
+        });
+
+        // Atualizar quantidade exibida
+        appClientsCount.textContent =
+            encontrados === 1
+                ? '1 cliente'
+                : `${encontrados} clientes`;
+
+        // Mostrar mensagem quando não houver resultados
+        appClientsEmpty.hidden = encontrados > 0;
+    };
+
+    // Pesquisar enquanto o usuário digita
+    appClientsQuery.addEventListener(
+        'input',
+        pesquisarClientes
+    );
+
+    // Pesquisar ao clicar na lupa
+    appClientsSearchBtn.addEventListener(
+        'click',
+        pesquisarClientes
+    );
+
+    // Inicializar a listagem
+    pesquisarClientes();
+}
+
+// Simulador LOGOS - Pesquisa de Clientes
