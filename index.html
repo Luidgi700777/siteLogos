@@ -571,6 +571,8 @@
             class="app-clients-filter-btn"
             data-action="filtrar-clientes"
             aria-label="Abrir filtros de clientes"
+            aria-controls="app-clients-filter-overlay"
+            aria-expanded="false"
         >
             <i class="fa-solid fa-sliders"
                aria-hidden="true"></i>
@@ -616,6 +618,10 @@
             class="app-client-card"
             data-screen="detalhes-cliente"
             data-client-id="cliente-cleiton"
+            data-client-status="ativo"
+            data-client-state=""
+            data-client-city=""
+            data-client-segment="Varejo"
         >
 
             <span class="app-client-icon">
@@ -735,6 +741,121 @@
                 </button>
 
             </nav>
+
+            
+<!-- Filtros de Clientes -->
+<div
+    class="app-clients-filter-overlay"
+    id="app-clients-filter-overlay"
+    hidden
+>
+    <div
+        class="app-clients-filter-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="app-clients-filter-title"
+    >
+
+        <!-- Cabeçalho -->
+        <div class="app-clients-filter-header">
+            <div>
+                <h4 id="app-clients-filter-title">FILTROS</h4>
+                <p>Refine os clientes exibidos</p>
+            </div>
+
+            <button
+                type="button"
+                class="app-clients-filter-close"
+                aria-label="Fechar filtros"
+            >
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Campos -->
+        <div class="app-clients-filter-body">
+
+            <div class="app-clients-filter-group">
+                <span class="app-clients-filter-label">STATUS</span>
+
+                <div class="app-clients-status-options"
+                     role="group"
+                     aria-label="Status dos clientes">
+
+                    <button type="button"
+                            data-filter-status="ativo"
+                            aria-pressed="false">
+                        Ativos
+                    </button>
+
+                    <button type="button"
+                            data-filter-status="inativo"
+                            aria-pressed="false">
+                        Inativos
+                    </button>
+
+                    <button type="button"
+                            data-filter-status="todos"
+                            class="app-filter-selected"
+                            aria-pressed="true">
+                        Todos
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="app-clients-filter-group">
+                <label for="app-filter-state">ESTADO</label>
+                <input
+                    type="text"
+                    id="app-filter-state"
+                    placeholder="Ex.: São Paulo"
+                >
+            </div>
+
+            <div class="app-clients-filter-group">
+                <label for="app-filter-city">CIDADE</label>
+                <input
+                    type="text"
+                    id="app-filter-city"
+                    placeholder="Ex.: Campinas"
+                >
+            </div>
+
+            <div class="app-clients-filter-group">
+                <label for="app-filter-segment">SEGMENTO</label>
+                <input
+                    type="text"
+                    id="app-filter-segment"
+                    placeholder="Ex.: Tecnologia, Saúde, Varejo"
+                >
+            </div>
+
+        </div>
+
+        <!-- Ações inferiores -->
+        <div class="app-clients-filter-actions">
+
+            <button
+                type="button"
+                class="app-clients-clear-btn"
+            >
+                LIMPAR
+            </button>
+
+            <button
+                type="button"
+                class="app-clients-apply-btn"
+            >
+                APLICAR
+            </button>
+
+        </div>
+
+    </div>
+</div>
+<!-- Filtros de Clientes -->
+
 
         </div>
 

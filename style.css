@@ -1009,6 +1009,7 @@ img {
 
     display: flex;
     flex-direction: column;
+    position: relative;
 
     min-height: 0;
     overflow: hidden;
@@ -1866,6 +1867,207 @@ img {
 }
 
 /* Busca de clientes */
+
+
+/* Filtros de Clientes */
+
+/* Fundo escurecido restrito à tela do celular */
+.app-clients-filter-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+
+    display: flex;
+    align-items: flex-end;
+
+    background: rgba(15, 20, 38, 0.45);
+}
+
+.app-clients-filter-overlay[hidden] {
+    display: none !important;
+}
+
+/* Painel inferior */
+.app-clients-filter-panel {
+    width: 100%;
+    max-height: 85%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid #6578ff;
+    border-bottom: 0;
+    border-radius: 23px 23px 0 0;
+
+    background: #fffbfb;
+}
+
+/* Cabeçalho dos filtros */
+.app-clients-filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 18px 18px 12px;
+}
+
+.app-clients-filter-header h4 {
+    margin: 0;
+
+    color: #161c29;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.app-clients-filter-header p {
+    margin: 2px 0 0;
+
+    color: #898989;
+    font-size: 12px;
+}
+
+.app-clients-filter-close {
+    flex-shrink: 0;
+
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Área dos campos */
+.app-clients-filter-body {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+
+    padding: 5px 18px 22px;
+}
+
+.app-clients-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-clients-filter-label,
+.app-clients-filter-group label {
+    color: #161c29;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Botões de status */
+.app-clients-status-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.app-clients-status-options button {
+    min-width: 0;
+    min-height: 44px;
+
+    padding: 9px 4px;
+
+    border: 1px solid #6578ff;
+    border-radius: 11px;
+
+    background: transparent;
+    color: #161c29;
+
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Status selecionado */
+.app-clients-status-options button.app-filter-selected {
+    background: #293a78;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Estado, cidade e segmento */
+.app-clients-filter-group input {
+    width: 100%;
+    min-height: 51px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #6578ff;
+    border-radius: 11px;
+
+    background: #f8f8f8;
+    color: #161c29;
+
+    font-size: 12px;
+}
+
+.app-clients-filter-group input::placeholder {
+    color: #697184;
+}
+
+/* Botões inferiores */
+.app-clients-filter-actions {
+    flex-shrink: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    padding: 18px;
+
+    border-top: 1px solid #d5dbff;
+    background: #fffbfb;
+}
+
+.app-clients-filter-actions button {
+    min-width: 0;
+    min-height: 48px;
+
+    border: 2px solid #6578ff;
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.app-clients-clear-btn {
+    background: transparent;
+    color: #161c29;
+}
+
+.app-clients-apply-btn {
+    background: #293a78;
+    color: #ffffff;
+}
+
+.app-clients-clear-btn:hover {
+    background: #f0f2ff;
+}
+
+.app-clients-apply-btn:hover {
+    background: #1d2859;
+}
+/* Filtros de Clientes */
 
 /* Tela Clientes */
 

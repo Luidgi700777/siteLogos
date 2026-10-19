@@ -419,87 +419,228 @@ if (appSimulator) {
 // Simulador LOGOS - Navegação
 
 
-// Simulador LOGOS - Pesquisa de Clientes
+
+// Simulador LOGOS - Pesquisa e Filtros de Clientes
 
 const appClientsView = document.querySelector('.app-clients');
 
 if (appClientsView) {
 
     const appClientsQuery = appClientsView.querySelector('#app-clients-query');
+    const appClientsSearchBtn = appClientsView.querySelector('.app-clients-search-btn');
+    const appClientsCount = appClientsView.querySelector('#app-clients-count');
+    const appClientsEmpty = appClientsView.querySelector('#app-clients-empty');
 
-    const appClientsSearchBtn = appClientsView.querySelector(
-        '.app-clients-search-btn'
-    );
+    const filterOpenBtn = appClientsView.querySelector('.app-clients-filter-btn');
 
-    const appClientsCount = appClientsView.querySelector(
-        '#app-clients-count'
-    );
+    const filterOverlay = document.querySelector('#app-clients-filter-overlay');
+    const filterPanel = filterOverlay.querySelector('.app-clients-filter-panel');
+    const filterCloseBtn = filterOverlay.querySelector('.app-clients-filter-close');
+    const filterClearBtn = filterOverlay.querySelector('.app-clients-clear-btn');
+    const filterApplyBtn = filterOverlay.querySelector('.app-clients-apply-btn');
 
-    const appClientsEmpty = appClientsView.querySelector(
-        '#app-clients-empty'
-    );
+    const filterStatusBtns = filterOverlay.querySelectorAll('[data-filter-status]');
 
-    // Normalizar texto para facilitar a pesquisa
+    const filterState = filterOverlay.querySelector('#app-filter-state');
+    const filterCity = filterOverlay.querySelector('#app-filter-city');
+    const filterSegment = filterOverlay.querySelector('#app-filter-segment');
+
+    // Filtros efetivamente aplicados à listagem
+    const activeFilters = {
+        status: 'todos',
+        state: '',
+        city: '',
+        segment: ''
+    };
+
+    // Status escolhido no painel antes de aplicar
+    let draftStatus = 'todos';
+
+    // Normalização de texto
     const normalizarTexto = (texto) => {
-        return texto
+        return String(texto || '')
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
             .toLowerCase()
             .trim();
     };
 
-    // Pesquisar clientes
+    // Destacar o status selecionado
+    const selecionarStatus = (status) => {
+
+        draftStatus = status;
+
+        filterStatusBtns.forEach((button) => {
+            const selected = button.dataset.filterStatus === status;
+
+            button.classList.toggle('app-filter-selected', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+    };
+
+    // Aplicar pesquisa e filtros simultaneamente
     const pesquisarClientes = () => {
 
         const pesquisa = normalizarTexto(appClientsQuery.value);
 
-        const clientes = appClientsView.querySelectorAll(
-            '.app-client-card'
-        );
+        const cards = appClientsView.querySelectorAll('.app-client-card');
 
         let encontrados = 0;
 
-        clientes.forEach((cliente) => {
+        cards.forEach((card) => {
 
-            const nome = cliente.querySelector('.app-client-name');
-
-            const nomeCliente = normalizarTexto(
-                nome ? nome.textContent : ''
+            const nome = normalizarTexto(
+                card.querySelector('.app-client-name')?.textContent
             );
 
-            const encontrado = nomeCliente.includes(pesquisa);
+            const status = normalizarTexto(card.dataset.clientStatus);
+            const estado = normalizarTexto(card.dataset.clientState);
+            const cidade = normalizarTexto(card.dataset.clientCity);
+            const segmento = normalizarTexto(card.dataset.clientSegment);
 
-            cliente.hidden = !encontrado;
+            const correspondePesquisa = nome.includes(pesquisa);
+
+            const correspondeStatus =
+                activeFilters.status === 'todos' ||
+                status === activeFilters.status;
+
+            const correspondeEstado = estado.includes(
+                normalizarTexto(activeFilters.state)
+            );
+
+            const correspondeCidade = cidade.includes(
+                normalizarTexto(activeFilters.city)
+            );
+
+            const correspondeSegmento = segmento.includes(
+                normalizarTexto(activeFilters.segment)
+            );
+
+            const encontrado =
+                correspondePesquisa &&
+                correspondeStatus &&
+                correspondeEstado &&
+                correspondeCidade &&
+                correspondeSegmento;
+
+            card.hidden = !encontrado;
 
             if (encontrado) {
                 encontrados++;
             }
         });
 
-        // Atualizar quantidade exibida
         appClientsCount.textContent =
-            encontrados === 1
-                ? '1 cliente'
-                : `${encontrados} clientes`;
+            `${encontrados} ${encontrados === 1 ? 'cliente' : 'clientes'}`;
 
-        // Mostrar mensagem quando não houver resultados
         appClientsEmpty.hidden = encontrados > 0;
     };
 
-    // Pesquisar enquanto o usuário digita
-    appClientsQuery.addEventListener(
-        'input',
-        pesquisarClientes
-    );
+    // Abrir o painel com os filtros atuais
+    const abrirFiltros = () => {
 
-    // Pesquisar ao clicar na lupa
-    appClientsSearchBtn.addEventListener(
-        'click',
-        pesquisarClientes
-    );
+        selecionarStatus(activeFilters.status);
 
-    // Inicializar a listagem
+        filterState.value = activeFilters.state;
+        filterCity.value = activeFilters.city;
+        filterSegment.value = activeFilters.segment;
+
+        filterOverlay.hidden = false;
+
+        filterOpenBtn.setAttribute('aria-expanded', 'true');
+        filterCloseBtn.focus();
+    };
+
+    // Fechar o painel
+    const fecharFiltros = () => {
+
+        filterOverlay.hidden = true;
+
+        filterOpenBtn.setAttribute('aria-expanded', 'false');
+        filterOpenBtn.focus();
+    };
+
+    // Atualizar status no painel
+    filterStatusBtns.forEach((button) => {
+        button.addEventListener('click', () => {
+            selecionarStatus(button.dataset.filterStatus);
+        });
+    });
+
+    // Limpar os campos do painel
+    filterClearBtn.addEventListener('click', () => {
+
+        selecionarStatus('todos');
+
+        filterState.value = '';
+        filterCity.value = '';
+        filterSegment.value = '';
+    });
+
+    // Aplicar os filtros escolhidos
+    filterApplyBtn.addEventListener('click', () => {
+
+        activeFilters.status = draftStatus;
+        activeFilters.state = filterState.value.trim();
+        activeFilters.city = filterCity.value.trim();
+        activeFilters.segment = filterSegment.value.trim();
+
+        pesquisarClientes();
+        fecharFiltros();
+    });
+
+    // Pesquisa em tempo real
+    appClientsQuery.addEventListener('input', pesquisarClientes);
+
+    // Botão de pesquisa
+    appClientsSearchBtn.addEventListener('click', pesquisarClientes);
+
+    // Abrir e fechar filtros
+    filterOpenBtn.addEventListener('click', abrirFiltros);
+    filterCloseBtn.addEventListener('click', fecharFiltros);
+
+    // Fechar ao clicar fora do painel
+    filterOverlay.addEventListener('click', (event) => {
+        if (event.target === filterOverlay) {
+            fecharFiltros();
+        }
+    });
+
+    // Acessibilidade: Escape e navegação pelo teclado
+    document.addEventListener('keydown', (event) => {
+
+        if (filterOverlay.hidden) {
+            return;
+        }
+
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            fecharFiltros();
+            return;
+        }
+
+        if (event.key === 'Tab') {
+
+            const elements = Array.from(
+                filterPanel.querySelectorAll('button, input')
+            ).filter((element) => !element.disabled);
+
+            const first = elements[0];
+            const last = elements[elements.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    // Inicializar clientes
+    selecionarStatus('todos');
     pesquisarClientes();
 }
 
-// Simulador LOGOS - Pesquisa de Clientes
+// Simulador LOGOS - Pesquisa e Filtros de Clientes
