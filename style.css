@@ -1483,15 +1483,15 @@ img {
         min-height: 104px;
         padding: 9px;
     }
-    
+
     .app-overview-number {
         font-size: 24px;
     }
-    
+
     .app-overview-label {
         font-size: 12px;
     }
-    
+
     .app-shortcut-item {
         gap: 9px;
     }
@@ -1508,6 +1508,89 @@ img {
         font-size: 10px;
     }
 }
+
+
+/* Navegação interna do simulador */
+
+/* Botão voltar */
+.app-back-btn {
+    flex-shrink: 0;
+
+    width: 28px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+    border: none;
+
+    background: transparent;
+    color: #172342;
+
+    font-size: 19px;
+    cursor: pointer;
+}
+
+/* Ocultar telas e controles inativos */
+.app-back-btn[hidden],
+.app-home[hidden],
+.app-view-placeholder[hidden],
+.app-content [data-view][hidden] {
+    display: none !important;
+}
+
+/* Tela provisória */
+.app-view-placeholder {
+    min-height: 100%;
+    padding: 35px 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    text-align: center;
+}
+
+.app-placeholder-icon {
+    width: 65px;
+    height: 65px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 18px;
+
+    background: #edf0ff;
+    color: #5270ff;
+
+    font-size: 27px;
+}
+
+.app-view-placeholder h4 {
+    margin: 0;
+    color: #161c29;
+    font-size: 19px;
+}
+
+.app-view-placeholder p {
+    max-width: 260px;
+    margin: 0;
+
+    color: #898989;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Configurações não possui navegação inferior */
+.app-screen.app-screen-no-nav .app-bottom-nav {
+    display: none;
+}
+
+/* Navegação interna do simulador */
+
 
 /* Simulador LOGOS - Como funciona */
 /* Workflow */
