@@ -246,13 +246,13 @@ if (appSimulator) {
         clientes: {
             titulo: 'Clientes',
             aba: null,
-            voltar: false
+            voltar: true
         },
 
         veiculos: {
             titulo: 'Veículos',
             aba: null,
-            voltar: false
+            voltar: true
         },
 
         relatorios: {
