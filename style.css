@@ -1535,6 +1535,312 @@ img {
 
 /* Tela Mais */
 
+
+/* Tela Clientes */
+
+/* Área principal da listagem */
+.app-clients {
+    padding: 20px 16px 30px;
+    background: #fffbfb;
+}
+
+/* Pesquisa e filtros */
+.app-clients-search {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+}
+
+.app-clients-search-field {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+
+    height: 50px;
+    padding: 5px;
+
+    border: 1px solid #6578ff;
+    border-radius: 13px;
+
+    background: #f8f8f8;
+}
+
+/* Campo de pesquisa */
+.app-clients-search-field input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+
+    padding: 0 10px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #161c29;
+
+    font-size: 13px;
+}
+
+.app-clients-search-field input::placeholder {
+    color: #697184;
+}
+
+/* Botão de pesquisa */
+.app-clients-search-btn {
+    flex-shrink: 0;
+
+    width: 37px;
+    height: 37px;
+
+    display: grid;
+    place-items: center;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 17px;
+    cursor: pointer;
+}
+
+/* Botão de filtros */
+.app-clients-filter-btn {
+    flex-shrink: 0;
+
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #6578ff;
+    border-radius: 13px;
+
+    background: transparent;
+    color: #293a78;
+
+    font-size: 19px;
+    cursor: pointer;
+}
+
+/* Contador e botão Novo */
+.app-clients-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    margin: 13px 0;
+}
+
+.app-clients-count {
+    color: #898989;
+    font-size: 12px;
+}
+
+/* Botão Novo */
+.app-clients-new-btn {
+    min-width: 90px;
+    min-height: 41px;
+
+    padding: 10px 17px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+/* Seleção múltipla */
+.app-clients-select-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 44px;
+
+    margin-bottom: 14px;
+    padding: 10px;
+
+    border: 1px solid #6578ff;
+    border-radius: 13px;
+
+    background: transparent;
+    color: #161c29;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.app-clients-select-btn i {
+    font-size: 16px;
+}
+
+/* Lista de clientes */
+.app-clients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cartão de cliente */
+.app-client-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 90px;
+
+    padding: 13px;
+
+    border: 1px solid #6578ff;
+    border-radius: 15px;
+
+    background: transparent;
+    color: #161c29;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.app-client-card:hover {
+    background: #f0f2ff;
+    border-color: #5270ff;
+}
+
+/* Ícone do cliente */
+.app-client-icon {
+    flex-shrink: 0;
+
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 20px;
+}
+
+/* Informações do cliente */
+.app-client-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.app-client-name {
+    color: #161c29;
+
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.app-client-description {
+    color: #898989;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.app-client-clippings {
+    color: #5270ff;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* Seta do cartão */
+.app-client-arrow {
+    flex-shrink: 0;
+
+    color: #293a78;
+    font-size: 14px;
+}
+
+/* Estados de interação */
+.app-clients-search-btn:hover,
+.app-clients-new-btn:hover {
+    background: #1d2859;
+}
+
+.app-clients-filter-btn:hover,
+.app-clients-select-btn:hover {
+    background: #f0f2ff;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+
+    .app-clients {
+        padding: 17px 12px 25px;
+    }
+
+    .app-clients-search {
+        gap: 7px;
+    }
+
+    .app-clients-filter-btn {
+        width: 45px;
+    }
+
+    .app-client-card {
+        gap: 9px;
+        padding: 11px;
+    }
+
+    .app-client-icon {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+    }
+
+    .app-client-name {
+        font-size: 14px;
+    }
+
+    .app-client-description {
+        font-size: 11px;
+    }
+
+    .app-client-clippings {
+        font-size: 10px;
+    }
+
+}
+
+/* Tela Clientes */
+
+
 /* Navegação inferior do aplicativo */
 .app-bottom-nav {
     flex-shrink: 0;
