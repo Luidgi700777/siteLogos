@@ -955,6 +955,7 @@ img {
 /* Moldura do celular fictício */
 .app-simulator {
     position: relative;
+    isolation: isolate;
 
     width: 100%;
     max-width: 430px;
