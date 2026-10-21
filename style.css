@@ -2336,8 +2336,8 @@ img {
     border: 1px solid #d5dbff;
     border-radius: 12px;
 
-    background: transparent;
-    color: #5270ff;
+    border: 1px solid #6578ff;
+    border-radius: 17px;
 
     font-size: 12px;
     font-weight: 600;
@@ -2350,8 +2350,8 @@ img {
 }
 
 .app-client-delete-btn {
-    border-color: #f1d3d6;
-    color: #bb5261;
+    border-color: #e72441;
+    color: #e72441;
 }
 
 .app-client-delete-btn:disabled {

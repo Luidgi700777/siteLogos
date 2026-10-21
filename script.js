@@ -249,6 +249,24 @@ if (appSimulator) {
             voltar: true
         },
 
+        'detalhes-cliente': {
+            titulo: 'Cliente',
+            aba: null,
+            voltar: true
+        },
+
+        'novo-cliente': {
+            titulo: 'Novo cliente',
+            aba: null,
+            voltar: true
+        },
+
+        'editar-cliente': {
+            titulo: 'Editar cliente',
+            aba: null,
+            voltar: true
+        },
+
         veiculos: {
             titulo: 'Veículos',
             aba: null,
@@ -832,3 +850,90 @@ if (clientsSelectionView) {
 }
 
 // Simulador LOGOS - Seleção múltipla de Clientes
+
+
+// Simulador LOGOS - Detalhes do Cliente
+
+const appClientListView = document.querySelector('.app-clients');
+const appClientDetailsView = document.querySelector('.app-client-details');
+
+if (appClientListView && appClientDetailsView) {
+
+    const selectionBar = appClientListView.querySelector(
+        '.app-clients-selection-bar'
+    );
+
+    // Preencher os dados da tela de detalhes
+    const preencherDetalhesCliente = (card) => {
+
+        const nome = card.querySelector('strong')?.textContent.trim()
+            || 'Cliente';
+
+        const segmento = card.dataset.clientSegment
+            || 'Não informado';
+
+        const status = card.dataset.clientStatus
+            || 'Não informado';
+
+        const total = card.dataset.clientClippings
+            || '0';
+
+        const ano = card.dataset.clientYear
+            || 'Não informado';
+
+        // Dados fixos que já estão disponíveis na demonstração
+        const dados = {
+            'nome': nome,
+            'segmento-resumo': segmento,
+            'status': status.toUpperCase(),
+
+            'responsavel': 'Não informado',
+            'segmento': segmento,
+            'cnpj': 'Não informado',
+            'email': 'Não informado',
+            'telefone': 'Não informado',
+            'site': 'Não informado',
+            'localizacao': 'Não informada',
+            'logo': 'Não informado',
+
+            'total-clippings': total,
+            'ano-resumo': `${ano} · ${total}`
+        };
+
+        // Preencher os campos já existentes no HTML
+        Object.entries(dados).forEach(([campo, valor]) => {
+
+            const elemento = appClientDetailsView.querySelector(
+                `[data-client-detail="${campo}"]`
+            );
+
+            if (elemento) {
+                elemento.textContent = valor;
+            }
+        });
+
+        // Guardar o identificador para o formulário de edição futuro
+        appClientDetailsView.dataset.clientId = card.dataset.clientId;
+    };
+
+    // Identificar qual cliente foi clicado
+    appClientListView.addEventListener('click', (event) => {
+
+        const card = event.target.closest(
+            '.app-clients-list [data-client-id]'
+        );
+
+        if (!card) {
+            return;
+        }
+
+        // No modo de seleção, não abrir detalhes
+        if (selectionBar && !selectionBar.hidden) {
+            return;
+        }
+
+        preencherDetalhesCliente(card);
+    });
+}
+
+// Simulador LOGOS - Detalhes do Cliente
