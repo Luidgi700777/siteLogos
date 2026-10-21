@@ -2305,6 +2305,397 @@ img {
 /* Tela Clientes */
 
 
+/* Detalhes do Cliente */
+
+/* Área principal */
+.app-client-details {
+    padding: 14px 18px 30px;
+    background: #fffbfb;
+}
+
+/* Botões Editar e Excluir */
+.app-client-detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 13px;
+}
+
+.app-client-edit-btn,
+.app-client-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 10px 14px;
+
+    border: 1px solid #d5dbff;
+    border-radius: 12px;
+
+    background: transparent;
+    color: #5270ff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.app-client-edit-btn:hover {
+    background: #edf0ff;
+}
+
+.app-client-delete-btn {
+    border-color: #f1d3d6;
+    color: #bb5261;
+}
+
+.app-client-delete-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Cartão principal do cliente */
+.app-client-detail-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    width: 100%;
+    min-height: 105px;
+    padding: 16px;
+
+    border: 1px solid #6578ff;
+    border-radius: 17px;
+
+    background: #fffbfb;
+}
+
+/* Avatar do cliente */
+.app-client-detail-avatar {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 25px;
+}
+
+/* Nome, segmento e status */
+.app-client-detail-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.app-client-detail-identity h4 {
+    margin: 0;
+
+    color: #161c29;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+
+    overflow-wrap: anywhere;
+}
+
+.app-client-detail-identity p {
+    margin: 0;
+
+    color: #898989;
+    font-size: 12px;
+}
+
+.app-client-detail-status {
+    display: inline-block;
+
+    margin-top: 3px;
+    padding: 4px 10px;
+
+    border-radius: 6px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+/* Seção Informações */
+.app-client-detail-section {
+    margin-top: 14px;
+}
+
+.app-client-detail-section h5 {
+    margin: 0 0 12px;
+
+    color: #161c29;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* Lista vertical de informações */
+.app-client-detail-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cartões das informações */
+.app-client-detail-info-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-height: 68px;
+    padding: 11px 12px;
+
+    border: 1px solid #6578ff;
+    border-radius: 15px;
+
+    background: #fffbfb;
+}
+
+/* Quadrado do ícone */
+.app-client-detail-info-icon {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 10px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+/* Conteúdo das informações */
+.app-client-detail-info-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+/* Título da informação */
+.app-client-detail-info-card strong {
+    color: #5270ff;
+
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+/* Valor da informação */
+.app-client-detail-info-card p {
+    margin: 0;
+
+    color: #3e4350;
+    font-size: 14px;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+/* Clippings vinculados */
+.app-client-detail-clippings {
+    margin-top: 28px;
+}
+
+/* Cabeçalho dos clippings */
+.app-client-detail-clippings-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-bottom: 14px;
+}
+
+.app-client-detail-clippings-heading > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.app-client-detail-clippings-heading h5 {
+    margin: 0 0 2px;
+
+    color: #161c29;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.app-client-detail-clippings-heading p {
+    margin: 0;
+
+    color: #898989;
+    font-size: 11px;
+}
+
+/* Número total de clippings */
+.app-client-detail-clippings-count {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+
+    border-radius: 50%;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* Título do ano */
+.app-client-detail-clippings h6 {
+    margin: 0 0 10px;
+
+    color: #161c29;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Ano e quantidade */
+.app-client-detail-year {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 36px;
+    padding: 8px 12px;
+
+    border: 1px solid #6578ff;
+    border-radius: 20px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* Botões de navegação dos clippings */
+.app-client-detail-clippings-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+.app-client-detail-year-btn,
+.app-client-detail-list-btn {
+    min-width: 0;
+    min-height: 46px;
+
+    padding: 10px 6px;
+
+    border: 1px solid #6578ff;
+    border-radius: 12px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.3;
+
+    text-align: center;
+}
+
+.app-client-detail-year-btn:disabled,
+.app-client-detail-list-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Aviso da integração futura */
+.app-client-detail-clippings-note {
+    margin: 12px 0 0;
+
+    color: #898989;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+
+    .app-client-details {
+        padding: 12px 12px 25px;
+    }
+
+    .app-client-detail-profile {
+        gap: 11px;
+        padding: 12px;
+    }
+
+    .app-client-detail-avatar {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+
+    .app-client-detail-identity h4 {
+        font-size: 18px;
+    }
+
+    .app-client-detail-info-card {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .app-client-detail-info-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .app-client-detail-info-card p {
+        font-size: 13px;
+    }
+
+    .app-client-detail-clippings-actions {
+        gap: 7px;
+    }
+
+    .app-client-detail-year-btn,
+    .app-client-detail-list-btn {
+        font-size: 9px;
+    }
+}
+
+/* Detalhes do Cliente */
+
+
 /* Navegação inferior do aplicativo */
 .app-bottom-nav {
     flex-shrink: 0;
