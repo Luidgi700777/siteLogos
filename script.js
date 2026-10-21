@@ -1112,7 +1112,7 @@ if (appClientFormView && appClientForm) {
         if (!card) {
             return;
         }
-        
+
 
         // Recuperar somente os dados conhecidos
 
@@ -1176,3 +1176,283 @@ if (appClientFormView && appClientForm) {
 }
 
 // Simulador LOGOS - Formulário Novo e Editar Cliente
+
+
+// Simulador LOGOS - Clippings Vinculados aos Clientes
+
+const appClientClippingsSection = document.querySelector(
+    '.app-client-detail-clippings'
+);
+
+if (
+    appClientClippingsSection &&
+    appClientListView &&
+    appClientDetailsView
+) {
+
+    // Elementos da seção
+    const clippingList = appClientClippingsSection.querySelector(
+        '#app-client-clippings-list'
+    );
+
+    const emptyMessage = appClientClippingsSection.querySelector(
+        '#app-client-clippings-empty'
+    );
+
+    const yearButton = appClientClippingsSection.querySelector(
+        '.app-client-detail-year-btn'
+    );
+
+    const yearTotal = appClientClippingsSection.querySelector(
+        '.app-client-detail-year-total'
+    );
+
+    const yearCount = appClientClippingsSection.querySelector(
+        '#app-client-year-clippings-count'
+    );
+
+    // Controles de seleção
+    const selectButton = appClientClippingsSection.querySelector(
+        '.app-client-clippings-select-btn'
+    );
+
+    const selectionBar = appClientClippingsSection.querySelector(
+        '.app-client-clippings-selection-bar'
+    );
+
+    const selectedCount = appClientClippingsSection.querySelector(
+        '#app-clippings-selected-count'
+    );
+
+    const totalCount = appClientClippingsSection.querySelector(
+        '#app-clippings-total-count'
+    );
+
+    const selectAllButton = appClientClippingsSection.querySelector(
+        '.app-client-clippings-select-all'
+    );
+
+    const cancelButton = appClientClippingsSection.querySelector(
+        '.app-client-clippings-cancel-selection'
+    );
+
+    // Estado da seleção
+    const selectedClippings = new Set();
+
+    let selectionMode = false;
+
+    const selectionLimit = 100;
+
+    // Cartões individuais de clipping
+    const getAllClippings = () => Array.from(
+        clippingList.querySelectorAll('[data-clipping-id]')
+    );
+
+    // Somente os clippings do cliente selecionado
+    const getClientClippings = () => {
+
+        const clientId = appClientDetailsView.dataset.clientId;
+
+        return getAllClippings().filter(card =>
+            card.dataset.clientId === clientId
+        );
+    };
+
+    // Atualizar interface da seleção múltipla
+    const renderSelection = () => {
+
+        const cards = getClientClippings();
+
+        selectButton.hidden = selectionMode;
+        selectionBar.hidden = !selectionMode;
+
+        selectButton.disabled = cards.length === 0;
+        selectAllButton.disabled = cards.length === 0;
+
+        selectedCount.textContent = selectedClippings.size;
+        totalCount.textContent = cards.length;
+
+        appClientClippingsSection.classList.toggle(
+            'app-client-clippings-selection-active',
+            selectionMode
+        );
+
+        selectButton.setAttribute(
+            'aria-pressed',
+            String(selectionMode)
+        );
+
+        cards.forEach(card => {
+
+            const selected = selectedClippings.has(
+                card.dataset.clippingId
+            );
+
+            card.classList.toggle(
+                'app-client-clipping-selected',
+                selectionMode && selected
+            );
+
+            if (selectionMode) {
+                card.setAttribute(
+                    'aria-pressed',
+                    String(selected)
+                );
+            } else {
+                card.removeAttribute('aria-pressed');
+            }
+
+        });
+    };
+
+    // Atualizar clippings quando outro cliente for aberto
+    const atualizarClippingsCliente = () => {
+
+        const clientId = appClientDetailsView.dataset.clientId;
+
+        const clientCard = Array.from(
+            appClientListView.querySelectorAll(
+                '.app-clients-list [data-client-id]'
+            )
+        ).find(card =>
+            card.dataset.clientId === clientId
+        );
+
+        if (!clientCard) {
+            return;
+        }
+
+        // Preservar a quantidade anual já cadastrada
+        const ano = clientCard.dataset.clientYear || '';
+        const quantidade = clientCard.dataset.clientClippings || '0';
+
+        yearButton.textContent = ano
+            ? `ABRIR ANO ${ano}`
+            : 'ABRIR ANO';
+
+        yearCount.textContent = quantidade;
+
+        yearTotal.hidden = !ano || Number(quantidade) === 0;
+
+        // Mostrar apenas os cartões vinculados ao cliente
+        getAllClippings().forEach(card => {
+
+            card.hidden = card.dataset.clientId !== clientId;
+
+        });
+
+        const cards = getClientClippings();
+
+        // Mensagem aparece somente sem cartões individuais
+        emptyMessage.hidden = cards.length > 0;
+
+        // Reiniciar a seleção ao trocar de cliente
+        selectionMode = false;
+        selectedClippings.clear();
+
+        renderSelection();
+    };
+
+    // Sincronizar quando um cliente for aberto
+    appClientListView.addEventListener('click', event => {
+
+        const card = event.target.closest(
+            '.app-clients-list [data-client-id]'
+        );
+
+        if (!card) {
+            return;
+        }
+
+        const clientSelectionBar = appClientListView.querySelector(
+            '.app-clients-selection-bar'
+        );
+
+        if (clientSelectionBar && !clientSelectionBar.hidden) {
+            return;
+        }
+
+        atualizarClippingsCliente();
+
+    });
+
+    // Ativar seleção múltipla
+    selectButton.addEventListener('click', () => {
+
+        if (getClientClippings().length === 0) {
+            return;
+        }
+
+        selectionMode = true;
+        selectedClippings.clear();
+
+        renderSelection();
+    });
+
+    // Selecionar ou desmarcar um clipping
+    clippingList.addEventListener('click', event => {
+
+        const card = event.target.closest('[data-clipping-id]');
+
+        if (!selectionMode || !card) {
+            return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const id = card.dataset.clippingId;
+
+        if (!id) {
+            return;
+        }
+
+        if (selectedClippings.has(id)) {
+            selectedClippings.delete(id);
+        } else if (selectedClippings.size < selectionLimit) {
+            selectedClippings.add(id);
+        }
+
+        renderSelection();
+    });
+
+    // Selecionar todos os clippings visíveis
+    selectAllButton.addEventListener('click', () => {
+
+        const cards = getClientClippings().filter(
+            card => !card.hidden
+        );
+
+        const allSelected = cards.every(card =>
+            selectedClippings.has(card.dataset.clippingId)
+        );
+
+        cards.forEach(card => {
+
+            const id = card.dataset.clippingId;
+
+            if (allSelected) {
+                selectedClippings.delete(id);
+            } else if (selectedClippings.size < selectionLimit) {
+                selectedClippings.add(id);
+            }
+
+        });
+
+        renderSelection();
+    });
+
+    // Cancelar seleção
+    cancelButton.addEventListener('click', () => {
+
+        selectionMode = false;
+        selectedClippings.clear();
+
+        renderSelection();
+    });
+
+    // Estado inicial
+    renderSelection();
+}
+
+// Simulador LOGOS - Clippings Vinculados aos Clientes

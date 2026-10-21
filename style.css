@@ -2919,6 +2919,11 @@ img {
     width: 100%;
 }
 
+/* Ocultar clippings de outros clientes */
+.app-client-clippings-list [hidden] {
+    display: none !important;
+}
+
 /* Mensagem quando não existem clippings */
 .app-client-clippings-empty {
     margin: 12px 0 0;
