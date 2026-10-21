@@ -220,7 +220,7 @@ if (appSimulator) {
     // Configuração das telas do aplicativo
     const appRoutes = {
         inicio: {
-            titulo: 'Olá, Luidgi',
+            titulo: 'Olá, Assessor',
             aba: 'inicio',
             voltar: false
         },
