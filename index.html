@@ -584,7 +584,7 @@
     <div class="app-clients-toolbar">
 
         <span class="app-clients-count" id="app-clients-count">
-            1 cliente
+            3 cliente
         </span>
 
         <button
@@ -1024,6 +1024,266 @@
 
 </div>
 <!-- Detalhes do Cliente -->
+
+
+<!-- Novo Cliente -->
+<div class="app-client-form-screen" data-view="novo-cliente" hidden>
+
+    <!-- Apresentação do formulário -->
+    <div class="app-client-form-heading">
+        <h4>NOVO CLIENTE</h4>
+        <p>Preencha as informações do cliente.</p>
+    </div>
+
+    <!-- Formulário demonstrativo -->
+    <form class="app-client-create-form" id="app-client-create-form"
+          autocomplete="off">
+
+        <!-- Nome -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-name">
+                NOME <span>*</span>
+            </label>
+
+            <input
+                type="text"
+                id="app-new-client-name"
+                name="nome"
+                placeholder="Nome do cliente"
+                required
+            >
+        </div>
+
+        <!-- Segmento -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-segment">
+                SEGMENTO
+            </label>
+
+            <input
+                type="text"
+                id="app-new-client-segment"
+                name="segmento"
+                placeholder="Ex.: Varejo, Saúde, Tecnologia"
+            >
+        </div>
+
+        <!-- Responsável -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-responsible">
+                RESPONSÁVEL
+            </label>
+
+            <input
+                type="text"
+                id="app-new-client-responsible"
+                name="responsavel"
+                placeholder="Nome do responsável"
+            >
+        </div>
+
+        <!-- CNPJ -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-cnpj">
+                CNPJ
+            </label>
+
+            <input
+                type="text"
+                id="app-new-client-cnpj"
+                name="cnpj"
+                inputmode="numeric"
+                maxlength="18"
+                placeholder="00.000.000/0000-00"
+            >
+        </div>
+
+        <!-- Descrição -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-description">
+                DESCRIÇÃO
+            </label>
+
+            <textarea
+                id="app-new-client-description"
+                name="descricao"
+                rows="4"
+                placeholder="Descreva o cliente"
+            ></textarea>
+        </div>
+
+        <!-- E-mail -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-email">
+                E-MAIL
+            </label>
+
+            <input
+                type="email"
+                id="app-new-client-email"
+                name="email"
+                placeholder="exemplo@email.com"
+            >
+        </div>
+
+        <!-- Telefone -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-phone">
+                TELEFONE
+            </label>
+
+            <input
+                type="tel"
+                id="app-new-client-phone"
+                name="telefone"
+                placeholder="(00) 00000-0000"
+            >
+        </div>
+
+        <!-- Site -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-site">
+                SITE
+            </label>
+
+            <input
+                type="url"
+                id="app-new-client-site"
+                name="site"
+                placeholder="https://exemplo.com.br"
+            >
+        </div>
+
+        <!-- Cidade e estado -->
+        <div class="app-client-form-row">
+
+            <div class="app-client-form-group">
+                <label for="app-new-client-city">
+                    CIDADE
+                </label>
+
+                <input
+                    type="text"
+                    id="app-new-client-city"
+                    name="cidade"
+                    placeholder="Cidade"
+                >
+            </div>
+
+            <div class="app-client-form-group">
+                <label for="app-new-client-state">
+                    UF
+                </label>
+
+                <select
+                    id="app-new-client-state"
+                    name="uf"
+                >
+                    <option value="">Selecione</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- Logo -->
+        <div class="app-client-form-group">
+            <label for="app-new-client-logo">
+                LOGO
+            </label>
+
+            <div class="app-client-form-logo-area">
+
+                <span class="app-client-form-logo-icon">
+                    <i class="fa-regular fa-image"
+                       aria-hidden="true"></i>
+                </span>
+
+                <input
+                    type="file"
+                    id="app-new-client-logo"
+                    name="logo"
+                    accept="image/png,image/jpeg,image/webp"
+                >
+
+                <small>
+                    Imagem demonstrativa. Nenhum arquivo será enviado.
+                </small>
+
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="app-client-form-status-row">
+
+            <div class="app-client-form-status-info">
+                <strong>CLIENTE ATIVO</strong>
+                <small>
+                    Define se o cliente está ativo.
+                </small>
+            </div>
+
+            <label class="app-client-form-switch">
+                <input
+                    type="checkbox"
+                    id="app-new-client-active"
+                    name="ativo"
+                    checked
+                    aria-label="Cliente ativo"
+                >
+
+                <span class="app-client-form-switch-slider"></span>
+            </label>
+
+        </div>
+
+        <!-- Botão de cadastro desabilitado -->
+        <div class="app-client-form-footer">
+
+            <button
+                type="submit"
+                class="app-client-form-submit"
+                disabled
+            >
+                CADASTRAR
+            </button>
+
+            <p>
+                Demonstração visual: o cadastro está desabilitado.
+            </p>
+
+        </div>
+
+    </form>
+
+</div>
+<!-- Novo Cliente -->
 
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
