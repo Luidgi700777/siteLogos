@@ -228,19 +228,19 @@ if (appSimulator) {
         clipping: {
             titulo: 'Clipping',
             aba: 'clipping',
-            voltar: false
+            voltar: true
         },
 
         mailing: {
             titulo: 'Mailing',
             aba: 'mailing',
-            voltar: false
+            voltar: true
         },
 
         mais: {
             titulo: 'Mais',
             aba: 'mais',
-            voltar: false
+            voltar: true
         },
 
         clientes: {
