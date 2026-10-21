@@ -443,6 +443,64 @@ if (appSimulator) {
 // Simulador LOGOS - Navegação
 
 
+// Simulador LOGOS - Informações fixas dos Clientes
+
+const appClientExtraData = {
+
+    'cliente-cleiton': {
+        responsavel: 'Cleiton',
+        cnpj: '',
+        descricao: 'Cliente fictício do segmento de varejo, utilizado para demonstrar os recursos da LOGOS.',
+        email: 'cleiton@example.com',
+        telefone: '',
+        site: '',
+        cidade: 'São Paulo',
+        uf: 'SP',
+        logo: 'Ícone demonstrativo'
+    },
+
+    'cliente-maria': {
+        responsavel: 'Maria',
+        cnpj: '',
+        descricao: 'Cliente fictício da área da saúde, utilizado na demonstração do gerenciamento de clientes.',
+        email: 'maria@example.com',
+        telefone: '',
+        site: '',
+        cidade: 'Campinas',
+        uf: 'SP',
+        logo: 'Ícone demonstrativo'
+    },
+
+    'cliente-joao': {
+        responsavel: 'João',
+        cnpj: '',
+        descricao: 'Cliente fictício do setor de tecnologia, utilizado na demonstração das ferramentas da LOGOS.',
+        email: 'joao@example.com',
+        telefone: '',
+        site: '',
+        cidade: 'Curitiba',
+        uf: 'PR',
+        logo: 'Ícone demonstrativo'
+    }
+
+};
+
+// Sincronizar cidade e UF com os filtros da listagem
+document.querySelectorAll('.app-clients-list [data-client-id]')
+    .forEach(card => {
+
+        const dados = appClientExtraData[card.dataset.clientId];
+
+        if (!dados) {
+            return;
+        }
+
+        card.dataset.clientCity = dados.cidade;
+        card.dataset.clientState = dados.uf;
+
+    });
+
+// Simulador LOGOS - Informações fixas dos Clientes
 
 // Simulador LOGOS - Pesquisa e Filtros de Clientes
 
@@ -887,24 +945,36 @@ if (appClientListView && appClientDetailsView) {
         const ano = card.dataset.clientYear
             || 'Não informado';
 
+
         // Dados fixos que já estão disponíveis na demonstração
+
+        // Informações adicionais do cliente selecionado
+        const extras = appClientExtraData[card.dataset.clientId] || {};
+
+        const localizacao = [extras.cidade, extras.uf]
+            .filter(Boolean)
+            .join(' - ');
+
+        // Informações exibidas na tela de detalhes
         const dados = {
             'nome': nome,
             'segmento-resumo': segmento,
             'status': status.toUpperCase(),
-
-            'responsavel': 'Não informado',
+        
+            'responsavel': extras.responsavel || 'Não informado',
             'segmento': segmento,
-            'cnpj': 'Não informado',
-            'email': 'Não informado',
-            'telefone': 'Não informado',
-            'site': 'Não informado',
-            'localizacao': 'Não informada',
-            'logo': 'Não informado',
-
+            'descricao': extras.descricao || 'Não informada',
+            'cnpj': extras.cnpj || 'Não informado',
+            'email': extras.email || 'Não informado',
+            'telefone': extras.telefone || 'Não informado',
+            'site': extras.site || 'Não informado',
+            'localizacao': localizacao || 'Não informada',
+            'logo': extras.logo || 'Não informado',
+        
             'total-clippings': total,
             'ano-resumo': `${ano} · ${total}`
         };
+
 
         // Preencher os campos já existentes no HTML
         Object.entries(dados).forEach(([campo, valor]) => {
@@ -1042,14 +1112,27 @@ if (appClientFormView && appClientForm) {
         if (!card) {
             return;
         }
+        
 
         // Recuperar somente os dados conhecidos
+
+        // Recuperar as informações fixas do cliente
+        const extras = appClientExtraData[clientId] || {};
+
         const dados = {
             nome: card.querySelector('strong')?.textContent.trim() || '',
             segmento: card.dataset.clientSegment || '',
-            cidade: card.dataset.clientCity || '',
-            uf: card.dataset.clientState || ''
+        
+            responsavel: extras.responsavel || '',
+            cnpj: extras.cnpj || '',
+            descricao: extras.descricao || '',
+            email: extras.email || '',
+            telefone: extras.telefone || '',
+            site: extras.site || '',
+            cidade: extras.cidade || '',
+            uf: extras.uf || ''
         };
+
 
         // Preencher campos correspondentes
         Object.entries(dados).forEach(([campo, valor]) => {
