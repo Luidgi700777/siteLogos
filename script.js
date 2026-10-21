@@ -483,14 +483,17 @@ if (appClientsView) {
 
         const pesquisa = normalizarTexto(appClientsQuery.value);
 
-        const cards = appClientsView.querySelectorAll('.app-client-card');
+        const cards = appClientsView.querySelectorAll('.app-client-card1, .app-client-card2, .app-client-card3');
 
         let encontrados = 0;
 
         cards.forEach((card) => {
 
             const nome = normalizarTexto(
-                card.querySelector('.app-client-name')?.textContent
+                card.querySelector('.app-client-name1')?.textContent
+                || card.querySelector('.app-client-name2')?.textContent
+                || card.querySelector('.app-client-name3')?.textContent
+                || ''
             );
 
             const status = normalizarTexto(card.dataset.clientStatus);
@@ -644,3 +647,188 @@ if (appClientsView) {
 }
 
 // Simulador LOGOS - Pesquisa e Filtros de Clientes
+
+
+// Simulador LOGOS - Seleção múltipla de Clientes
+
+const clientsSelectionView = document.querySelector('.app-clients');
+
+if (clientsSelectionView) {
+
+    const selectButton = clientsSelectionView.querySelector(
+        '.app-clients-select-btn'
+    );
+
+    const selectionBar = clientsSelectionView.querySelector(
+        '.app-clients-selection-bar'
+    );
+
+    const selectedCount = clientsSelectionView.querySelector(
+        '#app-clients-selected-count'
+    );
+
+    const selectAllButton = clientsSelectionView.querySelector(
+        '.app-clients-select-all'
+    );
+
+    const cancelButton = clientsSelectionView.querySelector(
+        '.app-clients-cancel-selection'
+    );
+
+    const selectedClients = new Set();
+    const selectionLimit = 100;
+
+    let selectionMode = false;
+
+    const getCards = () => Array.from(
+        clientsSelectionView.querySelectorAll('.app-client-card1, .app-client-card2, .app-client-card3')
+    );
+
+    const getVisibleCards = () => getCards().filter(
+        card => !card.hidden
+    );
+
+    // Atualizar a interface da seleção
+    const renderSelection = () => {
+
+        selectButton.hidden = selectionMode;
+        selectionBar.hidden = !selectionMode;
+
+        clientsSelectionView.classList.toggle(
+            'app-clients-selection-active',
+            selectionMode
+        );
+
+        selectButton.setAttribute(
+            'aria-pressed',
+            String(selectionMode)
+        );
+
+        selectedCount.textContent = selectedClients.size;
+
+        selectAllButton.disabled = getVisibleCards().length === 0;
+
+        getCards().forEach(card => {
+
+            const isSelected = selectedClients.has(
+                card.dataset.clientId
+            );
+
+            card.classList.toggle(
+                'app-client-selected',
+                selectionMode && isSelected
+            );
+
+            if (selectionMode) {
+                card.setAttribute(
+                    'aria-pressed',
+                    String(isSelected)
+                );
+            } else {
+                card.removeAttribute('aria-pressed');
+            }
+        });
+    };
+
+    // Ativar seleção
+    selectButton.addEventListener('click', () => {
+
+        selectionMode = true;
+        selectedClients.clear();
+
+        renderSelection();
+    });
+
+    // Selecionar ou desmarcar um cliente
+    clientsSelectionView.addEventListener('click', event => {
+
+        const card1 = event.target.closest('.app-client-card1');
+        const card2 = event.target.closest('.app-client-card2');
+        const card3 = event.target.closest('.app-client-card3');
+
+        const card = card1 || card2 || card3;
+
+        if (!selectionMode || !card) {
+            return;
+        }
+
+        // Não navegar para os detalhes
+        event.preventDefault();
+        event.stopPropagation();
+
+        const id = card.dataset.clientId;
+
+        if (!id) {
+            return;
+        }
+
+        if (selectedClients.has(id)) {
+            selectedClients.delete(id);
+        } else if (selectedClients.size < selectionLimit) {
+            selectedClients.add(id);
+        }
+
+        renderSelection();
+    });
+
+    // Selecionar ou desmarcar todos os clientes visíveis
+    selectAllButton.addEventListener('click', () => {
+
+        const visible = getVisibleCards();
+
+        const allSelected = visible.every(
+            card => selectedClients.has(card.dataset.clientId)
+        );
+
+        visible.forEach(card => {
+
+            const id = card.dataset.clientId;
+
+            if (!id) {
+                return;
+            }
+
+            if (allSelected) {
+                selectedClients.delete(id);
+            } else if (selectedClients.size < selectionLimit) {
+                selectedClients.add(id);
+            }
+        });
+
+        renderSelection();
+    });
+
+    // Cancelar seleção
+    cancelButton.addEventListener('click', () => {
+
+        selectionMode = false;
+        selectedClients.clear();
+
+        renderSelection();
+    });
+
+    // Sincronizar seleção com pesquisa e filtros
+    const syncVisibleSelection = () => {
+
+        getCards().forEach(card => {
+            if (card.hidden) {
+                selectedClients.delete(card.dataset.clientId);
+            }
+        });
+
+        renderSelection();
+    };
+
+    clientsSelectionView.querySelector('#app-clients-query')
+        .addEventListener('input', syncVisibleSelection);
+
+    clientsSelectionView.querySelector('.app-clients-search-btn')
+        .addEventListener('click', syncVisibleSelection);
+
+    document.querySelector('.app-clients-apply-btn')
+        ?.addEventListener('click', syncVisibleSelection);
+
+    renderSelection();
+}
+
+// Simulador LOGOS - Seleção múltipla de Clientes

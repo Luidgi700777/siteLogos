@@ -1701,7 +1701,9 @@ img {
 }
 
 /* Cartão de cliente */
-.app-client-card {
+.app-client-card1,
+.app-client-card2,
+.app-client-card3 {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1725,13 +1727,17 @@ img {
         border-color var(--transition-fast);
 }
 
-.app-client-card:hover {
+.app-client-card1:hover,
+.app-client-card2:hover,
+.app-client-card3:hover {
     background: #f0f2ff;
     border-color: #5270ff;
 }
 
 /* Ícone do cliente */
-.app-client-icon {
+.app-client-icon1,
+.app-client-icon2,
+.app-client-icon3 {
     flex-shrink: 0;
 
     width: 46px;
@@ -1749,7 +1755,9 @@ img {
 }
 
 /* Informações do cliente */
-.app-client-info {
+.app-client-info1,
+.app-client-info2,
+.app-client-info3 {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -1758,7 +1766,9 @@ img {
     min-width: 0;
 }
 
-.app-client-name {
+.app-client-name1,
+.app-client-name2,
+.app-client-name3 {
     color: #161c29;
 
     font-size: 15px;
@@ -1766,14 +1776,18 @@ img {
     line-height: 1.3;
 }
 
-.app-client-description {
+.app-client-description1,
+.app-client-description2,
+.app-client-description3 {
     color: #898989;
 
     font-size: 12px;
     line-height: 1.4;
 }
 
-.app-client-clippings {
+.app-client-clippings1,
+.app-client-clippings2,
+.app-client-clippings3 {
     color: #5270ff;
 
     font-size: 11px;
@@ -1781,7 +1795,9 @@ img {
 }
 
 /* Seta do cartão */
-.app-client-arrow {
+.app-client-arrow1,
+.app-client-arrow2,
+.app-client-arrow3 {
     flex-shrink: 0;
 
     color: #293a78;
@@ -1814,27 +1830,37 @@ img {
         width: 45px;
     }
 
-    .app-client-card {
+    .app-client-card1,
+    .app-client-card2,
+    .app-client-card3 {
         gap: 9px;
         padding: 11px;
     }
 
-    .app-client-icon {
+    .app-client-icon1, 
+    .app-client-icon2, 
+    .app-client-icon3 {
         width: 40px;
         height: 40px;
 
         font-size: 18px;
     }
 
-    .app-client-name {
+    .app-client-name1,
+    .app-client-name2,
+    .app-client-name3 {
         font-size: 14px;
     }
 
-    .app-client-description {
+    .app-client-description1,
+    .app-client-description2,
+    .app-client-description3 {
         font-size: 11px;
     }
 
-    .app-client-clippings {
+    .app-client-clippings1,
+    .app-client-clippings2,
+    .app-client-clippings3 {
         font-size: 10px;
     }
 
@@ -1843,7 +1869,9 @@ img {
 
 /* Busca de clientes */
 /* Ocultar cartões que não correspondem à pesquisa */
-.app-client-card[hidden],
+.app-client-card1[hidden],
+.app-client-card2[hidden],
+.app-client-card3[hidden],
 .app-clients-empty[hidden] {
     display: none !important;
 }
@@ -2069,6 +2097,210 @@ img {
     background: #1d2859;
 }
 /* Filtros de Clientes */
+
+
+/* Seleção múltipla de Clientes */
+
+/* Ocultar elementos inativos */
+.app-clients-select-btn[hidden],
+.app-clients-selection-bar[hidden] {
+    display: none !important;
+}
+
+/* Barra de gerenciamento */
+.app-clients-selection-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    min-height: 68px;
+    margin-bottom: 12px;
+    padding: 10px;
+
+    border: 1px solid #6578ff;
+    border-radius: 15px;
+
+    background: #fffbfb;
+}
+
+/* Texto e contador */
+.app-clients-selection-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.app-clients-selection-info strong {
+    color: #161c29;
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.app-clients-selection-info small {
+    color: #898989;
+    font-size: 10px;
+    line-height: 1.3;
+}
+
+/* Ações à direita */
+.app-clients-selection-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.app-clients-selection-actions button {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+/* Selecionar todos */
+.app-clients-select-all {
+    width: 64px;
+    height: 36px;
+
+    border: 1px solid #6578ff;
+    border-radius: 20px;
+
+    background: transparent;
+    color: #161c29;
+
+    font-size: 10px;
+}
+
+/* Lixeira */
+.app-clients-delete-selected {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ee7f8e;
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+.app-clients-delete-selected:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Cancelar seleção */
+.app-clients-cancel-selection {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+/* Checkbox do cartão */
+.app-client-checkbox1,
+.app-client-checkbox2,
+.app-client-checkbox3 {
+    display: none;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 25px;
+    height: 25px;
+
+    border: 1px solid #6578ff;
+    border-radius: 8px;
+
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.app-client-checkbox1 i,
+.app-client-checkbox2 i,
+.app-client-checkbox3 i {
+    display: none;
+}
+
+/* Modo de seleção */
+.app-clients-selection-active .app-client-arrow1,
+.app-clients-selection-active .app-client-arrow2,
+.app-clients-selection-active .app-client-arrow3 {
+    display: none;
+}
+
+.app-clients-selection-active .app-client-checkbox1,
+.app-clients-selection-active .app-client-checkbox2,
+.app-clients-selection-active .app-client-checkbox3 {
+    display: grid;
+}
+
+/* Cliente selecionado */
+.app-client-card1.app-client-selected, 
+.app-client-card2.app-client-selected, 
+.app-client-card3.app-client-selected {
+    background: #f0f2ff;
+    border-color: #5270ff;
+}
+
+.app-client-card1.app-client-selected .app-client-checkbox1,
+.app-client-card2.app-client-selected .app-client-checkbox2,
+.app-client-card3.app-client-selected .app-client-checkbox3 {
+    background: #5270ff;
+}
+
+.app-client-card1.app-client-selected .app-client-checkbox1 i,
+.app-client-card2.app-client-selected .app-client-checkbox2 i,
+.app-client-card3.app-client-selected .app-client-checkbox3 i {
+    display: block;
+}
+
+/* Ajustar cartões ao modelo original */
+.app-client-card1,
+.app-client-card2,
+.app-client-card3 {
+    min-height: 74px;
+    padding: 10px 12px;
+}
+
+.app-client-icon1,
+.app-client-icon2,
+.app-client-icon3 {
+    width: 44px;
+    height: 44px;
+}
+
+.app-client-info1,
+.app-client-info2,
+.app-client-info3 {
+    gap: 2px;
+}
+
+.app-client-name1,
+.app-client-name2,
+.app-client-name3 {
+    font-size: 14px;
+}
+
+/* Cor dos clippings na referência */
+.app-client-clippings1,
+.app-client-clippings2,
+.app-client-clippings3 {
+    color: #dd901c;
+}
+
+/* Seleção múltipla de Clientes */
 
 /* Tela Clientes */
 

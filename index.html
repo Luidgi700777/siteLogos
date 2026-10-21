@@ -602,6 +602,7 @@
         type="button"
         class="app-clients-select-btn"
         data-action="selecionar-clientes"
+        aria-pressed="false"
     >
         <i class="fa-regular fa-circle-check"
            aria-hidden="true"></i>
@@ -609,13 +610,65 @@
         <span>SELECIONAR CLIENTES</span>
     </button>
 
+    <!-- Barra de seleção de Clientes -->
+    <div class="app-clients-selection-bar" hidden>
+
+        <div class="app-clients-selection-info">
+            <strong>
+                <span id="app-clients-selected-count">0</span>
+                de 3 selecionado(s)
+            </strong>
+
+            <small>
+                Botão de excluir desabilitado nesta demonstração!
+            </small>
+        </div>
+
+        <div class="app-clients-selection-actions">
+
+            <!-- Selecionar todos -->
+            <button
+                type="button"
+                class="app-clients-select-all"
+                aria-label="Selecionar todos os clientes visíveis"
+            >
+                TODOS
+            </button>
+
+            <!-- Exclusão será implementada com o cadastro -->
+            <button
+                type="button"
+                class="app-clients-delete-selected"
+                aria-label="Excluir clientes selecionados"
+                title="Exclusão em desenvolvimento"
+                disabled
+            >
+                <i class="fa-regular fa-trash-can"
+                   aria-hidden="true"></i>
+            </button>
+
+            <!-- Cancelar seleção -->
+            <button
+                type="button"
+                class="app-clients-cancel-selection"
+                aria-label="Cancelar seleção"
+            >
+                <i class="fa-solid fa-xmark"
+                   aria-hidden="true"></i>
+            </button>
+
+        </div>
+
+    </div>
+    <!-- Barra de seleção de Clientes -->
+
     <!-- Listagem -->
     <div class="app-clients-list">
 
-        <!-- Cliente demonstrativo -->
+        <!-- Clientes demonstrativos -->
         <button
             type="button"
-            class="app-client-card"
+            class="app-client-card1"
             data-screen="detalhes-cliente"
             data-client-id="cliente-cleiton"
             data-client-status="ativo"
@@ -624,31 +677,127 @@
             data-client-segment="Varejo"
         >
 
-            <span class="app-client-icon">
+            <span class="app-client-icon1">
                 <i class="fa-solid fa-briefcase"
                    aria-hidden="true"></i>
             </span>
 
-            <span class="app-client-info">
+            <span class="app-client-info1">
 
-                <strong class="app-client-name">
+                <strong class="app-client-name1">
                     Cleiton
                 </strong>
 
-                <small class="app-client-description">
+                <small class="app-client-description1">
                     Varejo · Ativo
                 </small>
 
-                <small class="app-client-clippings">
-                    1 clipping · 2026
+                <small class="app-client-clippings1">
+                    27 clipping · 2026
                 </small>
 
             </span>
 
             <i
-                class="fa-solid fa-chevron-right app-client-arrow"
+                class="fa-solid fa-chevron-right app-client-arrow1"
                 aria-hidden="true"
             ></i>
+
+            
+            <!-- Checkbox exibido somente no modo de seleção -->
+            <span class="app-client-checkbox1" aria-hidden="true">
+                <i class="fa-solid fa-check"></i>
+            </span>
+
+        </button>
+
+        <button
+            type="button"
+            class="app-client-card2"
+            data-screen="detalhes-cliente"
+            data-client-id="cliente-maria"
+            data-client-status="ativo"
+            data-client-state=""
+            data-client-city=""
+            data-client-segment="Saúde"
+        >
+
+            <span class="app-client-icon2">
+                <i class="fa-solid fa-briefcase"
+                   aria-hidden="true"></i>
+            </span>
+
+            <span class="app-client-info2">
+
+                <strong class="app-client-name2">
+                    Maria
+                </strong>
+
+                <small class="app-client-description2">
+                    Saúde · Ativo
+                </small>
+
+                <small class="app-client-clippings2">
+                    35 clipping · 2026
+                </small>
+
+            </span>
+
+            <i
+                class="fa-solid fa-chevron-right app-client-arrow2"
+                aria-hidden="true"
+            ></i>
+
+            
+            <!-- Checkbox exibido somente no modo de seleção -->
+            <span class="app-client-checkbox2" aria-hidden="true">
+                <i class="fa-solid fa-check"></i>
+            </span>
+
+        </button>
+
+        <button
+            type="button"
+            class="app-client-card3"
+            data-screen="detalhes-cliente"
+            data-client-id="cliente-joao"
+            data-client-status="ativo"
+            data-client-state=""
+            data-client-city=""
+            data-client-segment="Tecnologia"
+        >
+
+            <span class="app-client-icon3">
+                <i class="fa-solid fa-briefcase"
+                   aria-hidden="true"></i>
+            </span>
+
+            <span class="app-client-info3">
+
+                <strong class="app-client-name3">
+                    João
+                </strong>
+
+                <small class="app-client-description3">
+                    Tecnologia · Ativo
+                </small>
+
+                <small class="app-client-clippings3">
+                    51 clipping · 2025
+                </small>
+
+            </span>
+
+            <i
+                class="fa-solid fa-chevron-right app-client-arrow3"
+                aria-hidden="true"
+            ></i>
+
+            
+            <!-- Checkbox exibido somente no modo de seleção -->
+            <span class="app-client-checkbox3" aria-hidden="true">
+                <i class="fa-solid fa-check"></i>
+            </span>
 
         </button>
 
