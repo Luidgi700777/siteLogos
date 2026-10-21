@@ -1,4 +1,5 @@
 /* Variáveis */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
     /* Paleta de Cores */
     --navy: #07203c;
@@ -2694,6 +2695,393 @@ img {
 }
 
 /* Detalhes do Cliente */
+
+
+/* Formulário Novo Cliente */
+
+/* Área principal */
+.app-client-form-screen {
+    padding: 18px 16px 30px;
+    background: #fffbfb;
+}
+
+/* Título e descrição */
+.app-client-form-heading {
+    margin-bottom: 20px;
+}
+
+.app-client-form-heading h4 {
+    margin: 0 0 6px;
+
+    color: #161c29;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.app-client-form-heading p {
+    margin: 0;
+
+    color: #898989;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.app-client-form-heading1 {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+
+    flex: 1;
+    min-width: 0;
+    
+    color: var(--blue);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+
+    padding-bottom: 5px;
+    border-bottom: var(--blue) solid 1px;
+    margin-bottom: 15px;
+}
+
+/* Estrutura do formulário */
+.app-client-create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Grupos de campos */
+.app-client-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+/* Títulos dos campos */
+.app-client-form-group label {
+    color: #161c29;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Indicador de campo obrigatório */
+.app-client-form-group label span {
+    color: #d95767;
+}
+
+/* Inputs, selects e textarea */
+.app-client-form-group input:not([type="file"]),
+.app-client-form-group select,
+.app-client-form-group textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #6578ff;
+    border-radius: 12px;
+
+    outline: none;
+    background: #f8f8f8;
+    color: #161c29;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+/* Texto de exemplo */
+.app-client-form-group input::placeholder,
+.app-client-form-group textarea::placeholder {
+    color: #898989;
+    opacity: 1;
+}
+
+/* Campo em foco */
+.app-client-form-group input:not([type="file"]):focus,
+.app-client-form-group select:focus,
+.app-client-form-group textarea:focus {
+    border-color: #5270ff;
+    box-shadow: 0 0 0 2px rgba(82, 112, 233, 0.12);
+}
+
+/* Campo de descrição */
+.app-client-form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Seleção de estado */
+.app-client-form-group select {
+    cursor: pointer;
+}
+
+/* Cidade e UF lado a lado */
+.app-client-form-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 105px;
+    gap: 12px;
+}
+
+/* Área de seleção de logo */
+.app-client-form-logo-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 16px;
+
+    border: 1px solid #6578ff;
+    border-radius: 15px;
+
+    background: #f8f8f8;
+}
+
+/* Ícone da logo */
+.app-client-form-logo-icon {
+    display: grid;
+    place-items: center;
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 13px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 24px;
+}
+
+/* Seletor de arquivo */
+.app-client-form-logo-area input[type="file"] {
+    width: 100%;
+    min-width: 0;
+
+    color: #3e4350;
+    font-size: 11px;
+}
+
+.app-client-form-logo-area input[type="file"]::file-selector-button {
+    margin-right: 10px;
+    padding: 10px 12px;
+
+    border: 1px solid #6578ff;
+    border-radius: 9px;
+
+    background: #ffffff;
+    color: #293a78;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* Aviso sobre a logo */
+.app-client-form-logo-area small {
+    color: #898989;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* Área do status */
+.app-client-form-status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+
+    min-height: 76px;
+    padding: 15px;
+
+    border: 1px solid #6578ff;
+    border-radius: 15px;
+
+    background: #fffbfb;
+}
+
+/* Texto do status */
+.app-client-form-status-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+.app-client-form-status-info strong {
+    color: #161c29;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.app-client-form-status-info small {
+    color: #898989;
+    font-size: 11px;
+}
+
+/* Interruptor de ativo/inativo */
+.app-client-form-switch {
+    position: relative;
+    display: inline-block;
+
+    flex-shrink: 0;
+    width: 50px;
+    height: 28px;
+
+    cursor: pointer;
+}
+
+.app-client-form-switch input {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Fundo do interruptor */
+.app-client-form-switch-slider {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 28px;
+
+    background: #c5cad8;
+
+    transition: background var(--transition-fast);
+}
+
+/* Bolinha do interruptor */
+.app-client-form-switch-slider::before {
+    content: "";
+
+    position: absolute;
+    left: 4px;
+    top: 4px;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    transition: transform var(--transition-fast);
+}
+
+/* Interruptor ligado */
+.app-client-form-switch input:checked + .app-client-form-switch-slider {
+    background: #293a78;
+}
+
+.app-client-form-switch input:checked +
+.app-client-form-switch-slider::before {
+    transform: translateX(22px);
+}
+
+/* Destaque de acessibilidade */
+.app-client-form-switch input:focus-visible +
+.app-client-form-switch-slider {
+    outline: 2px solid #5270ff;
+    outline-offset: 3px;
+}
+
+/* Rodapé do formulário */
+.app-client-form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 6px;
+    padding-bottom: 12px;
+}
+
+/* Botão Cadastrar */
+.app-client-form-submit {
+    width: 100%;
+    min-height: 50px;
+
+    padding: 12px 18px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* Cadastro desabilitado */
+.app-client-form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Texto explicativo */
+.app-client-form-footer p {
+    margin: 0;
+
+    color: #898989;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 400px) {
+
+    .app-client-form-screen {
+        padding: 16px 12px 25px;
+    }
+
+    .app-client-create-form {
+        gap: 16px;
+    }
+
+    .app-client-form-row {
+        grid-template-columns: minmax(0, 1fr) 90px;
+        gap: 8px;
+    }
+
+    .app-client-form-group input:not([type="file"]),
+    .app-client-form-group select,
+    .app-client-form-group textarea {
+        padding: 11px 10px;
+        font-size: 12px;
+    }
+
+    .app-client-form-logo-area {
+        padding: 12px;
+    }
+
+    .app-client-form-status-row {
+        padding: 12px;
+    }
+}
+
+/* Formulário Novo Cliente */
 
 
 /* Navegação inferior do aplicativo */
