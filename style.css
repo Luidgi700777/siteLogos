@@ -2694,8 +2694,282 @@ img {
     }
 }
 
-/* Detalhes do Cliente */
+/* Clippings Vinculados - Complementos */
+/* Área do indicador do ano */
+.app-client-detail-year-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.app-client-detail-year-content[hidden] {
+    display: none !important;
+}
+
+/* Indicador do ano e quantidade */
+.app-client-detail-year-content .app-client-detail-year {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 36px;
+    padding: 7px 12px;
+
+    border: 1px solid #6578ff;
+    border-radius: 22px;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+/* Botões de navegação abaixo do indicador */
+.app-client-detail-clippings-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+
+    margin-top: 16px;
+    margin-bottom: 12px;
+}
+
+/* Quantidade de clippings no ano */
+.app-client-detail-year-total {
+    margin: 0 0 14px;
+
+    color: #898989;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.app-client-detail-year-total[hidden] {
+    display: none !important;
+}
+
+/* Botão Selecionar Clippings */
+.app-client-clippings-select-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 43px;
+
+    margin-top: 12px;
+    margin-bottom: 13px;
+    padding: 10px 12px;
+
+    border: 1px solid #6578ff;
+    border-radius: 14px;
+
+    background: transparent;
+    color: #161c29;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background-color var(--transition-fast);
+}
+
+.app-client-clippings-select-btn i {
+    font-size: 16px;
+}
+
+.app-client-clippings-select-btn:hover:not(:disabled) {
+    background: #f0f2ff;
+}
+
+/* Botão desabilitado quando não há clippings */
+.app-client-clippings-select-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.app-client-clippings-select-btn[hidden] {
+    display: none !important;
+}
+
+/* Barra de seleção múltipla */
+.app-client-clippings-selection-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    min-height: 68px;
+
+    margin-top: 12px;
+    margin-bottom: 13px;
+    padding: 10px;
+
+    border: 1px solid #6578ff;
+    border-radius: 15px;
+
+    background: #fffbfb;
+}
+
+.app-client-clippings-selection-bar[hidden] {
+    display: none !important;
+}
+
+/* Informações da seleção */
+.app-client-clippings-selection-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.app-client-clippings-selection-info strong {
+    color: #161c29;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.app-client-clippings-selection-info small {
+    color: #898989;
+    font-size: 10px;
+    line-height: 1.3;
+}
+
+/* Ações da seleção */
+.app-client-clippings-selection-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.app-client-clippings-selection-actions button {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+/* Selecionar todos */
+.app-client-clippings-select-all {
+    min-width: 53px;
+    height: 35px;
+
+    padding: 0 8px;
+
+    border: 1px solid #6578ff;
+    border-radius: 20px;
+
+    background: transparent;
+    color: #161c29;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* Excluir selecionados */
+.app-client-clippings-delete-selected {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ee7f8e;
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+/* Cancelar seleção */
+.app-client-clippings-cancel-selection {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #293a78;
+    color: #ffffff;
+
+    font-size: 17px;
+}
+
+/* Ações desabilitadas */
+.app-client-clippings-selection-actions button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Área dos cartões de clipping */
+.app-client-clippings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+}
+
+/* Mensagem quando não existem clippings */
+.app-client-clippings-empty {
+    margin: 12px 0 0;
+    padding: 12px;
+
+    border: 1px solid #d5dbff;
+    border-radius: 12px;
+
+    background: #f8f8f8;
+    color: #697184;
+
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.app-client-clippings-empty[hidden] {
+    display: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 400px) {
+
+    .app-client-clippings-selection-bar {
+        gap: 5px;
+        padding: 8px;
+    }
+
+    .app-client-clippings-selection-actions {
+        gap: 4px;
+    }
+
+    .app-client-clippings-selection-info strong {
+        font-size: 11px;
+    }
+
+    .app-client-clippings-select-all {
+        min-width: 48px;
+        padding: 0 5px;
+    }
+
+    .app-client-clippings-cancel-selection,
+    .app-client-clippings-delete-selected {
+        width: 32px;
+        height: 32px;
+    }
+
+}
+
+/* Clippings Vinculados - Complementos */
+/* Detalhes do Cliente */
 
 /* Formulário Novo Cliente */
 
