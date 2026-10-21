@@ -346,7 +346,13 @@ if (appSimulator) {
         let viewExists = false;
 
         views.forEach((view) => {
-            const active = view.dataset.view === screenName;
+            
+        const active =
+            view.dataset.view === screenName ||
+            (
+                screenName === 'editar-cliente' &&
+                view.dataset.view === 'novo-cliente'
+            );
 
             view.hidden = !active;
 
@@ -937,3 +943,153 @@ if (appClientListView && appClientDetailsView) {
 }
 
 // Simulador LOGOS - Detalhes do Cliente
+
+
+// Simulador LOGOS - Formulário Novo e Editar Cliente
+
+const appClientFormView = document.querySelector(
+    '.app-client-form-screen'
+);
+
+const appClientForm = document.querySelector(
+    '#app-client-create-form'
+);
+
+const appClientNewButton = document.querySelector(
+    '.app-clients-new-btn'
+);
+
+const appClientEditButton = document.querySelector(
+    '.app-client-edit-btn'
+);
+
+if (appClientFormView && appClientForm) {
+
+    const formTitle = appClientFormView.querySelector(
+        '.app-client-form-heading h4'
+    );
+
+    const formDescription = appClientFormView.querySelector(
+        '.app-client-form-heading p'
+    );
+
+    const formSubmit = appClientFormView.querySelector(
+        '.app-client-form-submit'
+    );
+
+    const formNotice = appClientFormView.querySelector(
+        '.app-client-form-footer p'
+    );
+
+    // Configurar aparência do formulário
+    const configurarFormulario = (modo) => {
+
+        const editando = modo === 'editar';
+
+        formTitle.textContent = editando
+            ? 'EDITAR CLIENTE'
+            : 'NOVO CLIENTE';
+
+        formDescription.textContent = editando
+            ? 'Visualize e altere os dados demonstrativos.'
+            : 'Preencha as informações do cliente.';
+
+        formSubmit.textContent = editando
+            ? 'SALVAR'
+            : 'CADASTRAR';
+
+        // Nenhuma operação será permitida
+        formSubmit.disabled = true;
+
+        formNotice.textContent = editando
+            ? 'Demonstração visual: alterações não serão salvas.'
+            : 'Demonstração visual: o cadastro está desabilitado.';
+    };
+
+    // Abrir formulário de novo cliente
+    const prepararNovoCliente = () => {
+
+        // Limpar os dados preenchidos anteriormente
+        appClientForm.reset();
+
+        configurarFormulario('novo');
+    };
+
+    // Abrir formulário de edição
+    const prepararEdicaoCliente = () => {
+
+        appClientForm.reset();
+
+        const detailsView = document.querySelector(
+            '.app-client-details'
+        );
+
+        const clientId = detailsView?.dataset.clientId;
+
+        if (!clientId) {
+            return;
+        }
+
+        // Localizar o cliente fixo selecionado
+        const card = Array.from(
+            document.querySelectorAll(
+                '.app-clients-list [data-client-id]'
+            )
+        ).find(
+            item => item.dataset.clientId === clientId
+        );
+
+        if (!card) {
+            return;
+        }
+
+        // Recuperar somente os dados conhecidos
+        const dados = {
+            nome: card.querySelector('strong')?.textContent.trim() || '',
+            segmento: card.dataset.clientSegment || '',
+            cidade: card.dataset.clientCity || '',
+            uf: card.dataset.clientState || ''
+        };
+
+        // Preencher campos correspondentes
+        Object.entries(dados).forEach(([campo, valor]) => {
+
+            const input = appClientForm.elements.namedItem(campo);
+
+            if (input) {
+                input.value = valor;
+            }
+        });
+
+        // Status fixo do cliente
+        const campoAtivo = appClientForm.elements.namedItem('ativo');
+
+        if (campoAtivo) {
+            campoAtivo.checked =
+                card.dataset.clientStatus === 'ativo';
+        }
+
+        configurarFormulario('editar');
+    };
+
+    // Eventos dos botões
+    appClientNewButton?.addEventListener(
+        'click',
+        prepararNovoCliente
+    );
+
+    appClientEditButton?.addEventListener(
+        'click',
+        prepararEdicaoCliente
+    );
+
+    // Segurança: impedir qualquer envio do formulário
+    appClientForm.addEventListener('submit', event => {
+        event.preventDefault();
+    });
+
+    // Inicialização
+    configurarFormulario('novo');
+}
+
+// Simulador LOGOS - Formulário Novo e Editar Cliente
