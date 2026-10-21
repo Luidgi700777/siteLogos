@@ -997,50 +997,169 @@
 
     </section>
 
+    
     <!-- Clippings vinculados -->
     <section class="app-client-detail-clippings">
 
-        <div class="app-client-detail-clippings-heading">
-            <div>
-                <h5>CLIPPINGS VINCULADOS</h5>
-                <p>Publicações deste cliente</p>
-            </div>
+    <!-- Cabeçalho -->
+    <div class="app-client-detail-clippings-heading">
 
-            <span class="app-client-detail-clippings-count"
-                  data-client-detail="total-clippings">
-                27
-            </span>
+        <div>
+            <h5>CLIPPINGS VINCULADOS</h5>
+            <p>Publicações deste cliente</p>
         </div>
 
-        <h6>ANO DOS CLIPPINGS</h6>
-
-        <span class="app-client-detail-year"
-              data-client-detail="ano-resumo">
-            2026 · 27
+        <span
+            class="app-client-detail-clippings-count"
+            data-client-detail="total-clippings"
+        >
+            0
         </span>
 
-        <div class="app-client-detail-clippings-actions">
+    </div>
+  
+    <!-- Ano dos clippings -->
+    <h6>ANO DOS CLIPPINGS</h6>
 
-            <button type="button"
-                    class="app-client-detail-year-btn"
-                    disabled>
-                ABRIR ANO
+    <!-- Indicador do ano -->
+    <div class="app-client-detail-year-content">
+
+        <span
+            class="app-client-detail-year"
+            data-client-detail="ano-resumo"
+        >
+            2026 · 1
+        </span>
+
+    </div>
+
+    <!-- Botão abrir ano -->
+    <div class="app-client-detail-clippings-actions">
+
+        <button
+            type="button"
+            class="app-client-detail-year-btn"
+            disabled
+        >
+            ABRIR ANO
+        </button>
+
+    <!-- Botão listagem do cliente -->
+        <button
+            type="button"
+            class="app-client-detail-list-btn"
+            disabled
+        >
+            LISTAGEM DO CLIENTE
+        </button>
+
+    </div>
+
+    <!-- Quantidade no ano -->
+    <p class="app-client-detail-year-total" hidden>
+        <span id="app-client-year-clippings-count">0</span>
+        clipping(s) neste ano
+    </p>
+
+    <!-- Selecionar clippings -->
+    <button
+        type="button"
+        class="app-client-clippings-select-btn"
+        aria-pressed="false"
+        disabled
+    >
+        <i
+            class="fa-regular fa-circle-check"
+            aria-hidden="true"
+        ></i>
+
+        <span>SELECIONAR CLIPPINGS</span>
+    </button>
+
+    <!-- Barra de seleção múltipla -->
+    <div class="app-client-clippings-selection-bar" hidden>
+
+        <div class="app-client-clippings-selection-info">
+
+            <strong>
+                <span id="app-clippings-selected-count">0</span>
+                de
+                <span id="app-clippings-total-count">0</span>
+                selecionado(s)
+            </strong>
+
+            <small>
+                Exclusão desabilitada nesta demonstração.
+            </small>
+
+        </div>
+
+        <div class="app-client-clippings-selection-actions">
+
+            <!-- Selecionar todos -->
+            <button
+                type="button"
+                class="app-client-clippings-select-all"
+                disabled
+            >
+                TODOS
             </button>
 
-            <button type="button"
-                    class="app-client-detail-list-btn"
-                    disabled>
-                LISTAGEM DO CLIENTE
+            <!-- Excluir -->
+            <button
+                type="button"
+                class="app-client-clippings-delete-selected"
+                aria-label="Excluir clippings selecionados"
+                disabled
+            >
+                <i
+                    class="fa-regular fa-trash-can"
+                    aria-hidden="true"
+                ></i>
+            </button>
+
+            <!-- Cancelar -->
+            <button
+                type="button"
+                class="app-client-clippings-cancel-selection"
+                aria-label="Cancelar seleção de clippings"
+            >
+                <i
+                    class="fa-solid fa-xmark"
+                    aria-hidden="true"
+                ></i>
             </button>
 
         </div>
 
-        <p class="app-client-detail-clippings-note">
-            A listagem de matérias será integrada
-            ao módulo Clipping.
-        </p>
+    </div>
+    <!-- Barra de seleção múltipla -->
 
-    </section>
+    <!-- Lista de clippings do cliente -->
+    <div
+        class="app-client-clippings-list"
+        id="app-client-clippings-list"
+    >
+        <!--
+            Os cartões de clippings serão inseridos
+            somente quando existirem registros fixos
+            vinculados ao cliente selecionado.
+        -->
+    </div>
+    <!-- Lista de clippings do cliente -->
+
+    <!-- Nenhum clipping -->
+    <p
+        class="app-client-clippings-empty"
+        id="app-client-clippings-empty"
+        role="status"
+    >
+        Nenhum clipping vinculado a este cliente.
+    </p>
+
+</section>
+<!-- Clippings vinculados -->
+
 
 </div>
 <!-- Detalhes do Cliente -->
