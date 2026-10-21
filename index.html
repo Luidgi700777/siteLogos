@@ -818,6 +818,207 @@
 </div>
 <!-- Tela Clientes -->
 
+
+<!-- Detalhes do Cliente -->
+<div class="app-client-details" data-view="detalhes-cliente" hidden>
+
+    <!-- Ações -->
+    <div class="app-client-detail-actions">
+
+        <button
+            type="button"
+            class="app-client-edit-btn"
+            data-screen="editar-cliente"
+        >
+            <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
+            Editar
+        </button>
+
+        <button
+            type="button"
+            class="app-client-delete-btn"
+            disabled
+            title="Exclusão desabilitada na demonstração"
+        >
+            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+            Excluir
+        </button>
+
+    </div>
+
+    <!-- Identificação -->
+    <div class="app-client-detail-profile">
+
+        <div class="app-client-detail-avatar">
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+        </div>
+
+        <div class="app-client-detail-identity">
+            <h4 data-client-detail="nome">Cleiton</h4>
+            <p data-client-detail="segmento-resumo">Varejo</p>
+            <span class="app-client-detail-status"
+                  data-client-detail="status">
+                ATIVO
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Informações cadastrais -->
+    <section class="app-client-detail-section">
+
+        <h5>INFORMAÇÕES</h5>
+
+        <div class="app-client-detail-info-list">
+
+            <!-- Responsável -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>RESPONSÁVEL</strong>
+                    <p data-client-detail="responsavel">Não informado</p>
+                </div>
+            </div>
+
+            <!-- Segmento -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>SEGMENTO</strong>
+                    <p data-client-detail="segmento">Varejo</p>
+                </div>
+            </div>
+
+            <!-- CNPJ -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-regular fa-id-card" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>CNPJ</strong>
+                    <p data-client-detail="cnpj">Não informado</p>
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>E-MAIL</strong>
+                    <p data-client-detail="email">Não informado</p>
+                </div>
+            </div>
+
+            <!-- Telefone -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>TELEFONE</strong>
+                    <p data-client-detail="telefone">Não informado</p>
+                </div>
+            </div>
+
+            <!-- Site -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>SITE</strong>
+                    <p data-client-detail="site">Não informado</p>
+                </div>
+            </div>
+
+            <!-- Localização -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>LOCALIZAÇÃO</strong>
+                    <p data-client-detail="localizacao">Não informada</p>
+                </div>
+            </div>
+
+            <!-- Logo -->
+            <div class="app-client-detail-info-card">
+                <span class="app-client-detail-info-icon">
+                    <i class="fa-regular fa-image" aria-hidden="true"></i>
+                </span>
+
+                <div>
+                    <strong>LOGO</strong>
+                    <p data-client-detail="logo">Não informado</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Clippings vinculados -->
+    <section class="app-client-detail-clippings">
+
+        <div class="app-client-detail-clippings-heading">
+            <div>
+                <h5>CLIPPINGS VINCULADOS</h5>
+                <p>Publicações deste cliente</p>
+            </div>
+
+            <span class="app-client-detail-clippings-count"
+                  data-client-detail="total-clippings">
+                27
+            </span>
+        </div>
+
+        <h6>ANO DOS CLIPPINGS</h6>
+
+        <span class="app-client-detail-year"
+              data-client-detail="ano-resumo">
+            2026 · 27
+        </span>
+
+        <div class="app-client-detail-clippings-actions">
+
+            <button type="button"
+                    class="app-client-detail-year-btn"
+                    disabled>
+                ABRIR ANO
+            </button>
+
+            <button type="button"
+                    class="app-client-detail-list-btn"
+                    disabled>
+                LISTAGEM DO CLIENTE
+            </button>
+
+        </div>
+
+        <p class="app-client-detail-clippings-note">
+            A listagem de matérias será integrada
+            ao módulo Clipping.
+        </p>
+
+    </section>
+
+</div>
+<!-- Detalhes do Cliente -->
+
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
 
