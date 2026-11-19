@@ -1766,6 +1766,53 @@
   </form>
 </section>
 
+
+<!-- Templates -->
+<section class="app-templates" data-view="templates" hidden>
+ <div class="app-template-library-head"><span class="app-template-library-icon"><i class="fa-regular fa-folder"></i></span><div><h4>Biblioteca</h4><p>Modelos de release</p></div><button type="button" data-screen="novo-template">+ NOVO</button></div>
+ <div class="app-template-search"><input id="app-template-search" type="search" placeholder="Buscar template..." aria-label="Buscar template"><button type="button"><i class="fa-solid fa-magnifying-glass"></i></button></div>
+ <div class="app-template-tabs"><button class="selected" data-template-tab="todos">Todos</button><button data-template-tab="padroes">Padrões</button><button data-template-tab="assessoria">Da assessoria</button></div>
+ <div class="app-template-count"><strong>Modelos</strong><span id="app-template-count">3 encontrados</span></div>
+ <p class="app-template-empty" hidden>Nenhum template encontrado.</p>
+ <div class="app-template-grid">
+  <article class="app-template-card" data-template-card data-template-id="simples" data-template-name="Release simples" data-template-origin="padrao">
+   <div class="app-template-thumb"><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Release simples</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-template-id="simples">◉ VER PRÉVIA</button><button data-template-action="copy" data-template-id="simples">▢ CRIAR CÓPIA</button>
+  </article>
+  <article class="app-template-card" data-template-card data-template-id="imagem" data-template-name="Release com imagem" data-template-origin="padrao">
+   <div class="app-template-thumb"><div class="app-template-thumb-image">▧ Imagem da matéria</div><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Release com imagem</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-template-id="imagem">◉ VER PRÉVIA</button><button data-template-action="copy" data-template-id="imagem">▢ CRIAR CÓPIA</button>
+  </article>
+  <article class="app-template-card" data-template-card data-template-id="aviso" data-template-name="Aviso de pauta" data-template-origin="padrao">
+   <div class="app-template-thumb"><strong>Título do aviso de pauta</strong><p>Apresente o evento e os destaques para a imprensa.</p><small>Serviço<br>Data e horário<br>Local e endereço<br>Informações para participação</small><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Aviso de pauta</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-template-id="aviso">◉ VER PRÉVIA</button><button data-template-action="copy" data-template-id="aviso">▢ CRIAR CÓPIA</button>
+  </article>
+ </div>
+</section>
+<section class="app-template-preview" data-view="preview-template" hidden>
+ <strong id="app-template-preview-name"></strong><p>Prévia da estrutura e dos textos iniciais.</p><article class="app-template-preview-card" id="app-template-preview-card"></article>
+ <div class="app-template-preview-actions"><button type="button" data-screen="templates">FECHAR</button><button type="button" data-action="copy-preview">▢ CRIAR CÓPIA</button></div>
+</section>
+<section class="app-template-editor" data-view="novo-template" hidden>
+ <label>NOME DO TEMPLATE<input id="app-template-name" placeholder="Ex.: Release institucional"></label>
+ <p class="app-template-hint">Este modelo ficará disponível para os próximos releases da assessoria.</p>
+ <div class="app-template-editor-tabs"><button class="selected" data-editor-tab="blocks">Editar blocos</button><button data-editor-tab="preview">Prévia</button></div>
+ <p class="app-template-current">Template: <span id="app-template-current-name">Novo template</span></p>
+ <div id="app-template-block-list"></div>
+ <div id="app-template-editor-preview" hidden></div>
+ <button class="app-template-add-block" type="button">＋ ADICIONAR BLOCO</button>
+ <p class="app-template-block-count"><span id="app-template-block-count">0</span> de 100 blocos</p>
+ <div class="app-template-editor-actions"><button type="button" data-screen="templates">VOLTAR</button><button type="button" data-action="save-template">✓ SALVAR</button></div>
+ <div class="app-template-add-modal" hidden><div class="app-template-add-panel">
+  <header><div><h4>Adicionar bloco</h4><p>Escolha o que deseja incluir na matéria.</p></div><button type="button" data-action="close-block-modal">×</button></header>
+  <div class="app-template-block-choices">
+   <p>Conteúdo</p><button data-block-choice="Título">Aa <strong>Título</strong><small>Destaque principal</small></button><button data-block-choice="Linha fina">＝ <strong>Linha fina</strong><small>Resumo da matéria</small></button><button data-block-choice="Texto">▤ <strong>Texto</strong><small>Parágrafos e informações</small></button><button data-block-choice="Contato de imprensa">◉ <strong>Contato de imprensa</strong><small>Dados da assessoria</small></button>
+   <p>Mídia e links</p><button data-block-choice="Imagem / logo">▧ <strong>Imagem / logo</strong><small>Imagem com legenda</small></button><button data-block-choice="Botão com link">↪ <strong>Botão com link</strong><small>Acesso em destaque</small></button><button data-block-choice="Arquivo">♧ <strong>Arquivo</strong><small>Link para download</small></button>
+   <p>Organização</p><button data-block-choice="Divisor">— <strong>Divisor</strong><small>Linha de separação</small></button><button data-block-choice="Espaçamento">↗ <strong>Espaçamento</strong><small>Respiro entre blocos</small></button>
+  </div><footer><button type="button" data-action="insert-block">＋ INSERIR BLOCO</button><button type="button" data-action="close-block-modal">× CANCELAR</button></footer>
+ </div></div>
+</section>
+
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
 
