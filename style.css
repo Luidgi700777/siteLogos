@@ -6087,3 +6087,5 @@ footer .social a:hover {
 .app-vehicles-empty[hidden] {
     display: none !important;
 }
+
+.app-template-block-edit[hidden] { display:none !important; }
