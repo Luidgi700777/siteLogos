@@ -530,7 +530,7 @@ img {
   border-radius: 30px;
   background: #fffbfc;
   color: #111827;
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', Arial, sans-serif;
   box-sizing: border-box;
 }
 
@@ -1366,7 +1366,7 @@ img {
     background: #fffbfb;
     color: #161c29;
 
-    font-family: Inter, Arial, sans-serif;
+    font-family: 'Montserrat', Arial, sans-serif;
     font-size: 14px;
 }
 
