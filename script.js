@@ -220,7 +220,7 @@ if (appSimulator) {
     // Configuração das telas do aplicativo
     const appRoutes = {
         inicio: {
-            titulo: 'Olá, Assessor',
+            titulo: 'Olá, Luidgi',
             aba: 'inicio',
             voltar: false
         },
@@ -476,43 +476,17 @@ if (appSimulator) {
 // Simulador LOGOS - Informações fixas dos Clientes
 
 const appClientExtraData = {
-
-    'cliente-cleiton': {
-        responsavel: 'Cleiton',
+    'cliente-douglas': {
+        responsavel: 'cleiton',
         cnpj: '',
-        descricao: 'Cliente fictício do segmento de varejo, utilizado para demonstrar os recursos da LOGOS.',
-        email: 'cleiton@example.com',
+        descricao: '',
+        email: 'douglas@gmail.com',
         telefone: '',
         site: '',
-        cidade: 'São Paulo',
-        uf: 'SP',
-        logo: 'Ícone demonstrativo'
-    },
-
-    'cliente-maria': {
-        responsavel: 'Maria',
-        cnpj: '',
-        descricao: 'Cliente fictício da área da saúde, utilizado na demonstração do gerenciamento de clientes.',
-        email: 'maria@example.com',
-        telefone: '',
-        site: '',
-        cidade: 'Campinas',
-        uf: 'SP',
-        logo: 'Ícone demonstrativo'
-    },
-
-    'cliente-joao': {
-        responsavel: 'João',
-        cnpj: '',
-        descricao: 'Cliente fictício do setor de tecnologia, utilizado na demonstração das ferramentas da LOGOS.',
-        email: 'joao@example.com',
-        telefone: '',
-        site: '',
-        cidade: 'Curitiba',
-        uf: 'PR',
-        logo: 'Ícone demonstrativo'
+        cidade: '',
+        uf: '',
+        logo: ''
     }
-
 };
 
 // Sincronizar cidade e UF com os filtros da listagem
@@ -1047,166 +1021,55 @@ if (appClientListView && appClientDetailsView) {
 
 // Simulador LOGOS - Formulário Novo e Editar Cliente
 
-const appClientFormView = document.querySelector(
-    '.app-client-form-screen'
-);
-
-const appClientForm = document.querySelector(
-    '#app-client-create-form'
-);
-
-const appClientNewButton = document.querySelector(
-    '.app-clients-new-btn'
-);
-
-const appClientEditButton = document.querySelector(
-    '.app-client-edit-btn'
-);
-
-if (appClientFormView && appClientForm) {
-
-    const formTitle = appClientFormView.querySelector(
-        '.app-client-form-heading h4'
-    );
-
-    const formDescription = appClientFormView.querySelector(
-        '.app-client-form-heading p'
-    );
-
-    const formSubmit = appClientFormView.querySelector(
-        '.app-client-form-submit'
-    );
-
-    const formNotice = appClientFormView.querySelector(
-        '.app-client-form-footer p'
-    );
-
-    // Configurar aparência do formulário
-    const configurarFormulario = (modo) => {
-
-        const editando = modo === 'editar';
-
-        formTitle.textContent = editando
-            ? 'EDITAR CLIENTE'
-            : 'NOVO CLIENTE';
-
-        formDescription.textContent = editando
-            ? 'Visualize e altere os dados demonstrativos.'
-            : 'Preencha as informações do cliente.';
-
-        formSubmit.textContent = editando
-            ? 'SALVAR'
-            : 'CADASTRAR';
-
-        // Nenhuma operação será permitida
-        formSubmit.disabled = true;
-
-        formNotice.textContent = editando
-            ? 'Demonstração visual: alterações não serão salvas.'
-            : 'Demonstração visual: o cadastro está desabilitado.';
-    };
-
-    // Abrir formulário de novo cliente
-    const prepararNovoCliente = () => {
-
-        // Limpar os dados preenchidos anteriormente
-        appClientForm.reset();
-
-        configurarFormulario('novo');
-    };
-
-    // Abrir formulário de edição
-    const prepararEdicaoCliente = () => {
-
-        appClientForm.reset();
-
-        const detailsView = document.querySelector(
-            '.app-client-details'
-        );
-
-        const clientId = detailsView?.dataset.clientId;
-
-        if (!clientId) {
-            return;
-        }
-
-        // Localizar o cliente fixo selecionado
-        const card = Array.from(
-            document.querySelectorAll(
-                '.app-clients-list [data-client-id]'
-            )
-        ).find(
-            item => item.dataset.clientId === clientId
-        );
-
-        if (!card) {
-            return;
-        }
-
-
-        // Recuperar somente os dados conhecidos
-
-        // Recuperar as informações fixas do cliente
-        const extras = appClientExtraData[clientId] || {};
-
-        const dados = {
-            nome: card.querySelector('strong')?.textContent.trim() || '',
-            segmento: card.dataset.clientSegment || '',
-        
-            responsavel: extras.responsavel || '',
-            cnpj: extras.cnpj || '',
-            descricao: extras.descricao || '',
-            email: extras.email || '',
-            telefone: extras.telefone || '',
-            site: extras.site || '',
-            cidade: extras.cidade || '',
-            uf: extras.uf || ''
-        };
-
-
-        // Preencher campos correspondentes
-        Object.entries(dados).forEach(([campo, valor]) => {
-
-            const input = appClientForm.elements.namedItem(campo);
-
-            if (input) {
-                input.value = valor;
-            }
-        });
-
-        // Status fixo do cliente
-        const campoAtivo = appClientForm.elements.namedItem('ativo');
-
-        if (campoAtivo) {
-            campoAtivo.checked =
-                card.dataset.clientStatus === 'ativo';
-        }
-
-        configurarFormulario('editar');
-    };
-
-    // Eventos dos botões
-    appClientNewButton?.addEventListener(
-        'click',
-        prepararNovoCliente
-    );
-
-    appClientEditButton?.addEventListener(
-        'click',
-        prepararEdicaoCliente
-    );
-
-    // Segurança: impedir qualquer envio do formulário
-    appClientForm.addEventListener('submit', event => {
-        event.preventDefault();
-    });
-
-    // Inicialização
-    configurarFormulario('novo');
+const appClientFormView=document.querySelector('.app-client-form-screen');
+const appClientForm=document.querySelector('#app-client-create-form');
+const appClientNewButton=document.querySelector('.app-clients-new-btn');
+const appClientEditButton=document.querySelector('.app-client-edit-btn');
+if(appClientFormView&&appClientForm){
+ const heading=appClientFormView.querySelector('.app-client-form-heading');
+ const profile=appClientFormView.querySelector('.app-client-form-profile');
+ const submit=appClientFormView.querySelector('.app-client-form-submit');
+ const prepare=(editing)=>{
+  appClientForm.reset();
+  heading.hidden=editing;
+  profile.hidden=!editing;
+  submit.textContent=editing?'SALVAR':'CADASTRAR';
+  const clientId=appClientDetailsView?.dataset.clientId;
+  const card=Array.from(document.querySelectorAll('.app-clients-list [data-client-id]')).find(item=>item.dataset.clientId===clientId);
+  const extra=appClientExtraData[clientId]||{};
+  const values=editing&&card?{
+   nome:card.querySelector('strong')?.textContent.trim()||'',
+   segmento:card.dataset.clientSegment||'',
+   responsavel:extra.responsavel||'',
+   cnpj:extra.cnpj||'',
+   descricao:extra.descricao||'',
+   email:extra.email||'',
+   telefone:extra.telefone||'',
+   site:extra.site||'',
+   cidade:extra.cidade||'',
+   uf:extra.uf||''
+  }:{};
+  Object.entries(values).forEach(([name,value])=>{
+   const field=appClientForm.elements.namedItem(name);
+   if(field)field.value=value;
+  });
+  const active=appClientForm.elements.namedItem('ativo');
+  if(active)active.checked=!editing||card?.dataset.clientStatus==='ativo';
+  if(editing&&card){
+   profile.querySelector('h4').textContent=values.nome||'douglas';
+   profile.querySelector('p').textContent=values.segmento||'varejo';
+   profile.querySelector('span').textContent=(card.dataset.clientStatus||'ativo').toUpperCase();
+  }
+ };
+ appClientNewButton?.addEventListener('click',()=>prepare(false));
+ appClientEditButton?.addEventListener('click',()=>prepare(true));
+ appClientForm.querySelector('.app-client-logo-pick').onclick=()=>appClientForm.querySelector('input[name="logo"]').click();
+ appClientForm.addEventListener('submit',event=>event.preventDefault());
+ document.querySelector('.app-client-delete-btn')?.addEventListener('click',event=>event.preventDefault());
+ prepare(false);
 }
 
 // Simulador LOGOS - Formulário Novo e Editar Cliente
-
 
 // Simulador LOGOS - Clippings Vinculados aos Clientes
 
