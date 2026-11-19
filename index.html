@@ -1680,6 +1680,92 @@
 </div>
 <!-- Novo Cliente -->
 
+
+<!-- Veículos -->
+<section class="app-vehicles" data-view="veiculos" hidden>
+  <div class="app-vehicles-tools">
+    <div class="app-vehicles-search">
+      <input id="app-vehicles-query" type="search" placeholder="Buscar veículos..." aria-label="Buscar veículos">
+      <button type="button" class="app-vehicles-search-submit" aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <button type="button" class="app-vehicles-filter-open" aria-label="Abrir filtros"><i class="fa-solid fa-sliders"></i></button>
+  </div>
+  <div class="app-vehicles-list-heading">
+    <span><strong id="app-vehicles-count">1 veículo</strong></span>
+    <button type="button" class="app-vehicles-new" data-screen="novo-veiculo">+ NOVO</button>
+  </div>
+  <div class="app-vehicles-selection-bar" hidden>
+    <span><strong id="app-vehicles-selected-count">0</strong> selecionados</span>
+    <button type="button" class="app-vehicles-select-all">SELECIONAR TODOS</button>
+    <button type="button" class="app-vehicles-cancel-select">CANCELAR</button>
+  </div>
+  <button type="button" class="app-vehicles-select-trigger">SELECIONAR VEÍCULOS</button>
+  <div class="app-vehicles-list">
+    <button type="button" class="app-vehicle-card" data-vehicle-id="veiculo-x" data-vehicle-name="x" data-vehicle-status="ativo" data-vehicle-tier="" data-vehicle-contacts="0" data-screen="detalhes-veiculo">
+      <span class="app-vehicle-card-icon"><i class="fa-regular fa-newspaper"></i></span>
+      <span class="app-vehicle-card-main"><strong>x</strong><small>Alcance não informado</small><span class="app-vehicle-status">ATIVO</span></span>
+      <span class="app-vehicle-card-count">0<br><small>contatos</small></span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+  <p class="app-vehicles-empty" hidden>Nenhum veículo encontrado.</p>
+  <div class="app-vehicles-filter-backdrop" hidden>
+    <section class="app-vehicles-filter-panel" role="dialog" aria-modal="true" aria-label="Filtros de veículos">
+      <header><div><h4>FILTROS</h4><p>Refine os veículos exibidos</p></div><button type="button" class="app-vehicles-filter-close" aria-label="Fechar filtros">×</button></header>
+      <div class="app-vehicles-filter-body">
+        <fieldset><legend>STATUS</legend><div class="app-vehicles-status-options">
+          <button type="button" data-vehicle-status-filter="ativo">Ativos</button><button type="button" data-vehicle-status-filter="inativo">Inativos</button><button type="button" data-vehicle-status-filter="todos" class="selected">Todos</button>
+        </div></fieldset>
+        <fieldset><legend>ORDENAÇÃO</legend><div class="app-vehicles-sort-options">
+          <button type="button" data-vehicle-sort="alpha" class="selected">ORDEM ALFABÉTICA</button><button type="button" data-vehicle-sort="desc">MAIS VÍNCULOS</button><button type="button" data-vehicle-sort="asc">MENOS VÍNCULOS</button>
+        </div></fieldset>
+        <label>MÍNIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-min-contacts" placeholder="Ex.: 5"></label>
+        <label>MÁXIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-max-contacts" placeholder="Ex.: 20"></label>
+        <small>Defina a quantidade mínima e/ou máxima de vínculos.</small>
+      </div>
+      <footer><button type="button" class="app-vehicles-filter-clear">LIMPAR</button><button type="button" class="app-vehicles-filter-apply">APLICAR</button></footer>
+    </section>
+  </div>
+</section>
+
+<section class="app-vehicle-details" data-view="detalhes-veiculo" hidden>
+  <div class="app-vehicle-detail-actions">
+    <button type="button" class="app-vehicle-edit" data-screen="editar-veiculo"><i class="fa-regular fa-pen-to-square"></i> Editar</button>
+    <button type="button" class="app-vehicle-delete" title="Ação ilustrativa"><i class="fa-regular fa-trash-can"></i> Excluir</button>
+  </div>
+  <article class="app-vehicle-identity">
+    <span class="app-vehicle-identity-icon"><i class="fa-regular fa-newspaper"></i></span>
+    <div><h4 data-vehicle-detail="name">x</h4><p>Alcance não informado</p><strong>ATIVO</strong></div>
+  </article>
+  <h5>INFORMAÇÕES</h5>
+  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-file-lines"></i></span><div><small>DESCRIÇÃO</small><p>Não informada</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-chart-column"></i></span><div><small>ALCANCE</small><p>Não informado</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-award"></i></span><div><small>TIER</small><p>Não definido</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-image"></i></span><div><small>LOGO</small><p>Não informado</p></div></div>
+  <section class="app-vehicle-addresses"><h4>ENDEREÇOS DO SITE</h4><p>Usados para reconhecer o veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p><small>Nenhum endereço associado.</small></section>
+</section>
+
+<section class="app-vehicle-form" data-view="novo-veiculo" hidden>
+  <div class="app-vehicle-form-heading"><h4>NOVO VEÍCULO</h4><p>Preencha as informações do veículo.</p></div>
+  <form id="app-vehicle-form" autocomplete="off">
+    <label>NOME<input name="name" type="text" placeholder="Nome do veículo"></label>
+    <label>DESCRIÇÃO<textarea name="description" placeholder="Detalhes do veículo"></textarea></label>
+    <label>ALCANCE<textarea name="reach" placeholder="Redes sociais, seguidores e outras informações"></textarea></label>
+    <fieldset><legend>TIER</legend><div class="app-vehicle-tier-options">
+      <label><input type="radio" name="tier" value="" checked> Não definido</label><label><input type="radio" name="tier" value="1"> Tier 1</label><label><input type="radio" name="tier" value="2"> Tier 2</label><label><input type="radio" name="tier" value="3"> Tier 3</label>
+    </div><small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small></fieldset>
+    <section class="app-vehicle-address-form"><h4>ENDEREÇOS DO SITE (opcional)</h4><p>Ajuda a reconhecer este veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p>
+      <label>DOMÍNIO<input name="domain" type="text" placeholder="Ex.: nomesite.com"></label>
+      <label>SEÇÃO DO SITE (OPCIONAL)<input name="siteSection" type="text" placeholder="Ex.: /agro"></label>
+      <label class="app-vehicle-subdomains"><input name="subdomains" type="checkbox"> Incluir subdomínios <small>Ex.: portal.exemplo.com para exemplo.com</small></label>
+      <button type="button" class="app-vehicle-add-address">ADICIONAR ENDEREÇO</button>
+    </section>
+    <label class="app-vehicle-active"><input name="active" type="checkbox" checked> Veículo ativo</label>
+    <div class="app-vehicle-form-actions"><button type="button" data-screen="veiculos">CANCELAR</button><button type="submit">CADASTRAR</button></div>
+    <p class="app-vehicle-demo-note">Demonstração visual: esta ação não altera os dados.</p>
+  </form>
+</section>
+
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
 
