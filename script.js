@@ -237,6 +237,12 @@ if (appSimulator) {
             voltar: true
         },
 
+        releases: {
+            titulo: 'Releases',
+            aba: 'releases',
+            voltar: true
+        },
+
         mais: {
             titulo: 'Mais',
             aba: 'mais',
