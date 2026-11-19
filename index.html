@@ -1242,6 +1242,57 @@
  </div></div>
 </section>
 
+
+<section class="app-clipping-groups" data-view="clipping" hidden>
+  <div class="app-clipping-primary-actions"><button data-screen="novo-clipping">＋ NOVO CLIPPING</button><button data-screen="importar-clippings">⇩ IMPORTAR CSV</button></div>
+  <h4>Grupos Anuais</h4><p>Selecione um ano para ver seus clientes e publicações.</p>
+  <button class="app-clipping-year-card" data-screen="clipping-clientes"><span>▦</span><div><strong>2026</strong><small>2 publicações · 2 clientes</small></div><em>Ano atual</em><i>›</i></button>
+  <button class="app-clipping-year-card" data-screen="clipping-clientes"><span>▦</span><div><strong>2025</strong><small>1 publicação · 1 cliente</small></div><i>›</i></button>
+</section>
+<section class="app-clipping-clients" data-view="clipping-clientes" hidden>
+  <div class="app-clipping-search-row"><div class="app-clipping-search"><input placeholder="Buscar cliente..."><button>⌕</button></div><button class="app-clipping-filter-open">☷</button></div><p>3 cliente(s) disponíveis</p>
+  <div class="app-clipping-client-list">
+    <button class="app-clipping-client-card" data-screen="clipping-cliente"><i>▣</i><span><strong>Cleiton</strong><small>Varejo · São Paulo · São Paulo · Ativo</small><em>1 clipping (2026)</em></span><b>›</b></button>
+    <button class="app-clipping-client-card" data-screen="clipping-cliente"><i>▣</i><span><strong>João</strong><small>Tecnologia · Curitiba · Paraná · Ativo</small><em>0 clippings (2026)</em></span><b>›</b></button>
+    <button class="app-clipping-client-card" data-screen="clipping-cliente"><i>▣</i><span><strong>Maria</strong><small>Saúde · São Paulo · São Paulo · Ativo</small><em>1 clipping (2026)</em></span><b>›</b></button>
+  </div>
+  <div class="app-clipping-client-filter-backdrop" hidden><section class="app-clipping-sheet"><header><div><h4>FILTROS</h4><p>Refine os clientes exibidos</p></div><button class="app-clipping-filter-close">×</button></header><div><label>STATUS</label><div class="app-clipping-filter-status"><button>Ativos</button><button>Inativos</button><button class="selected">Todos</button></div><label>ESTADO<input placeholder="Ex.: São Paulo"></label><label>CIDADE<input placeholder="Ex.: Campinas"></label><label>SEGMENTO<input placeholder="Ex.: Tecnologia, Saúde, Varejo"></label></div><footer><button class="app-clipping-filter-clear">LIMPAR</button><button class="app-clipping-filter-apply">APLICAR</button></footer></section></div>
+</section>
+<section class="app-clipping-client-page" data-view="clipping-cliente" hidden>
+  <article class="app-clipping-year-client-card"><strong>2026</strong><small>Cleiton</small><span>1 clipping em 2026</span></article>
+  <div class="app-clipping-search-row"><div class="app-clipping-search"><input placeholder="Buscar pauta, veículo..."><button>⌕</button></div><button class="app-clipping-filter-open">☷</button></div>
+  <div class="app-clipping-client-toolbar"><button>IMPORTAR</button><button>EXPORTAR</button><button data-screen="novo-clipping">＋ CLIPPING</button></div>
+  <button class="app-clipping-select-trigger">☑ SELECIONAR CLIPPINGS</button>
+  <div class="app-clipping-selection-bar" hidden><span><strong>0 de 100 selecionado(s)</strong><small>Escolha os clippings que deseja excluir.</small></span><button>TODOS</button><button>▤</button><button class="app-clipping-cancel-selection">×</button></div>
+  <div class="app-clipping-items"><button class="app-clipping-item" data-screen="detalhes-clipping"><span>19/11</span><b>LOGOS</b><em>Tier —</em><strong>Varejo</strong><small>Sem categoria</small><i>›</i></button></div>
+</section>
+<section class="app-clipping-details" data-view="detalhes-clipping" hidden>
+  <div class="app-clipping-detail-actions"><button data-screen="editar-clipping">✎ Editar</button><button class="app-clipping-delete">▤ Excluir</button></div>
+  <article><small>CLIENTE</small><strong>Cleiton</strong><span>2026 · Varejo · 19/11/2026</span></article><h4>DADOS DA PUBLICAÇÃO</h4>
+  <article><small>VEÍCULO</small><strong>LOGOS</strong><span>Tier não definido · Programa / seção não informado</span></article>
+  <article><small>CATEGORIAS</small><strong>Sem categoria</strong></article><article><small>TRECHO</small><strong>Não informado</strong></article>
+  <article><small>LINK</small><strong>Sem link informado</strong><p>Você também pode cadastrar a publicação com arquivos anexados.</p></article>
+  <article><small>OBSERVAÇÕES</small><strong>Nenhuma observação adicionada</strong></article><article><small>ANEXOS</small><strong>Nenhum anexo</strong><button>＋ ADICIONAR</button></article>
+</section>
+<section class="app-clipping-form" data-view="novo-clipping" hidden>
+  <article class="app-clipping-client-selector"><small>CLIENTE</small><strong data-clipping-selected-client>Selecione o cliente</strong><button class="app-clipping-client-open">Selecionar</button></article>
+  <article class="app-clipping-year-selector"><small>ANO DE REFERÊNCIA</small><strong>2026</strong><button>Alterar</button></article><p>Sem data de publicação, o clipping ficará em 2026.</p>
+  <h4>DADOS DA PUBLICAÇÃO</h4><label>LINK<input name="link" placeholder="https://..."></label>
+  <div class="app-clipping-form-tools"><button class="app-clipping-search-data">⌕ BUSCAR DADOS</button><button class="app-clipping-capture-open">▧ CAPTURAR IMAGEM</button></div>
+  <label>DATA DE PUBLICAÇÃO<span class="app-clipping-date-field"><input name="date" placeholder="DD/MM/AAAA"><button>▦</button></span></label>
+  <label>PAUTA<input name="subject" placeholder="Assunto ou título da matéria"></label><label>VEÍCULO<input name="vehicle" placeholder="Buscar pelo nome do veículo"></label>
+  <button class="app-clipping-vehicle-card"><strong>LOGOS</strong><small>Tier não definido · Canal de notícias da LOGOS</small><span>Recolher detalhes　⌃</span><p>Descrição<br>Canal de notícias da LOGOS</p><p>Alcance<br>500 mil leitores</p><p>Endereços associados<br>logos.com.br · Site inteiro</p></button>
+  <label>PROGRAMA / SEÇÃO<input name="program" placeholder="Ex.: Jornal da manhã"></label><label>CATEGORIAS<input name="categories" placeholder="Separe as categorias por vírgula"></label>
+  <div class="app-clipping-category-chips"><button>+ Site</button><button>+ TV</button><button>+ Rádio</button><button>+ Jornal</button><button>+ Revista</button><button>+ Podcast</button><button>+ Redes sociais</button></div>
+  <fieldset><legend>TIER</legend><div class="app-clipping-tier-options"><button class="selected">◉ Não definido</button><button>○ Tier 1</button><button>○ Tier 2</button><button>○ Tier 3</button></div><small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small></fieldset>
+  <label>INÍCIO<input placeholder="00:00"></label><label>FIM<input placeholder="00:00"></label><small>A duração será calculada com início e fim válidos. Ex.: 02:10 ou 01:05:30 para incluir horas.</small>
+  <section class="app-clipping-attachments"><header><strong>ANEXOS</strong><button>＋ ADICIONAR</button></header><small>JPG, PNG, WEBP, PDF, MP4, WEBM, MOV, MP3 ou WAV. Até 30 MB por arquivo. Enviados ao salvar.</small><div>▧　Nenhum anexo selecionado</div></section>
+  <label>OBSERVAÇÕES<textarea name="notes" placeholder="Informações adicionais"></textarea></label><div class="app-clipping-form-actions"><button data-screen="clipping">CANCELAR</button><button type="button">SALVAR</button></div>
+  <div class="app-clipping-client-picker" hidden><header><strong>Selecionar cliente</strong><button class="app-clipping-client-close">×</button></header><div class="app-clipping-search"><input placeholder="Buscar cliente..."><button>⌕</button></div><button class="app-clipping-quick-client">＋ Cadastro rápido de cliente</button><button class="app-clipping-pick-client">Cleiton　✓</button><button class="app-clipping-pick-client">João</button><button class="app-clipping-pick-client">Maria</button></div>
+  <div class="app-clipping-data-modal" hidden><section><header><div><h4>Dados encontrados</h4><p>Confira os dados antes de preencher o clipping.</p></div><button class="app-clipping-data-close">×</button></header><article><small>PUBLICAÇÃO</small><b>PAUTA</b><p>Varejo</p><b>DATA</b><p>19/11/2026</p></article><article><small>VEÍCULO</small><b>IDENTIFICADO NO LINK</b><p>LOGOS</p><em>✓ VEÍCULO SELECIONADO</em><p>O endereço logos.com.br já está associado a este veículo no cadastro.</p></article><footer><strong>Como deseja preencher?</strong><button class="app-clipping-insert-all">INSERIR TUDO</button><button class="app-clipping-fill-empty">SÓ VAZIOS</button></footer></section></div>
+  <div class="app-clipping-capture-modal" hidden><section><header><strong>Capturar imagem</strong><button class="app-clipping-capture-close">×</button></header><p>Escolha a parte da página que deseja usar.</p><div class="app-clipping-capture-tools"><button class="selected">RECORTAR</button><button>NAVEGAR</button><span>−　100%　＋</span></div><p>Arraste sobre a imagem para marcar o recorte.</p><div class="app-clipping-capture-preview">Prévia da página selecionada</div><a href="#" class="app-clipping-capture-reset">Refazer captura</a><footer><button class="app-clipping-capture-close">CANCELAR</button><button>USAR RECORTE</button></footer></section></div>
+</section>
+<section class="app-clipping-import" data-view="importar-clippings" hidden><h4>Importar clippings</h4><p>Selecione um arquivo CSV para conferir as publicações.</p><label>⇧ ESCOLHER ARQUIVO CSV<input type="file" accept=".csv,text/csv" hidden></label><div><button data-screen="clipping">CANCELAR</button><button>CONTINUAR</button></div></section>
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
 
