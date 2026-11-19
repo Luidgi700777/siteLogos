@@ -6089,3 +6089,6 @@ footer .social a:hover {
 }
 
 .app-template-block-edit[hidden] { display:none !important; }
+
+.app-vehicles-filter-panel footer,
+.app-template-add-panel footer { background: #fffbfb; }
