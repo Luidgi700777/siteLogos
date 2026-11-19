@@ -1540,23 +1540,42 @@ if (
   });
   updateCount();
  };
- const renderPreview=(container)=>{
+ const normalizedBlocks=(item)=>(item.blocks||[]).map(block=>typeof block==='string'?{type:block,value:summary(block)}:{...block,value:block.value||summary(block.type)});
+ const renderBlockList=(container,items,{thumbnail=false}={})=>{
   container.innerHTML='';
+  items.forEach(block=>{
+   const type=block.type,value=block.value||summary(type);
+   if(type==='Divisor'){container.appendChild(document.createElement('hr'));return}
+   if(type==='Espaçamento'){const gap=document.createElement('div');gap.style.height=thumbnail?'8px':'18px';container.appendChild(gap);return}
+   if(type==='Imagem / logo'){
+    const image=document.createElement('div');image.className=thumbnail?'app-template-thumb-image':'app-template-preview-image';image.textContent=value;container.appendChild(image);return;
+   }
+   if(type==='Contato de imprensa'){
+    const label=document.createElement(thumbnail?'strong':'strong');label.className='app-template-contact-label';label.textContent='Contato de imprensa';container.appendChild(label);
+    const contact=document.createElement('p');contact.textContent=value;container.appendChild(contact);return;
+   }
+   const heading=type==='Título';
+   const text=document.createElement(heading?(thumbnail?'strong':'h3'):'p');text.textContent=value;
+   if(type==='Linha fina')text.className='muted';
+   container.appendChild(text);
+  });
+ };
+ const renderPreview=(container)=>{
   const card=document.createElement('article');card.className='app-template-preview-card';
-  blocks.forEach(b=>{if(b.type==='Divisor'){card.insertAdjacentHTML('beforeend','<hr>');return}if(b.type==='Espaçamento'){card.insertAdjacentHTML('beforeend','<div style="height:18px"></div>');return}const p=document.createElement(b.type==='Título'?'h3':'p');p.textContent=b.value||summary(b.type);if(b.type==='Linha fina')p.className='muted';card.appendChild(p)});
+  renderBlockList(card,blocks);
   if(!blocks.length)card.textContent='O conteúdo ainda está vazio.';
-  container.appendChild(card);
+  container.innerHTML='';container.appendChild(card);
  };
  const showPreview=(id)=>{
   currentId=id;const item=catalog[id]||custom.find(x=>x.id===id)||catalog.simples;
   preview.querySelector('#app-template-preview-name').textContent=item.name;
-  const card=preview.querySelector('#app-template-preview-card');card.innerHTML='';
-  (item.blocks||[]).forEach(type=>{if(type==='Divisor'){card.insertAdjacentHTML('beforeend','<hr>');return}const p=document.createElement(type==='Título'?'h3':'p');p.textContent=summary(type);if(type==='Linha fina')p.className='muted';card.appendChild(p)});
+  const card=preview.querySelector('#app-template-preview-card');
+  renderBlockList(card,normalizedBlocks(item));
  };
  const startCopy=()=>{
   const item=catalog[currentId]||custom.find(x=>x.id===currentId)||catalog.simples;
   copyMode=true;nameInput.value='Cópia de '+item.name;
-  blocks=(item.blocks||[]).map(type=>({type,value:summary(type)}));editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks();
+  blocks=normalizedBlocks(item);editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks();
  };
  const startNew=()=>{copyMode=false;nameInput.value='';blocks=[];editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks()};
  const filter=()=>{
@@ -1586,10 +1605,10 @@ if (
  nameInput.oninput=updateCount;
  editor.querySelector('[data-action=save-template]').onclick=()=>{
   const name=nameInput.value.trim();if(!name)return;
-  const id='custom-'+Date.now();custom.unshift({id,name,blocks:blocks.map(b=>b.type),origin:'assessoria'});
+  const id='custom-'+Date.now();custom.unshift({id,name,blocks:blocks.map(b=>({...b})),origin:'assessoria'});
   const card=document.createElement('article');card.className='app-template-card';card.dataset.templateCard='';card.dataset.templateId=id;card.dataset.templateName=name;card.dataset.templateOrigin='assessoria';
   card.innerHTML='<div class="app-template-thumb"></div><h4></h4><p>Da assessoria</p><button data-template-action="preview" data-screen="preview-template">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template">▢ CRIAR CÓPIA</button>';
-  card.querySelector('h4').textContent=name;card.querySelector('[data-template-action=preview]').dataset.templateId=id;card.querySelector('[data-template-action=copy]').dataset.templateId=id;
+  card.querySelector('h4').textContent=name;renderBlockList(card.querySelector('.app-template-thumb'),normalizedBlocks(custom[0]),{thumbnail:true});card.querySelector('[data-template-action=preview]').dataset.templateId=id;card.querySelector('[data-template-action=copy]').dataset.templateId=id;
   library.querySelector('.app-template-grid').prepend(card);library.querySelector('.app-template-tabs [data-template-tab=todos]').click();filter();sim.querySelector('[data-screen=templates]')?.click();
  };
  sim.addEventListener('click',e=>{
@@ -1604,3 +1623,4 @@ if (
  },true);
  renderBlocks();filter();
 })();
+
