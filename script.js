@@ -231,6 +231,11 @@ if (appSimulator) {
             voltar: true
         },
 
+        'clipping-clientes': { titulo: 'Clientes 2026', aba: 'clipping', voltar: true },
+        'clipping-cliente': { titulo: 'Cleiton', aba: 'clipping', voltar: true },
+        'detalhes-clipping': { titulo: 'Detalhes', aba: 'clipping', voltar: true },
+        'editar-clipping': { titulo: 'Editar clipping', aba: 'clipping', voltar: true },
+
         mailing: {
             titulo: 'Mailing',
             aba: 'mailing',
@@ -380,6 +385,7 @@ if (appSimulator) {
             view.dataset.view === screenName ||
             (
                 (screenName === 'editar-cliente' && view.dataset.view === 'novo-cliente') ||
+                (screenName === 'editar-clipping' && view.dataset.view === 'novo-clipping') ||
                 (screenName === 'editar-veiculo' && view.dataset.view === 'novo-veiculo') ||
                 (screenName === 'editar-copia-template' && view.dataset.view === 'novo-template')
             );
@@ -1548,7 +1554,120 @@ if (
  details.querySelector('[data-vehicle-contact-clear]').onclick=()=>{contactSelection=false;contactSelected=false;updateContactSelection()};
 
  apply();
-})();/* Simulador LOGOS — biblioteca e editor demonstrativo de templates */
+})();/* Simulador LOGOS — navegação demonstrativa de Clipping */
+(() => {
+ const sim=document.querySelector('.app-simulator');
+ const clientPage=sim?.querySelector('.app-clipping-clients');
+ const clippingPage=sim?.querySelector('.app-clipping-client-page');
+ const form=sim?.querySelector('.app-clipping-form');
+ if(!sim||!clientPage||!clippingPage||!form)return;
+
+ const clientCards=Array.from(clientPage.querySelectorAll('.app-clipping-client-card'));
+ const search=clientPage.querySelector('.app-clipping-search input');
+ const clientFilter=clientPage.querySelector('.app-clipping-client-filter-backdrop');
+ let selectedClient='Cleiton',selectedClippings=new Set(),selection=false;
+
+ search.addEventListener('input',()=>{
+  const query=search.value.trim().toLocaleLowerCase('pt-BR');
+  clientCards.forEach(card=>card.hidden=!card.textContent.toLocaleLowerCase('pt-BR').includes(query));
+ });
+ clientPage.querySelector('.app-clipping-filter-open').onclick=()=>clientFilter.hidden=false;
+ clientPage.querySelector('.app-clipping-filter-close').onclick=()=>clientFilter.hidden=true;
+ clientFilter.addEventListener('click',event=>{if(event.target===clientFilter)clientFilter.hidden=true});
+ clientFilter.querySelectorAll('.app-clipping-filter-status button').forEach(button=>button.onclick=()=>{
+  clientFilter.querySelectorAll('.app-clipping-filter-status button').forEach(item=>item.classList.toggle('selected',item===button));
+ });
+ clientFilter.querySelector('.app-clipping-filter-clear').onclick=()=>{
+  clientFilter.querySelectorAll('input').forEach(input=>input.value='');
+  clientFilter.querySelectorAll('.app-clipping-filter-status button').forEach((button,index)=>button.classList.toggle('selected',index===2));
+  clientFilter.hidden=true;
+ };
+ clientFilter.querySelector('.app-clipping-filter-apply').onclick=()=>{clientFilter.hidden=true};
+
+ clientCards.forEach(card=>card.addEventListener('click',()=>{
+  selectedClient=card.querySelector('strong').textContent.trim();
+  const title=sim.querySelector('#app-screen-title');
+  queueMicrotask(()=>{if(title)title.textContent=selectedClient});
+  const clientTitle=clippingPage.querySelector('.app-clipping-year-client-card small');
+  if(clientTitle)clientTitle.textContent=selectedClient;
+ }));
+
+ const selectButton=clippingPage.querySelector('.app-clipping-select-trigger');
+ const selectionBar=clippingPage.querySelector('.app-clipping-selection-bar');
+ const clippingCards=Array.from(clippingPage.querySelectorAll('.app-clipping-item'));
+ const renderSelection=()=>{
+  selectButton.hidden=selection;
+  selectionBar.hidden=!selection;
+  selectionBar.querySelector('strong').textContent=selectedClippings.size+' de 100 selecionado(s)';
+  clippingCards.forEach(card=>card.classList.toggle('selected',selectedClippings.has(card)));
+ };
+ selectButton.onclick=()=>{selection=true;selectedClippings.clear();renderSelection()};
+ clippingPage.querySelector('.app-clipping-cancel-selection').onclick=()=>{selection=false;selectedClippings.clear();renderSelection()};
+ selectionBar.querySelector('button:nth-of-type(1)').onclick=()=>{
+  const all=clippingCards.length>0&&clippingCards.every(card=>selectedClippings.has(card));
+  clippingCards.forEach(card=>all?selectedClippings.delete(card):selectedClippings.add(card));
+  renderSelection();
+ };
+ selectionBar.querySelector('button:nth-of-type(2)').onclick=event=>event.preventDefault();
+ clippingCards.forEach(card=>card.addEventListener('click',event=>{
+  if(!selection)return;
+  event.preventDefault();
+  event.stopPropagation();
+  selectedClippings.has(card)?selectedClippings.delete(card):selectedClippings.add(card);
+  renderSelection();
+ },true));
+
+ const picker=form.querySelector('.app-clipping-client-picker');
+ form.querySelector('.app-clipping-client-open').onclick=()=>picker.hidden=false;
+ form.querySelector('.app-clipping-client-close').onclick=()=>picker.hidden=true;
+ form.querySelectorAll('.app-clipping-pick-client').forEach(button=>button.onclick=()=>{
+  selectedClient=button.textContent.replace('✓','').trim();
+  form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
+  picker.hidden=true;
+ });
+ form.querySelector('.app-clipping-quick-client').dataset.screen='novo-cliente';
+
+ const dataModal=form.querySelector('.app-clipping-data-modal');
+ form.querySelector('.app-clipping-search-data').onclick=()=>dataModal.hidden=false;
+ form.querySelector('.app-clipping-data-close').onclick=()=>dataModal.hidden=true;
+ const fillFields=all=>{
+  const values={subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS'};
+  Object.entries(values).forEach(([name,value])=>{
+   const input=form.elements.namedItem(name);
+   if(input&&(all||!input.value))input.value=value;
+  });
+  form.querySelector('.app-clipping-vehicle-card').hidden=false;
+  dataModal.hidden=true;
+ };
+ form.querySelector('.app-clipping-insert-all').onclick=()=>fillFields(true);
+ form.querySelector('.app-clipping-fill-empty').onclick=()=>fillFields(false);
+ form.querySelector('.app-clipping-capture-open').onclick=()=>form.querySelector('.app-clipping-capture-modal').hidden=false;
+ form.querySelectorAll('.app-clipping-capture-close').forEach(button=>button.onclick=()=>form.querySelector('.app-clipping-capture-modal').hidden=true);
+ form.querySelector('.app-clipping-capture-reset').onclick=event=>event.preventDefault();
+ form.querySelectorAll('.app-clipping-category-chips button').forEach(button=>button.onclick=()=>{
+  const category=button.textContent.replace(/^\+\s*/,'');
+  const input=form.elements.namedItem('categories');
+  const current=input.value.split(',').map(value=>value.trim()).filter(Boolean);
+  const index=current.indexOf(category);
+  if(index>=0)current.splice(index,1);else current.push(category);
+  input.value=current.join(', ');
+  button.classList.toggle('selected',index<0);
+ });
+ form.querySelectorAll('.app-clipping-tier-options button').forEach(button=>button.onclick=()=>{
+  form.querySelectorAll('.app-clipping-tier-options button').forEach(item=>item.classList.toggle('selected',item===button));
+ });
+ form.querySelector('.app-clipping-delete')?.addEventListener('click',event=>event.preventDefault());
+ form.querySelectorAll('button').forEach(button=>{
+  if(button.textContent.includes('SALVAR'))button.onclick=event=>event.preventDefault();
+ });
+ sim.querySelector('.app-clipping-details .app-clipping-delete').onclick=event=>event.preventDefault();
+ form.querySelector('.app-clipping-vehicle-card').hidden=true;
+ sim.querySelectorAll('.app-clipping-items .app-clipping-item').forEach(card=>card.addEventListener('click',()=>{
+  sim.querySelector('#app-screen-title').textContent='Detalhes';
+ }));
+})();
+
+/* Simulador LOGOS — biblioteca e editor demonstrativo de templates */
 (() => {
  const sim=document.querySelector('.app-simulator'),library=document.querySelector('.app-templates'),preview=document.querySelector('.app-template-preview'),editor=document.querySelector('.app-template-editor');
  if(!sim||!library||!preview||!editor)return;
