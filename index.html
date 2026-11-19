@@ -697,6 +697,11 @@
     </h4>
 
     <div class="app-more-list">
+        <button type="button" class="app-more-card" data-screen="templates">
+            <span class="app-more-icon"><i class="fa-regular fa-folder" aria-hidden="true"></i></span>
+            <span class="app-more-info"><strong>Templates</strong><small>Modelos para seus releases.</small></span>
+            <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
+        </button>
 
         <!-- Clientes -->
         <button
@@ -1777,21 +1782,21 @@
  <div class="app-template-grid">
   <article class="app-template-card" data-template-card data-template-id="simples" data-template-name="Release simples" data-template-origin="padrao">
    <div class="app-template-thumb"><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
-   <h4>Release simples</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-template-id="simples">◉ VER PRÉVIA</button><button data-template-action="copy" data-template-id="simples">▢ CRIAR CÓPIA</button>
+   <h4>Release simples</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="simples">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="simples">▢ CRIAR CÓPIA</button>
   </article>
   <article class="app-template-card" data-template-card data-template-id="imagem" data-template-name="Release com imagem" data-template-origin="padrao">
    <div class="app-template-thumb"><div class="app-template-thumb-image">▧ Imagem da matéria</div><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
-   <h4>Release com imagem</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-template-id="imagem">◉ VER PRÉVIA</button><button data-template-action="copy" data-template-id="imagem">▢ CRIAR CÓPIA</button>
+   <h4>Release com imagem</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="imagem">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="imagem">▢ CRIAR CÓPIA</button>
   </article>
   <article class="app-template-card" data-template-card data-template-id="aviso" data-template-name="Aviso de pauta" data-template-origin="padrao">
    <div class="app-template-thumb"><strong>Título do aviso de pauta</strong><p>Apresente o evento e os destaques para a imprensa.</p><small>Serviço<br>Data e horário<br>Local e endereço<br>Informações para participação</small><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
-   <h4>Aviso de pauta</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-template-id="aviso">◉ VER PRÉVIA</button><button data-template-action="copy" data-template-id="aviso">▢ CRIAR CÓPIA</button>
+   <h4>Aviso de pauta</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="aviso">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="aviso">▢ CRIAR CÓPIA</button>
   </article>
  </div>
 </section>
 <section class="app-template-preview" data-view="preview-template" hidden>
  <strong id="app-template-preview-name"></strong><p>Prévia da estrutura e dos textos iniciais.</p><article class="app-template-preview-card" id="app-template-preview-card"></article>
- <div class="app-template-preview-actions"><button type="button" data-screen="templates">FECHAR</button><button type="button" data-action="copy-preview">▢ CRIAR CÓPIA</button></div>
+ <div class="app-template-preview-actions"><button type="button" data-screen="templates">FECHAR</button><button type="button" data-action="copy-preview" data-screen="editar-copia-template">▢ CRIAR CÓPIA</button></div>
 </section>
 <section class="app-template-editor" data-view="novo-template" hidden>
  <label>NOME DO TEMPLATE<input id="app-template-name" placeholder="Ex.: Release institucional"></label>
