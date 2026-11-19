@@ -1294,6 +1294,42 @@
   <div class="app-clipping-capture-modal" hidden><section><header><strong>Capturar imagem</strong><button class="app-clipping-capture-close">×</button></header><p>Escolha a parte da página que deseja usar.</p><div class="app-clipping-capture-tools"><button class="selected">RECORTAR</button><button>NAVEGAR</button><span>−　100%　＋</span></div><p>Arraste sobre a imagem para marcar o recorte.</p><div class="app-clipping-capture-preview">Prévia da página selecionada</div><a href="#" class="app-clipping-capture-reset">Refazer captura</a><footer><button class="app-clipping-capture-close">CANCELAR</button><button>USAR RECORTE</button></footer></section></div>
 </form>
 <section class="app-clipping-import" data-view="importar-clippings" hidden><h4>Importar clippings</h4><p>Selecione um arquivo CSV para conferir as publicações.</p><label>⇧ ESCOLHER ARQUIVO CSV<input type="file" accept=".csv,text/csv" hidden></label><div><button data-screen="clipping">CANCELAR</button><button>CONTINUAR</button></div></section>
+<!-- Mailing -->
+<section class="app-mailing-list" data-view="mailing" hidden>
+  <div class="app-mailing-toolbar"><div class="app-mailing-search"><input type="search" placeholder="Buscar nome ou e-mail..." aria-label="Buscar jornalista"><button aria-label="Pesquisar">⌕</button></div><button class="app-mailing-filter-open" aria-label="Filtros">☷</button></div>
+  <div class="app-mailing-list-heading"><span>1 contato</span><div><button>⇩</button><button>⇧</button><button data-screen="novo-contato">＋ CONTATO</button></div></div>
+  <button class="app-mailing-select-trigger">☑ SELECIONAR CONTATOS</button>
+  <div class="app-mailing-selection-bar" hidden><span><strong>0 de 100 selecionado(s)</strong><small>Escolha os contatos que deseja excluir.</small></span><button>TODOS</button><button>▤</button><button class="app-mailing-selection-close">×</button></div>
+  <div class="app-mailing-contact-list"><button class="app-mailing-contact-card" data-screen="detalhes-contato"><span class="app-mailing-avatar">A</span><span><strong>Ademilson</strong><small>ademilson@example.com</small><em>Editor · Itajubá · São Paulo · LOGOS</em></span><i>›</i><span class="app-mailing-checkbox">□</span></button></div>
+  <div class="app-mailing-filter-backdrop" hidden><section class="app-mailing-filter-panel"><header><div><h4>FILTROS</h4><p>Modifique os contatos exibidos</p></div><button class="app-mailing-filter-close">×</button></header><div class="app-mailing-filter-body"><label>STATUS</label><div class="app-mailing-status-options"><button class="selected">Ativos</button><button>Inativos</button><button>Todos</button></div><label>ESTADO<input placeholder="Ex.: São Paulo"></label><label>CIDADE<input placeholder="Ex.: Campinas"></label><label>CARGO<input placeholder="Ex.: Repórter"></label><label>VEÍCULO<input placeholder="Buscar veículo pelo nome"></label></div><footer><button class="app-mailing-filter-clear">LIMPAR</button><button class="app-mailing-filter-apply">APLICAR</button></footer></section></div>
+</section>
+<section class="app-contact-details" data-view="detalhes-contato" hidden>
+  <div class="app-contact-detail-actions"><button data-screen="editar-contato">✎ Editar</button><button class="app-contact-delete">▤ Excluir</button></div>
+  <article class="app-contact-profile"><span>A</span><div><h4>Ademilson</h4><p>ademilson@example.com</p><strong>ATIVO</strong></div></article>
+  <h5>INFORMAÇÕES</h5>
+  <article><small>E-MAIL</small><strong>ademilson@example.com</strong><button>✉</button></article>
+  <article><small>TELEFONE</small><strong>Não informado</strong></article>
+  <article><small>CARGO</small><strong>Editor</strong></article>
+  <article><small>LOCALIZAÇÃO</small><strong>Itajubá - São Paulo</strong></article>
+  <article><small>VEÍCULO</small><strong>LOGOS</strong></article>
+</section>
+<section class="app-contact-form" data-view="novo-contato" hidden>
+  <article class="app-contact-form-heading"><h4>CADASTRAR CONTATO</h4><p>Adicione um novo contato ao mailing da assessoria. Nome e telefone OU e-mail são obrigatórios.</p></article>
+  <article class="app-contact-edit-profile" hidden><span>A</span><div><strong>Ademilson</strong><small>ademilson@example.com</small></div></article>
+  <h5>DADOS DO CONTATO</h5>
+  <label>NOME *<input name="name" placeholder="Nome do jornalista"></label>
+  <label>E-MAIL<input name="email" type="email" placeholder="contato@exemplo.com"></label>
+  <label>TELEFONE<input name="phone" placeholder="Ex.: (11) 99999-9999"></label>
+  <label>CARGO<input name="job" placeholder="Ex.: Repórter"></label>
+  <label>ESTADO<input name="state" placeholder="Ex.: São Paulo"></label>
+  <label>CIDADE<input name="city" placeholder="Ex.: Campinas"></label>
+  <label>OBSERVAÇÕES<textarea name="notes" placeholder="Informações adicionais"></textarea></label>
+  <label>VEÍCULO<input name="vehicle" placeholder="Buscar veículo pelo nome"></label>
+  <button type="button" class="app-contact-vehicle-open">＋ Selecionar veículo</button>
+  <label class="app-contact-status"><span><strong>STATUS</strong><small>Contato disponível no mailing.</small></span><input type="checkbox" checked><i></i></label>
+  <div class="app-contact-form-actions"><button data-screen="mailing">CANCELAR</button><button type="button" class="app-contact-save">CADASTRAR</button></div>
+  <div class="app-contact-vehicle-picker" hidden><header><strong>Selecionar veículo</strong><button class="app-contact-vehicle-close">×</button></header><div class="app-mailing-search"><input placeholder="Buscar veículo..."><button>⌕</button></div><button class="app-contact-pick-vehicle">LOGOS <i>✓</i></button></div>
+</section>
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
 
