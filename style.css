@@ -6099,3 +6099,80 @@ footer .social a:hover {
 .app-vehicles-filter-panel footer,
 .app-template-add-panel footer { background: #fffbfb; }
 
+
+
+/* Fidelidade dos prints recentes — Veículos */
+.app-vehicles-select-trigger{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:44px;margin:0 0 12px;padding:9px 12px;border:1px solid #6578ff;border-radius:12px;background:#fffbfb;color:#161c29;font-size:12px;font-weight:700}
+.app-vehicles-select-trigger i{color:#536cff;font-size:16px}
+.app-vehicles-selection-bar{min-height:68px;margin:0 0 12px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid #6578ff;border-radius:15px;background:#fffbfb;color:#161c29}
+.app-vehicles-selection-info{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.app-vehicles-selection-info strong{font-size:13px;line-height:1.25;font-weight:700;white-space:nowrap}
+.app-vehicles-selection-info small{max-width:165px;color:#898989;font-size:11px;line-height:1.3}
+.app-vehicles-selection-actions{display:flex;align-items:center;gap:7px;flex:0 0 auto}
+.app-vehicles-selection-actions button{display:grid;place-items:center;height:36px;padding:0;border:1px solid #6578ff;border-radius:20px;background:#fffbfb;color:#161c29;font-size:10px;font-weight:700}
+.app-vehicles-selection-actions .app-vehicles-select-all{width:64px}
+.app-vehicles-selection-actions .app-vehicles-delete-selected,.app-vehicles-selection-actions .app-vehicles-cancel-select{width:36px;border:0;border-radius:50%;font-size:15px}
+.app-vehicles-selection-actions .app-vehicles-delete-selected{background:#ee7f8e;color:#fff}
+.app-vehicles-selection-actions .app-vehicles-delete-selected:disabled{opacity:.65}
+.app-vehicles-selection-actions .app-vehicles-cancel-select{background:#293a78;color:#fff;font-size:17px}
+.app-vehicle-card-main{gap:3px}
+.app-vehicle-card-main small{line-height:1.35}
+.app-vehicle-card-check{display:none;width:26px;height:26px;place-items:center;flex:0 0 auto;border:1px solid #6578ff;border-radius:8px;background:#fffbfb;color:#536cff}
+.app-vehicle-card-check i{font-size:17px}
+.app-vehicles-selection-active .app-vehicle-card-check{display:grid}
+.app-vehicles-selection-active .app-vehicle-card-chevron{display:none}
+.app-vehicles-selection-active .app-vehicle-card[aria-pressed=true]{border-color:#536cff;background:#eef0ff;color:#161c29}
+.app-vehicles-selection-active .app-vehicle-card[aria-pressed=true] .app-vehicle-card-check{background:#536cff;color:#fff}
+.app-vehicles-selection-active .app-vehicle-card[aria-pressed=true] .app-vehicle-card-check i:before{content:"\\f14a"}
+.app-vehicle-details h5{display:flex;justify-content:space-between;align-items:center}
+.app-vehicle-detail-actions{display:flex;gap:10px;margin:18px 0 24px}
+.app-vehicle-detail-actions button{flex:1;min-height:50px;border:2px solid #536cff;border-radius:12px;background:#293a78;color:#fff;font-size:15px;font-weight:800}
+.app-vehicle-detail-actions .app-vehicle-delete{background:#fffbfb;color:#161c29;border-color:#6578ff}
+.app-vehicle-linked-section{margin-top:26px}
+.app-vehicle-linked-section h5{margin:0 0 2px;font-size:13px}
+.app-vehicle-linked-section h5 span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#293a78;color:#fff;font-size:15px}
+.app-vehicle-linked-section>p{margin:0 0 12px;color:#898989;font-size:12px}
+.app-vehicle-linked-empty{min-height:98px;margin-top:12px;padding:18px;border:1px solid #6578ff;border-radius:17px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#898989;text-align:center;font-size:12px}
+.app-vehicle-linked-empty i{font-size:22px}
+.app-vehicle-linked-clippings .app-vehicle-year-count{display:inline-flex;margin:5px 0 16px;padding:8px 12px;border-radius:20px;background:#293a78;color:#fff;font-size:13px}
+.app-vehicle-linked-clippings .app-vehicle-open-year{width:100%;min-height:44px;border:0;border-radius:12px;background:#293a78;color:#fff;font-size:12px;font-weight:800}
+.app-vehicle-linked-clippings>small{display:block;margin-top:10px;color:#898989;font-size:12px}
+.app-vehicle-linked-clippings .app-vehicle-linked-empty{min-height:52px;margin-top:12px}
+.app-vehicle-form-heading{margin:0 0 24px;padding:14px 16px;border:1px solid #6578ff;border-radius:16px}
+.app-vehicle-form-heading h4{margin:0 0 5px;font-size:16px}
+.app-vehicle-form-heading p{margin:0;color:#898989;font-size:12px;line-height:1.35}
+.app-vehicle-form-identity{display:flex;align-items:center;gap:14px;margin:20px 0 28px;padding:16px;border:1px solid #6578ff;border-radius:18px}
+.app-vehicle-form-identity .app-vehicle-identity-icon{width:64px;height:64px}
+.app-vehicle-form-identity h4{margin:0 0 4px;font-size:18px}
+.app-vehicle-form-identity p{margin:0 0 6px;color:#898989;font-size:13px}
+.app-vehicle-form-identity strong{display:inline-block;padding:3px 8px;border-radius:6px;background:#293a78;color:#fff;font-size:10px}
+.app-vehicle-form>h5{margin:0 0 18px;font-size:13px}
+.app-vehicle-form form{gap:18px}
+.app-vehicle-form form>label{gap:8px;font-size:14px}
+.app-vehicle-form input:not([type=radio]):not([type=checkbox]):not([type=file]),.app-vehicle-form textarea{width:100%;min-height:50px;border:1px solid #6578ff;border-radius:12px;background:#f7f7f7;padding:0 15px;color:#161c29;font:13px Montserrat,Arial,sans-serif}
+.app-vehicle-form textarea{min-height:100px;padding:14px 15px;resize:vertical}
+.app-vehicle-form fieldset{margin:0;padding:0;border:0}
+.app-vehicle-form fieldset legend{margin-bottom:8px;font-size:11px}
+.app-vehicle-tier-options{display:flex;flex-wrap:wrap;gap:8px}
+.app-vehicle-tier-options label{min-height:44px;padding:0 12px;border:1px solid #6578ff;border-radius:12px;display:flex;align-items:center;gap:7px;background:#fffbfb;font-size:12px}
+.app-vehicle-tier-options label:has(input:checked){background:#293a78;color:#fff;font-weight:700}
+.app-vehicle-tier-options input{accent-color:#fff}
+.app-vehicle-form fieldset>small{display:block;margin-top:8px;color:#898989;font-size:11px;line-height:1.5}
+.app-vehicle-logo-field legend{margin-bottom:8px}
+.app-vehicle-logo-pick{width:100%;min-height:76px;padding:12px 16px;border:1px solid #6578ff;border-radius:16px;background:#fffbfb;display:flex;align-items:center;gap:14px;text-align:left;color:#161c29}
+.app-vehicle-logo-pick>i{font-size:20px}
+.app-vehicle-logo-pick span{display:grid;gap:4px}
+.app-vehicle-logo-pick strong{font-size:11px}
+.app-vehicle-logo-pick small{color:#898989;font-size:11px}
+.app-vehicle-status-card{position:relative;min-height:68px;padding:12px 14px;border:1px solid #6578ff;border-radius:16px;display:flex!important;align-items:center;justify-content:space-between;gap:12px}
+.app-vehicle-status-card span{display:grid;gap:3px}
+.app-vehicle-status-card strong{font-size:11px}
+.app-vehicle-status-card small{color:#898989;font-size:11px}
+.app-vehicle-status-card input{appearance:none;width:42px;height:22px;min-height:0!important;flex:0 0 auto;margin:0;padding:0!important;border:0!important;border-radius:20px!important;background:#c6cbdf!important;position:relative;cursor:pointer}
+.app-vehicle-status-card input:checked{background:#536cff!important}
+.app-vehicle-status-card input:after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0003;transition:transform .15s}
+.app-vehicle-status-card input:checked:after{transform:translateX(20px)}
+.app-vehicle-form-actions{display:flex;gap:10px;margin-top:6px}
+.app-vehicle-form-actions button{flex:1;min-height:50px;border:2px solid #6578ff;border-radius:12px;background:#fffbfb;color:#161c29;font-size:15px;font-weight:800}
+.app-vehicle-form-actions button[type=submit]{border-color:#293a78;background:#293a78;color:#fff}
+
