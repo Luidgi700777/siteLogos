@@ -1248,14 +1248,20 @@ if (
         clippingList.querySelectorAll('[data-clipping-id]')
     );
 
-    // Somente os clippings do cliente selecionado
+    // Somente os clippings visíveis do cliente selecionado
     const getClientClippings = () => {
 
         const clientId = appClientDetailsView.dataset.clientId;
 
-        return getAllClippings().filter(card =>
-            card.dataset.clientId === clientId
-        );
+        return getAllClippings().filter(card => {
+
+            const pertenceAoCliente =
+                card.dataset.clientId === clientId;
+
+            const estaVisivel = !card.hidden;
+
+            return pertenceAoCliente && estaVisivel;
+        });
     };
 
     // Atualizar interface da seleção múltipla
