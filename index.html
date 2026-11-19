@@ -1099,7 +1099,7 @@
           <button type="button" data-vehicle-status-filter="ativo">Ativos</button><button type="button" data-vehicle-status-filter="inativo">Inativos</button><button type="button" data-vehicle-status-filter="todos" class="selected">Todos</button>
         </div></fieldset>
         <fieldset><legend>ORDENAÇÃO</legend><div class="app-vehicles-sort-options">
-          <button type="button" data-vehicle-sort="alpha" class="selected">ORDEM ALFABÉTICA</button><button type="button" data-vehicle-sort="desc">MAIS VÍNCULOS</button><button type="button" data-vehicle-sort="asc">MENOS VÍNCULOS</button>
+          <button type="button" data-vehicle-sort="alpha" class="selected">ORDEM ALFABÉTICA</button><button type="button" data-vehicle-sort="contacts-desc">MAIS CONTATOS</button><button type="button" data-vehicle-sort="contacts-asc">MENOS CONTATOS</button><button type="button" data-vehicle-sort="clippings-desc">MAIS CLIPPINGS</button><button type="button" data-vehicle-sort="clippings-asc">MENOS CLIPPINGS</button>
         </div></fieldset>
         <label>MÍNIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-min-contacts" placeholder="Ex.: 5"></label>
         <label>MÁXIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-max-contacts" placeholder="Ex.: 20"></label>
@@ -1148,11 +1148,11 @@
         <button type="button" data-vehicle-contact-select-all>TODOS</button>
         <button type="button" data-vehicle-contact-clear aria-label="Cancelar seleção">×</button>
       </div>
-      <article class="app-vehicle-contact-card">
+      <button type="button" class="app-vehicle-contact-card">
         <span class="app-vehicle-contact-avatar">A</span>
         <div><strong>Ademilson</strong><small>ademilson@example.com</small><small>Editor · Itajubá · São Paulo</small></div>
         <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-      </article>
+      </button>
     </section>
     <section class="app-vehicle-linked-section app-vehicle-linked-clippings" role="tabpanel" data-vehicle-panel="clippings" hidden>
       <h5>CLIPPINGS VINCULADOS <span>3</span></h5>
