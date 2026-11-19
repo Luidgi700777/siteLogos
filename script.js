@@ -1813,14 +1813,7 @@ if (
  editor.querySelectorAll('[data-block-choice]').forEach(b=>b.onclick=()=>{selectedChoice=b.dataset.blockChoice;editor.querySelectorAll('[data-block-choice]').forEach(x=>x.classList.toggle('selected',x===b))});
  editor.querySelector('[data-action=insert-block]').onclick=()=>{if(selectedChoice&&blocks.length<100){blocks.push({type:selectedChoice,value:summary(selectedChoice)});renderBlocks()}editor.querySelector('.app-template-add-modal').hidden=true};
  nameInput.oninput=updateCount;
- editor.querySelector('[data-action=save-template]').onclick=()=>{
-  const name=nameInput.value.trim();if(!name)return;
-  const id='custom-'+Date.now();custom.unshift({id,name,blocks:blocks.map(b=>({...b})),origin:'assessoria'});
-  const card=document.createElement('article');card.className='app-template-card';card.dataset.templateCard='';card.dataset.templateId=id;card.dataset.templateName=name;card.dataset.templateOrigin='assessoria';
-  card.innerHTML='<div class="app-template-thumb"></div><h4></h4><p>Da assessoria</p><button data-template-action="preview" data-screen="preview-template">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template">▢ CRIAR CÓPIA</button>';
-  card.querySelector('h4').textContent=name;renderBlockList(card.querySelector('.app-template-thumb'),normalizedBlocks(custom[0]),{thumbnail:true});card.querySelector('[data-template-action=preview]').dataset.templateId=id;card.querySelector('[data-template-action=copy]').dataset.templateId=id;
-  library.querySelector('.app-template-grid').prepend(card);library.querySelector('.app-template-tabs [data-template-tab=todos]').click();filter();sim.querySelector('[data-screen=templates]')?.click();
- };
+ editor.querySelector('[data-action=save-template]').onclick=()=>{};;
  sim.addEventListener('click',e=>{
   const b=e.target.closest('[data-template-action], [data-action=copy-preview], button[data-screen]');
   if(!b)return;
@@ -1834,3 +1827,32 @@ if (
  renderBlocks();filter();
 })();
 
+
+
+/* Mailing demonstrativo: busca, filtros e seleção locais. O formulário não persiste. */
+(()=>{
+ const sim=document.querySelector('.app-simulator'), view=sim?.querySelector('.app-mailing-list');
+ if(!sim||!view)return;
+ const q=view.querySelector('.app-mailing-search input'), card=view.querySelector('.app-mailing-contact-card');
+ const count=view.querySelector('.app-mailing-list-heading>span'), filter=view.querySelector('.app-mailing-filter-backdrop');
+ const trigger=view.querySelector('.app-mailing-select-trigger'), bar=view.querySelector('.app-mailing-selection-bar');
+ const selectedCount=bar?.querySelector('strong'), checkbox=card?.querySelector('.app-mailing-checkbox');
+ const form=sim.querySelector('.app-contact-form'), details=sim.querySelector('.app-contact-details');
+ const demo={name:'Ademilson',email:'ademilson@example.com',phone:'',job:'Editor',state:'São Paulo',city:'Itajubá',notes:'',vehicle:'LOGOS'};
+ let selecting=false, selected=false;
+ const applySearch=()=>{const hit=!q?.value||Object.values(demo).join(' ').toLowerCase().includes(q.value.toLowerCase());if(card)card.hidden=!hit;if(count)count.textContent=hit?'1 contato':'0 contatos'};
+ q?.addEventListener('input',applySearch); view.querySelector('.app-mailing-search button')?.addEventListener('click',applySearch);
+ view.querySelector('.app-mailing-filter-open')?.addEventListener('click',()=>filter.hidden=false);
+ view.querySelectorAll('.app-mailing-filter-close').forEach(b=>b.addEventListener('click',()=>filter.hidden=true));
+ filter?.addEventListener('click',e=>{if(e.target===filter)filter.hidden=true});
+ filter?.querySelectorAll('.app-mailing-status-options button').forEach(b=>b.addEventListener('click',()=>{filter.querySelectorAll('.app-mailing-status-options button').forEach(x=>x.classList.toggle('selected',x===b))}));
+ filter?.querySelector('.app-mailing-filter-clear')?.addEventListener('click',()=>{filter.querySelectorAll('input').forEach(i=>i.value='');filter.querySelectorAll('.app-mailing-status-options button').forEach((b,i)=>b.classList.toggle('selected',i===0));applySearch()});
+ filter?.querySelector('.app-mailing-filter-apply')?.addEventListener('click',()=>{const vals=[...filter.querySelectorAll('.app-mailing-filter-body input')].map(i=>i.value.trim().toLowerCase()).filter(Boolean);const match=vals.every(v=>Object.values(demo).join(' ').toLowerCase().includes(v));if(card)card.hidden=!match;if(count)count.textContent=match?'1 contato':'0 contatos';filter.hidden=true});
+ trigger?.addEventListener('click',()=>{selecting=!selecting;selected=false;trigger.hidden=selecting;if(bar)bar.hidden=!selecting;if(checkbox)checkbox.hidden=!selecting;if(selectedCount)selectedCount.textContent='0 de 100 selecionado(s)'});
+ view.querySelector('.app-mailing-selection-close')?.addEventListener('click',()=>{selecting=false;selected=false;trigger.hidden=false;bar.hidden=true;if(checkbox)checkbox.hidden=true;card?.classList.remove('is-selected')});
+ card?.addEventListener('click',e=>{if(!selecting)return;e.preventDefault();e.stopImmediatePropagation();selected=!selected;card.classList.toggle('is-selected',selected);if(selectedCount)selectedCount.textContent=(selected?'1':'0')+' de 100 selecionado(s)'},true);
+ const startEdit=()=>{if(!form)return;form.querySelector('.app-contact-form-heading h4').textContent='EDITAR CONTATO';form.querySelector('.app-contact-save').textContent='SALVAR';form.classList.add('is-editing');for(const [name,val] of Object.entries(demo)){const field=form.querySelector('[name='+name+']');if(field)field.value=val}const p=form.querySelector('.app-contact-edit-profile');if(p){p.hidden=false;p.querySelector('span').textContent='A';p.querySelector('strong').textContent=demo.name;p.querySelector('small').textContent=demo.email}};
+ sim.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.screen==='editar-contato')startEdit();if(b.classList.contains('app-contact-save')){e.preventDefault()}if(b.classList.contains('app-contact-delete'))e.preventDefault();if(b.classList.contains('app-contact-vehicle-open'))form.querySelector('.app-contact-vehicle-picker').hidden=false;if(b.classList.contains('app-contact-vehicle-close'))form.querySelector('.app-contact-vehicle-picker').hidden=true;if(b.classList.contains('app-contact-pick-vehicle')){const field=form.querySelector('[name=vehicle]');if(field)field.value='LOGOS';form.querySelector('.app-contact-vehicle-picker').hidden=true}},true);
+ form?.querySelectorAll('input,textarea').forEach(el=>el.addEventListener('input',()=>{}));
+ applySearch();
+})();
