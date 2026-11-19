@@ -1358,16 +1358,40 @@ if (
 
 /* Simulador LOGOS — interações demonstrativas de Veículos */
 (() => {
- const sim=document.querySelector('.app-simulator'),list=document.querySelector('.app-vehicles'),details=document.querySelector('.app-vehicle-details'),formView=document.querySelector('.app-vehicle-form'),form=document.querySelector('#app-vehicle-form');
+ const sim=document.querySelector('.app-simulator');
+ const list=document.querySelector('.app-vehicles');
+ const details=document.querySelector('.app-vehicle-details');
+ const formView=document.querySelector('.app-vehicle-form');
+ const form=document.querySelector('#app-vehicle-form');
  if(!sim||!list||!details||!formView||!form)return;
+
  let selection=false,status='todos',sort='alpha',min='',max='';
+ let contactSelection=false,contactSelected=false;
  const selected=new Set();
  const cards=()=>Array.from(list.querySelectorAll('.app-vehicle-card'));
+ const detailsName=details.querySelector('[data-vehicle-detail="name"]');
+ const detailsDescription=details.querySelector('[data-vehicle-detail="description"]');
+ const detailsReach=details.querySelector('[data-vehicle-detail="reach"]');
+ const detailsTier=details.querySelector('[data-vehicle-detail="tier"]');
+ const compareNumber=(a,b,key,direction)=>direction*(Number(a.dataset[key]||0)-Number(b.dataset[key]||0));
+
  const apply=()=>{
   const query=list.querySelector('#app-vehicles-query').value.trim().toLocaleLowerCase('pt-BR');
-  let matches=cards().filter(card=>card.dataset.vehicleName.toLocaleLowerCase('pt-BR').includes(query)&&(status==='todos'||card.dataset.vehicleStatus===status)&&(!min||+card.dataset.vehicleContacts>=+min)&&(!max||+card.dataset.vehicleContacts<=+max));
+  let matches=cards().filter(card=>
+   card.dataset.vehicleName.toLocaleLowerCase('pt-BR').includes(query)&&
+   (status==='todos'||card.dataset.vehicleStatus===status)&&
+   (!min||Number(card.dataset.vehicleContacts)>=Number(min))&&
+   (!max||Number(card.dataset.vehicleContacts)<=Number(max))
+  );
   cards().forEach(card=>card.hidden=!matches.includes(card));
-  matches.sort((a,b)=>sort==='desc'?+b.dataset.vehicleContacts-+a.dataset.vehicleContacts:sort==='asc'?+a.dataset.vehicleContacts-+b.dataset.vehicleContacts:a.dataset.vehicleName.localeCompare(b.dataset.vehicleName,'pt-BR'));
+  const sorters={
+   alpha:(a,b)=>a.dataset.vehicleName.localeCompare(b.dataset.vehicleName,'pt-BR'),
+   'contacts-desc':(a,b)=>compareNumber(a,b,'vehicleContacts',-1),
+   'contacts-asc':(a,b)=>compareNumber(a,b,'vehicleContacts',1),
+   'clippings-desc':(a,b)=>compareNumber(a,b,'vehicleClippings',-1),
+   'clippings-asc':(a,b)=>compareNumber(a,b,'vehicleClippings',1)
+  };
+  matches.sort(sorters[sort]||sorters.alpha);
   matches.forEach(card=>list.querySelector('.app-vehicles-list').appendChild(card));
   list.querySelector('#app-vehicles-count').textContent=matches.length===1?'1 veículo':matches.length+' veículos';
   list.querySelector('.app-vehicles-empty').hidden=matches.length>0;
@@ -1384,6 +1408,7 @@ if (
   });
  };
  const mark=(selector,attr,value)=>list.querySelectorAll(selector).forEach(button=>button.classList.toggle('selected',button.getAttribute(attr)===value));
+
  list.querySelector('.app-vehicles-filter-open').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=false;
  list.querySelector('.app-vehicles-filter-close').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=true;
  list.querySelector('.app-vehicles-filter-backdrop').onclick=event=>{if(event.target===event.currentTarget)event.currentTarget.hidden=true};
@@ -1414,6 +1439,37 @@ if (
  };
  list.querySelector('.app-vehicles-delete-selected').onclick=event=>event.preventDefault();
  list.querySelector('.app-vehicles-cancel-select').onclick=()=>{selection=false;selected.clear();apply()};
+
+ const createAddressRow=(url,scope='Somente este domínio')=>{
+  const row=document.createElement('div');
+  row.className='app-vehicle-address-entry';
+  const globe=document.createElement('i');
+  globe.className='fa-solid fa-globe';
+  globe.setAttribute('aria-hidden','true');
+  const label=document.createElement('span');
+  const address=document.createElement('strong');
+  address.textContent=url;
+  const note=document.createElement('small');
+  note.textContent=scope;
+  label.append(address,note);
+  const edit=document.createElement('button');
+  edit.type='button';
+  edit.className='app-vehicle-address-edit';
+  edit.setAttribute('aria-label','Editar endereço');
+  edit.innerHTML='<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>';
+  edit.onclick=()=>{form.elements.namedItem('domain').value=url.replace(/^https?:\/\//,'').replace(/\/$/,'')};
+  const remove=document.createElement('button');
+  remove.type='button';
+  remove.className='app-vehicle-address-remove';
+  remove.setAttribute('aria-label','Remover endereço');
+  remove.innerHTML='<i class="fa-regular fa-trash-can" aria-hidden="true"></i>';
+  remove.onclick=event=>event.preventDefault();
+  const open=document.createElement('i');
+  open.className='fa-solid fa-arrow-up-right-from-square';
+  open.setAttribute('aria-hidden','true');
+  row.append(globe,label,edit,remove,open);
+  return row;
+ };
  const prepare=edit=>{
   form.reset();
   const identity=formView.querySelector('.app-vehicle-form-identity');
@@ -1421,12 +1477,16 @@ if (
   identity.hidden=!edit;
   help.hidden=edit;
   form.querySelector('[type=submit]').textContent=edit?'SALVAR':'CADASTRAR';
-  form.elements.namedItem('name').value=edit?details.querySelector('[data-vehicle-detail=name]').textContent.trim():'';
-  form.elements.namedItem('description').value='';
-  form.elements.namedItem('reach').value='';
+  form.elements.namedItem('name').value=edit?detailsName.textContent.trim():'';
+  form.elements.namedItem('description').value=edit?'Canal de notícias da LOGOS':'';
+  form.elements.namedItem('reach').value=edit?'500 mil leitores':'';
   form.elements.namedItem('active').checked=true;
   form.querySelector('input[name="tier"][value=""]').checked=true;
-  if(edit)identity.querySelector('h4').textContent=details.querySelector('[data-vehicle-detail=name]').textContent.trim();
+  identity.querySelector('h4').textContent=edit?detailsName.textContent.trim():'LOGOS';
+  identity.querySelector('p').textContent=edit?'500 mil leitores':'Alcance não informado';
+  const addressList=form.querySelector('.app-vehicle-address-list');
+  addressList.replaceChildren();
+  if(edit)addressList.append(createAddressRow('https://logos.com.br/'));
  };
  sim.addEventListener('click',event=>{
   const button=event.target.closest('button[data-screen]');
@@ -1446,9 +1506,49 @@ if (
  form.addEventListener('submit',event=>event.preventDefault());
  details.querySelector('.app-vehicle-delete').onclick=event=>event.preventDefault();
  formView.querySelector('.app-vehicle-logo-pick').onclick=()=>form.querySelector('input[name="logo"]').click();
+ formView.querySelector('.app-vehicle-add-address').onclick=()=>{
+  const domain=form.elements.namedItem('domain').value.trim();
+  if(!domain)return;
+  const scheme=/^https?:\/\//i.test(domain)?'': 'https://';
+  const section=form.elements.namedItem('section').value.trim().replace(/^\/+/, '');
+  const url=scheme+domain.replace(/\/$/,'')+(section?'/'+section:'');
+  const scope=form.elements.namedItem('includeSubdomains').checked?'Inclui subdomínios':'Somente este domínio';
+  form.querySelector('.app-vehicle-address-list').append(createAddressRow(url,scope));
+  form.elements.namedItem('domain').value='';
+  form.elements.namedItem('section').value='';
+  form.elements.namedItem('includeSubdomains').checked=false;
+ };
+
+ details.querySelectorAll('[data-vehicle-tab]').forEach(tab=>tab.addEventListener('click',()=>{
+  const selectedTab=tab.dataset.vehicleTab;
+  details.querySelectorAll('[data-vehicle-tab]').forEach(item=>{
+   const active=item===tab;
+   item.classList.toggle('selected',active);
+   item.setAttribute('aria-selected',String(active));
+  });
+  details.querySelectorAll('[data-vehicle-panel]').forEach(panel=>panel.hidden=panel.dataset.vehiclePanel!==selectedTab);
+ }));
+ const contactSelect=details.querySelector('.app-vehicle-contact-select');
+ const contactBar=details.querySelector('.app-vehicle-contact-selection');
+ const contactCard=details.querySelector('.app-vehicle-contact-card');
+ const contactCount=details.querySelector('[data-vehicle-contact-selected]');
+ const updateContactSelection=()=>{
+  contactBar.hidden=!contactSelection;
+  contactSelect.hidden=contactSelection;
+  contactCount.textContent=contactSelected?'1':'0';
+  contactCard.classList.toggle('selected',contactSelection&&contactSelected);
+ };
+ contactSelect.onclick=()=>{contactSelection=true;contactSelected=false;updateContactSelection()};
+ contactCard.onclick=()=>{
+  if(!contactSelection)return;
+  contactSelected=!contactSelected;
+  updateContactSelection();
+ };
+ details.querySelector('[data-vehicle-contact-select-all]').onclick=()=>{contactSelected=!contactSelected;updateContactSelection()};
+ details.querySelector('[data-vehicle-contact-clear]').onclick=()=>{contactSelection=false;contactSelected=false;updateContactSelection()};
+
  apply();
-})();
-/* Simulador LOGOS — biblioteca e editor demonstrativo de templates */
+})();/* Simulador LOGOS — biblioteca e editor demonstrativo de templates */
 (() => {
  const sim=document.querySelector('.app-simulator'),library=document.querySelector('.app-templates'),preview=document.querySelector('.app-template-preview'),editor=document.querySelector('.app-template-editor');
  if(!sim||!library||!preview||!editor)return;
