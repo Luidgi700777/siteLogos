@@ -1065,7 +1065,7 @@
   </div>
   <div class="app-vehicles-list-heading">
     <span><strong id="app-vehicles-count">1 veículo</strong></span>
-    <button type="button" class="app-vehicles-new" data-screen="novo-veiculo">NOVO</button>
+    <button type="button" class="app-vehicles-new" data-screen="novo-veiculo">＋ VEÍCULO</button>
   </div>
   <div class="app-vehicles-selection-bar" hidden>
     <div class="app-vehicles-selection-info">
@@ -1083,9 +1083,9 @@
     <span>SELECIONAR VEÍCULOS</span>
   </button>
   <div class="app-vehicles-list">
-    <button type="button" class="app-vehicle-card" data-vehicle-id="acontecendo-aqui" data-vehicle-name="Acontecendo Aqui" data-vehicle-status="ativo" data-vehicle-tier="" data-vehicle-contacts="0" aria-pressed="false" data-screen="detalhes-veiculo">
+    <button type="button" class="app-vehicle-card" data-vehicle-id="logos" data-vehicle-name="LOGOS" data-vehicle-status="ativo" data-vehicle-tier="" data-vehicle-contacts="1" data-vehicle-clippings="3" aria-pressed="false" data-screen="detalhes-veiculo">
       <span class="app-vehicle-card-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
-      <span class="app-vehicle-card-main"><strong>Acontecendo Aqui</strong><small>Tier não definido · Sem descrição · Ativo</small></span>
+      <span class="app-vehicle-card-main"><strong>LOGOS</strong><small>Tier não definido · Canal de notícias da LOGOS · Ativo</small><small class="app-vehicle-card-count">1 contato · 3 clippings</small></span>
       <span class="app-vehicle-card-check" aria-hidden="true"><i class="fa-regular fa-square"></i></span>
       <i class="fa-solid fa-chevron-right app-vehicle-card-chevron" aria-hidden="true"></i>
     </button>
@@ -1111,32 +1111,56 @@
 </section>
 
 <section class="app-vehicle-details" data-view="detalhes-veiculo" hidden>
+  <div class="app-vehicle-detail-actions">
+    <button type="button" class="app-vehicle-edit" data-screen="editar-veiculo"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Editar</button>
+    <button type="button" class="app-vehicle-delete" title="Ação ilustrativa"><i class="fa-regular fa-trash-can" aria-hidden="true"></i> Excluir</button>
+  </div>
   <article class="app-vehicle-identity">
     <span class="app-vehicle-identity-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
-    <div><h4 data-vehicle-detail="name">Acontecendo Aqui</h4><p>Alcance não informado</p><strong>ATIVO</strong></div>
+    <div><h4 data-vehicle-detail="name">LOGOS</h4><p data-vehicle-detail="reach">500 mil leitores</p><strong data-vehicle-detail="status">ATIVO</strong></div>
   </article>
   <h5>INFORMAÇÕES</h5>
-  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><div><small>DESCRIÇÃO</small><p>Não informada</p></div></div>
-  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-chart-column" aria-hidden="true"></i></span><div><small>ALCANCE</small><p>Não informado</p></div></div>
-  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-award" aria-hidden="true"></i></span><div><small>TIER</small><p>Não definido</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><div><small>DESCRIÇÃO</small><p data-vehicle-detail="description">Canal de notícias da LOGOS</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-chart-column" aria-hidden="true"></i></span><div><small>ALCANCE</small><p data-vehicle-detail="reach">500 mil leitores</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-award" aria-hidden="true"></i></span><div><small>TIER</small><p data-vehicle-detail="tier">Não definido</p></div></div>
   <div class="app-vehicle-info-card"><span><i class="fa-regular fa-image" aria-hidden="true"></i></span><div><small>LOGO</small><p>Não informado</p></div></div>
-  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-users" aria-hidden="true"></i></span><div><small>CONTATOS VINCULADOS</small><p>0 contatos</p></div></div>
-  <div class="app-vehicle-detail-actions">
-    <button type="button" class="app-vehicle-edit" data-screen="editar-veiculo">EDITAR</button>
-    <button type="button" class="app-vehicle-delete" title="Ação ilustrativa">EXCLUIR</button>
-  </div>
-  <section class="app-vehicle-linked-section">
-    <h5>CONTATOS VINCULADOS <span>0</span></h5>
-    <p>Contatos atualmente associados a este veículo.</p>
-    <div class="app-vehicle-linked-empty"><i class="fa-solid fa-users" aria-hidden="true"></i><span>Nenhum contato está vinculado a este veículo.</span></div>
+  <section class="app-vehicle-addresses">
+    <h4>ENDEREÇOS DO SITE</h4>
+    <p>Usados para reconhecer o veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p>
+    <div class="app-vehicle-address-entry">
+      <i class="fa-solid fa-globe" aria-hidden="true"></i>
+      <span><strong>https://logos.com.br</strong><small>Somente este domínio</small></span>
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </div>
   </section>
-  <section class="app-vehicle-linked-section app-vehicle-linked-clippings">
-    <h5>CLIPPINGS VINCULADOS <span>0</span></h5>
-    <p>Publicações deste veículo</p>
-    <strong class="app-vehicle-year-count">2026 · 0</strong>
-    <button type="button" class="app-vehicle-open-year">ABRIR ANO 2026</button>
-    <small>0 clipping(s) neste ano</small>
-    <div class="app-vehicle-linked-empty">Nenhum clipping vinculado ainda.</div>
+  <section class="app-vehicle-relations">
+    <h5>VÍNCULOS DO VEÍCULO</h5>
+    <div class="app-vehicle-tabs" role="tablist" aria-label="Vínculos do veículo">
+      <button type="button" role="tab" aria-selected="true" class="selected" data-vehicle-tab="contacts">CONTATOS</button>
+      <button type="button" role="tab" aria-selected="false" data-vehicle-tab="clippings">CLIPPINGS</button>
+    </div>
+    <section class="app-vehicle-linked-section" role="tabpanel" data-vehicle-panel="contacts">
+      <h5>CONTATOS VINCULADOS <span>1</span></h5>
+      <p>Contatos atualmente associados a este veículo.</p>
+      <button type="button" class="app-vehicle-contact-select">SELECIONAR CONTATOS</button>
+      <div class="app-vehicle-contact-selection" hidden>
+        <div><strong><span data-vehicle-contact-selected>0</span> de 100 selecionado(s)</strong><small>Escolha os contatos que deseja desvincular.</small></div>
+        <button type="button" data-vehicle-contact-select-all>TODOS</button>
+        <button type="button" data-vehicle-contact-clear aria-label="Cancelar seleção">×</button>
+      </div>
+      <article class="app-vehicle-contact-card">
+        <span class="app-vehicle-contact-avatar">A</span>
+        <div><strong>Ademilson</strong><small>ademilson@example.com</small><small>Editor · Itajubá · São Paulo</small></div>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </article>
+    </section>
+    <section class="app-vehicle-linked-section app-vehicle-linked-clippings" role="tabpanel" data-vehicle-panel="clippings" hidden>
+      <h5>CLIPPINGS VINCULADOS <span>3</span></h5>
+      <p>Publicações deste veículo</p>
+      <label class="app-vehicle-year-label">ANO DOS CLIPPINGS</label>
+      <button type="button" class="app-vehicle-year-select"><span><i class="fa-regular fa-calendar" aria-hidden="true"></i> 2026</span><small>2 clippings</small><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+      <button type="button" class="app-vehicle-open-year" data-screen="clipping">ABRIR ANO 2026</button>
+    </section>
   </section>
 </section>
 
@@ -1147,7 +1171,7 @@
   </div>
   <article class="app-vehicle-form-identity" hidden>
     <span class="app-vehicle-identity-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
-    <div><h4>Acontecendo Aqui</h4><p>Alcance não informado</p><strong>ATIVO</strong></div>
+    <div><h4>LOGOS</h4><p>500 mil leitores</p><strong>ATIVO</strong></div>
   </article>
   <h5>DADOS DO VEÍCULO</h5>
   <form id="app-vehicle-form" autocomplete="off">
@@ -1158,11 +1182,19 @@
       <label><input type="radio" name="tier" value="" checked> Não definido</label><label><input type="radio" name="tier" value="1"> Tier 1</label><label><input type="radio" name="tier" value="2"> Tier 2</label><label><input type="radio" name="tier" value="3"> Tier 3</label>
     </div><small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small></fieldset>
     <fieldset class="app-vehicle-logo-field"><legend>LOGO</legend><button type="button" class="app-vehicle-logo-pick"><i class="fa-regular fa-image" aria-hidden="true"></i><span><strong>SELECIONAR LOGO</strong><small>JPG, PNG ou WEBP · até 2 MB</small></span></button><input type="file" name="logo" accept="image/jpeg,image/png,image/webp" hidden></fieldset>
+    <fieldset class="app-vehicle-address-form">
+      <h4>ENDEREÇOS DO SITE (opcional)</h4>
+      <p>Ajuda a reconhecer este veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p>
+      <div class="app-vehicle-address-list" aria-live="polite"></div>
+      <label>DOMÍNIO<input name="domain" type="text" placeholder="Ex.: nomesite.com"></label>
+      <label>SEÇÃO DO SITE (OPCIONAL)<input name="section" type="text" placeholder="Ex.: /agro"></label>
+      <label class="app-vehicle-subdomains"><span><strong>Incluir subdomínios</strong><small>Ex.: portal.exemplo.com para exemplo.com</small></span><input name="includeSubdomains" type="checkbox"><i aria-hidden="true"></i></label>
+      <button type="button" class="app-vehicle-add-address">ADICIONAR ENDEREÇO</button>
+    </fieldset>
     <label class="app-vehicle-status-card"><span><strong>STATUS</strong><small>Veículo disponível para vinculação no mailing</small></span><input name="active" type="checkbox" checked><i aria-hidden="true"></i></label>
     <div class="app-vehicle-form-actions"><button type="button" data-screen="veiculos">CANCELAR</button><button type="submit">CADASTRAR</button></div>
   </form>
 </section>
-
 
 <!-- Templates -->
 <section class="app-templates" data-view="templates" hidden>
