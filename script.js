@@ -273,6 +273,29 @@ if (appSimulator) {
             voltar: true
         },
 
+        templates: {
+            titulo: 'Templates', aba: null, voltar: true
+        },
+        'preview-template': {
+            titulo: 'Prévia do template', aba: null, voltar: true
+        },
+        'novo-template': {
+            titulo: 'Novo template', aba: null, voltar: true
+        },
+        'editar-copia-template': {
+            titulo: 'Edição de cópia', aba: null, voltar: true
+        },
+
+        'detalhes-veiculo': {
+            titulo: 'Veículo', aba: null, voltar: true
+        },
+        'novo-veiculo': {
+            titulo: 'Novo veículo', aba: null, voltar: true
+        },
+        'editar-veiculo': {
+            titulo: 'Editar veículo', aba: null, voltar: true
+        },
+
         relatorios: {
             titulo: 'Relatórios',
             aba: null,
@@ -350,8 +373,9 @@ if (appSimulator) {
         const active =
             view.dataset.view === screenName ||
             (
-                screenName === 'editar-cliente' &&
-                view.dataset.view === 'novo-cliente'
+                (screenName === 'editar-cliente' && view.dataset.view === 'novo-cliente') ||
+                (screenName === 'editar-veiculo' && view.dataset.view === 'novo-veiculo') ||
+                (screenName === 'editar-copia-template' && view.dataset.view === 'novo-template')
             );
 
             view.hidden = !active;
@@ -1248,14 +1272,20 @@ if (
         clippingList.querySelectorAll('[data-clipping-id]')
     );
 
-    // Somente os clippings do cliente selecionado
+    // Somente os clippings visíveis do cliente selecionado
     const getClientClippings = () => {
 
         const clientId = appClientDetailsView.dataset.clientId;
 
-        return getAllClippings().filter(card =>
-            card.dataset.clientId === clientId
-        );
+        return getAllClippings().filter(card => {
+
+            const pertenceAoCliente =
+                card.dataset.clientId === clientId;
+
+            const estaVisivel = !card.hidden;
+
+            return pertenceAoCliente && estaVisivel;
+        });
     };
 
     // Atualizar interface da seleção múltipla
@@ -1456,3 +1486,121 @@ if (
 }
 
 // Simulador LOGOS - Clippings Vinculados aos Clientes
+
+/* Simulador LOGOS — interações demonstrativas de Veículos */
+(() => {
+ const sim=document.querySelector('.app-simulator'), list=document.querySelector('.app-vehicles'), details=document.querySelector('.app-vehicle-details'), formView=document.querySelector('.app-vehicle-form'), form=document.querySelector('#app-vehicle-form');
+ if(!sim||!list||!details||!formView||!form)return;
+ let selection=false,status='todos',sort='alpha',min='',max='';const selected=new Set();
+ const cards=()=>Array.from(list.querySelectorAll('.app-vehicle-card'));
+ const apply=()=>{const q=list.querySelector('#app-vehicles-query').value.trim().toLocaleLowerCase('pt-BR');let matches=cards().filter(c=>c.dataset.vehicleName.toLocaleLowerCase('pt-BR').includes(q)&&(status==='todos'||c.dataset.vehicleStatus===status)&&(!min||+c.dataset.vehicleContacts>=+min)&&(!max||+c.dataset.vehicleContacts<=+max));cards().forEach(c=>c.hidden=!matches.includes(c));matches.sort((a,b)=>sort==='desc'?+b.dataset.vehicleContacts-+a.dataset.vehicleContacts:sort==='asc'?+a.dataset.vehicleContacts-+b.dataset.vehicleContacts:a.dataset.vehicleName.localeCompare(b.dataset.vehicleName,'pt-BR'));matches.forEach(c=>list.querySelector('.app-vehicles-list').appendChild(c));list.querySelector('#app-vehicles-count').textContent=matches.length===1?'1 veículo':matches.length+' veículos';list.querySelector('.app-vehicles-empty').hidden=matches.length>0;list.querySelector('#app-vehicles-selected-count').textContent=selected.size;list.classList.toggle('app-vehicles-selection-active',selection);list.querySelector('.app-vehicles-select-trigger').hidden=selection;list.querySelector('.app-vehicles-selection-bar').hidden=!selection;cards().forEach(c=>c.setAttribute('aria-pressed',String(selection&&selected.has(c.dataset.vehicleId))))};
+ const mark=(selector,attr,value)=>list.querySelectorAll(selector).forEach(b=>b.classList.toggle('selected',b.getAttribute(attr)===value));
+ list.querySelector('.app-vehicles-filter-open').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=false;
+ list.querySelector('.app-vehicles-filter-close').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=true;
+ list.querySelector('.app-vehicles-filter-backdrop').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.hidden=true};
+ list.querySelectorAll('[data-vehicle-status-filter]').forEach(b=>b.onclick=()=>{status=b.dataset.vehicleStatusFilter;mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status)});
+ list.querySelectorAll('[data-vehicle-sort]').forEach(b=>b.onclick=()=>{sort=b.dataset.vehicleSort;mark('[data-vehicle-sort]','data-vehicle-sort',sort)});
+ list.querySelector('#app-vehicles-query').oninput=apply;list.querySelector('.app-vehicles-search-submit').onclick=apply;
+ list.querySelector('.app-vehicles-filter-apply').onclick=()=>{min=list.querySelector('#app-vehicles-min-contacts').value;max=list.querySelector('#app-vehicles-max-contacts').value;list.querySelector('.app-vehicles-filter-backdrop').hidden=true;apply()};
+ list.querySelector('.app-vehicles-filter-clear').onclick=()=>{status='todos';sort='alpha';min=max='';list.querySelector('#app-vehicles-min-contacts').value='';list.querySelector('#app-vehicles-max-contacts').value='';mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status);mark('[data-vehicle-sort]','data-vehicle-sort',sort);apply()};
+ list.querySelector('.app-vehicles-select-trigger').onclick=()=>{selection=true;selected.clear();apply()};
+ list.querySelector('.app-vehicles-select-all').onclick=()=>{const visible=cards().filter(c=>!c.hidden),all=visible.every(c=>selected.has(c.dataset.vehicleId));visible.forEach(c=>all?selected.delete(c.dataset.vehicleId):selected.add(c.dataset.vehicleId));apply()};
+ list.querySelector('.app-vehicles-cancel-select').onclick=()=>{selection=false;selected.clear();apply()};
+ const prepare=edit=>{form.reset();formView.querySelector('h4').textContent=edit?'EDITAR VEÍCULO':'NOVO VEÍCULO';form.querySelector('[type=submit]').textContent=edit?'SALVAR':'CADASTRAR';if(edit){form.elements.namedItem('name').value=details.querySelector('[data-vehicle-detail=name]').textContent.trim();form.elements.namedItem('active').checked=true}form.querySelector('.app-vehicle-demo-note').textContent=edit?'Demonstração visual: as alterações não serão salvas.':'Demonstração visual: o cadastro está desabilitado.'};
+ sim.addEventListener('click',e=>{const b=e.target.closest('button[data-screen]');if(!b)return;if(b.dataset.screen==='novo-veiculo')prepare(false);if(b.dataset.screen==='editar-veiculo')prepare(true)},true);
+ sim.addEventListener('click',e=>{const c=e.target.closest('.app-vehicle-card');if(c&&selection){e.preventDefault();e.stopPropagation();selected.has(c.dataset.vehicleId)?selected.delete(c.dataset.vehicleId):selected.add(c.dataset.vehicleId);apply()}},true);
+ form.addEventListener('submit',e=>e.preventDefault());details.querySelector('.app-vehicle-delete').onclick=e=>e.preventDefault();formView.querySelector('.app-vehicle-add-address').onclick=e=>e.preventDefault();apply();
+})();
+
+/* Simulador LOGOS — biblioteca e editor demonstrativo de templates */
+(() => {
+ const sim=document.querySelector('.app-simulator'),library=document.querySelector('.app-templates'),preview=document.querySelector('.app-template-preview'),editor=document.querySelector('.app-template-editor');
+ if(!sim||!library||!preview||!editor)return;
+ const catalog={
+  simples:{name:'Release simples',blocks:['Título','Linha fina','Texto','Divisor','Contato de imprensa']},
+  imagem:{name:'Release com imagem',blocks:['Imagem / logo','Título','Linha fina','Texto','Divisor','Contato de imprensa']},
+  aviso:{name:'Aviso de pauta',blocks:['Título','Texto','Texto','Divisor','Contato de imprensa']}
+ };
+ let currentId='simples',copyMode=false,selectedChoice='',blocks=[],custom=[];
+ const nameInput=editor.querySelector('#app-template-name'), list=editor.querySelector('#app-template-block-list');
+ const defaults={Título:'Título da matéria', 'Linha fina':'Uma apresentação breve da matéria.',Texto:'Escreva aqui o conteúdo da matéria.', 'Contato de imprensa':'Nome, telefone e e-mail da assessoria.', 'Imagem / logo':'Imagem da matéria', 'Botão com link':'Acessar conteúdo',Arquivo:'Baixar arquivo',Divisor:'Bloco de separação',Espaçamento:'Espaçamento'};
+ const summary=(type)=>defaults[type]||'Toque para editar';
+ const updateCount=()=>{editor.querySelector('#app-template-block-count').textContent=blocks.length;editor.querySelector('#app-template-current-name').textContent=nameInput.value||'Novo template'};
+ const renderBlocks=()=>{
+  list.innerHTML='';
+  blocks.forEach((b,i)=>{
+   const row=document.createElement('div');row.className='app-template-block-row';
+   row.innerHTML='<div class="app-template-block-head"><button type="button" class="edit-block"></button><button type="button" class="move" data-move="-1" aria-label="Mover para cima">↑</button><button type="button" class="move" data-move="1" aria-label="Mover para baixo">↓</button></div><div class="app-template-block-edit" hidden><label>CONTEÚDO<input class="block-value"></label><button type="button" class="complete-block">CONCLUIR</button></div>';
+   const editButton=row.querySelector('.edit-block');editButton.innerHTML='<span></span><small></small>';editButton.querySelector('span').textContent=b.type;editButton.querySelector('small').textContent=b.value||summary(b.type);
+   row.querySelector('.block-value').value=b.value||summary(b.type);
+   editButton.onclick=()=>row.querySelector('.app-template-block-edit').hidden=!row.querySelector('.app-template-block-edit').hidden;
+   row.querySelector('.complete-block').onclick=()=>{b.value=row.querySelector('.block-value').value;renderBlocks()};
+   row.querySelectorAll('.move').forEach(btn=>btn.onclick=()=>{const j=i+Number(btn.dataset.move);if(j>=0&&j<blocks.length){[blocks[i],blocks[j]]=[blocks[j],blocks[i]];renderBlocks()}});
+   list.appendChild(row);
+  });
+  updateCount();
+ };
+ const renderPreview=(container)=>{
+  container.innerHTML='';
+  const card=document.createElement('article');card.className='app-template-preview-card';
+  blocks.forEach(b=>{if(b.type==='Divisor'){card.insertAdjacentHTML('beforeend','<hr>');return}if(b.type==='Espaçamento'){card.insertAdjacentHTML('beforeend','<div style="height:18px"></div>');return}const p=document.createElement(b.type==='Título'?'h3':'p');p.textContent=b.value||summary(b.type);if(b.type==='Linha fina')p.className='muted';card.appendChild(p)});
+  if(!blocks.length)card.textContent='O conteúdo ainda está vazio.';
+  container.appendChild(card);
+ };
+ const showPreview=(id)=>{
+  currentId=id;const item=catalog[id]||custom.find(x=>x.id===id)||catalog.simples;
+  preview.querySelector('#app-template-preview-name').textContent=item.name;
+  const card=preview.querySelector('#app-template-preview-card');card.innerHTML='';
+  (item.blocks||[]).forEach(type=>{if(type==='Divisor'){card.insertAdjacentHTML('beforeend','<hr>');return}const p=document.createElement(type==='Título'?'h3':'p');p.textContent=summary(type);if(type==='Linha fina')p.className='muted';card.appendChild(p)});
+ };
+ const startCopy=()=>{
+  const item=catalog[currentId]||custom.find(x=>x.id===currentId)||catalog.simples;
+  copyMode=true;nameInput.value='Cópia de '+item.name;
+  blocks=(item.blocks||[]).map(type=>({type,value:summary(type)}));editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks();
+ };
+ const startNew=()=>{copyMode=false;nameInput.value='';blocks=[];editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks()};
+ const filter=()=>{
+  const q=library.querySelector('#app-template-search').value.toLocaleLowerCase('pt-BR').trim();
+  const tab=library.querySelector('.app-template-tabs .selected')?.dataset.templateTab||'todos';
+  let count=0;
+  library.querySelectorAll('[data-template-card]').forEach(card=>{
+   const visible=card.dataset.templateName.toLocaleLowerCase('pt-BR').includes(q)&&(tab==='todos'||(tab==='padroes'&&card.dataset.templateOrigin==='padrao')||(tab==='assessoria'&&card.dataset.templateOrigin==='assessoria'));
+   card.hidden=!visible;if(visible)count++;
+  });
+  library.querySelector('#app-template-count').textContent=count+' encontrado'+(count===1?'':'s');
+  library.querySelector('.app-template-empty').hidden=count>0;
+ };
+ library.querySelector('#app-template-search').addEventListener('input',filter);
+ library.querySelectorAll('[data-template-tab]').forEach(b=>b.onclick=()=>{library.querySelectorAll('[data-template-tab]').forEach(x=>x.classList.toggle('selected',x===b));filter()});
+ editor.querySelectorAll('[data-editor-tab]').forEach(b=>b.onclick=()=>{
+  editor.querySelectorAll('[data-editor-tab]').forEach(x=>x.classList.toggle('selected',x===b));
+  const isPreview=b.dataset.editorTab==='preview';
+  list.hidden=isPreview;editor.querySelector('.app-template-add-block').hidden=isPreview;
+  editor.querySelector('.app-template-block-count').hidden=isPreview;editor.querySelector('#app-template-editor-preview').hidden=!isPreview;
+  if(isPreview)renderPreview(editor.querySelector('#app-template-editor-preview'));
+ });
+ editor.querySelector('.app-template-add-block').onclick=()=>{selectedChoice='';editor.querySelectorAll('[data-block-choice]').forEach(x=>x.classList.remove('selected'));editor.querySelector('.app-template-add-modal').hidden=false};
+ editor.querySelectorAll('[data-action=close-block-modal]').forEach(b=>b.onclick=()=>editor.querySelector('.app-template-add-modal').hidden=true);
+ editor.querySelectorAll('[data-block-choice]').forEach(b=>b.onclick=()=>{selectedChoice=b.dataset.blockChoice;editor.querySelectorAll('[data-block-choice]').forEach(x=>x.classList.toggle('selected',x===b))});
+ editor.querySelector('[data-action=insert-block]').onclick=()=>{if(selectedChoice&&blocks.length<100){blocks.push({type:selectedChoice,value:summary(selectedChoice)});renderBlocks()}editor.querySelector('.app-template-add-modal').hidden=true};
+ nameInput.oninput=updateCount;
+ editor.querySelector('[data-action=save-template]').onclick=()=>{
+  const name=nameInput.value.trim();if(!name)return;
+  const id='custom-'+Date.now();custom.unshift({id,name,blocks:blocks.map(b=>b.type),origin:'assessoria'});
+  const card=document.createElement('article');card.className='app-template-card';card.dataset.templateCard='';card.dataset.templateId=id;card.dataset.templateName=name;card.dataset.templateOrigin='assessoria';
+  card.innerHTML='<div class="app-template-thumb"></div><h4></h4><p>Da assessoria</p><button data-template-action="preview" data-screen="preview-template">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template">▢ CRIAR CÓPIA</button>';
+  card.querySelector('h4').textContent=name;card.querySelector('[data-template-action=preview]').dataset.templateId=id;card.querySelector('[data-template-action=copy]').dataset.templateId=id;
+  library.querySelector('.app-template-grid').prepend(card);library.querySelector('.app-template-tabs [data-template-tab=todos]').click();filter();sim.querySelector('[data-screen=templates]')?.click();
+ };
+ sim.addEventListener('click',e=>{
+  const b=e.target.closest('[data-template-action], [data-action=copy-preview], button[data-screen]');
+  if(!b)return;
+  const action=b.dataset.templateAction;
+  if(action==='preview'||b.dataset.action==='copy-preview'||b.dataset.screen==='preview-template'){
+   currentId=b.dataset.templateId||currentId;showPreview(currentId);
+  }
+  if(action==='copy'||b.dataset.action==='copy-preview'||b.dataset.screen==='editar-copia-template'){currentId=b.dataset.templateId||currentId;startCopy()}
+  if(b.dataset.screen==='novo-template')startNew();
+ },true);
+ renderBlocks();filter();
+})();

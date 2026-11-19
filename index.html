@@ -697,6 +697,11 @@
     </h4>
 
     <div class="app-more-list">
+        <button type="button" class="app-more-card" data-screen="templates">
+            <span class="app-more-icon"><i class="fa-regular fa-folder" aria-hidden="true"></i></span>
+            <span class="app-more-info"><strong>Templates</strong><small>Modelos para seus releases.</small></span>
+            <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
+        </button>
 
         <!-- Clientes -->
         <button
@@ -1679,6 +1684,139 @@
 
 </div>
 <!-- Novo Cliente -->
+
+
+<!-- Veículos -->
+<section class="app-vehicles" data-view="veiculos" hidden>
+  <div class="app-vehicles-tools">
+    <div class="app-vehicles-search">
+      <input id="app-vehicles-query" type="search" placeholder="Buscar veículos..." aria-label="Buscar veículos">
+      <button type="button" class="app-vehicles-search-submit" aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <button type="button" class="app-vehicles-filter-open" aria-label="Abrir filtros"><i class="fa-solid fa-sliders"></i></button>
+  </div>
+  <div class="app-vehicles-list-heading">
+    <span><strong id="app-vehicles-count">1 veículo</strong></span>
+    <button type="button" class="app-vehicles-new" data-screen="novo-veiculo">+ NOVO</button>
+  </div>
+  <div class="app-vehicles-selection-bar" hidden>
+    <span><strong id="app-vehicles-selected-count">0</strong> selecionados</span>
+    <button type="button" class="app-vehicles-select-all">SELECIONAR TODOS</button>
+    <button type="button" class="app-vehicles-cancel-select">CANCELAR</button>
+  </div>
+  <button type="button" class="app-vehicles-select-trigger">SELECIONAR VEÍCULOS</button>
+  <div class="app-vehicles-list">
+    <button type="button" class="app-vehicle-card" data-vehicle-id="veiculo-x" data-vehicle-name="x" data-vehicle-status="ativo" data-vehicle-tier="" data-vehicle-contacts="0" data-screen="detalhes-veiculo">
+      <span class="app-vehicle-card-icon"><i class="fa-regular fa-newspaper"></i></span>
+      <span class="app-vehicle-card-main"><strong>x</strong><small>Alcance não informado</small><span class="app-vehicle-status">ATIVO</span></span>
+      <span class="app-vehicle-card-count">0<br><small>contatos</small></span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+  <p class="app-vehicles-empty" hidden>Nenhum veículo encontrado.</p>
+  <div class="app-vehicles-filter-backdrop" hidden>
+    <section class="app-vehicles-filter-panel" role="dialog" aria-modal="true" aria-label="Filtros de veículos">
+      <header><div><h4>FILTROS</h4><p>Refine os veículos exibidos</p></div><button type="button" class="app-vehicles-filter-close" aria-label="Fechar filtros">×</button></header>
+      <div class="app-vehicles-filter-body">
+        <fieldset><legend>STATUS</legend><div class="app-vehicles-status-options">
+          <button type="button" data-vehicle-status-filter="ativo">Ativos</button><button type="button" data-vehicle-status-filter="inativo">Inativos</button><button type="button" data-vehicle-status-filter="todos" class="selected">Todos</button>
+        </div></fieldset>
+        <fieldset><legend>ORDENAÇÃO</legend><div class="app-vehicles-sort-options">
+          <button type="button" data-vehicle-sort="alpha" class="selected">ORDEM ALFABÉTICA</button><button type="button" data-vehicle-sort="desc">MAIS VÍNCULOS</button><button type="button" data-vehicle-sort="asc">MENOS VÍNCULOS</button>
+        </div></fieldset>
+        <label>MÍNIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-min-contacts" placeholder="Ex.: 5"></label>
+        <label>MÁXIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-max-contacts" placeholder="Ex.: 20"></label>
+        <small>Defina a quantidade mínima e/ou máxima de vínculos.</small>
+      </div>
+      <footer><button type="button" class="app-vehicles-filter-clear">LIMPAR</button><button type="button" class="app-vehicles-filter-apply">APLICAR</button></footer>
+    </section>
+  </div>
+</section>
+
+<section class="app-vehicle-details" data-view="detalhes-veiculo" hidden>
+  <div class="app-vehicle-detail-actions">
+    <button type="button" class="app-vehicle-edit" data-screen="editar-veiculo"><i class="fa-regular fa-pen-to-square"></i> Editar</button>
+    <button type="button" class="app-vehicle-delete" title="Ação ilustrativa"><i class="fa-regular fa-trash-can"></i> Excluir</button>
+  </div>
+  <article class="app-vehicle-identity">
+    <span class="app-vehicle-identity-icon"><i class="fa-regular fa-newspaper"></i></span>
+    <div><h4 data-vehicle-detail="name">x</h4><p>Alcance não informado</p><strong>ATIVO</strong></div>
+  </article>
+  <h5>INFORMAÇÕES</h5>
+  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-file-lines"></i></span><div><small>DESCRIÇÃO</small><p>Não informada</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-chart-column"></i></span><div><small>ALCANCE</small><p>Não informado</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-award"></i></span><div><small>TIER</small><p>Não definido</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-image"></i></span><div><small>LOGO</small><p>Não informado</p></div></div>
+  <section class="app-vehicle-addresses"><h4>ENDEREÇOS DO SITE</h4><p>Usados para reconhecer o veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p><small>Nenhum endereço associado.</small></section>
+</section>
+
+<section class="app-vehicle-form" data-view="novo-veiculo" hidden>
+  <div class="app-vehicle-form-heading"><h4>NOVO VEÍCULO</h4><p>Preencha as informações do veículo.</p></div>
+  <form id="app-vehicle-form" autocomplete="off">
+    <label>NOME<input name="name" type="text" placeholder="Nome do veículo"></label>
+    <label>DESCRIÇÃO<textarea name="description" placeholder="Detalhes do veículo"></textarea></label>
+    <label>ALCANCE<textarea name="reach" placeholder="Redes sociais, seguidores e outras informações"></textarea></label>
+    <fieldset><legend>TIER</legend><div class="app-vehicle-tier-options">
+      <label><input type="radio" name="tier" value="" checked> Não definido</label><label><input type="radio" name="tier" value="1"> Tier 1</label><label><input type="radio" name="tier" value="2"> Tier 2</label><label><input type="radio" name="tier" value="3"> Tier 3</label>
+    </div><small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small></fieldset>
+    <section class="app-vehicle-address-form"><h4>ENDEREÇOS DO SITE (opcional)</h4><p>Ajuda a reconhecer este veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p>
+      <label>DOMÍNIO<input name="domain" type="text" placeholder="Ex.: nomesite.com"></label>
+      <label>SEÇÃO DO SITE (OPCIONAL)<input name="siteSection" type="text" placeholder="Ex.: /agro"></label>
+      <label class="app-vehicle-subdomains"><input name="subdomains" type="checkbox"> Incluir subdomínios <small>Ex.: portal.exemplo.com para exemplo.com</small></label>
+      <button type="button" class="app-vehicle-add-address">ADICIONAR ENDEREÇO</button>
+    </section>
+    <label class="app-vehicle-active"><input name="active" type="checkbox" checked> Veículo ativo</label>
+    <div class="app-vehicle-form-actions"><button type="button" data-screen="veiculos">CANCELAR</button><button type="submit">CADASTRAR</button></div>
+    <p class="app-vehicle-demo-note">Demonstração visual: esta ação não altera os dados.</p>
+  </form>
+</section>
+
+
+<!-- Templates -->
+<section class="app-templates" data-view="templates" hidden>
+ <div class="app-template-library-head"><span class="app-template-library-icon"><i class="fa-regular fa-folder"></i></span><div><h4>Biblioteca</h4><p>Modelos de release</p></div><button type="button" data-screen="novo-template">+ NOVO</button></div>
+ <div class="app-template-search"><input id="app-template-search" type="search" placeholder="Buscar template..." aria-label="Buscar template"><button type="button"><i class="fa-solid fa-magnifying-glass"></i></button></div>
+ <div class="app-template-tabs"><button class="selected" data-template-tab="todos">Todos</button><button data-template-tab="padroes">Padrões</button><button data-template-tab="assessoria">Da assessoria</button></div>
+ <div class="app-template-count"><strong>Modelos</strong><span id="app-template-count">3 encontrados</span></div>
+ <p class="app-template-empty" hidden>Nenhum template encontrado.</p>
+ <div class="app-template-grid">
+  <article class="app-template-card" data-template-card data-template-id="simples" data-template-name="Release simples" data-template-origin="padrao">
+   <div class="app-template-thumb"><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Release simples</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="simples">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="simples">▢ CRIAR CÓPIA</button>
+  </article>
+  <article class="app-template-card" data-template-card data-template-id="imagem" data-template-name="Release com imagem" data-template-origin="padrao">
+   <div class="app-template-thumb"><div class="app-template-thumb-image">▧ Imagem da matéria</div><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Release com imagem</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="imagem">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="imagem">▢ CRIAR CÓPIA</button>
+  </article>
+  <article class="app-template-card" data-template-card data-template-id="aviso" data-template-name="Aviso de pauta" data-template-origin="padrao">
+   <div class="app-template-thumb"><strong>Título do aviso de pauta</strong><p>Apresente o evento e os destaques para a imprensa.</p><small>Serviço<br>Data e horário<br>Local e endereço<br>Informações para participação</small><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Aviso de pauta</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="aviso">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="aviso">▢ CRIAR CÓPIA</button>
+  </article>
+ </div>
+</section>
+<section class="app-template-preview" data-view="preview-template" hidden>
+ <strong id="app-template-preview-name"></strong><p>Prévia da estrutura e dos textos iniciais.</p><article class="app-template-preview-card" id="app-template-preview-card"></article>
+ <div class="app-template-preview-actions"><button type="button" data-screen="templates">FECHAR</button><button type="button" data-action="copy-preview" data-screen="editar-copia-template">▢ CRIAR CÓPIA</button></div>
+</section>
+<section class="app-template-editor" data-view="novo-template" hidden>
+ <label>NOME DO TEMPLATE<input id="app-template-name" placeholder="Ex.: Release institucional"></label>
+ <p class="app-template-hint">Este modelo ficará disponível para os próximos releases da assessoria.</p>
+ <div class="app-template-editor-tabs"><button class="selected" data-editor-tab="blocks">Editar blocos</button><button data-editor-tab="preview">Prévia</button></div>
+ <p class="app-template-current">Template: <span id="app-template-current-name">Novo template</span></p>
+ <div id="app-template-block-list"></div>
+ <div id="app-template-editor-preview" hidden></div>
+ <button class="app-template-add-block" type="button">＋ ADICIONAR BLOCO</button>
+ <p class="app-template-block-count"><span id="app-template-block-count">0</span> de 100 blocos</p>
+ <div class="app-template-editor-actions"><button type="button" data-screen="templates">VOLTAR</button><button type="button" data-action="save-template">✓ SALVAR</button></div>
+ <div class="app-template-add-modal" hidden><div class="app-template-add-panel">
+  <header><div><h4>Adicionar bloco</h4><p>Escolha o que deseja incluir na matéria.</p></div><button type="button" data-action="close-block-modal">×</button></header>
+  <div class="app-template-block-choices">
+   <p>Conteúdo</p><button data-block-choice="Título">Aa <strong>Título</strong><small>Destaque principal</small></button><button data-block-choice="Linha fina">＝ <strong>Linha fina</strong><small>Resumo da matéria</small></button><button data-block-choice="Texto">▤ <strong>Texto</strong><small>Parágrafos e informações</small></button><button data-block-choice="Contato de imprensa">◉ <strong>Contato de imprensa</strong><small>Dados da assessoria</small></button>
+   <p>Mídia e links</p><button data-block-choice="Imagem / logo">▧ <strong>Imagem / logo</strong><small>Imagem com legenda</small></button><button data-block-choice="Botão com link">↪ <strong>Botão com link</strong><small>Acesso em destaque</small></button><button data-block-choice="Arquivo">♧ <strong>Arquivo</strong><small>Link para download</small></button>
+   <p>Organização</p><button data-block-choice="Divisor">— <strong>Divisor</strong><small>Linha de separação</small></button><button data-block-choice="Espaçamento">↗ <strong>Espaçamento</strong><small>Respiro entre blocos</small></button>
+  </div><footer><button type="button" data-action="insert-block">＋ INSERIR BLOCO</button><button type="button" data-action="close-block-modal">× CANCELAR</button></footer>
+ </div></div>
+</section>
 
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
