@@ -6429,3 +6429,7 @@ footer .social a:hover {
 .app-clipping-import>label{min-height:120px;display:grid;place-items:center;gap:8px;border:1px dashed #6578ff;border-radius:15px;color:#536cff}
 .app-clipping-import>div{margin-top:18px}
 .app-clipping-groups[hidden],.app-clipping-clients[hidden],.app-clipping-client-page[hidden],.app-clipping-details[hidden],.app-clipping-form[hidden],.app-clipping-import[hidden],.app-clipping-client-filter-backdrop[hidden],.app-clipping-client-picker[hidden],.app-clipping-data-modal[hidden],.app-clipping-capture-modal[hidden],.app-clipping-selection-bar[hidden]{display:none!important}
+
+.app-clipping-items-filter{position:absolute;inset:0;z-index:80;display:flex;align-items:flex-end;background:#0006}
+.app-clipping-items-filter[hidden]{display:none!important}
+.app-vehicle-card-main .app-vehicle-card-count{color:#a55e21}
