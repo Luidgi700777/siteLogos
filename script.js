@@ -1551,7 +1551,7 @@ if (
     const image=document.createElement('div');image.className=thumbnail?'app-template-thumb-image':'app-template-preview-image';image.textContent=value;container.appendChild(image);return;
    }
    if(type==='Contato de imprensa'){
-    const label=document.createElement(thumbnail?'strong':'strong');label.className='app-template-contact-label';label.textContent='Contato de imprensa';container.appendChild(label);
+    const label=document.createElement('strong');label.className='app-template-contact-label';label.textContent='Contato de imprensa';container.appendChild(label);
     const contact=document.createElement('p');contact.textContent=value;container.appendChild(contact);return;
    }
    const heading=type==='Título';
