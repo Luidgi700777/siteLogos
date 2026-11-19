@@ -343,6 +343,32 @@ if (appSimulator) {
             voltar: true
         },
 
+        'detalhes-contato': { titulo: 'Contato', aba: 'mailing', voltar: true },
+
+        'editar-contato': { titulo: 'Editar contato', aba: 'mailing', voltar: true },
+
+        'selecionar-contatos': { titulo: 'Destinatários', aba: 'releases', voltar: true },
+
+        'novo-release': { titulo: 'Novo release', aba: 'releases', voltar: true },
+
+        'detalhes-release': { titulo: 'Release', aba: 'releases', voltar: true },
+
+        'editar-release': { titulo: 'Editar release', aba: 'releases', voltar: true },
+
+        'detalhes-relatorio': { titulo: 'Relatório', aba: null, voltar: true },
+
+        'selecionar-materias': { titulo: 'Escolher matérias', aba: null, voltar: true },
+
+        'editar-slide': { titulo: 'Editar slide', aba: null, voltar: true },
+
+        'novo-funcionario': { titulo: 'Novo funcionário', aba: null, voltar: true },
+
+        'detalhes-funcionario': { titulo: 'Funcionário', aba: null, voltar: true },
+
+        'editar-funcionario': { titulo: 'Editar funcionário', aba: null, voltar: true },
+
+        'editar-convite': { titulo: 'Convites', aba: null, voltar: true },
+
         'novo-contato': {
             titulo: 'Novo contato',
             aba: 'mailing',
@@ -387,7 +413,10 @@ if (appSimulator) {
                 (screenName === 'editar-cliente' && view.dataset.view === 'novo-cliente') ||
                 (screenName === 'editar-clipping' && view.dataset.view === 'novo-clipping') ||
                 (screenName === 'editar-veiculo' && view.dataset.view === 'novo-veiculo') ||
-                (screenName === 'editar-copia-template' && view.dataset.view === 'novo-template')
+                (screenName === 'editar-copia-template' && view.dataset.view === 'novo-template') ||
+                (screenName === 'editar-contato' && view.dataset.view === 'novo-contato') ||
+                (screenName === 'editar-release' && view.dataset.view === 'novo-release') ||
+                (screenName === 'editar-funcionario' && view.dataset.view === 'novo-funcionario')
             );
 
             view.hidden = !active;
