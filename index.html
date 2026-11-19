@@ -842,7 +842,7 @@
     <div class="app-clients-toolbar">
 
         <span class="app-clients-count" id="app-clients-count">
-            3 clientes
+            1 cliente
         </span>
 
         <button
@@ -874,11 +874,11 @@
         <div class="app-clients-selection-info">
             <strong>
                 <span id="app-clients-selected-count">0</span>
-                de 3 selecionado(s)
+                de 100 selecionado(s)
             </strong>
 
             <small>
-                Botão de excluir desabilitado nesta demonstração!
+                Escolha os clientes que deseja excluir.
             </small>
         </div>
 
@@ -922,153 +922,18 @@
 
     <!-- Listagem -->
     <div class="app-clients-list">
-
-        <!-- Clientes demonstrativos -->
-        <button
-            type="button"
-            class="app-client-card1"
-            data-screen="detalhes-cliente"
-            data-client-id="cliente-cleiton"
-            data-client-status="ativo"
-            data-client-state=""
-            data-client-city=""
-            data-client-segment="Varejo"
-            data-client-clippings="27"
-            data-client-year="2026"
-        >
-
-            <span class="app-client-icon1">
-                <i class="fa-solid fa-briefcase"
-                   aria-hidden="true"></i>
-            </span>
-
+        <button type="button" class="app-client-card1" data-screen="detalhes-cliente" data-client-id="cliente-douglas" data-client-status="ativo" data-client-state="" data-client-city="" data-client-segment="varejo" data-client-clippings="1" data-client-year="2026">
+            <span class="app-client-icon1"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
             <span class="app-client-info1">
-
-                <strong class="app-client-name1">
-                    Cleiton
-                </strong>
-
-                <small class="app-client-description1">
-                    Varejo · Ativo
-                </small>
-
-                <small class="app-client-clippings1">
-                    27 clipping · 2026
-                </small>
-
+                <strong class="app-client-name1">douglas</strong>
+                <small class="app-client-description1">varejo · Ativo</small>
+                <small class="app-client-clippings1">1 clipping · 2026</small>
             </span>
-
-            <i
-                class="fa-solid fa-chevron-right app-client-arrow1"
-                aria-hidden="true"
-            ></i>
-
-            
-            <!-- Checkbox exibido somente no modo de seleção -->
-            <span class="app-client-checkbox1" aria-hidden="true">
-                <i class="fa-solid fa-check"></i>
-            </span>
-
+            <i class="fa-solid fa-chevron-right app-client-arrow1" aria-hidden="true"></i>
+            <span class="app-client-checkbox1" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
         </button>
-
-        <button
-            type="button"
-            class="app-client-card2"
-            data-screen="detalhes-cliente"
-            data-client-id="cliente-maria"
-            data-client-status="ativo"
-            data-client-state=""
-            data-client-city=""
-            data-client-segment="Saúde"
-            data-client-clippings="35"
-            data-client-year="2026"
-        >
-
-            <span class="app-client-icon2">
-                <i class="fa-solid fa-briefcase"
-                   aria-hidden="true"></i>
-            </span>
-
-            <span class="app-client-info2">
-
-                <strong class="app-client-name2">
-                    Maria
-                </strong>
-
-                <small class="app-client-description2">
-                    Saúde · Ativo
-                </small>
-
-                <small class="app-client-clippings2">
-                    35 clipping · 2026
-                </small>
-
-            </span>
-
-            <i
-                class="fa-solid fa-chevron-right app-client-arrow2"
-                aria-hidden="true"
-            ></i>
-
-            
-            <!-- Checkbox exibido somente no modo de seleção -->
-            <span class="app-client-checkbox2" aria-hidden="true">
-                <i class="fa-solid fa-check"></i>
-            </span>
-
-        </button>
-
-        <button
-            type="button"
-            class="app-client-card3"
-            data-screen="detalhes-cliente"
-            data-client-id="cliente-joao"
-            data-client-status="ativo"
-            data-client-state=""
-            data-client-city=""
-            data-client-segment="Tecnologia"
-            data-client-clippings="51"
-            data-client-year="2025"
-        >
-
-            <span class="app-client-icon3">
-                <i class="fa-solid fa-briefcase"
-                   aria-hidden="true"></i>
-            </span>
-
-            <span class="app-client-info3">
-
-                <strong class="app-client-name3">
-                    João
-                </strong>
-
-                <small class="app-client-description3">
-                    Tecnologia · Ativo
-                </small>
-
-                <small class="app-client-clippings3">
-                    51 clipping · 2025
-                </small>
-
-            </span>
-
-            <i
-                class="fa-solid fa-chevron-right app-client-arrow3"
-                aria-hidden="true"
-            ></i>
-
-            
-            <!-- Checkbox exibido somente no modo de seleção -->
-            <span class="app-client-checkbox3" aria-hidden="true">
-                <i class="fa-solid fa-check"></i>
-            </span>
-
-        </button>
-
     </div>
-    <!-- Fim da listagem -->
 
-    <!-- Mensagem quando não houver resultados -->
     <p
         class="app-clients-empty"
         id="app-clients-empty"
@@ -1085,606 +950,109 @@
 
 <!-- Detalhes do Cliente -->
 <div class="app-client-details" data-view="detalhes-cliente" hidden>
-
-    <!-- Ações -->
-    <div class="app-client-detail-actions">
-
-        <button
-            type="button"
-            class="app-client-edit-btn"
-            data-screen="editar-cliente"
-        >
-            <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
-            Editar
-        </button>
-
-        <button
-            type="button"
-            class="app-client-delete-btn"
-            disabled
-            title="Exclusão desabilitada na demonstração"
-        >
-            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
-            Excluir
-        </button>
-
-    </div>
-
-    <!-- Identificação -->
     <div class="app-client-detail-profile">
-
-        <div class="app-client-detail-avatar">
-            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-        </div>
-
+        <div class="app-client-detail-avatar"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
         <div class="app-client-detail-identity">
-            <h4 data-client-detail="nome">Cleiton</h4>
-            <p data-client-detail="segmento-resumo">Varejo</p>
-            <span class="app-client-detail-status"
-                  data-client-detail="status">
-                ATIVO
-            </span>
+            <h4 data-client-detail="nome">douglas</h4>
+            <p data-client-detail="segmento-resumo">varejo</p>
+            <span class="app-client-detail-status" data-client-detail="status">ATIVO</span>
         </div>
-
     </div>
-
-    <!-- Informações cadastrais -->
     <section class="app-client-detail-section">
-
         <h5>INFORMAÇÕES</h5>
-
         <div class="app-client-detail-info-list">
-
-            <!-- Responsável -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-user" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>RESPONSÁVEL</strong>
-                    <p data-client-detail="responsavel">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Segmento -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>SEGMENTO</strong>
-                    <p data-client-detail="segmento">Varejo</p>
-                </div>
-            </div>
-
-            
-            <!-- Descrição -->
-            <div class="app-client-detail-info-card">
-            
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-file-lines"
-                       aria-hidden="true"></i>
-                </span>
-            
-                <div>
-                    <strong>DESCRIÇÃO</strong>
-                    <p data-client-detail="descricao">
-                        Não informada
-                    </p>
-                </div>
-            
-            </div>
-            <!-- Descrição -->
-
-
-            <!-- CNPJ -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-id-card" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>CNPJ</strong>
-                    <p data-client-detail="cnpj">Não informado</p>
-                </div>
-            </div>
-
-            <!-- E-mail -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>E-MAIL</strong>
-                    <p data-client-detail="email">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Telefone -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>TELEFONE</strong>
-                    <p data-client-detail="telefone">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Site -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-globe" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>SITE</strong>
-                    <p data-client-detail="site">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Localização -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>LOCALIZAÇÃO</strong>
-                    <p data-client-detail="localizacao">Não informada</p>
-                </div>
-            </div>
-
-            <!-- Logo -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-image" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>LOGO</strong>
-                    <p data-client-detail="logo">Não informado</p>
-                </div>
-            </div>
-
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-user" aria-hidden="true"></i></span><div><strong>RESPONSÁVEL</strong><p data-client-detail="responsavel">cleiton</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span><div><strong>SEGMENTO</strong><p data-client-detail="segmento">varejo</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-id-card" aria-hidden="true"></i></span><div><strong>CNPJ</strong><p data-client-detail="cnpj">Não informado</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span><div><strong>E-MAIL</strong><p data-client-detail="email">douglas@gmail.com</p></div><a class="app-client-email-action" href="mailto:douglas@gmail.com" aria-label="Enviar e-mail"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-phone" aria-hidden="true"></i></span><div><strong>TELEFONE</strong><p data-client-detail="telefone">Não informado</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></span><div><strong>SITE</strong><p data-client-detail="site">Não informado</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span><div><strong>LOCALIZAÇÃO</strong><p data-client-detail="localizacao">Não informada</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></span><div><strong>LOGO</strong><p data-client-detail="logo">Não informado</p></div></div>
         </div>
-
     </section>
-
-    
-    <!-- Clippings vinculados -->
+    <div class="app-client-detail-actions">
+        <button type="button" class="app-client-edit-btn" data-screen="editar-cliente">EDITAR</button>
+        <button type="button" class="app-client-delete-btn" title="Ação ilustrativa">EXCLUIR</button>
+    </div>
     <section class="app-client-detail-clippings">
-
-    <!-- Cabeçalho -->
-    <div class="app-client-detail-clippings-heading">
-
-        <div>
-            <h5>CLIPPINGS VINCULADOS</h5>
-            <p>Publicações deste cliente</p>
+        <div class="app-client-detail-clippings-heading">
+            <div><h5>CLIPPINGS VINCULADOS</h5><p>Publicações deste cliente</p></div>
+            <span class="app-client-detail-clippings-count" data-client-detail="total-clippings">1</span>
         </div>
-
-        <span
-            class="app-client-detail-clippings-count"
-            data-client-detail="total-clippings"
-        >
-            0
-        </span>
-
-    </div>
-  
-    <!-- Ano dos clippings -->
-    <h6>ANO DOS CLIPPINGS</h6>
-
-    <!-- Indicador do ano -->
-    <div class="app-client-detail-year-content">
-
-        <span
-            class="app-client-detail-year"
-            data-client-detail="ano-resumo"
-        >
-            2026 · 1
-        </span>
-
-    </div>
-
-    <!-- Botão abrir ano -->
-    <div class="app-client-detail-clippings-actions">
-
-        <button
-            type="button"
-            class="app-client-detail-year-btn"
-            disabled
-        >
-            ABRIR ANO
-        </button>
-
-    <!-- Botão listagem do cliente -->
-        <button
-            type="button"
-            class="app-client-detail-list-btn"
-            disabled
-        >
-            LISTAGEM DO CLIENTE
-        </button>
-
-    </div>
-
-    <!-- Quantidade no ano -->
-    <p class="app-client-detail-year-total" hidden>
-        <span id="app-client-year-clippings-count">0</span>
-        clipping(s) neste ano
-    </p>
-
-    <!-- Selecionar clippings -->
-    <button
-        type="button"
-        class="app-client-clippings-select-btn"
-        aria-pressed="false"
-        disabled
-    >
-        <i
-            class="fa-regular fa-circle-check"
-            aria-hidden="true"
-        ></i>
-
-        <span>SELECIONAR CLIPPINGS</span>
-    </button>
-
-    <!-- Barra de seleção múltipla -->
-    <div class="app-client-clippings-selection-bar" hidden>
-
-        <div class="app-client-clippings-selection-info">
-
-            <strong>
-                <span id="app-clippings-selected-count">0</span>
-                de
-                <span id="app-clippings-total-count">0</span>
-                selecionado(s)
-            </strong>
-
-            <small>
-                Exclusão desabilitada nesta demonstração.
-            </small>
-
+        <h6>ANO DOS CLIPPINGS</h6>
+        <div class="app-client-detail-year-content"><span class="app-client-detail-year" data-client-detail="ano-resumo">2026 · 1</span></div>
+        <div class="app-client-detail-clippings-actions">
+            <button type="button" class="app-client-detail-year-btn">ABRIR ANO 2026</button>
+            <button type="button" class="app-client-detail-list-btn" data-screen="clipping">LISTAGEM DO CLIENTE</button>
         </div>
-
-        <div class="app-client-clippings-selection-actions">
-
-            <!-- Selecionar todos -->
-            <button
-                type="button"
-                class="app-client-clippings-select-all"
-                disabled
-            >
-                TODOS
-            </button>
-
-            <!-- Excluir -->
-            <button
-                type="button"
-                class="app-client-clippings-delete-selected"
-                aria-label="Excluir clippings selecionados"
-                disabled
-            >
-                <i
-                    class="fa-regular fa-trash-can"
-                    aria-hidden="true"
-                ></i>
-            </button>
-
-            <!-- Cancelar -->
-            <button
-                type="button"
-                class="app-client-clippings-cancel-selection"
-                aria-label="Cancelar seleção de clippings"
-            >
-                <i
-                    class="fa-solid fa-xmark"
-                    aria-hidden="true"
-                ></i>
-            </button>
-
+        <p class="app-client-detail-year-total"><span id="app-client-year-clippings-count">1</span> clipping(s) neste ano</p>
+        <button type="button" class="app-client-clippings-select-btn" aria-pressed="false"><i class="fa-regular fa-circle-check" aria-hidden="true"></i><span>SELECIONAR CLIPPINGS</span></button>
+        <div class="app-client-clippings-selection-bar" hidden>
+            <div class="app-client-clippings-selection-info"><strong><span id="app-clippings-selected-count">0</span> de <span id="app-clippings-total-count">1</span> selecionado(s)</strong><small>Escolha os clippings que deseja excluir.</small></div>
+            <div class="app-client-clippings-selection-actions">
+                <button type="button" class="app-client-clippings-select-all">TODOS</button>
+                <button type="button" class="app-client-clippings-delete-selected" aria-label="Excluir clippings selecionados" disabled><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                <button type="button" class="app-client-clippings-cancel-selection" aria-label="Cancelar seleção de clippings"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
         </div>
-
-    </div>
-    <!-- Barra de seleção múltipla -->
-
-    <!-- Lista de clippings do cliente -->
-    <div
-        class="app-client-clippings-list"
-        id="app-client-clippings-list"
-    >
-        <!--
-            Os cartões de clippings serão inseridos
-            somente quando existirem registros fixos
-            vinculados ao cliente selecionado.
-        -->
-    </div>
-    <!-- Lista de clippings do cliente -->
-
-    <!-- Nenhum clipping -->
-    <p
-        class="app-client-clippings-empty"
-        id="app-client-clippings-empty"
-        role="status"
-    >
-        Os clippings deste cliente ainda não estão disponíveis
-    para visualização no demonstrativo.
-    </p>
-
-</section>
-<!-- Clippings vinculados -->
-
-
+        <div class="app-client-clippings-list" id="app-client-clippings-list">
+            <button type="button" class="app-client-clipping-card" data-clipping-id="clipping-douglas-1" data-client-id="cliente-douglas" data-screen="clipping">
+                <span class="app-client-clipping-date">09/10</span>
+                <span class="app-client-clipping-vehicle">veículo</span>
+                <span class="app-client-clipping-tier">Tier —</span>
+                <strong>pauta</strong>
+                <small>Site, TV +1 · programa</small>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+        <p class="app-client-clippings-empty" id="app-client-clippings-empty" role="status" hidden>Nenhum clipping vinculado a este cliente.</p>
+    </section>
 </div>
-<!-- Detalhes do Cliente -->
 
 
 <!-- Novo Cliente -->
 <div class="app-client-form-screen" data-view="novo-cliente" hidden>
-
-    <!-- Apresentação do formulário -->
     <div class="app-client-form-heading">
-        <h4>NOVO CLIENTE</h4>
-        <p>Preencha as informações do cliente.</p>
+        <h4>CADASTRAR CLIENTE</h4>
+        <p>Adicione um cliente à assessoria. Campos marcados com * são obrigatórios.</p>
     </div>
-
-    <div class="app-client-form-heading1">Dados Principais</div>
-
-    <!-- Formulário demonstrativo -->
-    <form class="app-client-create-form" id="app-client-create-form"
-          autocomplete="off">
-
-        <!-- Nome -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-name">
-                NOME <span>*</span>
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-name"
-                name="nome"
-                placeholder="Nome do cliente"
-                required
-            >
-        </div>
-
-        <!-- Segmento -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-segment">
-                SEGMENTO
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-segment"
-                name="segmento"
-                placeholder="Ex.: Varejo, Saúde, Tecnologia"
-            >
-        </div>
-
-        <!-- Responsável -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-responsible">
-                RESPONSÁVEL
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-responsible"
-                name="responsavel"
-                placeholder="Nome do responsável"
-            >
-        </div>
-
-        <!-- CNPJ -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-cnpj">
-                CNPJ
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-cnpj"
-                name="cnpj"
-                inputmode="numeric"
-                maxlength="18"
-                placeholder="00.000.000/0000-00"
-            >
-        </div>
-
-        <!-- Descrição -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-description">
-                DESCRIÇÃO
-            </label>
-
-            <textarea
-                id="app-new-client-description"
-                name="descricao"
-                rows="4"
-                placeholder="Descreva o cliente"
-            ></textarea>
-        </div>
-
-        <!-- E-mail -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-email">
-                E-MAIL
-            </label>
-
-            <input
-                type="email"
-                id="app-new-client-email"
-                name="email"
-                placeholder="exemplo@email.com"
-            >
-        </div>
-
-        <!-- Telefone -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-phone">
-                TELEFONE
-            </label>
-
-            <input
-                type="tel"
-                id="app-new-client-phone"
-                name="telefone"
-                placeholder="(00) 00000-0000"
-            >
-        </div>
-
-        <!-- Site -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-site">
-                SITE
-            </label>
-
-            <input
-                type="url"
-                id="app-new-client-site"
-                name="site"
-                placeholder="https://exemplo.com.br"
-            >
-        </div>
-
-        <!-- Cidade e estado -->
-        <div class="app-client-form-row">
-
-            <div class="app-client-form-group">
-                <label for="app-new-client-city">
-                    CIDADE
-                </label>
-
-                <input
-                    type="text"
-                    id="app-new-client-city"
-                    name="cidade"
-                    placeholder="Cidade"
-                >
-            </div>
-
-            <div class="app-client-form-group">
-                <label for="app-new-client-state">
-                    UF
-                </label>
-
-                <select
-                    id="app-new-client-state"
-                    name="uf"
-                >
-                    <option value="">Selecione</option>
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
-                </select>
-            </div>
-
-        </div>
-
-        <!-- Logo -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-logo">
-                LOGO
-            </label>
-
-            <div class="app-client-form-logo-area">
-
-                <span class="app-client-form-logo-icon">
-                    <i class="fa-regular fa-image"
-                       aria-hidden="true"></i>
-                </span>
-
-                <input
-                    type="file"
-                    id="app-new-client-logo"
-                    name="logo"
-                    accept="image/png,image/jpeg,image/webp"
-                >
-
-                <small>
-                    Imagem demonstrativa. Nenhum arquivo será enviado.
-                </small>
-
-            </div>
-        </div>
-
-        <!-- Status -->
-        <div class="app-client-form-status-row">
-
-            <div class="app-client-form-status-info">
-                <strong>CLIENTE ATIVO</strong>
-                <small>
-                    Define se o cliente está ativo.
-                </small>
-            </div>
-
-            <label class="app-client-form-switch">
-                <input
-                    type="checkbox"
-                    id="app-new-client-active"
-                    name="ativo"
-                    checked
-                    aria-label="Cliente ativo"
-                >
-
-                <span class="app-client-form-switch-slider"></span>
-            </label>
-
-        </div>
-
-        <!-- Botão de cadastro desabilitado -->
+    <article class="app-client-form-profile" hidden>
+        <div class="app-client-detail-avatar"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
+        <div><h4>douglas</h4><p>varejo</p><span>ATIVO</span></div>
+    </article>
+    <form class="app-client-create-form" id="app-client-create-form" autocomplete="off">
+        <section class="app-client-form-section">
+            <h5>DADOS PRINCIPAIS</h5>
+            <div class="app-client-form-group"><label for="app-new-client-name">NOME *</label><input type="text" id="app-new-client-name" name="nome" placeholder="Nome do cliente" required></div>
+            <div class="app-client-form-group"><label for="app-new-client-segment">SEGMENTO</label><input type="text" id="app-new-client-segment" name="segmento" placeholder="Ex.: Tecnologia, Saúde, Varejo"></div>
+            <div class="app-client-form-group"><label for="app-new-client-responsible">RESPONSÁVEL</label><input type="text" id="app-new-client-responsible" name="responsavel" placeholder="Nome do responsável pelo cliente"></div>
+            <div class="app-client-form-group"><label for="app-new-client-cnpj">CNPJ</label><input type="text" id="app-new-client-cnpj" name="cnpj" inputmode="numeric" maxlength="18" placeholder="Ex.: 12.345.678/0001-95"></div>
+            <div class="app-client-form-group"><label for="app-new-client-description">DESCRIÇÃO</label><textarea id="app-new-client-description" name="descricao" rows="4" placeholder="Informações sobre o cliente"></textarea></div>
+        </section>
+        <section class="app-client-form-section">
+            <h5>CONTATO</h5>
+            <div class="app-client-form-group"><label for="app-new-client-email">E-MAIL</label><input type="email" id="app-new-client-email" name="email" placeholder="contato@cliente.com.br"></div>
+            <div class="app-client-form-group"><label for="app-new-client-phone">TELEFONE</label><input type="tel" id="app-new-client-phone" name="telefone" placeholder="Ex.: (11) 99999-9999"></div>
+            <div class="app-client-form-group"><label for="app-new-client-site">SITE</label><input type="url" id="app-new-client-site" name="site" placeholder="https://www.exemplo.com.br"></div>
+        </section>
+        <section class="app-client-form-section">
+            <h5>LOCALIZAÇÃO</h5>
+            <div class="app-client-form-group"><label for="app-new-client-city">CIDADE</label><input type="text" id="app-new-client-city" name="cidade" placeholder="Ex.: São Paulo"></div>
+            <div class="app-client-form-group"><label for="app-new-client-state">ESTADO</label><input type="text" id="app-new-client-state" name="uf" placeholder="Ex.: São Paulo"></div>
+        </section>
+        <section class="app-client-form-section">
+            <h5>IDENTIDADE VISUAL</h5>
+            <div class="app-client-form-group"><label>LOGO</label><button type="button" class="app-client-logo-pick"><i class="fa-regular fa-image" aria-hidden="true"></i><span><strong>SELECIONAR LOGO</strong><small>JPG, PNG ou WEBP · até 2 MB</small></span></button><input type="file" id="app-new-client-logo" name="logo" accept="image/png,image/jpeg,image/webp" hidden></div>
+            <label class="app-client-form-status-row"><span><strong>STATUS</strong><small>Cliente ativo e disponível no sistema.</small></span><input type="checkbox" id="app-new-client-active" name="ativo" checked><i aria-hidden="true"></i></label>
+        </section>
         <div class="app-client-form-footer">
-
-            <button
-                type="submit"
-                class="app-client-form-submit"
-                disabled
-            >
-                CADASTRAR
-            </button>
-
-            <p>
-                Demonstração visual: o cadastro está desabilitado.
-            </p>
-
+            <button type="button" class="app-client-form-cancel" data-screen="clientes">CANCELAR</button>
+            <button type="submit" class="app-client-form-submit">CADASTRAR</button>
         </div>
-
     </form>
-
 </div>
 <!-- Novo Cliente -->
-
 
 <!-- Veículos -->
 <section class="app-vehicles" data-view="veiculos" hidden>
