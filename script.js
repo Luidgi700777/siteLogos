@@ -1571,6 +1571,21 @@ if (
   const query=search.value.trim().toLocaleLowerCase('pt-BR');
   clientCards.forEach(card=>card.hidden=!card.textContent.toLocaleLowerCase('pt-BR').includes(query));
  });
+ const clippingSearch=clippingPage.querySelector('.app-clipping-search input');
+ clippingSearch?.addEventListener('input',()=>{
+  const query=clippingSearch.value.trim().toLocaleLowerCase('pt-BR');
+  clippingPage.querySelectorAll('.app-clipping-item').forEach(card=>card.hidden=!card.textContent.toLocaleLowerCase('pt-BR').includes(query));
+ });
+ const itemsFilter=clippingPage.querySelector('.app-clipping-items-filter');
+ clippingPage.querySelector('.app-clipping-filter-open').onclick=()=>itemsFilter.hidden=false;
+ itemsFilter.querySelector('.app-clipping-items-filter-close').onclick=()=>itemsFilter.hidden=true;
+ itemsFilter.addEventListener('click',event=>{if(event.target===itemsFilter)itemsFilter.hidden=true});
+ itemsFilter.querySelector('.app-clipping-items-filter-clear').onclick=()=>{
+  itemsFilter.querySelectorAll('input').forEach(input=>input.value='');
+  itemsFilter.hidden=true;
+ };
+ itemsFilter.querySelector('.app-clipping-items-filter-apply').onclick=()=>{itemsFilter.hidden=true};
+
  clientPage.querySelector('.app-clipping-filter-open').onclick=()=>clientFilter.hidden=false;
  clientPage.querySelector('.app-clipping-filter-close').onclick=()=>clientFilter.hidden=true;
  clientFilter.addEventListener('click',event=>{if(event.target===clientFilter)clientFilter.hidden=true});
@@ -1617,6 +1632,17 @@ if (
   renderSelection();
  },true));
 
+ form.addEventListener('submit',event=>event.preventDefault());
+ const editClipping=sim.querySelector('.app-clipping-details [data-screen="editar-clipping"]');
+ editClipping?.addEventListener('click',()=>{
+  selectedClient='Cleiton';
+  form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
+  form.elements.namedItem('subject').value='Varejo';
+  form.elements.namedItem('date').value='19/11/2026';
+  form.elements.namedItem('vehicle').value='LOGOS';
+  form.elements.namedItem('program').value='';
+  form.elements.namedItem('categories').value='';
+ });
  const picker=form.querySelector('.app-clipping-client-picker');
  form.querySelector('.app-clipping-client-open').onclick=()=>picker.hidden=false;
  form.querySelector('.app-clipping-client-close').onclick=()=>picker.hidden=true;
