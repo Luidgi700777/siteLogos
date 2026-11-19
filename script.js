@@ -1495,29 +1495,96 @@ if (
 
 /* Simulador LOGOS — interações demonstrativas de Veículos */
 (() => {
- const sim=document.querySelector('.app-simulator'), list=document.querySelector('.app-vehicles'), details=document.querySelector('.app-vehicle-details'), formView=document.querySelector('.app-vehicle-form'), form=document.querySelector('#app-vehicle-form');
+ const sim=document.querySelector('.app-simulator'),list=document.querySelector('.app-vehicles'),details=document.querySelector('.app-vehicle-details'),formView=document.querySelector('.app-vehicle-form'),form=document.querySelector('#app-vehicle-form');
  if(!sim||!list||!details||!formView||!form)return;
- let selection=false,status='todos',sort='alpha',min='',max='';const selected=new Set();
+ let selection=false,status='todos',sort='alpha',min='',max='';
+ const selected=new Set();
  const cards=()=>Array.from(list.querySelectorAll('.app-vehicle-card'));
- const apply=()=>{const q=list.querySelector('#app-vehicles-query').value.trim().toLocaleLowerCase('pt-BR');let matches=cards().filter(c=>c.dataset.vehicleName.toLocaleLowerCase('pt-BR').includes(q)&&(status==='todos'||c.dataset.vehicleStatus===status)&&(!min||+c.dataset.vehicleContacts>=+min)&&(!max||+c.dataset.vehicleContacts<=+max));cards().forEach(c=>c.hidden=!matches.includes(c));matches.sort((a,b)=>sort==='desc'?+b.dataset.vehicleContacts-+a.dataset.vehicleContacts:sort==='asc'?+a.dataset.vehicleContacts-+b.dataset.vehicleContacts:a.dataset.vehicleName.localeCompare(b.dataset.vehicleName,'pt-BR'));matches.forEach(c=>list.querySelector('.app-vehicles-list').appendChild(c));list.querySelector('#app-vehicles-count').textContent=matches.length===1?'1 veículo':matches.length+' veículos';list.querySelector('.app-vehicles-empty').hidden=matches.length>0;list.querySelector('#app-vehicles-selected-count').textContent=selected.size;list.classList.toggle('app-vehicles-selection-active',selection);list.querySelector('.app-vehicles-select-trigger').hidden=selection;list.querySelector('.app-vehicles-selection-bar').hidden=!selection;cards().forEach(c=>c.setAttribute('aria-pressed',String(selection&&selected.has(c.dataset.vehicleId))))};
- const mark=(selector,attr,value)=>list.querySelectorAll(selector).forEach(b=>b.classList.toggle('selected',b.getAttribute(attr)===value));
+ const apply=()=>{
+  const query=list.querySelector('#app-vehicles-query').value.trim().toLocaleLowerCase('pt-BR');
+  let matches=cards().filter(card=>card.dataset.vehicleName.toLocaleLowerCase('pt-BR').includes(query)&&(status==='todos'||card.dataset.vehicleStatus===status)&&(!min||+card.dataset.vehicleContacts>=+min)&&(!max||+card.dataset.vehicleContacts<=+max));
+  cards().forEach(card=>card.hidden=!matches.includes(card));
+  matches.sort((a,b)=>sort==='desc'?+b.dataset.vehicleContacts-+a.dataset.vehicleContacts:sort==='asc'?+a.dataset.vehicleContacts-+b.dataset.vehicleContacts:a.dataset.vehicleName.localeCompare(b.dataset.vehicleName,'pt-BR'));
+  matches.forEach(card=>list.querySelector('.app-vehicles-list').appendChild(card));
+  list.querySelector('#app-vehicles-count').textContent=matches.length===1?'1 veículo':matches.length+' veículos';
+  list.querySelector('.app-vehicles-empty').hidden=matches.length>0;
+  list.querySelector('#app-vehicles-selected-count').textContent=selected.size;
+  list.querySelector('.app-vehicles-delete-selected').disabled=selected.size===0;
+  list.classList.toggle('app-vehicles-selection-active',selection);
+  list.querySelector('.app-vehicles-select-trigger').hidden=selection;
+  list.querySelector('.app-vehicles-selection-bar').hidden=!selection;
+  cards().forEach(card=>{
+   const isSelected=selected.has(card.dataset.vehicleId);
+   card.setAttribute('aria-pressed',String(selection&&isSelected));
+   const mark=card.querySelector('.app-vehicle-card-check i');
+   if(mark)mark.className=isSelected?'fa-solid fa-square-check':'fa-regular fa-square';
+  });
+ };
+ const mark=(selector,attr,value)=>list.querySelectorAll(selector).forEach(button=>button.classList.toggle('selected',button.getAttribute(attr)===value));
  list.querySelector('.app-vehicles-filter-open').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=false;
  list.querySelector('.app-vehicles-filter-close').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=true;
- list.querySelector('.app-vehicles-filter-backdrop').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.hidden=true};
- list.querySelectorAll('[data-vehicle-status-filter]').forEach(b=>b.onclick=()=>{status=b.dataset.vehicleStatusFilter;mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status)});
- list.querySelectorAll('[data-vehicle-sort]').forEach(b=>b.onclick=()=>{sort=b.dataset.vehicleSort;mark('[data-vehicle-sort]','data-vehicle-sort',sort)});
- list.querySelector('#app-vehicles-query').oninput=apply;list.querySelector('.app-vehicles-search-submit').onclick=apply;
- list.querySelector('.app-vehicles-filter-apply').onclick=()=>{min=list.querySelector('#app-vehicles-min-contacts').value;max=list.querySelector('#app-vehicles-max-contacts').value;list.querySelector('.app-vehicles-filter-backdrop').hidden=true;apply()};
- list.querySelector('.app-vehicles-filter-clear').onclick=()=>{status='todos';sort='alpha';min=max='';list.querySelector('#app-vehicles-min-contacts').value='';list.querySelector('#app-vehicles-max-contacts').value='';mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status);mark('[data-vehicle-sort]','data-vehicle-sort',sort);apply()};
+ list.querySelector('.app-vehicles-filter-backdrop').onclick=event=>{if(event.target===event.currentTarget)event.currentTarget.hidden=true};
+ list.querySelectorAll('[data-vehicle-status-filter]').forEach(button=>button.onclick=()=>{status=button.dataset.vehicleStatusFilter;mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status)});
+ list.querySelectorAll('[data-vehicle-sort]').forEach(button=>button.onclick=()=>{sort=button.dataset.vehicleSort;mark('[data-vehicle-sort]','data-vehicle-sort',sort)});
+ list.querySelector('#app-vehicles-query').oninput=apply;
+ list.querySelector('.app-vehicles-search-submit').onclick=apply;
+ list.querySelector('.app-vehicles-filter-apply').onclick=()=>{
+  min=list.querySelector('#app-vehicles-min-contacts').value;
+  max=list.querySelector('#app-vehicles-max-contacts').value;
+  list.querySelector('.app-vehicles-filter-backdrop').hidden=true;
+  apply();
+ };
+ list.querySelector('.app-vehicles-filter-clear').onclick=()=>{
+  status='todos';sort='alpha';min=max='';
+  list.querySelector('#app-vehicles-min-contacts').value='';
+  list.querySelector('#app-vehicles-max-contacts').value='';
+  mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status);
+  mark('[data-vehicle-sort]','data-vehicle-sort',sort);
+  apply();
+ };
  list.querySelector('.app-vehicles-select-trigger').onclick=()=>{selection=true;selected.clear();apply()};
- list.querySelector('.app-vehicles-select-all').onclick=()=>{const visible=cards().filter(c=>!c.hidden),all=visible.every(c=>selected.has(c.dataset.vehicleId));visible.forEach(c=>all?selected.delete(c.dataset.vehicleId):selected.add(c.dataset.vehicleId));apply()};
+ list.querySelector('.app-vehicles-select-all').onclick=()=>{
+  const visible=cards().filter(card=>!card.hidden);
+  const allSelected=visible.length>0&&visible.every(card=>selected.has(card.dataset.vehicleId));
+  visible.forEach(card=>allSelected?selected.delete(card.dataset.vehicleId):selected.add(card.dataset.vehicleId));
+  apply();
+ };
+ list.querySelector('.app-vehicles-delete-selected').onclick=event=>event.preventDefault();
  list.querySelector('.app-vehicles-cancel-select').onclick=()=>{selection=false;selected.clear();apply()};
- const prepare=edit=>{form.reset();formView.querySelector('h4').textContent=edit?'EDITAR VEÍCULO':'NOVO VEÍCULO';form.querySelector('[type=submit]').textContent=edit?'SALVAR':'CADASTRAR';if(edit){form.elements.namedItem('name').value=details.querySelector('[data-vehicle-detail=name]').textContent.trim();form.elements.namedItem('active').checked=true}form.querySelector('.app-vehicle-demo-note').textContent=edit?'Demonstração visual: as alterações não serão salvas.':'Demonstração visual: o cadastro está desabilitado.'};
- sim.addEventListener('click',e=>{const b=e.target.closest('button[data-screen]');if(!b)return;if(b.dataset.screen==='novo-veiculo')prepare(false);if(b.dataset.screen==='editar-veiculo')prepare(true)},true);
- sim.addEventListener('click',e=>{const c=e.target.closest('.app-vehicle-card');if(c&&selection){e.preventDefault();e.stopPropagation();selected.has(c.dataset.vehicleId)?selected.delete(c.dataset.vehicleId):selected.add(c.dataset.vehicleId);apply()}},true);
- form.addEventListener('submit',e=>e.preventDefault());details.querySelector('.app-vehicle-delete').onclick=e=>e.preventDefault();formView.querySelector('.app-vehicle-add-address').onclick=e=>e.preventDefault();apply();
+ const prepare=edit=>{
+  form.reset();
+  const identity=formView.querySelector('.app-vehicle-form-identity');
+  const help=formView.querySelector('.app-vehicle-form-heading');
+  identity.hidden=!edit;
+  help.hidden=edit;
+  form.querySelector('[type=submit]').textContent=edit?'SALVAR':'CADASTRAR';
+  form.elements.namedItem('name').value=edit?details.querySelector('[data-vehicle-detail=name]').textContent.trim():'';
+  form.elements.namedItem('description').value='';
+  form.elements.namedItem('reach').value='';
+  form.elements.namedItem('active').checked=true;
+  form.querySelector('input[name="tier"][value=""]').checked=true;
+  if(edit)identity.querySelector('h4').textContent=details.querySelector('[data-vehicle-detail=name]').textContent.trim();
+ };
+ sim.addEventListener('click',event=>{
+  const button=event.target.closest('button[data-screen]');
+  if(!button)return;
+  if(button.dataset.screen==='novo-veiculo')prepare(false);
+  if(button.dataset.screen==='editar-veiculo')prepare(true);
+ },true);
+ sim.addEventListener('click',event=>{
+  const card=event.target.closest('.app-vehicle-card');
+  if(card&&selection){
+   event.preventDefault();
+   event.stopPropagation();
+   selected.has(card.dataset.vehicleId)?selected.delete(card.dataset.vehicleId):selected.add(card.dataset.vehicleId);
+   apply();
+  }
+ },true);
+ form.addEventListener('submit',event=>event.preventDefault());
+ details.querySelector('.app-vehicle-delete').onclick=event=>event.preventDefault();
+ formView.querySelector('.app-vehicle-logo-pick').onclick=()=>form.querySelector('input[name="logo"]').click();
+ apply();
 })();
-
 /* Simulador LOGOS — biblioteca e editor demonstrativo de templates */
 (() => {
  const sim=document.querySelector('.app-simulator'),library=document.querySelector('.app-templates'),preview=document.querySelector('.app-template-preview'),editor=document.querySelector('.app-template-editor');
