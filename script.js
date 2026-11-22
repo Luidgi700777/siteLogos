@@ -220,7 +220,7 @@ if (appSimulator) {
     // Configuração das telas do aplicativo
     const appRoutes = {
         inicio: {
-            titulo: 'Olá, Assessor',
+            titulo: 'Olá, Luidgi',
             aba: 'inicio',
             voltar: false
         },
@@ -231,9 +231,20 @@ if (appSimulator) {
             voltar: true
         },
 
+        'clipping-clientes': { titulo: 'Clientes 2026', aba: 'clipping', voltar: true },
+        'clipping-cliente': { titulo: 'Cleiton', aba: 'clipping', voltar: true },
+        'detalhes-clipping': { titulo: 'Detalhes', aba: 'clipping', voltar: true },
+        'editar-clipping': { titulo: 'Editar clipping', aba: 'clipping', voltar: true },
+
         mailing: {
             titulo: 'Mailing',
             aba: 'mailing',
+            voltar: true
+        },
+
+        releases: {
+            titulo: 'Releases',
+            aba: 'releases',
             voltar: true
         },
 
@@ -332,6 +343,32 @@ if (appSimulator) {
             voltar: true
         },
 
+        'detalhes-contato': { titulo: 'Contato', aba: 'mailing', voltar: true },
+
+        'editar-contato': { titulo: 'Editar contato', aba: 'mailing', voltar: true },
+
+        'selecionar-contatos': { titulo: 'Destinatários', aba: 'releases', voltar: true },
+
+        'novo-release': { titulo: 'Novo release', aba: 'releases', voltar: true },
+
+        'detalhes-release': { titulo: 'Release', aba: 'releases', voltar: true },
+
+        'editar-release': { titulo: 'Editar release', aba: 'releases', voltar: true },
+
+        'detalhes-relatorio': { titulo: 'Relatório', aba: null, voltar: true },
+
+        'selecionar-materias': { titulo: 'Escolher matérias', aba: null, voltar: true },
+
+        'editar-slide': { titulo: 'Editar slide', aba: null, voltar: true },
+
+        'novo-funcionario': { titulo: 'Novo funcionário', aba: null, voltar: true },
+
+        'detalhes-funcionario': { titulo: 'Funcionário', aba: null, voltar: true },
+
+        'editar-funcionario': { titulo: 'Editar funcionário', aba: null, voltar: true },
+
+        'editar-convite': { titulo: 'Convites', aba: null, voltar: true },
+
         'novo-contato': {
             titulo: 'Novo contato',
             aba: 'mailing',
@@ -374,8 +411,12 @@ if (appSimulator) {
             view.dataset.view === screenName ||
             (
                 (screenName === 'editar-cliente' && view.dataset.view === 'novo-cliente') ||
+                (screenName === 'editar-clipping' && view.dataset.view === 'novo-clipping') ||
                 (screenName === 'editar-veiculo' && view.dataset.view === 'novo-veiculo') ||
-                (screenName === 'editar-copia-template' && view.dataset.view === 'novo-template')
+                (screenName === 'editar-copia-template' && view.dataset.view === 'novo-template') ||
+                (screenName === 'editar-contato' && view.dataset.view === 'novo-contato') ||
+                (screenName === 'editar-release' && view.dataset.view === 'novo-release') ||
+                (screenName === 'editar-funcionario' && view.dataset.view === 'novo-funcionario')
             );
 
             view.hidden = !active;
@@ -470,43 +511,17 @@ if (appSimulator) {
 // Simulador LOGOS - Informações fixas dos Clientes
 
 const appClientExtraData = {
-
-    'cliente-cleiton': {
-        responsavel: 'Cleiton',
+    'cliente-douglas': {
+        responsavel: 'cleiton',
         cnpj: '',
-        descricao: 'Cliente fictício do segmento de varejo, utilizado para demonstrar os recursos da LOGOS.',
-        email: 'cleiton@example.com',
+        descricao: '',
+        email: 'douglas@gmail.com',
         telefone: '',
         site: '',
-        cidade: 'São Paulo',
-        uf: 'SP',
-        logo: 'Ícone demonstrativo'
-    },
-
-    'cliente-maria': {
-        responsavel: 'Maria',
-        cnpj: '',
-        descricao: 'Cliente fictício da área da saúde, utilizado na demonstração do gerenciamento de clientes.',
-        email: 'maria@example.com',
-        telefone: '',
-        site: '',
-        cidade: 'Campinas',
-        uf: 'SP',
-        logo: 'Ícone demonstrativo'
-    },
-
-    'cliente-joao': {
-        responsavel: 'João',
-        cnpj: '',
-        descricao: 'Cliente fictício do setor de tecnologia, utilizado na demonstração das ferramentas da LOGOS.',
-        email: 'joao@example.com',
-        telefone: '',
-        site: '',
-        cidade: 'Curitiba',
-        uf: 'PR',
-        logo: 'Ícone demonstrativo'
+        cidade: '',
+        uf: '',
+        logo: ''
     }
-
 };
 
 // Sincronizar cidade e UF com os filtros da listagem
@@ -1041,166 +1056,55 @@ if (appClientListView && appClientDetailsView) {
 
 // Simulador LOGOS - Formulário Novo e Editar Cliente
 
-const appClientFormView = document.querySelector(
-    '.app-client-form-screen'
-);
-
-const appClientForm = document.querySelector(
-    '#app-client-create-form'
-);
-
-const appClientNewButton = document.querySelector(
-    '.app-clients-new-btn'
-);
-
-const appClientEditButton = document.querySelector(
-    '.app-client-edit-btn'
-);
-
-if (appClientFormView && appClientForm) {
-
-    const formTitle = appClientFormView.querySelector(
-        '.app-client-form-heading h4'
-    );
-
-    const formDescription = appClientFormView.querySelector(
-        '.app-client-form-heading p'
-    );
-
-    const formSubmit = appClientFormView.querySelector(
-        '.app-client-form-submit'
-    );
-
-    const formNotice = appClientFormView.querySelector(
-        '.app-client-form-footer p'
-    );
-
-    // Configurar aparência do formulário
-    const configurarFormulario = (modo) => {
-
-        const editando = modo === 'editar';
-
-        formTitle.textContent = editando
-            ? 'EDITAR CLIENTE'
-            : 'NOVO CLIENTE';
-
-        formDescription.textContent = editando
-            ? 'Visualize e altere os dados demonstrativos.'
-            : 'Preencha as informações do cliente.';
-
-        formSubmit.textContent = editando
-            ? 'SALVAR'
-            : 'CADASTRAR';
-
-        // Nenhuma operação será permitida
-        formSubmit.disabled = true;
-
-        formNotice.textContent = editando
-            ? 'Demonstração visual: alterações não serão salvas.'
-            : 'Demonstração visual: o cadastro está desabilitado.';
-    };
-
-    // Abrir formulário de novo cliente
-    const prepararNovoCliente = () => {
-
-        // Limpar os dados preenchidos anteriormente
-        appClientForm.reset();
-
-        configurarFormulario('novo');
-    };
-
-    // Abrir formulário de edição
-    const prepararEdicaoCliente = () => {
-
-        appClientForm.reset();
-
-        const detailsView = document.querySelector(
-            '.app-client-details'
-        );
-
-        const clientId = detailsView?.dataset.clientId;
-
-        if (!clientId) {
-            return;
-        }
-
-        // Localizar o cliente fixo selecionado
-        const card = Array.from(
-            document.querySelectorAll(
-                '.app-clients-list [data-client-id]'
-            )
-        ).find(
-            item => item.dataset.clientId === clientId
-        );
-
-        if (!card) {
-            return;
-        }
-
-
-        // Recuperar somente os dados conhecidos
-
-        // Recuperar as informações fixas do cliente
-        const extras = appClientExtraData[clientId] || {};
-
-        const dados = {
-            nome: card.querySelector('strong')?.textContent.trim() || '',
-            segmento: card.dataset.clientSegment || '',
-        
-            responsavel: extras.responsavel || '',
-            cnpj: extras.cnpj || '',
-            descricao: extras.descricao || '',
-            email: extras.email || '',
-            telefone: extras.telefone || '',
-            site: extras.site || '',
-            cidade: extras.cidade || '',
-            uf: extras.uf || ''
-        };
-
-
-        // Preencher campos correspondentes
-        Object.entries(dados).forEach(([campo, valor]) => {
-
-            const input = appClientForm.elements.namedItem(campo);
-
-            if (input) {
-                input.value = valor;
-            }
-        });
-
-        // Status fixo do cliente
-        const campoAtivo = appClientForm.elements.namedItem('ativo');
-
-        if (campoAtivo) {
-            campoAtivo.checked =
-                card.dataset.clientStatus === 'ativo';
-        }
-
-        configurarFormulario('editar');
-    };
-
-    // Eventos dos botões
-    appClientNewButton?.addEventListener(
-        'click',
-        prepararNovoCliente
-    );
-
-    appClientEditButton?.addEventListener(
-        'click',
-        prepararEdicaoCliente
-    );
-
-    // Segurança: impedir qualquer envio do formulário
-    appClientForm.addEventListener('submit', event => {
-        event.preventDefault();
-    });
-
-    // Inicialização
-    configurarFormulario('novo');
+const appClientFormView=document.querySelector('.app-client-form-screen');
+const appClientForm=document.querySelector('#app-client-create-form');
+const appClientNewButton=document.querySelector('.app-clients-new-btn');
+const appClientEditButton=document.querySelector('.app-client-edit-btn');
+if(appClientFormView&&appClientForm){
+ const heading=appClientFormView.querySelector('.app-client-form-heading');
+ const profile=appClientFormView.querySelector('.app-client-form-profile');
+ const submit=appClientFormView.querySelector('.app-client-form-submit');
+ const prepare=(editing)=>{
+  appClientForm.reset();
+  heading.hidden=editing;
+  profile.hidden=!editing;
+  submit.textContent=editing?'SALVAR':'CADASTRAR';
+  const clientId=appClientDetailsView?.dataset.clientId;
+  const card=Array.from(document.querySelectorAll('.app-clients-list [data-client-id]')).find(item=>item.dataset.clientId===clientId);
+  const extra=appClientExtraData[clientId]||{};
+  const values=editing&&card?{
+   nome:card.querySelector('strong')?.textContent.trim()||'',
+   segmento:card.dataset.clientSegment||'',
+   responsavel:extra.responsavel||'',
+   cnpj:extra.cnpj||'',
+   descricao:extra.descricao||'',
+   email:extra.email||'',
+   telefone:extra.telefone||'',
+   site:extra.site||'',
+   cidade:extra.cidade||'',
+   uf:extra.uf||''
+  }:{};
+  Object.entries(values).forEach(([name,value])=>{
+   const field=appClientForm.elements.namedItem(name);
+   if(field)field.value=value;
+  });
+  const active=appClientForm.elements.namedItem('ativo');
+  if(active)active.checked=!editing||card?.dataset.clientStatus==='ativo';
+  if(editing&&card){
+   profile.querySelector('h4').textContent=values.nome||'douglas';
+   profile.querySelector('p').textContent=values.segmento||'varejo';
+   profile.querySelector('span').textContent=(card.dataset.clientStatus||'ativo').toUpperCase();
+  }
+ };
+ appClientNewButton?.addEventListener('click',()=>prepare(false));
+ appClientEditButton?.addEventListener('click',()=>prepare(true));
+ appClientForm.querySelector('.app-client-logo-pick').onclick=()=>appClientForm.querySelector('input[name="logo"]').click();
+ appClientForm.addEventListener('submit',event=>event.preventDefault());
+ document.querySelector('.app-client-delete-btn')?.addEventListener('click',event=>event.preventDefault());
+ prepare(false);
 }
 
 // Simulador LOGOS - Formulário Novo e Editar Cliente
-
 
 // Simulador LOGOS - Clippings Vinculados aos Clientes
 
@@ -1489,27 +1393,333 @@ if (
 
 /* Simulador LOGOS — interações demonstrativas de Veículos */
 (() => {
- const sim=document.querySelector('.app-simulator'), list=document.querySelector('.app-vehicles'), details=document.querySelector('.app-vehicle-details'), formView=document.querySelector('.app-vehicle-form'), form=document.querySelector('#app-vehicle-form');
+ const sim=document.querySelector('.app-simulator');
+ const list=document.querySelector('.app-vehicles');
+ const details=document.querySelector('.app-vehicle-details');
+ const formView=document.querySelector('.app-vehicle-form');
+ const form=document.querySelector('#app-vehicle-form');
  if(!sim||!list||!details||!formView||!form)return;
- let selection=false,status='todos',sort='alpha',min='',max='';const selected=new Set();
+
+ let selection=false,status='todos',sort='alpha',min='',max='';
+ let contactSelection=false,contactSelected=false;
+ const selected=new Set();
  const cards=()=>Array.from(list.querySelectorAll('.app-vehicle-card'));
- const apply=()=>{const q=list.querySelector('#app-vehicles-query').value.trim().toLocaleLowerCase('pt-BR');let matches=cards().filter(c=>c.dataset.vehicleName.toLocaleLowerCase('pt-BR').includes(q)&&(status==='todos'||c.dataset.vehicleStatus===status)&&(!min||+c.dataset.vehicleContacts>=+min)&&(!max||+c.dataset.vehicleContacts<=+max));cards().forEach(c=>c.hidden=!matches.includes(c));matches.sort((a,b)=>sort==='desc'?+b.dataset.vehicleContacts-+a.dataset.vehicleContacts:sort==='asc'?+a.dataset.vehicleContacts-+b.dataset.vehicleContacts:a.dataset.vehicleName.localeCompare(b.dataset.vehicleName,'pt-BR'));matches.forEach(c=>list.querySelector('.app-vehicles-list').appendChild(c));list.querySelector('#app-vehicles-count').textContent=matches.length===1?'1 veículo':matches.length+' veículos';list.querySelector('.app-vehicles-empty').hidden=matches.length>0;list.querySelector('#app-vehicles-selected-count').textContent=selected.size;list.classList.toggle('app-vehicles-selection-active',selection);list.querySelector('.app-vehicles-select-trigger').hidden=selection;list.querySelector('.app-vehicles-selection-bar').hidden=!selection;cards().forEach(c=>c.setAttribute('aria-pressed',String(selection&&selected.has(c.dataset.vehicleId))))};
- const mark=(selector,attr,value)=>list.querySelectorAll(selector).forEach(b=>b.classList.toggle('selected',b.getAttribute(attr)===value));
+ const detailsName=details.querySelector('[data-vehicle-detail="name"]');
+ const detailsDescription=details.querySelector('[data-vehicle-detail="description"]');
+ const detailsReach=details.querySelector('[data-vehicle-detail="reach"]');
+ const detailsTier=details.querySelector('[data-vehicle-detail="tier"]');
+ const compareNumber=(a,b,key,direction)=>direction*(Number(a.dataset[key]||0)-Number(b.dataset[key]||0));
+
+ const apply=()=>{
+  const query=list.querySelector('#app-vehicles-query').value.trim().toLocaleLowerCase('pt-BR');
+  let matches=cards().filter(card=>
+   card.dataset.vehicleName.toLocaleLowerCase('pt-BR').includes(query)&&
+   (status==='todos'||card.dataset.vehicleStatus===status)&&
+   (!min||Number(card.dataset.vehicleContacts)>=Number(min))&&
+   (!max||Number(card.dataset.vehicleContacts)<=Number(max))
+  );
+  cards().forEach(card=>card.hidden=!matches.includes(card));
+  const sorters={
+   alpha:(a,b)=>a.dataset.vehicleName.localeCompare(b.dataset.vehicleName,'pt-BR'),
+   'contacts-desc':(a,b)=>compareNumber(a,b,'vehicleContacts',-1),
+   'contacts-asc':(a,b)=>compareNumber(a,b,'vehicleContacts',1),
+   'clippings-desc':(a,b)=>compareNumber(a,b,'vehicleClippings',-1),
+   'clippings-asc':(a,b)=>compareNumber(a,b,'vehicleClippings',1)
+  };
+  matches.sort(sorters[sort]||sorters.alpha);
+  matches.forEach(card=>list.querySelector('.app-vehicles-list').appendChild(card));
+  list.querySelector('#app-vehicles-count').textContent=matches.length===1?'1 veículo':matches.length+' veículos';
+  list.querySelector('.app-vehicles-empty').hidden=matches.length>0;
+  list.querySelector('#app-vehicles-selected-count').textContent=selected.size;
+  list.querySelector('.app-vehicles-delete-selected').disabled=selected.size===0;
+  list.classList.toggle('app-vehicles-selection-active',selection);
+  list.querySelector('.app-vehicles-select-trigger').hidden=selection;
+  list.querySelector('.app-vehicles-selection-bar').hidden=!selection;
+  cards().forEach(card=>{
+   const isSelected=selected.has(card.dataset.vehicleId);
+   card.setAttribute('aria-pressed',String(selection&&isSelected));
+   const mark=card.querySelector('.app-vehicle-card-check i');
+   if(mark)mark.className=isSelected?'fa-solid fa-square-check':'fa-regular fa-square';
+  });
+ };
+ const mark=(selector,attr,value)=>list.querySelectorAll(selector).forEach(button=>button.classList.toggle('selected',button.getAttribute(attr)===value));
+
  list.querySelector('.app-vehicles-filter-open').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=false;
  list.querySelector('.app-vehicles-filter-close').onclick=()=>list.querySelector('.app-vehicles-filter-backdrop').hidden=true;
- list.querySelector('.app-vehicles-filter-backdrop').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.hidden=true};
- list.querySelectorAll('[data-vehicle-status-filter]').forEach(b=>b.onclick=()=>{status=b.dataset.vehicleStatusFilter;mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status)});
- list.querySelectorAll('[data-vehicle-sort]').forEach(b=>b.onclick=()=>{sort=b.dataset.vehicleSort;mark('[data-vehicle-sort]','data-vehicle-sort',sort)});
- list.querySelector('#app-vehicles-query').oninput=apply;list.querySelector('.app-vehicles-search-submit').onclick=apply;
- list.querySelector('.app-vehicles-filter-apply').onclick=()=>{min=list.querySelector('#app-vehicles-min-contacts').value;max=list.querySelector('#app-vehicles-max-contacts').value;list.querySelector('.app-vehicles-filter-backdrop').hidden=true;apply()};
- list.querySelector('.app-vehicles-filter-clear').onclick=()=>{status='todos';sort='alpha';min=max='';list.querySelector('#app-vehicles-min-contacts').value='';list.querySelector('#app-vehicles-max-contacts').value='';mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status);mark('[data-vehicle-sort]','data-vehicle-sort',sort);apply()};
+ list.querySelector('.app-vehicles-filter-backdrop').onclick=event=>{if(event.target===event.currentTarget)event.currentTarget.hidden=true};
+ list.querySelectorAll('[data-vehicle-status-filter]').forEach(button=>button.onclick=()=>{status=button.dataset.vehicleStatusFilter;mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status)});
+ list.querySelectorAll('[data-vehicle-sort]').forEach(button=>button.onclick=()=>{sort=button.dataset.vehicleSort;mark('[data-vehicle-sort]','data-vehicle-sort',sort)});
+ list.querySelector('#app-vehicles-query').oninput=apply;
+ list.querySelector('.app-vehicles-search-submit').onclick=apply;
+ list.querySelector('.app-vehicles-filter-apply').onclick=()=>{
+  min=list.querySelector('#app-vehicles-min-contacts').value;
+  max=list.querySelector('#app-vehicles-max-contacts').value;
+  list.querySelector('.app-vehicles-filter-backdrop').hidden=true;
+  apply();
+ };
+ list.querySelector('.app-vehicles-filter-clear').onclick=()=>{
+  status='todos';sort='alpha';min=max='';
+  list.querySelector('#app-vehicles-min-contacts').value='';
+  list.querySelector('#app-vehicles-max-contacts').value='';
+  mark('[data-vehicle-status-filter]','data-vehicle-status-filter',status);
+  mark('[data-vehicle-sort]','data-vehicle-sort',sort);
+  apply();
+ };
  list.querySelector('.app-vehicles-select-trigger').onclick=()=>{selection=true;selected.clear();apply()};
- list.querySelector('.app-vehicles-select-all').onclick=()=>{const visible=cards().filter(c=>!c.hidden),all=visible.every(c=>selected.has(c.dataset.vehicleId));visible.forEach(c=>all?selected.delete(c.dataset.vehicleId):selected.add(c.dataset.vehicleId));apply()};
+ list.querySelector('.app-vehicles-select-all').onclick=()=>{
+  const visible=cards().filter(card=>!card.hidden);
+  const allSelected=visible.length>0&&visible.every(card=>selected.has(card.dataset.vehicleId));
+  visible.forEach(card=>allSelected?selected.delete(card.dataset.vehicleId):selected.add(card.dataset.vehicleId));
+  apply();
+ };
+ list.querySelector('.app-vehicles-delete-selected').onclick=event=>event.preventDefault();
  list.querySelector('.app-vehicles-cancel-select').onclick=()=>{selection=false;selected.clear();apply()};
- const prepare=edit=>{form.reset();formView.querySelector('h4').textContent=edit?'EDITAR VEÍCULO':'NOVO VEÍCULO';form.querySelector('[type=submit]').textContent=edit?'SALVAR':'CADASTRAR';if(edit){form.elements.namedItem('name').value=details.querySelector('[data-vehicle-detail=name]').textContent.trim();form.elements.namedItem('active').checked=true}form.querySelector('.app-vehicle-demo-note').textContent=edit?'Demonstração visual: as alterações não serão salvas.':'Demonstração visual: o cadastro está desabilitado.'};
- sim.addEventListener('click',e=>{const b=e.target.closest('button[data-screen]');if(!b)return;if(b.dataset.screen==='novo-veiculo')prepare(false);if(b.dataset.screen==='editar-veiculo')prepare(true)},true);
- sim.addEventListener('click',e=>{const c=e.target.closest('.app-vehicle-card');if(c&&selection){e.preventDefault();e.stopPropagation();selected.has(c.dataset.vehicleId)?selected.delete(c.dataset.vehicleId):selected.add(c.dataset.vehicleId);apply()}},true);
- form.addEventListener('submit',e=>e.preventDefault());details.querySelector('.app-vehicle-delete').onclick=e=>e.preventDefault();formView.querySelector('.app-vehicle-add-address').onclick=e=>e.preventDefault();apply();
+
+ const createAddressRow=(url,scope='Somente este domínio')=>{
+  const row=document.createElement('div');
+  row.className='app-vehicle-address-entry';
+  const globe=document.createElement('i');
+  globe.className='fa-solid fa-globe';
+  globe.setAttribute('aria-hidden','true');
+  const label=document.createElement('span');
+  const address=document.createElement('strong');
+  address.textContent=url;
+  const note=document.createElement('small');
+  note.textContent=scope;
+  label.append(address,note);
+  const edit=document.createElement('button');
+  edit.type='button';
+  edit.className='app-vehicle-address-edit';
+  edit.setAttribute('aria-label','Editar endereço');
+  edit.innerHTML='<i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>';
+  edit.onclick=()=>{form.elements.namedItem('domain').value=url.replace(/^https?:\/\//,'').replace(/\/$/,'')};
+  const remove=document.createElement('button');
+  remove.type='button';
+  remove.className='app-vehicle-address-remove';
+  remove.setAttribute('aria-label','Remover endereço');
+  remove.innerHTML='<i class="fa-regular fa-trash-can" aria-hidden="true"></i>';
+  remove.onclick=event=>event.preventDefault();
+  const open=document.createElement('i');
+  open.className='fa-solid fa-arrow-up-right-from-square';
+  open.setAttribute('aria-hidden','true');
+  row.append(globe,label,edit,remove,open);
+  return row;
+ };
+ const prepare=edit=>{
+  form.reset();
+  const identity=formView.querySelector('.app-vehicle-form-identity');
+  const help=formView.querySelector('.app-vehicle-form-heading');
+  identity.hidden=!edit;
+  help.hidden=edit;
+  form.querySelector('[type=submit]').textContent=edit?'SALVAR':'CADASTRAR';
+  form.elements.namedItem('name').value=edit?detailsName.textContent.trim():'';
+  form.elements.namedItem('description').value=edit?'Canal de notícias da LOGOS':'';
+  form.elements.namedItem('reach').value=edit?'500 mil leitores':'';
+  form.elements.namedItem('active').checked=true;
+  form.querySelector('input[name="tier"][value=""]').checked=true;
+  identity.querySelector('h4').textContent=edit?detailsName.textContent.trim():'LOGOS';
+  identity.querySelector('p').textContent=edit?'500 mil leitores':'Alcance não informado';
+  const addressList=form.querySelector('.app-vehicle-address-list');
+  addressList.replaceChildren();
+  if(edit)addressList.append(createAddressRow('https://logos.com.br/'));
+ };
+ sim.addEventListener('click',event=>{
+  const button=event.target.closest('button[data-screen]');
+  if(!button)return;
+  if(button.dataset.screen==='novo-veiculo')prepare(false);
+  if(button.dataset.screen==='editar-veiculo')prepare(true);
+ },true);
+ sim.addEventListener('click',event=>{
+  const card=event.target.closest('.app-vehicle-card');
+  if(card&&selection){
+   event.preventDefault();
+   event.stopPropagation();
+   selected.has(card.dataset.vehicleId)?selected.delete(card.dataset.vehicleId):selected.add(card.dataset.vehicleId);
+   apply();
+  }
+ },true);
+ form.addEventListener('submit',event=>event.preventDefault());
+ details.querySelector('.app-vehicle-delete').onclick=event=>event.preventDefault();
+ formView.querySelector('.app-vehicle-logo-pick').onclick=()=>form.querySelector('input[name="logo"]').click();
+ formView.querySelector('.app-vehicle-add-address').onclick=()=>{
+  const domain=form.elements.namedItem('domain').value.trim();
+  if(!domain)return;
+  const scheme=/^https?:\/\//i.test(domain)?'': 'https://';
+  const section=form.elements.namedItem('section').value.trim().replace(/^\/+/, '');
+  const url=scheme+domain.replace(/\/$/,'')+(section?'/'+section:'');
+  const scope=form.elements.namedItem('includeSubdomains').checked?'Inclui subdomínios':'Somente este domínio';
+  form.querySelector('.app-vehicle-address-list').append(createAddressRow(url,scope));
+  form.elements.namedItem('domain').value='';
+  form.elements.namedItem('section').value='';
+  form.elements.namedItem('includeSubdomains').checked=false;
+ };
+
+ details.querySelectorAll('[data-vehicle-tab]').forEach(tab=>tab.addEventListener('click',()=>{
+  const selectedTab=tab.dataset.vehicleTab;
+  details.querySelectorAll('[data-vehicle-tab]').forEach(item=>{
+   const active=item===tab;
+   item.classList.toggle('selected',active);
+   item.setAttribute('aria-selected',String(active));
+  });
+  details.querySelectorAll('[data-vehicle-panel]').forEach(panel=>panel.hidden=panel.dataset.vehiclePanel!==selectedTab);
+ }));
+ const contactSelect=details.querySelector('.app-vehicle-contact-select');
+ const contactBar=details.querySelector('.app-vehicle-contact-selection');
+ const contactCard=details.querySelector('.app-vehicle-contact-card');
+ const contactCount=details.querySelector('[data-vehicle-contact-selected]');
+ const updateContactSelection=()=>{
+  contactBar.hidden=!contactSelection;
+  contactSelect.hidden=contactSelection;
+  contactCount.textContent=contactSelected?'1':'0';
+  contactCard.classList.toggle('selected',contactSelection&&contactSelected);
+ };
+ contactSelect.onclick=()=>{contactSelection=true;contactSelected=false;updateContactSelection()};
+ contactCard.onclick=()=>{
+  if(!contactSelection)return;
+  contactSelected=!contactSelected;
+  updateContactSelection();
+ };
+ details.querySelector('[data-vehicle-contact-select-all]').onclick=()=>{contactSelected=!contactSelected;updateContactSelection()};
+ details.querySelector('[data-vehicle-contact-clear]').onclick=()=>{contactSelection=false;contactSelected=false;updateContactSelection()};
+
+ apply();
+})();/* Simulador LOGOS — navegação demonstrativa de Clipping */
+(() => {
+ const sim=document.querySelector('.app-simulator');
+ const clientPage=sim?.querySelector('.app-clipping-clients');
+ const clippingPage=sim?.querySelector('.app-clipping-client-page');
+ const form=sim?.querySelector('.app-clipping-form');
+ if(!sim||!clientPage||!clippingPage||!form)return;
+
+ const clientCards=Array.from(clientPage.querySelectorAll('.app-clipping-client-card'));
+ const search=clientPage.querySelector('.app-clipping-search input');
+ const clientFilter=clientPage.querySelector('.app-clipping-client-filter-backdrop');
+ let selectedClient='Cleiton',selectedClippings=new Set(),selection=false;
+
+ search.addEventListener('input',()=>{
+  const query=search.value.trim().toLocaleLowerCase('pt-BR');
+  clientCards.forEach(card=>card.hidden=!card.textContent.toLocaleLowerCase('pt-BR').includes(query));
+ });
+ const clippingSearch=clippingPage.querySelector('.app-clipping-search input');
+ clippingSearch?.addEventListener('input',()=>{
+  const query=clippingSearch.value.trim().toLocaleLowerCase('pt-BR');
+  clippingPage.querySelectorAll('.app-clipping-item').forEach(card=>card.hidden=!card.textContent.toLocaleLowerCase('pt-BR').includes(query));
+ });
+ const itemsFilter=clippingPage.querySelector('.app-clipping-items-filter');
+ clippingPage.querySelector('.app-clipping-filter-open').onclick=()=>itemsFilter.hidden=false;
+ itemsFilter.querySelector('.app-clipping-items-filter-close').onclick=()=>itemsFilter.hidden=true;
+ itemsFilter.addEventListener('click',event=>{if(event.target===itemsFilter)itemsFilter.hidden=true});
+ itemsFilter.querySelector('.app-clipping-items-filter-clear').onclick=()=>{
+  itemsFilter.querySelectorAll('input').forEach(input=>input.value='');
+  itemsFilter.hidden=true;
+ };
+ itemsFilter.querySelector('.app-clipping-items-filter-apply').onclick=()=>{itemsFilter.hidden=true};
+
+ clientPage.querySelector('.app-clipping-filter-open').onclick=()=>clientFilter.hidden=false;
+ clientPage.querySelector('.app-clipping-filter-close').onclick=()=>clientFilter.hidden=true;
+ clientFilter.addEventListener('click',event=>{if(event.target===clientFilter)clientFilter.hidden=true});
+ clientFilter.querySelectorAll('.app-clipping-filter-status button').forEach(button=>button.onclick=()=>{
+  clientFilter.querySelectorAll('.app-clipping-filter-status button').forEach(item=>item.classList.toggle('selected',item===button));
+ });
+ clientFilter.querySelector('.app-clipping-filter-clear').onclick=()=>{
+  clientFilter.querySelectorAll('input').forEach(input=>input.value='');
+  clientFilter.querySelectorAll('.app-clipping-filter-status button').forEach((button,index)=>button.classList.toggle('selected',index===2));
+  clientFilter.hidden=true;
+ };
+ clientFilter.querySelector('.app-clipping-filter-apply').onclick=()=>{clientFilter.hidden=true};
+
+ clientCards.forEach(card=>card.addEventListener('click',()=>{
+  selectedClient=card.querySelector('strong').textContent.trim();
+  const title=sim.querySelector('#app-screen-title');
+  queueMicrotask(()=>{if(title)title.textContent=selectedClient});
+  const clientTitle=clippingPage.querySelector('.app-clipping-year-client-card small');
+  if(clientTitle)clientTitle.textContent=selectedClient;
+ }));
+
+ const selectButton=clippingPage.querySelector('.app-clipping-select-trigger');
+ const selectionBar=clippingPage.querySelector('.app-clipping-selection-bar');
+ const clippingCards=Array.from(clippingPage.querySelectorAll('.app-clipping-item'));
+ const renderSelection=()=>{
+  selectButton.hidden=selection;
+  selectionBar.hidden=!selection;
+  selectionBar.querySelector('strong').textContent=selectedClippings.size+' de 100 selecionado(s)';
+  clippingCards.forEach(card=>card.classList.toggle('selected',selectedClippings.has(card)));
+ };
+ selectButton.onclick=()=>{selection=true;selectedClippings.clear();renderSelection()};
+ clippingPage.querySelector('.app-clipping-cancel-selection').onclick=()=>{selection=false;selectedClippings.clear();renderSelection()};
+ selectionBar.querySelector('button:nth-of-type(1)').onclick=()=>{
+  const all=clippingCards.length>0&&clippingCards.every(card=>selectedClippings.has(card));
+  clippingCards.forEach(card=>all?selectedClippings.delete(card):selectedClippings.add(card));
+  renderSelection();
+ };
+ selectionBar.querySelector('button:nth-of-type(2)').onclick=event=>event.preventDefault();
+ clippingCards.forEach(card=>card.addEventListener('click',event=>{
+  if(!selection)return;
+  event.preventDefault();
+  event.stopPropagation();
+  selectedClippings.has(card)?selectedClippings.delete(card):selectedClippings.add(card);
+  renderSelection();
+ },true));
+
+ form.addEventListener('submit',event=>event.preventDefault());
+ const editClipping=sim.querySelector('.app-clipping-details [data-screen="editar-clipping"]');
+ editClipping?.addEventListener('click',()=>{
+  selectedClient='Cleiton';
+  form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
+  form.elements.namedItem('subject').value='Varejo';
+  form.elements.namedItem('date').value='19/11/2026';
+  form.elements.namedItem('vehicle').value='LOGOS';
+  form.elements.namedItem('program').value='';
+  form.elements.namedItem('categories').value='';
+ });
+ const picker=form.querySelector('.app-clipping-client-picker');
+ form.querySelector('.app-clipping-client-open').onclick=()=>picker.hidden=false;
+ form.querySelector('.app-clipping-client-close').onclick=()=>picker.hidden=true;
+ form.querySelectorAll('.app-clipping-pick-client').forEach(button=>button.onclick=()=>{
+  selectedClient=button.textContent.replace('✓','').trim();
+  form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
+  picker.hidden=true;
+ });
+ form.querySelector('.app-clipping-quick-client').dataset.screen='novo-cliente';
+
+ const dataModal=form.querySelector('.app-clipping-data-modal');
+ form.querySelector('.app-clipping-search-data').onclick=()=>dataModal.hidden=false;
+ form.querySelector('.app-clipping-data-close').onclick=()=>dataModal.hidden=true;
+ const fillFields=all=>{
+  const values={subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS'};
+  Object.entries(values).forEach(([name,value])=>{
+   const input=form.elements.namedItem(name);
+   if(input&&(all||!input.value))input.value=value;
+  });
+  form.querySelector('.app-clipping-vehicle-card').hidden=false;
+  dataModal.hidden=true;
+ };
+ form.querySelector('.app-clipping-insert-all').onclick=()=>fillFields(true);
+ form.querySelector('.app-clipping-fill-empty').onclick=()=>fillFields(false);
+ form.querySelector('.app-clipping-capture-open').onclick=()=>form.querySelector('.app-clipping-capture-modal').hidden=false;
+ form.querySelectorAll('.app-clipping-capture-close').forEach(button=>button.onclick=()=>form.querySelector('.app-clipping-capture-modal').hidden=true);
+ form.querySelector('.app-clipping-capture-reset').onclick=event=>event.preventDefault();
+ form.querySelectorAll('.app-clipping-category-chips button').forEach(button=>button.onclick=()=>{
+  const category=button.textContent.replace(/^\+\s*/,'');
+  const input=form.elements.namedItem('categories');
+  const current=input.value.split(',').map(value=>value.trim()).filter(Boolean);
+  const index=current.indexOf(category);
+  if(index>=0)current.splice(index,1);else current.push(category);
+  input.value=current.join(', ');
+  button.classList.toggle('selected',index<0);
+ });
+ form.querySelectorAll('.app-clipping-tier-options button').forEach(button=>button.onclick=()=>{
+  form.querySelectorAll('.app-clipping-tier-options button').forEach(item=>item.classList.toggle('selected',item===button));
+ });
+ form.querySelector('.app-clipping-delete')?.addEventListener('click',event=>event.preventDefault());
+ form.querySelectorAll('button').forEach(button=>{
+  if(button.textContent.includes('SALVAR'))button.onclick=event=>event.preventDefault();
+ });
+ sim.querySelector('.app-clipping-details .app-clipping-delete').onclick=event=>event.preventDefault();
+ form.querySelector('.app-clipping-vehicle-card').hidden=true;
+ sim.querySelectorAll('.app-clipping-items .app-clipping-item').forEach(card=>card.addEventListener('click',()=>{
+  sim.querySelector('#app-screen-title').textContent='Detalhes';
+ }));
 })();
 
 /* Simulador LOGOS — biblioteca e editor demonstrativo de templates */
@@ -1540,23 +1750,42 @@ if (
   });
   updateCount();
  };
- const renderPreview=(container)=>{
+ const normalizedBlocks=(item)=>(item.blocks||[]).map(block=>typeof block==='string'?{type:block,value:summary(block)}:{...block,value:block.value||summary(block.type)});
+ const renderBlockList=(container,items,{thumbnail=false}={})=>{
   container.innerHTML='';
+  items.forEach(block=>{
+   const type=block.type,value=block.value||summary(type);
+   if(type==='Divisor'){container.appendChild(document.createElement('hr'));return}
+   if(type==='Espaçamento'){const gap=document.createElement('div');gap.style.height=thumbnail?'8px':'18px';container.appendChild(gap);return}
+   if(type==='Imagem / logo'){
+    const image=document.createElement('div');image.className=thumbnail?'app-template-thumb-image':'app-template-preview-image';image.textContent=value;container.appendChild(image);return;
+   }
+   if(type==='Contato de imprensa'){
+    const label=document.createElement('strong');label.className='app-template-contact-label';label.textContent='Contato de imprensa';container.appendChild(label);
+    const contact=document.createElement('p');contact.textContent=value;container.appendChild(contact);return;
+   }
+   const heading=type==='Título';
+   const text=document.createElement(heading?(thumbnail?'strong':'h3'):'p');text.textContent=value;
+   if(type==='Linha fina')text.className='muted';
+   container.appendChild(text);
+  });
+ };
+ const renderPreview=(container)=>{
   const card=document.createElement('article');card.className='app-template-preview-card';
-  blocks.forEach(b=>{if(b.type==='Divisor'){card.insertAdjacentHTML('beforeend','<hr>');return}if(b.type==='Espaçamento'){card.insertAdjacentHTML('beforeend','<div style="height:18px"></div>');return}const p=document.createElement(b.type==='Título'?'h3':'p');p.textContent=b.value||summary(b.type);if(b.type==='Linha fina')p.className='muted';card.appendChild(p)});
+  renderBlockList(card,blocks);
   if(!blocks.length)card.textContent='O conteúdo ainda está vazio.';
-  container.appendChild(card);
+  container.innerHTML='';container.appendChild(card);
  };
  const showPreview=(id)=>{
   currentId=id;const item=catalog[id]||custom.find(x=>x.id===id)||catalog.simples;
   preview.querySelector('#app-template-preview-name').textContent=item.name;
-  const card=preview.querySelector('#app-template-preview-card');card.innerHTML='';
-  (item.blocks||[]).forEach(type=>{if(type==='Divisor'){card.insertAdjacentHTML('beforeend','<hr>');return}const p=document.createElement(type==='Título'?'h3':'p');p.textContent=summary(type);if(type==='Linha fina')p.className='muted';card.appendChild(p)});
+  const card=preview.querySelector('#app-template-preview-card');
+  renderBlockList(card,normalizedBlocks(item));
  };
  const startCopy=()=>{
   const item=catalog[currentId]||custom.find(x=>x.id===currentId)||catalog.simples;
   copyMode=true;nameInput.value='Cópia de '+item.name;
-  blocks=(item.blocks||[]).map(type=>({type,value:summary(type)}));editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks();
+  blocks=normalizedBlocks(item);editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks();
  };
  const startNew=()=>{copyMode=false;nameInput.value='';blocks=[];editor.querySelector('.app-template-editor-tabs [data-editor-tab=blocks]').click();renderBlocks()};
  const filter=()=>{
@@ -1584,14 +1813,7 @@ if (
  editor.querySelectorAll('[data-block-choice]').forEach(b=>b.onclick=()=>{selectedChoice=b.dataset.blockChoice;editor.querySelectorAll('[data-block-choice]').forEach(x=>x.classList.toggle('selected',x===b))});
  editor.querySelector('[data-action=insert-block]').onclick=()=>{if(selectedChoice&&blocks.length<100){blocks.push({type:selectedChoice,value:summary(selectedChoice)});renderBlocks()}editor.querySelector('.app-template-add-modal').hidden=true};
  nameInput.oninput=updateCount;
- editor.querySelector('[data-action=save-template]').onclick=()=>{
-  const name=nameInput.value.trim();if(!name)return;
-  const id='custom-'+Date.now();custom.unshift({id,name,blocks:blocks.map(b=>b.type),origin:'assessoria'});
-  const card=document.createElement('article');card.className='app-template-card';card.dataset.templateCard='';card.dataset.templateId=id;card.dataset.templateName=name;card.dataset.templateOrigin='assessoria';
-  card.innerHTML='<div class="app-template-thumb"></div><h4></h4><p>Da assessoria</p><button data-template-action="preview" data-screen="preview-template">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template">▢ CRIAR CÓPIA</button>';
-  card.querySelector('h4').textContent=name;card.querySelector('[data-template-action=preview]').dataset.templateId=id;card.querySelector('[data-template-action=copy]').dataset.templateId=id;
-  library.querySelector('.app-template-grid').prepend(card);library.querySelector('.app-template-tabs [data-template-tab=todos]').click();filter();sim.querySelector('[data-screen=templates]')?.click();
- };
+ editor.querySelector('[data-action=save-template]').onclick=()=>{};;
  sim.addEventListener('click',e=>{
   const b=e.target.closest('[data-template-action], [data-action=copy-preview], button[data-screen]');
   if(!b)return;
@@ -1603,4 +1825,34 @@ if (
   if(b.dataset.screen==='novo-template')startNew();
  },true);
  renderBlocks();filter();
+})();
+
+
+
+/* Mailing demonstrativo: busca, filtros e seleção locais. O formulário não persiste. */
+(()=>{
+ const sim=document.querySelector('.app-simulator'), view=sim?.querySelector('.app-mailing-list');
+ if(!sim||!view)return;
+ const q=view.querySelector('.app-mailing-search input'), card=view.querySelector('.app-mailing-contact-card');
+ const count=view.querySelector('.app-mailing-list-heading>span'), filter=view.querySelector('.app-mailing-filter-backdrop');
+ const trigger=view.querySelector('.app-mailing-select-trigger'), bar=view.querySelector('.app-mailing-selection-bar');
+ const selectedCount=bar?.querySelector('strong'), checkbox=card?.querySelector('.app-mailing-checkbox');
+ const form=sim.querySelector('.app-contact-form'), details=sim.querySelector('.app-contact-details');
+ const demo={name:'Ademilson',email:'ademilson@example.com',phone:'',job:'Editor',state:'São Paulo',city:'Itajubá',notes:'',vehicle:'LOGOS'};
+ let selecting=false, selected=false;
+ const applySearch=()=>{const hit=!q?.value||Object.values(demo).join(' ').toLowerCase().includes(q.value.toLowerCase());if(card)card.hidden=!hit;if(count)count.textContent=hit?'1 contato':'0 contatos'};
+ q?.addEventListener('input',applySearch); view.querySelector('.app-mailing-search button')?.addEventListener('click',applySearch);
+ view.querySelector('.app-mailing-filter-open')?.addEventListener('click',()=>filter.hidden=false);
+ view.querySelectorAll('.app-mailing-filter-close').forEach(b=>b.addEventListener('click',()=>filter.hidden=true));
+ filter?.addEventListener('click',e=>{if(e.target===filter)filter.hidden=true});
+ filter?.querySelectorAll('.app-mailing-status-options button').forEach(b=>b.addEventListener('click',()=>{filter.querySelectorAll('.app-mailing-status-options button').forEach(x=>x.classList.toggle('selected',x===b))}));
+ filter?.querySelector('.app-mailing-filter-clear')?.addEventListener('click',()=>{filter.querySelectorAll('input').forEach(i=>i.value='');filter.querySelectorAll('.app-mailing-status-options button').forEach((b,i)=>b.classList.toggle('selected',i===0));applySearch()});
+ filter?.querySelector('.app-mailing-filter-apply')?.addEventListener('click',()=>{const vals=[...filter.querySelectorAll('.app-mailing-filter-body input')].map(i=>i.value.trim().toLowerCase()).filter(Boolean);const match=vals.every(v=>Object.values(demo).join(' ').toLowerCase().includes(v));if(card)card.hidden=!match;if(count)count.textContent=match?'1 contato':'0 contatos';filter.hidden=true});
+ trigger?.addEventListener('click',()=>{selecting=!selecting;selected=false;trigger.hidden=selecting;if(bar)bar.hidden=!selecting;if(checkbox)checkbox.hidden=!selecting;if(selectedCount)selectedCount.textContent='0 de 100 selecionado(s)'});
+ view.querySelector('.app-mailing-selection-close')?.addEventListener('click',()=>{selecting=false;selected=false;trigger.hidden=false;bar.hidden=true;if(checkbox)checkbox.hidden=true;card?.classList.remove('is-selected')});
+ card?.addEventListener('click',e=>{if(!selecting)return;e.preventDefault();e.stopImmediatePropagation();selected=!selected;card.classList.toggle('is-selected',selected);if(selectedCount)selectedCount.textContent=(selected?'1':'0')+' de 100 selecionado(s)'},true);
+ const startEdit=()=>{if(!form)return;form.querySelector('.app-contact-form-heading h4').textContent='EDITAR CONTATO';form.querySelector('.app-contact-save').textContent='SALVAR';form.classList.add('is-editing');for(const [name,val] of Object.entries(demo)){const field=form.querySelector('[name='+name+']');if(field)field.value=val}const p=form.querySelector('.app-contact-edit-profile');if(p){p.hidden=false;p.querySelector('span').textContent='A';p.querySelector('strong').textContent=demo.name;p.querySelector('small').textContent=demo.email}};
+ sim.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.screen==='editar-contato')startEdit();if(b.classList.contains('app-contact-save')){e.preventDefault()}if(b.classList.contains('app-contact-delete'))e.preventDefault();if(b.classList.contains('app-contact-vehicle-open'))form.querySelector('.app-contact-vehicle-picker').hidden=false;if(b.classList.contains('app-contact-vehicle-close'))form.querySelector('.app-contact-vehicle-picker').hidden=true;if(b.classList.contains('app-contact-pick-vehicle')){const field=form.querySelector('[name=vehicle]');if(field)field.value='LOGOS';form.querySelector('.app-contact-vehicle-picker').hidden=true}},true);
+ form?.querySelectorAll('input,textarea').forEach(el=>el.addEventListener('input',()=>{}));
+ applySearch();
 })();
