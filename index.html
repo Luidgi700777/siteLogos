@@ -400,6 +400,7 @@
     >
 
         <div class="app-screen" id="app-screen">
+          <div class="app-scale">
 
             <!-- Cabeçalho do aplicativo -->
             <header class="app-header">
@@ -437,7 +438,7 @@
                         class="app-avatar"
                         aria-label="Usuário da demonstração"
                     >
-                        A
+                        L
                     </span>
 
                 </div>
@@ -522,7 +523,7 @@
                 </span>
 
                 <span class="app-overview-info">
-                    <span class="app-overview-number" data-count="clientes">1</span>
+                    <span class="app-overview-number" data-count="clientes">3</span>
                     <span class="app-overview-label">Clientes</span>
                     <span class="app-overview-description">ativos</span>
                 </span>
@@ -691,12 +692,29 @@
 
 <!-- Tela Mais -->
 <div class="app-more" data-view="mais" hidden>
+    <div class="app-more-intro">
+        <small>ESPAÇO DE TRABALHO</small>
+        <h2>Gestão da assessoria</h2>
+        <p>Acesse seus templates, relatórios, equipe e outros dados da assessoria.</p>
+    </div>
 
-    <h4 class="app-more-heading">
-        Gerenciamento
-    </h4>
+    <h4 class="app-more-group-title">Templates e relatórios</h4>
+    <div class="app-more-list app-more-list-group">
+        <button type="button" class="app-more-card" data-screen="templates">
+            <span class="app-more-icon"><i class="fa-regular fa-folder" aria-hidden="true"></i></span>
+            <span class="app-more-info"><strong>Templates</strong><small>Modelos para seus releases</small></span>
+            <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
+        </button>
 
-    <div class="app-more-list">
+        <button type="button" class="app-more-card" data-screen="relatorios">
+            <span class="app-more-icon"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></span>
+            <span class="app-more-info"><strong>Relatórios</strong><small>Slides e acompanhamento</small></span>
+            <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <h4 class="app-more-group-title">Cadastros</h4>
+    <div class="app-more-list app-more-list-group">
 
         <!-- Clientes -->
         <button
@@ -710,7 +728,7 @@
 
             <span class="app-more-info">
                 <strong>Clientes</strong>
-                <small>Gerencie os clientes da assessoria.</small>
+                <small>Clientes da assessoria</small>
             </span>
 
             <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
@@ -728,29 +746,16 @@
 
             <span class="app-more-info">
                 <strong>Veículos</strong>
-                <small>Gerencie os veículos de comunicação cadastrados.</small>
+                <small>Veículos de comunicação</small>
             </span>
 
             <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
         </button>
 
-        <!-- Relatórios -->
-        <button
-            type="button"
-            class="app-more-card"
-            data-screen="relatorios"
-        >
-            <span class="app-more-icon">
-                <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
-            </span>
+    </div>
 
-            <span class="app-more-info">
-                <strong>Relatórios</strong>
-                <small>Gere e consulte os relatórios da assessoria.</small>
-            </span>
-
-            <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
-        </button>
+    <h4 class="app-more-group-title">Equipe</h4>
+    <div class="app-more-list app-more-list-group">
 
         <!-- Funcionários -->
         <button
@@ -764,7 +769,7 @@
 
             <span class="app-more-info">
                 <strong>Funcionários</strong>
-                <small>Consulte a equipe da assessoria.</small>
+                <small>Pessoas e permissões</small>
             </span>
 
             <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
@@ -782,7 +787,7 @@
 
             <span class="app-more-info">
                 <strong>Convites</strong>
-                <small>Consulte e gerencie convites para funcionários.</small>
+                <small>Acessos para novos funcionários</small>
             </span>
 
             <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
@@ -869,11 +874,11 @@
         <div class="app-clients-selection-info">
             <strong>
                 <span id="app-clients-selected-count">0</span>
-                de 3 selecionado(s)
+                de 100 selecionado(s)
             </strong>
 
             <small>
-                Botão de excluir desabilitado nesta demonstração!
+                Escolha os clientes que deseja excluir.
             </small>
         </div>
 
@@ -917,153 +922,38 @@
 
     <!-- Listagem -->
     <div class="app-clients-list">
-
-        <!-- Clientes demonstrativos -->
-        <button
-            type="button"
-            class="app-client-card1"
-            data-screen="detalhes-cliente"
-            data-client-id="cliente-cleiton"
-            data-client-status="ativo"
-            data-client-state=""
-            data-client-city=""
-            data-client-segment="Varejo"
-            data-client-clippings="27"
-            data-client-year="2026"
-        >
-
-            <span class="app-client-icon1">
-                <i class="fa-solid fa-briefcase"
-                   aria-hidden="true"></i>
-            </span>
-
+        <button type="button" class="app-client-card1" data-screen="detalhes-cliente" data-client-id="cliente-cleiton" data-client-status="ativo" data-client-state="" data-client-city="" data-client-segment="varejo" data-client-clippings="27" data-client-year="2026">
+            <span class="app-client-icon1"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
             <span class="app-client-info1">
-
-                <strong class="app-client-name1">
-                    Cleiton
-                </strong>
-
-                <small class="app-client-description1">
-                    Varejo · Ativo
-                </small>
-
-                <small class="app-client-clippings1">
-                    27 clipping · 2026
-                </small>
-
+                <strong class="app-client-name1">Cleiton</strong>
+                <small class="app-client-description1">Varejo · Ativo</small>
+                <small class="app-client-clippings1">27 clipping · 2026</small>
             </span>
-
-            <i
-                class="fa-solid fa-chevron-right app-client-arrow1"
-                aria-hidden="true"
-            ></i>
-
-            
-            <!-- Checkbox exibido somente no modo de seleção -->
-            <span class="app-client-checkbox1" aria-hidden="true">
-                <i class="fa-solid fa-check"></i>
-            </span>
-
+            <i class="fa-solid fa-chevron-right app-client-arrow1" aria-hidden="true"></i>
+            <span class="app-client-checkbox1" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
         </button>
-
-        <button
-            type="button"
-            class="app-client-card2"
-            data-screen="detalhes-cliente"
-            data-client-id="cliente-maria"
-            data-client-status="ativo"
-            data-client-state=""
-            data-client-city=""
-            data-client-segment="Saúde"
-            data-client-clippings="35"
-            data-client-year="2026"
-        >
-
-            <span class="app-client-icon2">
-                <i class="fa-solid fa-briefcase"
-                   aria-hidden="true"></i>
+        <button type="button" class="app-client-card1" data-screen="detalhes-cliente" data-client-id="cliente-maria" data-client-status="ativo" data-client-state="" data-client-city="" data-client-segment="saude" data-client-clippings="35" data-client-year="2026">
+            <span class="app-client-icon1"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+            <span class="app-client-info1">
+                <strong class="app-client-name1">Maria</strong>
+                <small class="app-client-description1">Saúde · Ativo</small>
+                <small class="app-client-clippings1">35 clipping · 2026</small>
             </span>
-
-            <span class="app-client-info2">
-
-                <strong class="app-client-name2">
-                    Maria
-                </strong>
-
-                <small class="app-client-description2">
-                    Saúde · Ativo
-                </small>
-
-                <small class="app-client-clippings2">
-                    35 clipping · 2026
-                </small>
-
-            </span>
-
-            <i
-                class="fa-solid fa-chevron-right app-client-arrow2"
-                aria-hidden="true"
-            ></i>
-
-            
-            <!-- Checkbox exibido somente no modo de seleção -->
-            <span class="app-client-checkbox2" aria-hidden="true">
-                <i class="fa-solid fa-check"></i>
-            </span>
-
+            <i class="fa-solid fa-chevron-right app-client-arrow1" aria-hidden="true"></i>
+            <span class="app-client-checkbox1" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
         </button>
-
-        <button
-            type="button"
-            class="app-client-card3"
-            data-screen="detalhes-cliente"
-            data-client-id="cliente-joao"
-            data-client-status="ativo"
-            data-client-state=""
-            data-client-city=""
-            data-client-segment="Tecnologia"
-            data-client-clippings="51"
-            data-client-year="2025"
-        >
-
-            <span class="app-client-icon3">
-                <i class="fa-solid fa-briefcase"
-                   aria-hidden="true"></i>
+        <button type="button" class="app-client-card1" data-screen="detalhes-cliente" data-client-id="cliente-joao" data-client-status="ativo" data-client-state="" data-client-city="" data-client-segment="tecnologia" data-client-clippings="51" data-client-year="2025">
+            <span class="app-client-icon1"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>
+            <span class="app-client-info1">
+                <strong class="app-client-name1">João</strong>
+                <small class="app-client-description1">Tecnologia · Ativo</small>
+                <small class="app-client-clippings1">51 clipping · 2025</small>
             </span>
-
-            <span class="app-client-info3">
-
-                <strong class="app-client-name3">
-                    João
-                </strong>
-
-                <small class="app-client-description3">
-                    Tecnologia · Ativo
-                </small>
-
-                <small class="app-client-clippings3">
-                    51 clipping · 2025
-                </small>
-
-            </span>
-
-            <i
-                class="fa-solid fa-chevron-right app-client-arrow3"
-                aria-hidden="true"
-            ></i>
-
-            
-            <!-- Checkbox exibido somente no modo de seleção -->
-            <span class="app-client-checkbox3" aria-hidden="true">
-                <i class="fa-solid fa-check"></i>
-            </span>
-
+            <i class="fa-solid fa-chevron-right app-client-arrow1" aria-hidden="true"></i>
+            <span class="app-client-checkbox1" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
         </button>
-
     </div>
-    <!-- Fim da listagem -->
 
-    <!-- Mensagem quando não houver resultados -->
     <p
         class="app-clients-empty"
         id="app-clients-empty"
@@ -1080,606 +970,424 @@
 
 <!-- Detalhes do Cliente -->
 <div class="app-client-details" data-view="detalhes-cliente" hidden>
-
-    <!-- Ações -->
-    <div class="app-client-detail-actions">
-
-        <button
-            type="button"
-            class="app-client-edit-btn"
-            data-screen="editar-cliente"
-        >
-            <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
-            Editar
-        </button>
-
-        <button
-            type="button"
-            class="app-client-delete-btn"
-            disabled
-            title="Exclusão desabilitada na demonstração"
-        >
-            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
-            Excluir
-        </button>
-
-    </div>
-
-    <!-- Identificação -->
     <div class="app-client-detail-profile">
-
-        <div class="app-client-detail-avatar">
-            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-        </div>
-
+        <div class="app-client-detail-avatar"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
         <div class="app-client-detail-identity">
             <h4 data-client-detail="nome">Cleiton</h4>
-            <p data-client-detail="segmento-resumo">Varejo</p>
-            <span class="app-client-detail-status"
-                  data-client-detail="status">
-                ATIVO
-            </span>
+            <p data-client-detail="segmento-resumo">varejo</p>
+            <span class="app-client-detail-status" data-client-detail="status">ATIVO</span>
         </div>
-
     </div>
-
-    <!-- Informações cadastrais -->
     <section class="app-client-detail-section">
-
         <h5>INFORMAÇÕES</h5>
-
         <div class="app-client-detail-info-list">
-
-            <!-- Responsável -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-user" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>RESPONSÁVEL</strong>
-                    <p data-client-detail="responsavel">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Segmento -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>SEGMENTO</strong>
-                    <p data-client-detail="segmento">Varejo</p>
-                </div>
-            </div>
-
-            
-            <!-- Descrição -->
-            <div class="app-client-detail-info-card">
-            
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-file-lines"
-                       aria-hidden="true"></i>
-                </span>
-            
-                <div>
-                    <strong>DESCRIÇÃO</strong>
-                    <p data-client-detail="descricao">
-                        Não informada
-                    </p>
-                </div>
-            
-            </div>
-            <!-- Descrição -->
-
-
-            <!-- CNPJ -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-id-card" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>CNPJ</strong>
-                    <p data-client-detail="cnpj">Não informado</p>
-                </div>
-            </div>
-
-            <!-- E-mail -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>E-MAIL</strong>
-                    <p data-client-detail="email">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Telefone -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>TELEFONE</strong>
-                    <p data-client-detail="telefone">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Site -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-globe" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>SITE</strong>
-                    <p data-client-detail="site">Não informado</p>
-                </div>
-            </div>
-
-            <!-- Localização -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>LOCALIZAÇÃO</strong>
-                    <p data-client-detail="localizacao">Não informada</p>
-                </div>
-            </div>
-
-            <!-- Logo -->
-            <div class="app-client-detail-info-card">
-                <span class="app-client-detail-info-icon">
-                    <i class="fa-regular fa-image" aria-hidden="true"></i>
-                </span>
-
-                <div>
-                    <strong>LOGO</strong>
-                    <p data-client-detail="logo">Não informado</p>
-                </div>
-            </div>
-
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-user" aria-hidden="true"></i></span><div><strong>RESPONSÁVEL</strong><p data-client-detail="responsavel">cleiton</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span><div><strong>SEGMENTO</strong><p data-client-detail="segmento">varejo</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-id-card" aria-hidden="true"></i></span><div><strong>CNPJ</strong><p data-client-detail="cnpj">Não informado</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span><div><strong>E-MAIL</strong><p data-client-detail="email">Não informado</p></div><a class="app-client-email-action" href="#" aria-label="Enviar e-mail"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-phone" aria-hidden="true"></i></span><div><strong>TELEFONE</strong><p data-client-detail="telefone">Não informado</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></span><div><strong>SITE</strong><p data-client-detail="site">Não informado</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span><div><strong>LOCALIZAÇÃO</strong><p data-client-detail="localizacao">Não informada</p></div></div>
+            <div class="app-client-detail-info-card"><span class="app-client-detail-info-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></span><div><strong>LOGO</strong><p data-client-detail="logo">Não informado</p></div></div>
         </div>
-
     </section>
-
-    
-    <!-- Clippings vinculados -->
+    <div class="app-client-detail-actions">
+        <button type="button" class="app-client-edit-btn" data-screen="editar-cliente">EDITAR</button>
+        <button type="button" class="app-client-delete-btn" title="Ação ilustrativa">EXCLUIR</button>
+    </div>
     <section class="app-client-detail-clippings">
-
-    <!-- Cabeçalho -->
-    <div class="app-client-detail-clippings-heading">
-
-        <div>
-            <h5>CLIPPINGS VINCULADOS</h5>
-            <p>Publicações deste cliente</p>
+        <div class="app-client-detail-clippings-heading">
+            <div><h5>CLIPPINGS VINCULADOS</h5><p>Publicações deste cliente</p></div>
+            <span class="app-client-detail-clippings-count" data-client-detail="total-clippings">1</span>
         </div>
-
-        <span
-            class="app-client-detail-clippings-count"
-            data-client-detail="total-clippings"
-        >
-            0
-        </span>
-
-    </div>
-  
-    <!-- Ano dos clippings -->
-    <h6>ANO DOS CLIPPINGS</h6>
-
-    <!-- Indicador do ano -->
-    <div class="app-client-detail-year-content">
-
-        <span
-            class="app-client-detail-year"
-            data-client-detail="ano-resumo"
-        >
-            2026 · 1
-        </span>
-
-    </div>
-
-    <!-- Botão abrir ano -->
-    <div class="app-client-detail-clippings-actions">
-
-        <button
-            type="button"
-            class="app-client-detail-year-btn"
-            disabled
-        >
-            ABRIR ANO
-        </button>
-
-    <!-- Botão listagem do cliente -->
-        <button
-            type="button"
-            class="app-client-detail-list-btn"
-            disabled
-        >
-            LISTAGEM DO CLIENTE
-        </button>
-
-    </div>
-
-    <!-- Quantidade no ano -->
-    <p class="app-client-detail-year-total" hidden>
-        <span id="app-client-year-clippings-count">0</span>
-        clipping(s) neste ano
-    </p>
-
-    <!-- Selecionar clippings -->
-    <button
-        type="button"
-        class="app-client-clippings-select-btn"
-        aria-pressed="false"
-        disabled
-    >
-        <i
-            class="fa-regular fa-circle-check"
-            aria-hidden="true"
-        ></i>
-
-        <span>SELECIONAR CLIPPINGS</span>
-    </button>
-
-    <!-- Barra de seleção múltipla -->
-    <div class="app-client-clippings-selection-bar" hidden>
-
-        <div class="app-client-clippings-selection-info">
-
-            <strong>
-                <span id="app-clippings-selected-count">0</span>
-                de
-                <span id="app-clippings-total-count">0</span>
-                selecionado(s)
-            </strong>
-
-            <small>
-                Exclusão desabilitada nesta demonstração.
-            </small>
-
+        <h6>ANO DOS CLIPPINGS</h6>
+        <div class="app-client-detail-year-content"><span class="app-client-detail-year" data-client-detail="ano-resumo">2026 · 1</span></div>
+        <div class="app-client-detail-clippings-actions">
+            <button type="button" class="app-client-detail-year-btn">ABRIR ANO 2026</button>
+            <button type="button" class="app-client-detail-list-btn" data-screen="clipping">LISTAGEM DO CLIENTE</button>
         </div>
-
-        <div class="app-client-clippings-selection-actions">
-
-            <!-- Selecionar todos -->
-            <button
-                type="button"
-                class="app-client-clippings-select-all"
-                disabled
-            >
-                TODOS
-            </button>
-
-            <!-- Excluir -->
-            <button
-                type="button"
-                class="app-client-clippings-delete-selected"
-                aria-label="Excluir clippings selecionados"
-                disabled
-            >
-                <i
-                    class="fa-regular fa-trash-can"
-                    aria-hidden="true"
-                ></i>
-            </button>
-
-            <!-- Cancelar -->
-            <button
-                type="button"
-                class="app-client-clippings-cancel-selection"
-                aria-label="Cancelar seleção de clippings"
-            >
-                <i
-                    class="fa-solid fa-xmark"
-                    aria-hidden="true"
-                ></i>
-            </button>
-
+        <p class="app-client-detail-year-total"><span id="app-client-year-clippings-count">1</span> clipping(s) neste ano</p>
+        <button type="button" class="app-client-clippings-select-btn" aria-pressed="false"><i class="fa-regular fa-circle-check" aria-hidden="true"></i><span>SELECIONAR CLIPPINGS</span></button>
+        <div class="app-client-clippings-selection-bar" hidden>
+            <div class="app-client-clippings-selection-info"><strong><span id="app-clippings-selected-count">0</span> de <span id="app-clippings-total-count">1</span> selecionado(s)</strong><small>Escolha os clippings que deseja excluir.</small></div>
+            <div class="app-client-clippings-selection-actions">
+                <button type="button" class="app-client-clippings-select-all">TODOS</button>
+                <button type="button" class="app-client-clippings-delete-selected" aria-label="Excluir clippings selecionados" disabled><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                <button type="button" class="app-client-clippings-cancel-selection" aria-label="Cancelar seleção de clippings"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
         </div>
-
-    </div>
-    <!-- Barra de seleção múltipla -->
-
-    <!-- Lista de clippings do cliente -->
-    <div
-        class="app-client-clippings-list"
-        id="app-client-clippings-list"
-    >
-        <!--
-            Os cartões de clippings serão inseridos
-            somente quando existirem registros fixos
-            vinculados ao cliente selecionado.
-        -->
-    </div>
-    <!-- Lista de clippings do cliente -->
-
-    <!-- Nenhum clipping -->
-    <p
-        class="app-client-clippings-empty"
-        id="app-client-clippings-empty"
-        role="status"
-    >
-        Os clippings deste cliente ainda não estão disponíveis
-    para visualização no demonstrativo.
-    </p>
-
-</section>
-<!-- Clippings vinculados -->
-
-
+        <div class="app-client-clippings-list" id="app-client-clippings-list">
+            <button type="button" class="app-client-clipping-card" data-clipping-id="clipping-cleiton-1" data-client-id="cliente-cleiton" data-screen="clipping">
+                <span class="app-client-clipping-date">19/11</span>
+                <span class="app-client-clipping-vehicle">LOGOS</span>
+                <span class="app-client-clipping-tier">Tier —</span>
+                <strong>Varejo</strong>
+                <small>Sem categoria</small>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+        <p class="app-client-clippings-empty" id="app-client-clippings-empty" role="status" hidden>Nenhum clipping vinculado a este cliente.</p>
+    </section>
 </div>
-<!-- Detalhes do Cliente -->
 
 
 <!-- Novo Cliente -->
 <div class="app-client-form-screen" data-view="novo-cliente" hidden>
-
-    <!-- Apresentação do formulário -->
     <div class="app-client-form-heading">
-        <h4>NOVO CLIENTE</h4>
-        <p>Preencha as informações do cliente.</p>
+        <h4>CADASTRAR CLIENTE</h4>
+        <p>Adicione um cliente à assessoria. Campos marcados com * são obrigatórios.</p>
     </div>
-
-    <div class="app-client-form-heading1">Dados Principais</div>
-
-    <!-- Formulário demonstrativo -->
-    <form class="app-client-create-form" id="app-client-create-form"
-          autocomplete="off">
-
-        <!-- Nome -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-name">
-                NOME <span>*</span>
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-name"
-                name="nome"
-                placeholder="Nome do cliente"
-                required
-            >
-        </div>
-
-        <!-- Segmento -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-segment">
-                SEGMENTO
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-segment"
-                name="segmento"
-                placeholder="Ex.: Varejo, Saúde, Tecnologia"
-            >
-        </div>
-
-        <!-- Responsável -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-responsible">
-                RESPONSÁVEL
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-responsible"
-                name="responsavel"
-                placeholder="Nome do responsável"
-            >
-        </div>
-
-        <!-- CNPJ -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-cnpj">
-                CNPJ
-            </label>
-
-            <input
-                type="text"
-                id="app-new-client-cnpj"
-                name="cnpj"
-                inputmode="numeric"
-                maxlength="18"
-                placeholder="00.000.000/0000-00"
-            >
-        </div>
-
-        <!-- Descrição -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-description">
-                DESCRIÇÃO
-            </label>
-
-            <textarea
-                id="app-new-client-description"
-                name="descricao"
-                rows="4"
-                placeholder="Descreva o cliente"
-            ></textarea>
-        </div>
-
-        <!-- E-mail -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-email">
-                E-MAIL
-            </label>
-
-            <input
-                type="email"
-                id="app-new-client-email"
-                name="email"
-                placeholder="exemplo@email.com"
-            >
-        </div>
-
-        <!-- Telefone -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-phone">
-                TELEFONE
-            </label>
-
-            <input
-                type="tel"
-                id="app-new-client-phone"
-                name="telefone"
-                placeholder="(00) 00000-0000"
-            >
-        </div>
-
-        <!-- Site -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-site">
-                SITE
-            </label>
-
-            <input
-                type="url"
-                id="app-new-client-site"
-                name="site"
-                placeholder="https://exemplo.com.br"
-            >
-        </div>
-
-        <!-- Cidade e estado -->
-        <div class="app-client-form-row">
-
-            <div class="app-client-form-group">
-                <label for="app-new-client-city">
-                    CIDADE
-                </label>
-
-                <input
-                    type="text"
-                    id="app-new-client-city"
-                    name="cidade"
-                    placeholder="Cidade"
-                >
-            </div>
-
-            <div class="app-client-form-group">
-                <label for="app-new-client-state">
-                    UF
-                </label>
-
-                <select
-                    id="app-new-client-state"
-                    name="uf"
-                >
-                    <option value="">Selecione</option>
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
-                </select>
-            </div>
-
-        </div>
-
-        <!-- Logo -->
-        <div class="app-client-form-group">
-            <label for="app-new-client-logo">
-                LOGO
-            </label>
-
-            <div class="app-client-form-logo-area">
-
-                <span class="app-client-form-logo-icon">
-                    <i class="fa-regular fa-image"
-                       aria-hidden="true"></i>
-                </span>
-
-                <input
-                    type="file"
-                    id="app-new-client-logo"
-                    name="logo"
-                    accept="image/png,image/jpeg,image/webp"
-                >
-
-                <small>
-                    Imagem demonstrativa. Nenhum arquivo será enviado.
-                </small>
-
-            </div>
-        </div>
-
-        <!-- Status -->
-        <div class="app-client-form-status-row">
-
-            <div class="app-client-form-status-info">
-                <strong>CLIENTE ATIVO</strong>
-                <small>
-                    Define se o cliente está ativo.
-                </small>
-            </div>
-
-            <label class="app-client-form-switch">
-                <input
-                    type="checkbox"
-                    id="app-new-client-active"
-                    name="ativo"
-                    checked
-                    aria-label="Cliente ativo"
-                >
-
-                <span class="app-client-form-switch-slider"></span>
-            </label>
-
-        </div>
-
-        <!-- Botão de cadastro desabilitado -->
+    <article class="app-client-form-profile" hidden>
+        <div class="app-client-detail-avatar"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
+        <div><h4>Cleiton</h4><p>Varejo</p><span>ATIVO</span></div>
+    </article>
+    <form class="app-client-create-form" id="app-client-create-form" autocomplete="off">
+        <section class="app-client-form-section">
+            <h5>DADOS PRINCIPAIS</h5>
+            <div class="app-client-form-group"><label for="app-new-client-name">NOME *</label><input type="text" id="app-new-client-name" name="nome" placeholder="Nome do cliente" required></div>
+            <div class="app-client-form-group"><label for="app-new-client-segment">SEGMENTO</label><input type="text" id="app-new-client-segment" name="segmento" placeholder="Ex.: Tecnologia, Saúde, Varejo"></div>
+            <div class="app-client-form-group"><label for="app-new-client-responsible">RESPONSÁVEL</label><input type="text" id="app-new-client-responsible" name="responsavel" placeholder="Nome do responsável pelo cliente"></div>
+            <div class="app-client-form-group"><label for="app-new-client-cnpj">CNPJ</label><input type="text" id="app-new-client-cnpj" name="cnpj" inputmode="numeric" maxlength="18" placeholder="Ex.: 12.345.678/0001-95"></div>
+            <div class="app-client-form-group"><label for="app-new-client-description">DESCRIÇÃO</label><textarea id="app-new-client-description" name="descricao" rows="4" placeholder="Informações sobre o cliente"></textarea></div>
+        </section>
+        <section class="app-client-form-section">
+            <h5>CONTATO</h5>
+            <div class="app-client-form-group"><label for="app-new-client-email">E-MAIL</label><input type="email" id="app-new-client-email" name="email" placeholder="contato@cliente.com.br"></div>
+            <div class="app-client-form-group"><label for="app-new-client-phone">TELEFONE</label><input type="tel" id="app-new-client-phone" name="telefone" placeholder="Ex.: (11) 99999-9999"></div>
+            <div class="app-client-form-group"><label for="app-new-client-site">SITE</label><input type="url" id="app-new-client-site" name="site" placeholder="https://www.exemplo.com.br"></div>
+        </section>
+        <section class="app-client-form-section">
+            <h5>LOCALIZAÇÃO</h5>
+            <div class="app-client-form-group"><label for="app-new-client-city">CIDADE</label><input type="text" id="app-new-client-city" name="cidade" placeholder="Ex.: São Paulo"></div>
+            <div class="app-client-form-group"><label for="app-new-client-state">ESTADO</label><input type="text" id="app-new-client-state" name="uf" placeholder="Ex.: São Paulo"></div>
+        </section>
+        <section class="app-client-form-section">
+            <h5>IDENTIDADE VISUAL</h5>
+            <div class="app-client-form-group"><label>LOGO</label><button type="button" class="app-client-logo-pick"><i class="fa-regular fa-image" aria-hidden="true"></i><span><strong>SELECIONAR LOGO</strong><small>JPG, PNG ou WEBP · até 2 MB</small></span></button><input type="file" id="app-new-client-logo" name="logo" accept="image/png,image/jpeg,image/webp" hidden></div>
+            <label class="app-client-form-status-row"><span><strong>STATUS</strong><small>Cliente ativo e disponível no sistema.</small></span><input type="checkbox" id="app-new-client-active" name="ativo" checked><i aria-hidden="true"></i></label>
+        </section>
         <div class="app-client-form-footer">
-
-            <button
-                type="submit"
-                class="app-client-form-submit"
-                disabled
-            >
-                CADASTRAR
-            </button>
-
-            <p>
-                Demonstração visual: o cadastro está desabilitado.
-            </p>
-
+            <button type="button" class="app-client-form-cancel" data-screen="clientes">CANCELAR</button>
+            <button type="submit" class="app-client-form-submit">CADASTRAR</button>
         </div>
-
     </form>
-
 </div>
 <!-- Novo Cliente -->
 
+<!-- Veículos -->
+<section class="app-vehicles" data-view="veiculos" hidden>
+  <div class="app-vehicles-tools">
+    <div class="app-vehicles-search">
+      <input id="app-vehicles-query" type="search" placeholder="Buscar veículos..." aria-label="Buscar veículos">
+      <button type="button" class="app-vehicles-search-submit" aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <button type="button" class="app-vehicles-filter-open" aria-label="Abrir filtros"><i class="fa-solid fa-sliders"></i></button>
+  </div>
+  <div class="app-vehicles-list-heading">
+    <span><strong id="app-vehicles-count">1 veículo</strong></span>
+    <button type="button" class="app-vehicles-new" data-screen="novo-veiculo">＋ VEÍCULO</button>
+  </div>
+  <div class="app-vehicles-selection-bar" hidden>
+    <div class="app-vehicles-selection-info">
+      <strong><span id="app-vehicles-selected-count">0</span> de <span id="app-vehicles-total-count">100</span> selecionado(s)</strong>
+      <small>Escolha os veículos que deseja excluir.</small>
+    </div>
+    <div class="app-vehicles-selection-actions">
+      <button type="button" class="app-vehicles-select-all">TODOS</button>
+      <button type="button" class="app-vehicles-delete-selected" aria-label="Excluir veículos selecionados" disabled><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+      <button type="button" class="app-vehicles-cancel-select" aria-label="Cancelar seleção"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <button type="button" class="app-vehicles-select-trigger">
+    <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
+    <span>SELECIONAR VEÍCULOS</span>
+  </button>
+  <div class="app-vehicles-list">
+    <button type="button" class="app-vehicle-card" data-vehicle-id="logos" data-vehicle-name="LOGOS" data-vehicle-status="ativo" data-vehicle-tier="" data-vehicle-contacts="1" data-vehicle-clippings="3" aria-pressed="false" data-screen="detalhes-veiculo">
+      <span class="app-vehicle-card-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
+      <span class="app-vehicle-card-main"><strong>LOGOS</strong><small>Tier não definido · Canal de notícias da LOGOS · Ativo</small><small class="app-vehicle-card-count">1 contato · 3 clippings</small></span>
+      <span class="app-vehicle-card-check" aria-hidden="true"><i class="fa-regular fa-square"></i></span>
+      <i class="fa-solid fa-chevron-right app-vehicle-card-chevron" aria-hidden="true"></i>
+    </button>
+  </div>
+  <p class="app-vehicles-empty" hidden>Nenhum veículo encontrado.</p>
+  <div class="app-vehicles-filter-backdrop" hidden>
+    <section class="app-vehicles-filter-panel" role="dialog" aria-modal="true" aria-label="Filtros de veículos">
+      <header><div><h4>FILTROS</h4><p>Refine os veículos exibidos</p></div><button type="button" class="app-vehicles-filter-close" aria-label="Fechar filtros">×</button></header>
+      <div class="app-vehicles-filter-body">
+        <fieldset><legend>STATUS</legend><div class="app-vehicles-status-options">
+          <button type="button" data-vehicle-status-filter="ativo">Ativos</button><button type="button" data-vehicle-status-filter="inativo">Inativos</button><button type="button" data-vehicle-status-filter="todos" class="selected">Todos</button>
+        </div></fieldset>
+        <fieldset><legend>ORDENAÇÃO</legend><div class="app-vehicles-sort-options">
+          <button type="button" data-vehicle-sort="alpha" class="selected">ORDEM ALFABÉTICA</button><button type="button" data-vehicle-sort="contacts-desc">MAIS CONTATOS</button><button type="button" data-vehicle-sort="contacts-asc">MENOS CONTATOS</button><button type="button" data-vehicle-sort="clippings-desc">MAIS CLIPPINGS</button><button type="button" data-vehicle-sort="clippings-asc">MENOS CLIPPINGS</button>
+        </div></fieldset>
+        <label>MÍNIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-min-contacts" placeholder="Ex.: 5"></label>
+        <label>MÁXIMO DE CONTATOS VINCULADOS<input type="number" min="0" id="app-vehicles-max-contacts" placeholder="Ex.: 20"></label>
+        <small>Defina a quantidade mínima e/ou máxima de vínculos.</small>
+      </div>
+      <footer><button type="button" class="app-vehicles-filter-clear">LIMPAR</button><button type="button" class="app-vehicles-filter-apply">APLICAR</button></footer>
+    </section>
+  </div>
+</section>
+
+<section class="app-vehicle-details" data-view="detalhes-veiculo" hidden>
+  <div class="app-vehicle-detail-actions">
+    <button type="button" class="app-vehicle-edit" data-screen="editar-veiculo"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Editar</button>
+    <button type="button" class="app-vehicle-delete" title="Ação ilustrativa"><i class="fa-regular fa-trash-can" aria-hidden="true"></i> Excluir</button>
+  </div>
+  <article class="app-vehicle-identity">
+    <span class="app-vehicle-identity-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
+    <div><h4 data-vehicle-detail="name">LOGOS</h4><p data-vehicle-detail="reach">500 mil leitores</p><strong data-vehicle-detail="status">ATIVO</strong></div>
+  </article>
+  <h5>INFORMAÇÕES</h5>
+  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-file-lines" aria-hidden="true"></i></span><div><small>DESCRIÇÃO</small><p data-vehicle-detail="description">Canal de notícias da LOGOS</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-chart-column" aria-hidden="true"></i></span><div><small>ALCANCE</small><p data-vehicle-detail="reach">500 mil leitores</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-solid fa-award" aria-hidden="true"></i></span><div><small>TIER</small><p data-vehicle-detail="tier">Não definido</p></div></div>
+  <div class="app-vehicle-info-card"><span><i class="fa-regular fa-image" aria-hidden="true"></i></span><div><small>LOGO</small><p>Não informado</p></div></div>
+  <section class="app-vehicle-addresses">
+    <h4>ENDEREÇOS DO SITE</h4>
+    <p>Usados para reconhecer o veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p>
+    <div class="app-vehicle-address-entry">
+      <i class="fa-solid fa-globe" aria-hidden="true"></i>
+      <span><strong>https://logos.com.br</strong><small>Somente este domínio</small></span>
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </div>
+  </section>
+  <section class="app-vehicle-relations">
+    <h5>VÍNCULOS DO VEÍCULO</h5>
+    <div class="app-vehicle-tabs" role="tablist" aria-label="Vínculos do veículo">
+      <button type="button" role="tab" aria-selected="true" class="selected" data-vehicle-tab="contacts">CONTATOS</button>
+      <button type="button" role="tab" aria-selected="false" data-vehicle-tab="clippings">CLIPPINGS</button>
+    </div>
+    <section class="app-vehicle-linked-section" role="tabpanel" data-vehicle-panel="contacts">
+      <h5>CONTATOS VINCULADOS <span>1</span></h5>
+      <p>Contatos atualmente associados a este veículo.</p>
+      <button type="button" class="app-vehicle-contact-select">SELECIONAR CONTATOS</button>
+      <div class="app-vehicle-contact-selection" hidden>
+        <div><strong><span data-vehicle-contact-selected>0</span> de 100 selecionado(s)</strong><small>Escolha os contatos que deseja desvincular.</small></div>
+        <button type="button" data-vehicle-contact-select-all>TODOS</button>
+        <button type="button" data-vehicle-contact-clear aria-label="Cancelar seleção">×</button>
+      </div>
+      <button type="button" class="app-vehicle-contact-card">
+        <span class="app-vehicle-contact-avatar">A</span>
+        <div><strong>Ademilson</strong><small>ademilson@example.com</small><small>Editor · Itajubá · São Paulo</small></div>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </section>
+    <section class="app-vehicle-linked-section app-vehicle-linked-clippings" role="tabpanel" data-vehicle-panel="clippings" hidden>
+      <h5>CLIPPINGS VINCULADOS <span>3</span></h5>
+      <p>Publicações deste veículo</p>
+      <label class="app-vehicle-year-label">ANO DOS CLIPPINGS</label>
+      <button type="button" class="app-vehicle-year-select"><span><i class="fa-regular fa-calendar" aria-hidden="true"></i> 2026</span><small>2 clippings</small><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+      <button type="button" class="app-vehicle-open-year" data-screen="clipping">ABRIR ANO 2026</button>
+    </section>
+  </section>
+</section>
+
+<section class="app-vehicle-form" data-view="novo-veiculo" hidden>
+  <div class="app-vehicle-form-heading">
+    <h4>CADASTRAR VEÍCULO</h4>
+    <p>Cadastre o veículo que poderá ser vinculado aos contatos do mailing. Campos marcados com * são obrigatórios.</p>
+  </div>
+  <article class="app-vehicle-form-identity" hidden>
+    <span class="app-vehicle-identity-icon"><i class="fa-regular fa-newspaper" aria-hidden="true"></i></span>
+    <div><h4>LOGOS</h4><p>500 mil leitores</p><strong>ATIVO</strong></div>
+  </article>
+  <h5>DADOS DO VEÍCULO</h5>
+  <form id="app-vehicle-form" autocomplete="off">
+    <label>NOME *<input name="name" type="text" placeholder="Ex.: Jornal LOGOS"></label>
+    <label>DESCRIÇÃO<textarea name="description" placeholder="Ex.: Portal de notícias regional"></textarea></label>
+    <label>ALCANCE<textarea name="reach" placeholder="Ex.: Nacional, 250 mil leitores/mês"></textarea></label>
+    <fieldset><legend>TIER</legend><div class="app-vehicle-tier-options">
+      <label><input type="radio" name="tier" value="" checked> Não definido</label><label><input type="radio" name="tier" value="1"> Tier 1</label><label><input type="radio" name="tier" value="2"> Tier 2</label><label><input type="radio" name="tier" value="3"> Tier 3</label>
+    </div><small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small></fieldset>
+    <fieldset class="app-vehicle-logo-field"><legend>LOGO</legend><button type="button" class="app-vehicle-logo-pick"><i class="fa-regular fa-image" aria-hidden="true"></i><span><strong>SELECIONAR LOGO</strong><small>JPG, PNG ou WEBP · até 2 MB</small></span></button><input type="file" name="logo" accept="image/jpeg,image/png,image/webp" hidden></fieldset>
+    <fieldset class="app-vehicle-address-form">
+      <h4>ENDEREÇOS DO SITE (opcional)</h4>
+      <p>Ajuda a reconhecer este veículo. Se o site usar apenas HTTP, informe http:// antes do domínio.</p>
+      <div class="app-vehicle-address-list" aria-live="polite"></div>
+      <label>DOMÍNIO<input name="domain" type="text" placeholder="Ex.: nomesite.com"></label>
+      <label>SEÇÃO DO SITE (OPCIONAL)<input name="section" type="text" placeholder="Ex.: /agro"></label>
+      <label class="app-vehicle-subdomains"><span><strong>Incluir subdomínios</strong><small>Ex.: portal.exemplo.com para exemplo.com</small></span><input name="includeSubdomains" type="checkbox"><i aria-hidden="true"></i></label>
+      <button type="button" class="app-vehicle-add-address">ADICIONAR ENDEREÇO</button>
+    </fieldset>
+    <label class="app-vehicle-status-card"><span><strong>STATUS</strong><small>Veículo disponível para vinculação no mailing</small></span><input name="active" type="checkbox" checked><i aria-hidden="true"></i></label>
+    <div class="app-vehicle-form-actions"><button type="button" data-screen="veiculos">CANCELAR</button><button type="submit">CADASTRAR</button></div>
+  </form>
+</section>
+
+<!-- Templates -->
+<section class="app-templates" data-view="templates" hidden>
+ <div class="app-template-library-head"><span class="app-template-library-icon"><i class="fa-regular fa-folder"></i></span><div><h4>Biblioteca</h4><p>Modelos de release</p></div><button type="button" data-screen="novo-template">+ NOVO</button></div>
+ <div class="app-template-filter-box"><div class="app-template-search"><input id="app-template-search" type="search" placeholder="Buscar template..." aria-label="Buscar template"><button type="button"><i class="fa-solid fa-magnifying-glass"></i></button></div>
+ <div class="app-template-tabs"><button class="selected" data-template-tab="todos">Todos</button><button data-template-tab="padroes">Padrões</button><button data-template-tab="assessoria">Da assessoria</button></div></div>
+ <div class="app-template-count"><strong>Modelos</strong><span id="app-template-count">3 encontrados</span></div>
+ <p class="app-template-empty" hidden>Nenhum template encontrado.</p>
+ <div class="app-template-grid">
+  <article class="app-template-card" data-template-card data-template-id="simples" data-template-name="Release simples" data-template-origin="padrao">
+   <div class="app-template-thumb"><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Release simples</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="simples">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="simples">▢ CRIAR CÓPIA</button>
+  </article>
+  <article class="app-template-card" data-template-card data-template-id="imagem" data-template-name="Release com imagem" data-template-origin="padrao">
+   <div class="app-template-thumb"><div class="app-template-thumb-image">▧ Imagem da matéria</div><strong>Título da matéria</strong><small>Uma apresentação breve da matéria.</small><p>Escreva aqui o conteúdo da matéria.</p><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Release com imagem</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="imagem">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="imagem">▢ CRIAR CÓPIA</button>
+  </article>
+  <article class="app-template-card" data-template-card data-template-id="aviso" data-template-name="Aviso de pauta" data-template-origin="padrao">
+   <div class="app-template-thumb"><strong>Título do aviso de pauta</strong><p>Apresente o evento e os destaques para a imprensa.</p><small>Serviço<br>Data e horário<br>Local e endereço<br>Informações para participação</small><hr><small>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</small></div>
+   <h4>Aviso de pauta</h4><p>Padrão do LOGOS</p><button data-template-action="preview" data-screen="preview-template" data-template-id="aviso">◉ VER PRÉVIA</button><button data-template-action="copy" data-screen="editar-copia-template" data-template-id="aviso">▢ CRIAR CÓPIA</button>
+  </article>
+ </div>
+</section>
+<section class="app-template-preview" data-view="preview-template" hidden>
+ <strong id="app-template-preview-name"></strong><article class="app-template-preview-card" id="app-template-preview-card"></article>
+ <div class="app-template-preview-actions"><button type="button" data-screen="templates">FECHAR</button><button type="button" data-action="copy-preview" data-screen="editar-copia-template">▢ CRIAR CÓPIA</button></div>
+</section>
+<section class="app-template-editor" data-view="novo-template" hidden>
+ <label>NOME DO TEMPLATE<input id="app-template-name" placeholder="Ex.: Release institucional"></label>
+ <p class="app-template-hint">Este modelo ficará disponível para os próximos releases da assessoria.</p>
+ <div class="app-template-editor-tabs"><button class="selected" data-editor-tab="blocks">Editar blocos</button><button data-editor-tab="preview">Prévia</button></div>
+ <p class="app-template-current">Template: <span id="app-template-current-name">Novo template</span></p>
+ <p class="app-template-empty-blocks">Adicione o primeiro bloco.</p>
+ <div id="app-template-block-list"></div>
+ <div id="app-template-editor-preview" hidden></div>
+ <button class="app-template-add-block" type="button">＋ ADICIONAR BLOCO</button>
+ <p class="app-template-block-count"><span id="app-template-block-count">0</span> de 100 blocos</p>
+ <div class="app-template-editor-actions"><button type="button" data-screen="templates">VOLTAR</button><button type="button" data-action="save-template">✓ SALVAR</button></div>
+ <div class="app-template-add-modal" hidden><div class="app-template-add-panel">
+  <header><div><h4>Adicionar bloco</h4><p>Escolha o que deseja incluir na matéria.</p></div><button type="button" data-action="close-block-modal">×</button></header>
+  <div class="app-template-block-choices">
+   <p>Conteúdo</p><button data-block-choice="Título">Aa <strong>Título</strong><small>Destaque principal</small></button><button data-block-choice="Linha fina">＝ <strong>Linha fina</strong><small>Resumo da matéria</small></button><button data-block-choice="Texto">▤ <strong>Texto</strong><small>Parágrafos e informações</small></button><button data-block-choice="Contato de imprensa">◉ <strong>Contato de imprensa</strong><small>Dados da assessoria</small></button>
+   <p>Mídia e links</p><button data-block-choice="Imagem / logo">▧ <strong>Imagem / logo</strong><small>Imagem com legenda</small></button><button data-block-choice="Botão com link">↪ <strong>Botão com link</strong><small>Acesso em destaque</small></button><button data-block-choice="Arquivo">♧ <strong>Arquivo</strong><small>Link para download</small></button>
+   <p>Organização</p><button data-block-choice="Divisor">— <strong>Divisor</strong><small>Linha de separação</small></button><button data-block-choice="Espaçamento">↗ <strong>Espaçamento</strong><small>Respiro entre blocos</small></button>
+  </div><footer><button type="button" data-action="insert-block">＋ INSERIR BLOCO</button><button type="button" data-action="close-block-modal">× CANCELAR</button></footer>
+ </div></div>
+</section>
+
+
+<section class="app-clipping-groups" data-view="clipping" hidden>
+  <div class="app-clipping-primary-actions"><button data-screen="novo-clipping">＋ NOVO CLIPPING</button><button data-screen="importar-clippings">⇩ IMPORTAR CSV</button></div>
+  <h4>Grupos Anuais</h4><p>Selecione um ano para ver seus clientes e publicações.</p>
+  <button class="app-clipping-year-card" data-screen="clipping-clientes"><span>▦</span><div><strong>2026</strong><small>2 publicações · 2 clientes</small></div><em>Ano atual</em><i>›</i></button>
+  <button class="app-clipping-year-card" data-screen="clipping-clientes"><span>▦</span><div><strong>2025</strong><small>1 publicação · 1 cliente</small></div><i>›</i></button>
+</section>
+<section class="app-clipping-clients" data-view="clipping-clientes" hidden>
+  <div class="app-clipping-search-row"><div class="app-clipping-search"><input placeholder="Buscar cliente..."><button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="app-clipping-filter-open" aria-label="Filtrar clientes"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div><p>3 cliente(s) disponíveis</p>
+  <div class="app-clipping-client-list">
+    <button class="app-clipping-client-card" data-screen="clipping-cliente"><span class="app-clipping-client-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span><span><strong>Cleiton</strong><small hidden>Varejo · São Paulo · São Paulo · Ativo</small><em>1 clipping (2026)</em></span><b>›</b></button>
+    <button class="app-clipping-client-card" data-screen="clipping-cliente"><span class="app-clipping-client-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span><span><strong>João</strong><small hidden>Tecnologia · Curitiba · Paraná · Ativo</small><em>0 clippings (2026)</em></span><b>›</b></button>
+    <button class="app-clipping-client-card" data-screen="clipping-cliente"><span class="app-clipping-client-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span><span><strong>Maria</strong><small hidden>Saúde · São Paulo · São Paulo · Ativo</small><em>1 clipping (2026)</em></span><b>›</b></button>
+  </div>
+  <div class="app-clipping-client-filter-backdrop" hidden><section class="app-clipping-sheet"><header><div><h4>FILTROS</h4><p>Refine os clientes exibidos</p></div><button class="app-clipping-filter-close">×</button></header><div><label>STATUS</label><div class="app-clipping-filter-status"><button>Ativos</button><button>Inativos</button><button class="selected">Todos</button></div><label>ESTADO<input placeholder="Ex.: São Paulo"></label><label>CIDADE<input placeholder="Ex.: Campinas"></label><label>SEGMENTO<input placeholder="Ex.: Tecnologia, Saúde, Varejo"></label></div><footer><button class="app-clipping-filter-clear">LIMPAR</button><button class="app-clipping-filter-apply">APLICAR</button></footer></section></div>
+</section>
+<section class="app-clipping-client-page" data-view="clipping-cliente" hidden>
+  <div class="app-clipping-search-row"><div class="app-clipping-search"><input placeholder="Buscar pauta, veículo..."><button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="app-clipping-filter-open" aria-label="Filtrar clippings"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div>
+  <div class="app-clipping-client-meta"><p class="app-clipping-count">1 clipping(s) em 2026</p><div class="app-clipping-client-toolbar"><button type="button" aria-label="Exportar clippings" title="Exportar"><i class="fa-solid fa-download" aria-hidden="true"></i></button><button type="button" aria-label="Importar clippings" title="Importar"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i></button><button type="button" data-screen="novo-clipping">＋ CLIPPING</button></div></div>
+  <button class="app-clipping-select-trigger">☑ SELECIONAR CLIPPINGS</button>
+  <div class="app-clipping-selection-bar" hidden><span><strong>0 de 100 selecionado(s)</strong><small>Escolha os clippings que deseja excluir.</small></span><button>TODOS</button><button>▤</button><button class="app-clipping-cancel-selection">×</button></div>
+  <div class="app-clipping-items"><article class="app-clipping-record expanded" data-clipping-record><button type="button" class="app-clipping-item" data-action="toggle-clipping-item"><span data-clipping-card-date-short>19/11</span><b data-clipping-card-vehicle>LOGOS</b><em>Tier —</em><strong data-clipping-card-subject>Varejo</strong><small data-clipping-card-category>Sem categoria</small><i class="fa-solid fa-chevron-up" aria-hidden="true"></i></button><div class="app-clipping-item-expanded"><p><b>Publicação:</b> <span data-clipping-card-date>19/11/2026</span></p><p><b>Categorias:</b> <span data-clipping-card-categories>Não informadas</span></p><p><b>Veículo:</b> <span data-clipping-card-vehicle-detail>LOGOS</span></p><p><b>Tier:</b> <span>Tier não definido</span></p><p><b>Link:</b> <span>Não informado</span></p><p><b>Arquivos:</b> <span>Nenhum arquivo anexado</span></p><button type="button" data-screen="detalhes-clipping">Ver detalhes <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div></article><div class="app-clipping-empty" hidden><strong>Nenhum clipping encontrado</strong><small>Cadastre uma publicação para este cliente e ano.</small></div></div>
+  <div class="app-clipping-items-filter" hidden><section class="app-clipping-sheet"><header><div><h4>FILTROS</h4><p>Refine os clippings exibidos</p></div><button class="app-clipping-items-filter-close">×</button></header><div><label>ANO DE REFERÊNCIA<input value="2026"></label><label>VEÍCULO<input placeholder="Buscar veículo"></label><label>CATEGORIA<input placeholder="Ex.: Site, Jornal, TV"></label><label>DATA DE PUBLICAÇÃO<input placeholder="DD/MM/AAAA"></label></div><footer><button class="app-clipping-items-filter-clear">LIMPAR</button><button class="app-clipping-items-filter-apply">APLICAR</button></footer></section></div>
+</section>
+<section class="app-clipping-details" data-view="detalhes-clipping" hidden>
+  <div class="app-clipping-detail-actions"><button data-screen="editar-clipping">✎ Editar</button><button class="app-clipping-delete">▤ Excluir</button></div>
+  <article><small>CLIENTE</small><strong>Cleiton</strong><span>2026 · Varejo · 19/11/2026</span></article><h4>DADOS DA PUBLICAÇÃO</h4>
+  <article><small>VEÍCULO</small><strong>LOGOS</strong><span>Tier não definido · Programa / seção não informado</span></article>
+  <article><small>CATEGORIAS</small><strong>Sem categoria</strong></article><article><small>TRECHO</small><strong>Não informado</strong></article>
+  <article><small>LINK</small><strong>Sem link informado</strong><p>Você também pode cadastrar a publicação com arquivos anexados.</p></article>
+  <article><small>OBSERVAÇÕES</small><strong>Nenhuma observação adicionada</strong></article><article><small>ANEXOS</small><strong>Nenhum anexo</strong><button>＋ ADICIONAR</button></article>
+</section>
+<form class="app-clipping-form" data-view="novo-clipping" id="app-clipping-form-fields" autocomplete="off" hidden>
+  <article class="app-clipping-client-selector"><small>CLIENTE</small><strong data-clipping-selected-client>Selecione o cliente</strong><button class="app-clipping-client-open">Selecionar</button></article>
+  <article class="app-clipping-year-selector"><small>ANO DE REFERÊNCIA</small><strong data-clipping-year-label>2026</strong><button type="button" data-open="clipping-year">Alterar</button></article><p data-clipping-year-note>Sem data de publicação, o clipping ficará em 2026.</p>
+  <h4>DADOS DA PUBLICAÇÃO</h4><label>LINK<input name="link" placeholder="https://..."></label>
+  <div class="app-clipping-form-tools"><button class="app-clipping-search-data" disabled><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> BUSCAR DADOS</button><button class="app-clipping-capture-open" disabled>▧ CAPTURAR IMAGEM</button></div>
+  <label>DATA DE PUBLICAÇÃO<span class="app-clipping-date-field"><input name="date" placeholder="DD/MM/AAAA"><button type="button" class="app-clipping-field-clear" data-clear-field="date" hidden>×</button><button type="button" data-open="report-date-picker" aria-label="Escolher data de publicação">▦</button></span></label>
+  <label>PAUTA<span class="app-clipping-clearable"><input name="subject" placeholder="Assunto ou título da matéria"><button type="button" class="app-clipping-field-clear" data-clear-field="subject" hidden>×</button></span></label><label>VEÍCULO<span class="app-clipping-clearable"><input name="vehicle" placeholder="Buscar pelo nome do veículo"><button type="button" class="app-clipping-field-clear" data-clear-field="vehicle" hidden>×</button></span></label>
+  <button class="app-clipping-vehicle-card"><strong>gov</strong><small>Tier não definido</small><span>Recolher detalhes　⌃</span><p>Descrição<br>Descrição não informada.</p><p>Alcance<br>Alcance não informado.</p><p>Endereços associados<br>gov.br · Site inteiro</p></button>
+  <label>PROGRAMA / SEÇÃO<input name="program" placeholder="Ex.: Jornal da manhã"></label><label>CATEGORIAS<input name="categories" placeholder="Separe as categorias por vírgula"></label>
+  <div class="app-clipping-category-chips"><button>+ Site</button><button>+ TV</button><button>+ Rádio</button><button>+ Jornal</button><button>+ Revista</button><button>+ Podcast</button><button>+ Redes sociais</button></div>
+  <fieldset><legend>TIER</legend><div class="app-clipping-tier-options"><button class="selected">◉ Não definido</button><button>○ Tier 1</button><button>○ Tier 2</button><button>○ Tier 3</button></div><small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small></fieldset>
+  <div class="app-clipping-time-row"><label>INÍCIO<input placeholder="00:00"></label><label>FIM<input placeholder="00:00"></label></div><small>A duração será calculada com início e fim válidos.<br>Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.</small>
+  <section class="app-clipping-attachments"><header><strong>ANEXOS</strong><button>＋ ADICIONAR</button></header><small>JPG, PNG, WEBP, PDF, MP4, WEBM, MOV, MP3 ou WAV. Até 30 MB por arquivo. Enviados ao salvar.</small><div>▧　Nenhum anexo selecionado</div></section>
+  <label>OBSERVAÇÕES<textarea name="notes" placeholder="Informações adicionais"></textarea></label><div class="app-clipping-form-actions"><button data-screen="clipping">CANCELAR</button><button type="button">SALVAR</button></div>
+  <div class="app-clipping-client-picker" hidden><header><strong>Selecionar cliente</strong><button class="app-clipping-client-close">×</button></header><div class="app-clipping-search"><input placeholder="Buscar cliente..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="app-clipping-quick-client" data-screen="novo-cliente">＋ Cadastro rápido de cliente</button><button class="app-clipping-pick-client">Cleiton　✓</button><button class="app-clipping-pick-client">João</button><button class="app-clipping-pick-client">Maria</button></div>
+  <div class="app-clipping-data-modal" hidden><section><header><div><h4>Dados encontrados</h4><p>Confira os dados antes de preencher o clipping.</p></div><button class="app-clipping-data-close">×</button></header><article><small>PUBLICAÇÃO</small><b>PAUTA</b><p>Ministério da Igualdade Racial conecta participação comunitária e combate ao racismo ambiental na COP31</p><b>DATA</b><p>13/11/2026</p></article><article><small>VEÍCULO</small><b>IDENTIFICADO NO LINK</b><p>gov</p><em>✓ VEÍCULO SELECIONADO</em><p>O endereço gov.br já foi associado a este veículo no cadastro.</p></article><footer><strong>Como deseja preencher?</strong><button class="app-clipping-insert-all"><b>INSERIR TUDO</b><small>Substitui os campos atuais</small></button><button class="app-clipping-fill-empty"><b>SÓ VAZIOS</b><small>Preserva o que já existe</small></button></footer></section></div>
+  <div class="app-clipping-capture-modal" hidden><section><header><div><strong>Capturar imagem</strong><small>Escolha a parte da página que deseja usar.</small></div><button class="app-clipping-capture-close" aria-label="Fechar">×</button></header><div class="app-clipping-capture-tools"><button class="selected" type="button">RECORTAR</button><button type="button">NAVEGAR</button><div><button type="button" data-capture-zoom="-1" aria-label="Diminuir zoom">−</button><span>100%</span><button type="button" data-capture-zoom="1" aria-label="Aumentar zoom">＋</button></div></div><p>Arraste sobre a imagem para marcar o recorte.</p><div class="app-clipping-capture-preview" data-capture-canvas><div class="app-capture-page"><header><b>gov.br</b><small>Institucional　 Acessibilidade　 Participe　 Serviços</small></header><nav>☰　› Assuntos　› Notícias　› Igualdade Racial</nav><h4>Ministério da Igualdade Racial conecta participação comunitária e combate ao racismo ambiental na COP31</h4><p>Ministério da Igualdade Racial anuncia participação comunitária na COP31 e reforça a agenda de combate ao racismo ambiental.</p><small>Publicado em 13/11/2026 · Atualizado em 18/11/2026</small><div class="app-capture-hero"><small>COP 31 · AGENDA MIR</small><span>AGENDA<br><b>MIR NA COP31</b></span><i>Participação e justiça climática</i></div></div><div class="app-capture-selection" hidden></div></div><a href="#" class="app-clipping-capture-reset">Refazer captura</a><small class="app-capture-step-label">IR PARA TRECHO</small><div class="app-capture-pagination"><button type="button" disabled>‹　ANTERIOR</button><span data-capture-segment>1</span><button type="button" data-capture-next>IR　PRÓXIMO　›</button></div><footer><button class="app-clipping-capture-close">CANCELAR</button><button data-capture-use disabled>USAR RECORTE</button></footer></section></div>
+  <div class="app-clipping-year-modal" data-panel="clipping-year" hidden><section><header><strong>Ano de referência</strong><button type="button" data-close="clipping-year">×</button></header><label>ANO<div><input value="2026" inputmode="numeric" aria-label="Ano de referência"><button type="button" class="app-clipping-year-clear">×</button></div></label><button type="button" class="app-clipping-year-apply">APLICAR ANO</button></section></div>
+</form>
+<section class="app-clipping-import" data-view="importar-clippings" hidden><h4>1. Escolha o arquivo</h4><p>O CSV pode conter vários clientes. Associe a coluna Cliente antes de abrir a prévia. Cada linha usa o ano identificado no CSV. O ano padrão abaixo vale somente quando ele não informar um.</p><label class="app-import-year">ANO PADRÃO DO ARQUIVO<input value="2026" inputmode="numeric"></label><label class="app-clipping-import-file"><span class="app-import-file-icon">▤</span><strong data-import-file-name>Nenhum CSV selecionado</strong><small>Até 5 MB e 1.000 registros. Você poderá conferir as linhas antes de importar.</small><input type="file" accept=".csv,text/csv" hidden><b>ESCOLHER CSV</b></label><small class="app-import-preview-status" data-import-preview-status hidden></small><div class="app-clipping-import-footer"><button type="button" data-import-preview disabled>VER PRÉVIA</button></div></section>
+<!-- Mailing -->
+<section class="app-mailing-list" data-view="mailing" hidden>
+  <div class="app-mailing-toolbar"><div class="app-mailing-search"><input type="search" placeholder="Buscar nome ou e-mail..." aria-label="Buscar jornalista"><button aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="app-mailing-filter-open" aria-label="Filtros"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div>
+  <div class="app-mailing-list-heading"><span>1 contato</span><div><button data-action="mailing-export" aria-label="Exportar contatos">⇩</button><button data-action="mailing-import" aria-label="Importar contatos">⇧</button><button data-screen="novo-contato">＋ CONTATO</button></div></div>
+  <button class="app-mailing-select-trigger">☑ SELECIONAR CONTATOS</button>
+  <div class="app-mailing-selection-bar" hidden><span><strong>0 de 100 selecionado(s)</strong><small>Escolha os contatos que deseja excluir.</small></span><button>TODOS</button><button>▤</button><button class="app-mailing-selection-close">×</button></div>
+  <div class="app-mailing-contact-list"><button class="app-mailing-contact-card" data-screen="detalhes-contato"><span class="app-mailing-avatar">A</span><span><strong>Ademilson</strong><small>ademilson@example.com</small><em>Editor · Itajubá · São Paulo · LOGOS</em></span><i>›</i><span class="app-mailing-checkbox">□</span></button></div>
+  <div class="app-mailing-filter-backdrop" hidden><section class="app-mailing-filter-panel"><header><div><h4>FILTROS</h4><p>Modifique os contatos exibidos</p></div><button class="app-mailing-filter-close">×</button></header><div class="app-mailing-filter-body"><label>STATUS</label><div class="app-mailing-status-options"><button class="selected">Ativos</button><button>Inativos</button><button>Todos</button></div><label>ESTADO<input placeholder="Ex.: São Paulo"></label><label>CIDADE<input placeholder="Ex.: Campinas"></label><label>CARGO<input placeholder="Ex.: Repórter"></label><label>VEÍCULO<input placeholder="Buscar veículo pelo nome"></label></div><footer><button class="app-mailing-filter-clear">LIMPAR</button><button class="app-mailing-filter-apply">APLICAR</button></footer></section></div>
+</section>
+<div class="app-mailing-export-modal" hidden><section><span>✓</span><h3>Exportação concluída</h3><p>Arquivo gerado: mailing-2026-11-21-134255.csv</p><p>1 contato(s) exportado(s) da assessoria.<br>O arquivo contém todos os contatos disponíveis.</p><button data-action="mailing-export-close">ENTENDI</button></section></div>
+<section class="app-contact-details" data-view="detalhes-contato" hidden>
+  <div class="app-contact-detail-actions"><button data-screen="editar-contato">✎ Editar</button><button class="app-contact-delete">▤ Excluir</button></div>
+  <article class="app-contact-profile"><span>A</span><div><h4>Ademilson</h4><p>ademilson@example.com</p><strong>ATIVO</strong></div></article>
+  <h5>INFORMAÇÕES</h5>
+  <article><small>E-MAIL</small><strong>ademilson@example.com</strong><button>✉</button></article>
+  <article><small>TELEFONE</small><strong>Não informado</strong></article>
+  <article><small>CARGO</small><strong>Editor</strong></article>
+  <article><small>LOCALIZAÇÃO</small><strong>Itajubá - São Paulo</strong></article>
+  <article><small>VEÍCULO</small><strong>LOGOS</strong></article>
+</section>
+<section class="app-contact-form" data-view="novo-contato" hidden>
+  <article class="app-contact-form-heading"><h4>CADASTRAR CONTATO</h4><p>Adicione um novo contato ao mailing da assessoria. Nome e telefone OU e-mail são obrigatórios.</p></article>
+  <article class="app-contact-edit-profile" hidden><span>A</span><div><strong>Ademilson</strong><small>ademilson@example.com</small></div></article>
+  <h5>DADOS DO CONTATO</h5>
+  <label>NOME *<input name="name" placeholder="Nome do jornalista"></label>
+  <label>E-MAIL<input name="email" type="email" placeholder="contato@exemplo.com"></label>
+  <label>TELEFONE<input name="phone" placeholder="Ex.: (11) 99999-9999"></label>
+  <label>CARGO<input name="job" placeholder="Ex.: Repórter"></label>
+  <label>ESTADO<input name="state" placeholder="Ex.: São Paulo"></label>
+  <label>CIDADE<input name="city" placeholder="Ex.: Campinas"></label>
+  <label>OBSERVAÇÕES<textarea name="notes" placeholder="Informações adicionais"></textarea></label>
+  <label>VEÍCULO<input name="vehicle" placeholder="Buscar veículo pelo nome"></label>
+  <button type="button" class="app-contact-vehicle-open">＋ Selecionar veículo</button>
+  <label class="app-contact-status"><span><strong>STATUS</strong><small>Contato disponível no mailing.</small></span><input type="checkbox" checked><i></i></label>
+  <div class="app-contact-form-actions"><button data-screen="mailing">CANCELAR</button><button type="button" class="app-contact-save">CADASTRAR</button></div>
+  <div class="app-contact-vehicle-picker" hidden><header><strong>Selecionar veículo</strong><button class="app-contact-vehicle-close">×</button></header><div class="app-mailing-search"><input placeholder="Buscar veículo..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="app-contact-pick-vehicle">LOGOS <i>✓</i></button></div>
+</section>
+<!-- Releases -->
+<section class="demo-page demo-releases" data-view="releases" hidden>
+  <div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar título ou assunto..." aria-label="Buscar release"><button aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="release-filter" aria-label="Filtros"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div>
+  <div class="demo-list-heading"><span>1 release</span><button class="demo-primary" data-screen="novo-release" data-release-new>＋ RELEASE</button></div>
+  <button class="demo-release-card" data-screen="detalhes-release"><strong>Varejo em 2026</strong><b>Cleiton</b><span class="demo-status draft">Rascunho</span><span>1 destinatário</span><small>19/11/2026 · luidgi</small></button>
+  <div class="demo-sheet-overlay" data-panel="release-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Releases</p></div><button data-close="release-filter">×</button></header><div class="demo-sheet-body"><strong>SITUAÇÃO</strong><div class="demo-choice-stack"><button class="selected">Todos</button><button>Rascunho</button><button>Agendado</button><button>Enviando</button><button>Enviado</button></div></div><footer><button data-clear="release-filter">LIMPAR</button><button data-close="release-filter">APLICAR</button></footer></section></div>
+</section>
+<section class="demo-page demo-release-details" data-view="detalhes-release" hidden>
+  <div class="demo-actions"><button data-screen="editar-release">✎ Editar</button><button>▤ Excluir</button></div><article class="demo-card"><small>RELEASE</small><h2>Varejo em 2026</h2><b>Cleiton</b><p><span class="demo-status draft">Rascunho</span>　1 destinatário</p><small>19/11/2026 · luidgi</small></article><article class="demo-card"><h3>DESTINATÁRIOS</h3><p>Ademilson · ademilson@example.com</p></article><button class="demo-primary demo-wide" data-screen="novo-release">ABRIR FLUXO DO RELEASE</button>
+</section>
+<section class="demo-page demo-release-wizard" data-view="novo-release" hidden>
+  <div class="demo-steps" aria-label="Etapas do release"><span class="current" data-step-indicator="1"><b>1</b><small>Destino</small></span><span data-step-indicator="2"><b>2</b><small>Template</small></span><span data-step-indicator="3"><b>3</b><small>Conteúdo</small></span><span data-step-indicator="4"><b>4</b><small>E-mail</small></span><span data-step-indicator="5"><b>5</b><small>Revisão</small></span></div>
+  <div class="demo-step" data-release-step="1"><h2>Destinatários</h2><small>Etapa 1 de 5</small><label>TÍTULO INTERNO<input placeholder="Identifique esse release"></label><button class="demo-select-row" data-open="release-client"><small>CLIENTE</small><strong data-release-client-label>Selecione o cliente</strong><b>Selecionar</b></button><label>DESTINATÁRIOS</label><button class="demo-select-row demo-release-recipient-row" data-screen="selecionar-contatos"><span class="demo-release-recipient-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></span><span class="demo-release-recipient-copy"><strong data-recipients-summary>Selecionar contatos</strong><small>Escolha os contatos do Mailing</small></span><span class="demo-release-recipient-arrow" aria-hidden="true">›</span></button><div class="demo-two-actions"><button data-action="release-draft">SALVAR RASCUNHO</button><button class="demo-primary" data-action="release-next">PRÓXIMO</button></div><p class="demo-note">Você pode salvar o rascunho com o preenchimento incompleto.</p></div>
+  <div class="demo-step" data-release-step="2" hidden><h2>Template</h2><small>Etapa 2 de 5</small><div class="demo-search"><input placeholder="Buscar template..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><div class="demo-pills"><button class="selected" data-release-template-tab="all">Todos</button><button data-release-template-tab="standard">Padrões</button><button data-release-template-tab="created">Criados</button></div><p class="demo-note" data-template-selected hidden>Modelo selecionado — Release simples</p><article class="demo-template-choice" data-release-template="Release simples" data-release-template-origin="standard"><span>▤</span><strong>Release simples</strong><small>Padrão do LOGOS</small><button>VER PRÉVIA</button><input type="radio" name="release-template" aria-label="Selecionar Release simples"></article><article class="demo-template-choice" data-release-template="Release com imagem" data-release-template-origin="standard"><span>▤</span><strong>Release com imagem</strong><small>Padrão do LOGOS</small><button>VER PRÉVIA</button><input type="radio" name="release-template" aria-label="Selecionar Release com imagem"></article><article class="demo-template-choice" data-release-template="Aviso de pauta" data-release-template-origin="standard"><span>▤</span><strong>Aviso de pauta</strong><small>Padrão do LOGOS</small><button>VER PRÉVIA</button><input type="radio" name="release-template" aria-label="Selecionar Aviso de pauta"></article><p class="demo-note" data-release-template-empty hidden>Nenhum template encontrado.</p><button class="demo-primary demo-wide" data-action="release-next" disabled>AVANÇAR PARA EDITAR CONTEÚDO</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div></div>
+  <div class="demo-step" data-release-step="3" hidden><h2>Conteúdo</h2><small>Etapa 3 de 5</small><div class="demo-pills"><button class="selected" data-release-content-tab="edit">Editar blocos</button><button data-release-content-tab="preview">Prévia</button></div><p class="demo-note">Template: <span data-release-template-name>Release simples</span></p><div class="demo-release-block-list" data-release-editor><article class="demo-release-block" data-release-block="Título"><span><strong>Título</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Linha fina"><span><strong>Linha fina</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Texto"><span><strong>Texto</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Divisor"><span><strong>Divisor</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Contato de imprensa"><span><strong>Contato de imprensa</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article></div><button class="demo-primary demo-wide" data-action="release-add-block">＋　ADICIONAR BLOCO</button><small class="demo-block-count">5 de 100 blocos</small><div class="demo-content-preview" data-release-preview hidden><button class="demo-wide" data-action="release-toggle-pencils">◉　OCULTAR LÁPIS</button><article class="demo-release-preview-card"><div><h2 data-release-preview-title>Título da matéria</h2><button data-action="release-edit-preview">✎</button></div><div><p data-release-preview-lead>Uma apresentação breve da matéria.</p><button data-action="release-edit-preview">✎</button></div><div><p data-release-preview-body>Escreva aqui o conteúdo da matéria.</p><button data-action="release-edit-preview">✎</button></div><hr><div><p>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</p><button data-action="release-edit-preview">✎</button></div></article></div><div class="demo-sheet-overlay" data-panel="release-block-picker" hidden><section class="demo-sheet"><header><div><h3>Adicionar bloco</h3><p>Escolha o que deseja incluir na matéria.</p></div><button data-close="release-block-picker">×</button></header><div class="demo-sheet-body"><strong>Conteúdo</strong><div class="demo-block-options"><button data-insert-release-block="Título"><b>Aa</b><strong>Título</strong><small>Destaque principal</small></button><button data-insert-release-block="Linha fina"><b>＝</b><strong>Linha fina</strong><small>Resumo da matéria</small></button><button data-insert-release-block="Texto"><b>▤</b><strong>Texto</strong><small>Parágrafos e informações</small></button><button data-insert-release-block="Contato de imprensa"><b>◉</b><strong>Contato de imprensa</strong><small>Dados da assessoria</small></button></div><strong>Mídia e links</strong><div class="demo-block-options"><button data-insert-release-block="Imagem / logo"><b>▧</b><strong>Imagem / logo</strong><small>Imagem com legenda</small></button><button data-insert-release-block="Botão com link"><b>↗</b><strong>Botão com link</strong><small>Acesso em destaque</small></button><button data-insert-release-block="Arquivo"><b>♧</b><strong>Arquivo</strong><small>Link para download</small></button></div><strong>Organização</strong><div class="demo-block-options"><button data-insert-release-block="Divisor"><b>—</b><strong>Divisor</strong><small>Linha de separação</small></button><button data-insert-release-block="Espaçamento"><b>↗</b><strong>Espaçamento</strong><small>Respiro entre blocos</small></button></div></div><footer><button data-close="release-block-picker">×　CANCELAR</button><button data-action="release-insert-block" disabled>＋　INSERIR BLOCO</button></footer></section></div><button class="demo-primary demo-wide" data-action="release-next">AVANÇAR PARA DADOS DO E-MAIL</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div><p class="demo-note">Você pode salvar o rascunho com o preenchimento incompleto.</p></div>
+  <div class="demo-step" data-release-step="4" hidden><h2>Dados do e-mail</h2><small>Etapa 4 de 5</small><label>ASSUNTO DO E-MAIL<span class="demo-input-clear"><input placeholder="O assunto que o jornalista receberá"><button class="demo-clear" type="button" aria-label="Limpar assunto">×</button></span></label><label>PRIMEIRA LINHA<span class="demo-input-clear"><input placeholder="Um resumo que complemente o assunto"><button class="demo-clear" type="button" aria-label="Limpar primeira linha">×</button></span><small>Texto exibido junto ao assunto na prévia da caixa de entrada.</small></label><label>NOME DO REMETENTE<span class="demo-input-clear"><input value="luidgi"><button class="demo-clear" type="button" aria-label="Limpar nome do remetente">×</button></span></label><label>RESPONDER PARA<span class="demo-input-clear"><input value="luidgi@gmail.com"><button class="demo-clear" type="button" aria-label="Limpar endereço de resposta">×</button></span></label><article class="demo-card demo-sender-default"><span aria-hidden="true">✉</span><div><strong>Remetente padrão do LOGOS</strong><small>O release será enviado pelo endereço de e-mail padrão do sistema.</small></div></article><p class="demo-note">As respostas dos contatos serão direcionadas a este endereço.</p><article class="demo-card demo-email-preview"><small>PRÉVIA DA CAIXA DE ENTRADA</small><strong data-email-sender-preview>luidgi</strong><b data-email-subject>Assunto do e-mail</b><small data-email-preview>A primeira linha aparecerá aqui</small></article><button class="demo-primary demo-wide" data-action="release-next">AVANÇAR PARA REVISÃO</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div><p class="demo-note">Você pode salvar o rascunho com o preenchimento incompleto.</p></div>
+  <div class="demo-step" data-release-step="5" hidden><h2>Revisão</h2><small>Etapa 5 de 5</small><h3>Prévia do release <button data-action="release-step-3">✎ EDITAR CONTEÚDO</button></h3><div class="demo-content-preview"><h2 data-release-review-title>Título da matéria</h2><p data-release-review-lead>Uma apresentação breve da matéria.</p><p data-release-review-body>Escreva aqui o conteúdo da matéria.</p><hr><p>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</p></div><h3>Dados do e-mail <button data-action="release-step-4">✎ EDITAR E-MAIL</button></h3><article class="demo-card">Assunto<br><b data-email-subject-review>A definir</b><p>Primeira linha<br><span data-email-first-line-review>Sem primeira linha</span></p>Nome do remetente<br><b data-email-sender-review>luidgi</b><p>Endereço remetente<br><b data-email-reply-review>luidgi@gmail.com</b></p></article><h3>Destino <button data-action="release-step-1">✎ EDITAR DESTINO</button></h3><article class="demo-card">Título interno<br><b data-release-title-review>A definir</b><p>Cliente<br><b data-release-review-client>Cleiton</b></p></article><button class="demo-select-row" data-screen="selecionar-contatos"><strong data-release-recipient-summary>1 contato selecionado</strong>　›<small>Ademilson</small></button><button data-open="send-test" class="demo-wide">✉　ENVIAR TESTE</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div></div>
+  <div class="demo-sheet-overlay" data-panel="release-client" hidden><section class="demo-sheet"><header><h3>Selecionar cliente</h3><button data-close="release-client">×</button></header><div class="demo-sheet-body"><div class="demo-search"><input placeholder="Buscar cliente..."><button aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-link" data-action="quick-client-open">＋ Cadastro rápido de cliente</button><button data-release-client="Cleiton">Cleiton　○</button><button data-release-client="João">João　○</button><button data-release-client="Maria">Maria　○</button></div></section></div>
+  <div class="demo-modal-overlay" data-panel="send-test" hidden><section class="demo-modal"><h3>Enviar teste</h3><p>O teste será enviado somente para o endereço abaixo.</p><label>E-MAIL DE TESTE<input value="luidgi@gmail.com"></label><div class="demo-two-actions"><button data-close="send-test">CANCELAR</button><button data-close="send-test">ENVIAR</button></div></section></div>
+</section>
+<section class="demo-page demo-recipients" data-view="selecionar-contatos" hidden><div data-recipient-empty><div class="demo-search"><input placeholder="Buscar jornalista..." aria-label="Buscar jornalista"><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-wide" data-screen="mailing">MAILING</button><small>0 de 0 jornalistas selecionados</small><p>Nenhum contato encontrado.</p></div><div data-recipient-list hidden><div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar jornalista..." aria-label="Buscar jornalista"><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="recipient-filter"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div><div class="demo-pills" data-recipient-controls><button data-recipient-tab="selected">SELECIONADOS (0)</button><button class="demo-primary" data-action="recipient-all">SELECIONAR TODOS</button></div><button class="demo-wide" data-recipient-mailing hidden>MAILING</button><small data-recipient-count>Exibindo 1–1 de 1 jornalistas encontrados</small><label class="demo-recipient"><input type="checkbox"><span><strong>Ademilson</strong><br>ademilson@example.com<br><small>LOGOS</small></span></label></div><button class="demo-primary demo-wide demo-bottom-action" data-action="recipient-done">CONCLUIR (0)</button><div class="demo-sheet-overlay" data-panel="recipient-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Modifique os contatos exibidos</p></div><button data-close="recipient-filter">×</button></header><div class="demo-sheet-body"><strong>STATUS</strong><div class="demo-pills"><button class="selected">Ativos</button><button>Inativos</button><button>Todos</button></div><label>ESTADO<input placeholder="Ex.: São Paulo"></label><label>CIDADE<input placeholder="Ex.: Campinas"></label><label>CARGO<input placeholder="Ex.: Repórter"></label><label>VEÍCULO<input placeholder="Buscar veículo pelo nome"></label></div><footer><button data-close="recipient-filter">LIMPAR</button><button data-close="recipient-filter">APLICAR</button></footer></section></div></section>
+<!-- Relatórios -->
+<section class="demo-page demo-reports" data-view="relatorios" hidden><div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar relatório ou cliente..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="report-filter"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div><div class="demo-list-heading"><span>1 relatório</span><button class="demo-primary" data-screen="novo-relatorio">＋ RELATÓRIO</button></div><button class="demo-report-card" data-screen="detalhes-relatorio"><strong>Relatório de novembro</strong><b>Cleiton</b><span>▦　07/11/2026 a 19/11/2026</span><small><b>1 matéria</b>　·　Inclusão automática ativa</small></button><p class="demo-pagination">Exibindo 1–1 de 1 · Página 1 de 1</p><div class="demo-two-actions"><button disabled>ANTERIOR</button><button disabled>PRÓXIMA</button></div><div class="demo-sheet-overlay" data-panel="report-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Refine os relatórios exibidos</p></div><button data-close="report-filter">×</button></header><div class="demo-sheet-body"><p>A pesquisa da listagem já encontra títulos e clientes.</p><label>ANO DO PERÍODO<input placeholder="Todos os anos"></label><strong>INCLUSÃO AUTOMÁTICA</strong><div class="demo-pills"><button class="selected">TODOS</button><button>ATIVA</button><button>PAUSADA</button></div><strong>SLIDES</strong><div class="demo-pills"><button class="selected">TODOS</button><button>A REVISAR</button><button>SEM NOVOS</button></div><strong>ORDENAÇÃO</strong><div class="demo-pills"><button class="selected">MAIS RECENTES</button><button>MAIS ANTIGOS</button><button>MAIS MATÉRIAS</button></div></div><footer><button data-close="report-filter">LIMPAR</button><button data-close="report-filter">APLICAR</button></footer></section></div></section>
+<section class="demo-page demo-report-form" data-view="novo-relatorio" hidden><h2>Dados do relatório</h2><button class="demo-select-row" data-open="report-client"><small>CLIENTE</small><strong data-report-client-label>Selecione o cliente</strong><b>Selecionar</b></button><label>TÍTULO<input placeholder="Ex.: Relatório de março"></label><label>INÍCIO DO PERÍODO<div class="demo-date"><input placeholder="DD/MM/AAAA"><button type="button" data-open="report-date-picker" aria-label="Escolher data inicial">▦</button></div></label><label>FIM DO PERÍODO<div class="demo-date"><input placeholder="DD/MM/AAAA"><button type="button" data-open="report-date-picker" aria-label="Escolher data final">▦</button></div></label><article class="demo-card demo-toggle"><strong>Incluir novas matérias automaticamente</strong><p>Novos clippings deste cliente dentro do período entrarão para revisão.</p><input type="checkbox" checked></article><button class="demo-primary demo-wide" data-screen="selecionar-materias">ESCOLHER MATÉRIAS</button><div class="demo-sheet-overlay" data-panel="report-client" hidden><section class="demo-sheet"><header><h3>Selecionar cliente</h3><button data-close="report-client">×</button></header><div class="demo-sheet-body"><div class="demo-search"><input placeholder="Buscar cliente..."><button aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-link" data-action="quick-client-open">＋ Cadastro rápido de cliente</button><button data-report-client="Cleiton">Cleiton　○</button><button data-report-client="João">João　○</button><button data-report-client="Maria">Maria　○</button></div></section></div></section>
+<div class="demo-sheet-overlay" data-panel="quick-client" hidden><section class="demo-sheet"><header><h3>Novo cliente</h3><button data-close="quick-client" aria-label="Fechar">×</button></header><div class="demo-sheet-body"><label>NOME DO CLIENTE<input placeholder="Informe o nome do cliente"></label><label>CNPJ (OPCIONAL)<input placeholder="Ex.: 12.345.678/0001-95"></label><label>E-MAIL (OPCIONAL)<input type="email" placeholder="contato@cliente.com.br"></label><label>TELEFONE (OPCIONAL)<input placeholder="Ex.: (11) 99999-9999"></label></div><footer><button data-action="quick-client-back">← VOLTAR À BUSCA</button><button data-action="quick-client-submit">✓ CADASTRAR</button></footer></section></div>
+<section class="demo-page demo-report-period" data-view="editar-periodo-relatorio" hidden><article class="demo-card"><strong>Relatório de novembro</strong><p>Cleiton</p><p>Período atual: 07/11/2026 a 19/11/2026</p></article><h2>Novo período</h2><label>INÍCIO DO PERÍODO<div class="demo-date"><input value="07/11/2026" aria-label="Início do período"><button type="button" data-open="report-date-picker" aria-label="Escolher data inicial">▦</button></div></label><label>FIM DO PERÍODO<div class="demo-date"><input value="19/11/2026" aria-label="Fim do período"><button type="button" data-open="report-date-picker" aria-label="Escolher data final">▦</button></div></label><p>Os slides atuais permanecem, mesmo se estiverem fora das novas datas. Você escolherá quais outras matérias deseja incluir.</p><button class="demo-primary demo-wide" data-screen="selecionar-materias">REVISAR MATÉRIAS</button></section><section class="demo-page demo-article-picker" data-view="selecionar-materias" hidden><article class="demo-card"><strong>Relatório de novembro</strong><p><span class="demo-article-client">Cleiton</span><br>14/11/2026 a 21/11/2026</p></article><p class="demo-article-info"><span class="demo-article-info-icon" aria-hidden="true">ⓘ</span><span>As matérias do período já estão selecionadas. As sem data só entram se você as selecionar.</span></p><div class="demo-pills"><button class="selected" data-article-tab="period">NO PERÍODO<br>1</button><button data-article-tab="undated">SEM DATA<br>0</button><button data-article-tab="removed">DESMARCADOS<br>0</button></div><label>BUSCAR MATÉRIAS<input placeholder="Pauta ou veículo"></label><article class="demo-article selected" data-article-card><span>19/11/2026　<b>LOGOS</b></span><strong>Varejo</strong><small>▧ Sem imagem para o slide</small><input type="checkbox" checked></article><div class="demo-article-pagination" data-article-pagination><p class="demo-pagination">Página 1 de 1 · 1 matéria nesta aba</p><div class="demo-two-actions"><button disabled>ANTERIOR</button><button disabled>PRÓXIMA</button></div></div><article class="demo-empty demo-article-empty" data-article-empty="undated" hidden><span>▤</span><strong>Nenhuma matéria encontrada</strong><p>Este cliente não tem clippings sem data.</p></article><article class="demo-empty demo-article-empty" data-article-empty="removed" hidden><span>▤</span><strong>Nenhuma matéria encontrada</strong><p>Nenhuma matéria foi retirada do relatório.</p></article><div class="demo-bottom-summary"><b>1 matéria selecionada</b><button class="demo-primary demo-wide" data-screen="detalhes-relatorio">CRIAR RELATÓRIO</button></div></section>
+<section class="demo-page demo-report-details" data-view="detalhes-relatorio" hidden><div class="demo-actions"><button data-open="report-edit">✎ Editar</button><button class="demo-report-delete">▤ Excluir</button></div><article class="demo-card demo-report-summary"><small>RELATÓRIO DE Cleiton</small><h2>Relatório de novembro</h2><p>▦　07/11/2026 a 19/11/2026</p><button data-screen="editar-periodo-relatorio">▦ ALTERAR PERÍODO E MATÉRIAS</button><div class="demo-stats"><b>1<small>matéria</small></b><b>3<small>slides no total</small></b></div><p class="demo-report-auto"><span aria-hidden="true">⟳</span><strong>Inclusão automática ativa</strong></p><small class="demo-report-auto-note">Novas matérias deste cliente no período entram para revisão.</small></article><button class="demo-primary demo-wide">EXPORTAR PPTX</button><h2 class="demo-report-heading">Slides do relatório</h2><p class="demo-report-subtitle">Capa, matérias e encerramento na ordem definida do relatório.</p><div class="demo-search"><input placeholder="Buscar pauta, veículo..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><div class="demo-pills"><button class="selected" data-slide-tab="all">TODOS OS SLIDES</button><button data-slide-tab="review">A REVISAR · 0</button></div><button class="demo-select-trigger" data-action="slide-select">☑　SELECIONAR</button><div class="demo-bulk" hidden><span>0 selecionado(s)<small>slides desta página</small></span><button class="demo-bulk-all" data-action="slide-all">TODOS</button><button class="demo-bulk-delete" type="button" aria-label="Excluir selecionados"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button><button class="demo-bulk-close" data-action="slide-select" aria-label="Sair da seleção">×</button></div><div class="demo-bulk-actions" hidden><button data-slide-bulk-action disabled>✓　ATUALIZAR (0)</button><button data-slide-bulk-action disabled>×　IGNORAR (0)</button></div><div class="demo-review-summary" hidden><small>FILTROS</small><div><b>0<small>NOVOS</small></b><b>0<small>VEÍCULOS</small></b><b>0<small>CLIPPINGS</small></b></div><p>Nenhum slide precisa de revisão.</p></div><article class="demo-slide" data-slide-open="1"><small><b>01</b><span>CAPA</span></small><strong>Relatório de novembro</strong></article><article class="demo-slide" data-slide-open="2"><small><b>02</b><span>MATÉRIA</span></small><strong>Varejo</strong><span class="demo-slide-meta"><span>▤ LOGOS</span><time>19/11/2026</time></span><em>▧ Sem imagem para o slide</em><input type="checkbox" data-slide-check aria-label="Selecionar slide" hidden></article><article class="demo-slide" data-slide-open="3"><small><b>03</b><span>ENCERRAMENTO</span></small><strong>Encerramento</strong></article><p class="demo-pagination">Exibindo 1–3 de 3 slides · Página 1 de 1</p><div class="demo-two-actions"><button disabled>ANTERIOR</button><button disabled>PRÓXIMA</button></div>
+ <div class="demo-sheet-overlay" data-panel="slide-detail" hidden><section class="demo-sheet"><header><div><h3 data-slide-title>Slide 2</h3><p>Relatório de novembro</p></div><div class="demo-slide-sheet-actions" hidden><button data-action="slide-edit" aria-label="Editar slide">✎</button><button data-action="slide-delete" aria-label="Excluir slide">▤</button><button data-close="slide-detail" aria-label="Fechar">×</button></div><button data-close="slide-detail" class="demo-slide-close-only" aria-label="Fechar">×</button></header><div class="demo-sheet-body"><div data-slide-content="1" hidden><p>Capa do relatório</p></div><div data-slide-content="2"><small>PRÉVIA DO SLIDE</small><div class="demo-slide-preview"><div class="demo-slide-preview-meta"><strong>Veículo: LOGOS</strong><strong>Descrição: Canal de notícias da LOGOS</strong><strong>Alcance: 500 mil leitores</strong><small>19/11/2026</small></div><div class="demo-slide-preview-image">Sem imagem para o slide</div></div><section class="demo-slide-data"><small>MATÉRIA</small><strong>Varejo</strong><em>▧ Sem imagem definida para este slide</em><p>▦　19/11/2026</p></section><section class="demo-slide-data"><small>VEÍCULO</small><strong>LOGOS ↗</strong><em>▧ Sem logo do veículo</em><small>DESCRIÇÃO</small><p>Canal de notícias da LOGOS</p><small>ALCANCE</small><p>500 mil leitores</p></section></div><div data-slide-content="3" hidden><p>Encerramento do relatório</p></div></div></section></div>
+ <div class="demo-sheet-overlay" data-panel="slide-editor" hidden><section class="demo-sheet"><header><div><h3>Editar slide 2</h3><p>As mudanças ficam somente neste relatório</p></div><button data-close="slide-editor">×</button></header><div class="demo-sheet-body"><small>PRÉVIA</small><div class="demo-slide-preview"><div class="demo-slide-preview-meta"><strong>Veículo: LOGOS</strong><strong>Descrição: Canal de notícias da LOGOS</strong><strong>Alcance: 500 mil leitores</strong><small>19/11/2026</small></div><div class="demo-slide-preview-image">Sem imagem para o slide</div></div><h3>MATÉRIA</h3><label>PAUTA<input value="Varejo"></label><label>IMAGEM DO SLIDE<button type="button" class="demo-slide-file-button"><span class="demo-slide-file-icon">▧</span><span><strong>Sem imagem</strong><small>Escolher arquivo</small></span><i>›</i></button></label><p><a><i class="fa-solid fa-link" aria-hidden="true"></i> Capturar imagem do link</a></p><label>DATA DE PUBLICAÇÃO<input value="19/11/2026"></label><label>LINK<input></label><h3>VEÍCULO NO SLIDE</h3><label>NOME EXIBIDO<input value="LOGOS"></label><label>LOGO DO VEÍCULO<button type="button" class="demo-slide-file-button"><span class="demo-slide-file-icon">▦</span><span><strong>Sem logo</strong><small>Escolher arquivo</small></span><i>›</i></button></label><label>DESCRIÇÃO<textarea>Canal de notícias da LOGOS</textarea></label><label>ALCANCE<textarea>500 mil leitores</textarea></label></div><footer><button data-close="slide-editor">CANCELAR</button><button data-close="slide-editor">SALVAR SLIDE</button></footer></section></div>
+ <div class="demo-sheet-overlay" data-panel="report-edit" hidden><section class="demo-sheet"><header><h3>Editar relatório</h3></header><div class="demo-sheet-body"><label>TÍTULO<input class="demo-report-title-edit" value="Relatório de novembro"></label><article class="demo-card demo-report-period-note"><strong>PERÍODO</strong><p>07/11/2026 a 19/11/2026</p><small>Para mudar as datas e escolher novas matérias, use “Alterar período e matérias” nos detalhes do relatório.</small></article><article class="demo-card demo-toggle"><div><strong>Incluir novas matérias</strong><p>Novos clippings deste cliente no período entram no relatório para revisão.</p></div><input type="checkbox" checked></article></div><footer><button data-close="report-edit">CANCELAR</button><button data-close="report-edit">SALVAR</button></footer></section></div>
+ <div class="demo-sheet-overlay" data-panel="report-period" hidden><section class="demo-sheet"><header><div><h3>Editar período</h3><p>Relatório de novembro · Cleiton</p></div><button data-close="report-period">×</button></header><div class="demo-sheet-body"><h3>Novo período</h3><label>INÍCIO DO PERÍODO<input value="07/11/2026"></label><label>FIM DO PERÍODO<input value="19/11/2026"></label><p>Os slides atuais permanecem, mesmo se estiverem fora das novas datas. Você escolherá quais outras matérias deseja incluir.</p></div><footer><button data-close="report-period">CANCELAR</button><button data-close="report-period">REVISAR MATÉRIAS</button></footer></section></div>
+</section>
+<section class="demo-page demo-employees" data-view="funcionarios" hidden><div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar funcionários..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="employee-filter"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div><div class="demo-list-heading"><span>0 funcionários</span><button class="demo-primary" data-screen="convites">✉ CONVITES</button></div><div class="demo-empty"><strong>Nenhum funcionário encontrado</strong><p>Tente alterar a busca ou os filtros.</p></div><div class="demo-sheet-overlay" data-panel="employee-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Refine os funcionários exibidos</p></div><button data-close="employee-filter">×</button></header><div class="demo-sheet-body"><strong>STATUS</strong><div class="demo-pills"><button>Ativos</button><button>Inativos</button><button class="selected">Todos</button></div></div><footer><button data-close="employee-filter">LIMPAR</button><button data-close="employee-filter">APLICAR</button></footer></section></div></section>
+<section class="demo-page demo-invites" data-view="convites" hidden><div class="demo-list-heading"><span>2 convites</span><button class="demo-primary" data-action="invite-generate">GERAR CONVITE</button></div><article class="demo-card"><strong>♧　Convide alguém para a equipe</strong><p>Gere um código para um funcionário se cadastrar. Ele é válido por 7 dias e pode ser usado uma vez.</p></article><article class="demo-card demo-invite-ready"><h3>✓　Convite pronto</h3><p>Compartilhe este código com o funcionário:</p><strong>LOGOS-V2FE-86RB　▢</strong><small>Válido até 28/11/2026 às 18:00</small></article><h2>Histórico de convites</h2><p>Mais recentes primeiro</p><article class="demo-card"><strong>LOGOS-V2FE-86RB　<span class="demo-status">ATIVO</span></strong><p>Gerado por luidgi</p><small>Criado em 21/11/2026 às 14:00<br>Expira em 28/11/2026 às 18:00</small></article><article class="demo-card"><strong>LOGOS-DM86-R7MB　<span class="demo-status">ATIVO</span></strong><p>Gerado por luidgi</p><small>Criado em 19/11/2026 às 05:35<br>Expira em 26/11/2026 às 09:35</small></article><p class="demo-pagination">Exibindo 1–2 de 2</p></section>
+<section class="demo-page demo-settings" data-view="configuracoes" hidden><h2>Preferências</h2><p>Personalize a aparência e gerencie sua sessão.</p><article class="demo-card demo-user"><span>L</span><strong>luidgi</strong><small>luidgi@gmail.com<br>Assessor</small></article><h3>Aparência</h3><label class="demo-card demo-toggle"><strong>☼　Modo escuro</strong><small>Desativado<br>Sua escolha fica salva neste dispositivo.</small><input type="checkbox"></label><h3>Sessão</h3><button class="demo-card demo-signout">↪　Sair da conta　›<small>Encerrar sessão neste dispositivo</small></button></section>
+<div class="demo-modal-overlay demo-calendar-overlay" data-panel="report-date-picker" hidden><section class="demo-modal demo-calendar"><header><h3 data-calendar-heading>Data do período</h3><button data-close="report-date-picker" aria-label="Fechar">×</button></header><div class="demo-calendar-month"><button data-calendar-nav="-1" aria-label="Mês anterior">‹</button><strong data-calendar-title>Novembro 2026</strong><button data-calendar-nav="1" aria-label="Próximo mês">›</button></div><div class="demo-calendar-grid demo-calendar-week"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="demo-calendar-grid" data-calendar-days></div><footer><button data-calendar-clear>Deixar sem data</button><button data-calendar-today>Usar hoje</button></footer></section></div><!-- Fim das telas adicionadas nesta etapa -->
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
 
@@ -1735,8 +1443,7 @@
                 <button
                     type="button"
                     class="app-nav-item"
-                    disabled
-                    title="Releases ainda não disponível nesta demonstração"
+                    data-screen="releases"
                 >
                     <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
                     <span>Releases</span>
@@ -1868,6 +1575,7 @@
 <!-- Filtros de Clientes -->
 
 
+          </div>
         </div>
 
     </div>
