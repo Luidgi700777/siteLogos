@@ -1382,43 +1382,54 @@
 
 <div class="app-clipping-items">
   <article class="app-clipping-record" data-clipping-record>
-    <div class="app-clipping-item">
-      <span data-clipping-card-date-short>19/11</span>
-      <b data-clipping-card-vehicle>LOGOS</b>
-      <em>Tier —</em>
-      <strong data-clipping-card-subject>Varejo</strong>
-      <small data-clipping-card-category>Sem categoria</small>
+  <div class="app-clipping-item">
+    <span data-clipping-card-date-short>19/11</span>
+    <b data-clipping-card-vehicle>LOGOS</b>
+    <em data-clipping-card-tier>Tier 1</em>
+    <strong data-clipping-card-subject>Varejo</strong>
 
-      <button
-        type="button"
-        class="app-clipping-item-toggle"
-        aria-label="Expandir detalhes do clipping"
-        aria-expanded="false"
-      >
-        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-      </button>
+    <small data-clipping-card-category>Site, TV +1 · LOGOS</small>
 
-      <input
-        type="checkbox"
-        class="app-clipping-card-checkbox"
-        aria-label="Selecionar clipping"
-      >
-    </div>
+    <span class="app-clipping-card-duration">
+      Trecho: <b data-clipping-card-duration>00:40</b>
+    </span>
 
-    <div class="app-clipping-item-expanded">
-      <p><b>Publicação:</b> <span data-clipping-card-date>19/11/2026</span></p>
-      <p><b>Categorias:</b> <span data-clipping-card-categories>Não informadas</span></p>
-      <p><b>Veículo:</b> <span data-clipping-card-vehicle-detail>LOGOS</span></p>
-      <p><b>Tier:</b> <span>Tier não definido</span></p>
-      <p><b>Link:</b> <span>Não informado</span></p>
-      <p><b>Arquivos:</b> <span>Nenhum arquivo anexado</span></p>
+    <button
+      type="button"
+      class="app-clipping-item-toggle"
+      aria-label="Expandir detalhes do clipping"
+      aria-expanded="false"
+    >
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </button>
+
+    <input
+      type="checkbox"
+      class="app-clipping-card-checkbox"
+      aria-label="Selecionar clipping"
+    >
+  </div>
+
+  <div class="app-clipping-item-expanded">
+    <p><b>Publicação:</b> <span data-clipping-card-date>19/11/2026</span></p>
+    <p><b>Categorias:</b> <span data-clipping-card-categories>Site, TV, Jornal</span></p>
+    <p><b>Veículo:</b> <span data-clipping-card-vehicle-detail>LOGOS</span></p>
+    <p><b>Programa/seção:</b> <span data-clipping-card-program>LOGOS</span></p>
+    <p><b>Tier:</b> <span data-clipping-card-tier-detail>Tier 1</span></p>
+    <p><b>Trecho:</b> <span data-clipping-card-duration-detail>Início 01:55 · Fim 02:35 (00:40)</span></p>
+    <p class="app-clipping-expanded-link"><b>Link:</b><a data-clipping-card-link-text href="https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/" target="_blank" rel="noopener noreferrer">https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/</a></p>
+    <p><b>Arquivos:</b> <span data-clipping-card-files>1 arquivo nos detalhes</span></p>
+
+    <div class="app-clipping-expanded-actions">
+      <a class="app-clipping-open-link" data-clipping-card-open-link href="https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Abrir link
+      </a>
       <button type="button" data-screen="detalhes-clipping">
         Ver detalhes <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
       </button>
     </div>
-  </article>
-
-  <!-- Mantenha aqui o .app-clipping-empty que já existe. -->
+  </div>
+</article>
 </div>
   
   <div class="app-clipping-items-filter" hidden><section class="app-clipping-sheet"><header><div><h4>FILTROS</h4><p>Refine os clippings exibidos</p></div><button class="app-clipping-items-filter-close">×</button></header><div><label>ANO DE REFERÊNCIA<input value="2026"></label><label>VEÍCULO<input placeholder="Buscar veículo"></label><label>CATEGORIA<input placeholder="Ex.: Site, Jornal, TV"></label><label>DATA DE PUBLICAÇÃO<input placeholder="DD/MM/AAAA"></label></div><footer><button class="app-clipping-items-filter-clear">LIMPAR</button><button class="app-clipping-items-filter-apply">APLICAR</button></footer></section></div>
@@ -2089,3 +2100,4 @@ moderna e coerente com a proposta do LOGOS.</p>
   </footer>
 </body>
 </html>
+
