@@ -397,7 +397,7 @@ if (appSimulator) {
         clipping: {
             titulo: 'Clipping',
             aba: 'clipping',
-            voltar: false
+            voltar: true
         },
 
         'clipping-clientes': { titulo: 'Clientes 2026', aba: 'clipping', voltar: true },
@@ -408,13 +408,13 @@ if (appSimulator) {
         mailing: {
             titulo: 'Mailing',
             aba: 'mailing',
-            voltar: false
+            voltar: true
         },
 
         releases: {
             titulo: 'Releases',
             aba: 'releases',
-            voltar: false
+            voltar: true
         },
 
         mais: {
@@ -669,6 +669,16 @@ if (appSimulator) {
 
         const destination = button.dataset.screen;
         const isMainTab = button.classList.contains('app-nav-item');
+
+        if (destination === 'clipping-cliente') {
+            const clientName = button
+            .querySelector('.app-clipping-client-info strong')
+            ?.textContent.trim();
+
+        if (clientName) {
+            appRoutes[destination].titulo = clientName;
+        }
+    }
 
         appNavigate(destination, isMainTab);
     });
@@ -1880,30 +1890,124 @@ if (
   queueMicrotask(()=>{if(title)title.textContent=selectedClient});
  }));
 
- const selectButton=clippingPage.querySelector('.app-clipping-select-trigger');
- const selectionBar=clippingPage.querySelector('.app-clipping-selection-bar');
- const clippingCards=Array.from(clippingPage.querySelectorAll('.app-clipping-item'));
- const renderSelection=()=>{
-  selectButton.hidden=selection;
-  selectionBar.hidden=!selection;
-  selectionBar.querySelector('strong').textContent=selectedClippings.size+' de 100 selecionado(s)';
-  clippingCards.forEach(card=>card.classList.toggle('selected',selectedClippings.has(card)));
- };
- selectButton.onclick=()=>{selection=true;selectedClippings.clear();renderSelection()};
- clippingPage.querySelector('.app-clipping-cancel-selection').onclick=()=>{selection=false;selectedClippings.clear();renderSelection()};
- selectionBar.querySelector('button:nth-of-type(1)').onclick=()=>{
-  const all=clippingCards.length>0&&clippingCards.every(card=>selectedClippings.has(card));
-  clippingCards.forEach(card=>all?selectedClippings.delete(card):selectedClippings.add(card));
+ const selectButton = clippingPage.querySelector('.app-clipping-select-trigger');
+const selectionBar = clippingPage.querySelector('.app-clipping-selection-bar');
+const selectAllButton = clippingPage.querySelector('.app-clipping-select-all');
+const cancelSelectionButton = clippingPage.querySelector('.app-clipping-cancel-selection');
+const exportButton = clippingPage.querySelector('.app-clipping-export-selected');
+const clippingCards = Array.from(
+  clippingPage.querySelectorAll('[data-clipping-record]')
+);
+
+const renderSelection = () => {
+  clippingPage.classList.toggle('selection-mode', selection);
+  selectButton.hidden = selection;
+  selectionBar.hidden = !selection;
+  exportButton.hidden = !selection;
+
+  selectionBar.querySelector('strong').textContent =
+    selectedClippings.size + ' de 100 selecionado(s)';
+
+  exportButton.textContent =
+    'EXPORTAR SELECIONADOS (' + selectedClippings.size + ')';
+  exportButton.disabled = selectedClippings.size === 0;
+
+  clippingCards.forEach(card => {
+    const checkbox = card.querySelector('.app-clipping-card-checkbox');
+    const isSelected = selectedClippings.has(card);
+
+    card.classList.toggle('selected', isSelected);
+    if (checkbox) checkbox.checked = isSelected;
+  });
+};
+
+const toggleCardSelection = card => {
+  if (selectedClippings.has(card)) {
+    selectedClippings.delete(card);
+  } else {
+    selectedClippings.add(card);
+  }
+
   renderSelection();
- };
- selectionBar.querySelector('button:nth-of-type(2)').onclick=event=>event.preventDefault();
- clippingCards.forEach(card=>card.addEventListener('click',event=>{
-  if(!selection)return;
-  event.preventDefault();
-  event.stopPropagation();
-  selectedClippings.has(card)?selectedClippings.delete(card):selectedClippings.add(card);
+};
+
+selectButton.addEventListener('click', () => {
+  selection = true;
+  selectedClippings.clear();
+
+  clippingCards.forEach(card => {
+    card.classList.remove('expanded');
+    const toggle = card.querySelector('.app-clipping-item-toggle');
+    toggle?.setAttribute('aria-expanded', 'false');
+  });
+
   renderSelection();
- },true));
+});
+
+cancelSelectionButton.addEventListener('click', () => {
+  selection = false;
+  selectedClippings.clear();
+  renderSelection();
+});
+
+selectAllButton.addEventListener('click', () => {
+  const visibleCards = clippingCards.filter(card => !card.hidden);
+  const allSelected =
+    visibleCards.length > 0 &&
+    visibleCards.every(card => selectedClippings.has(card));
+
+  visibleCards.forEach(card => {
+    if (allSelected) {
+      selectedClippings.delete(card);
+    } else {
+      selectedClippings.add(card);
+    }
+  });
+
+  renderSelection();
+});
+
+clippingCards.forEach(card => {
+  const summary = card.querySelector('.app-clipping-item');
+  const toggle = card.querySelector('.app-clipping-item-toggle');
+  const checkbox = card.querySelector('.app-clipping-card-checkbox');
+
+  toggle.addEventListener('click', event => {
+    event.stopPropagation();
+    if (selection) return;
+
+    const expanded = card.classList.toggle('expanded');
+    toggle.setAttribute('aria-expanded', String(expanded));
+
+    const icon = toggle.querySelector('i');
+    icon.classList.toggle('fa-chevron-down', !expanded);
+    icon.classList.toggle('fa-chevron-up', expanded);
+  });
+
+  checkbox.addEventListener('click', event => event.stopPropagation());
+
+  checkbox.addEventListener('change', () => {
+    if (!selection) return;
+
+    if (checkbox.checked) {
+      selectedClippings.add(card);
+    } else {
+      selectedClippings.delete(card);
+    }
+
+    renderSelection();
+  });
+
+  summary.addEventListener('click', event => {
+    if (!selection || event.target.closest('.app-clipping-item-toggle, .app-clipping-card-checkbox')) {
+      return;
+    }
+
+    toggleCardSelection(card);
+  });
+});
+
+renderSelection();
 
  form.addEventListener('submit',event=>event.preventDefault());
  const editClipping=sim.querySelector('.app-clipping-details [data-screen="editar-clipping"]');
@@ -1930,21 +2034,86 @@ if (
   form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
   picker.hidden=true;
  });
- form.querySelector('.app-clipping-quick-client').dataset.screen='novo-cliente';
 
  const dataModal=form.querySelector('.app-clipping-data-modal');
  const linkInput=form.elements.namedItem('link'),searchData=form.querySelector('.app-clipping-search-data'),captureOpen=form.querySelector('.app-clipping-capture-open');
  const updateLinkActions=()=>{const enabled=Boolean(linkInput?.value.trim());if(searchData)searchData.disabled=!enabled;if(captureOpen)captureOpen.disabled=!enabled};
  linkInput?.addEventListener('input',updateLinkActions);updateLinkActions();
- const renderVehicleCard=vehicle=>{
-  const card=form.querySelector('.app-clipping-vehicle-card'),logo=vehicle==='LOGOS';if(!card)return;
-  card.querySelector('strong').textContent=logo?'LOGOS':'gov';card.querySelector('small').textContent='Tier não definido';
-  const details=card.querySelectorAll('p');
-  if(details[0])details[0].innerHTML='Descrição<br>'+(logo?'Canal de notícias da LOGOS':'Descrição não informada.');
-  if(details[1])details[1].innerHTML='Alcance<br>'+(logo?'500 mil leitores':'Alcance não informado.');
-  if(details[2])details[2].innerHTML='Endereços associados<br>'+(logo?'logos.com.br':'gov.br')+' · Site inteiro';
-  card.hidden=false;
- };
+ const renderVehicleCard = vehicle => {
+  const card = form.querySelector('.app-clipping-vehicle-card');
+  const isLogos = vehicle === 'LOGOS';
+
+  if (!card) return;
+
+  card.querySelector('strong').textContent = isLogos ? 'LOGOS' : 'gov';
+  card.querySelector('small').textContent = 'Tier não definido';
+
+  const details = card.querySelectorAll('p');
+
+  if (details[0]) {
+    details[0].innerHTML =
+      '<b>Descrição</b><span>' +
+      (isLogos ? 'Canal de notícias da LOGOS' : 'Descrição não informada.') +
+      '</span>';
+  }
+
+  if (details[1]) {
+    details[1].innerHTML =
+      '<b>Alcance</b><span>' +
+      (isLogos ? '500 mil leitores' : 'Alcance não informado.') +
+      '</span>';
+  }
+
+  if (details[2]) {
+    const domain = isLogos ? 'logos.com.br' : 'gov.br';
+
+    details[2].innerHTML =
+      '<b>Endereços associados' +
+        '<i class="fa-solid fa-rotate app-clipping-vehicle-refresh" aria-hidden="true"></i>' +
+      '</b>' +
+      '<span class="app-clipping-vehicle-address">' +
+        '<i class="fa-solid fa-globe" aria-hidden="true"></i>' +
+        '<span><span>' + domain + '</span><small>Site inteiro</small></span>' +
+        '<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>' +
+      '</span>';
+  }
+
+  details.forEach(detail => {
+    detail.hidden = true;
+  });
+
+  card.classList.remove('is-expanded');
+  card.setAttribute('aria-expanded', 'false');
+
+  const toggle = card.querySelector('.app-clipping-vehicle-toggle');
+  if (toggle) toggle.textContent = 'Ver detalhes';
+
+  card.querySelector('.app-clipping-vehicle-chevron').textContent = '⌄';
+  card.hidden = false;
+};
+
+const vehicleCard = form.querySelector('.app-clipping-vehicle-card');
+
+vehicleCard?.addEventListener('click', event => {
+  event.preventDefault();
+
+  const expanded = vehicleCard.getAttribute('aria-expanded') !== 'true';
+
+  vehicleCard.classList.toggle('is-expanded', expanded);
+  vehicleCard.setAttribute('aria-expanded', String(expanded));
+
+  vehicleCard.querySelectorAll('p').forEach(detail => {
+    detail.hidden = !expanded;
+  });
+
+  const toggle = vehicleCard.querySelector('.app-clipping-vehicle-toggle');
+  if (toggle) {
+    toggle.textContent = expanded ? 'Recolher detalhes' : 'Ver detalhes';
+  }
+
+  vehicleCard.querySelector('.app-clipping-vehicle-chevron').textContent =
+    expanded ? '⌃' : '⌄';
+});
  form.querySelector('.app-clipping-search-data').onclick=()=>dataModal.hidden=false;
  form.querySelector('.app-clipping-data-close').onclick=()=>dataModal.hidden=true;
  const fillFields=all=>{
@@ -1991,16 +2160,55 @@ if (
  });
  sim.querySelector('.app-clipping-details .app-clipping-delete').onclick=event=>event.preventDefault();
  form.querySelector('.app-clipping-vehicle-card').hidden=true;
-  clippingCards.forEach(card=>card.addEventListener('click',()=>{
-   card.closest('[data-clipping-record]')?.classList.toggle('expanded');
-  }));
   sim.querySelectorAll('.app-clipping-items [data-screen="detalhes-clipping"]').forEach(button=>button.addEventListener('click',()=>{
   sim.querySelector('#app-screen-title').textContent='Detalhes';
   if(!currentClipping)return;
-  const detail=sim.querySelector('.app-clipping-details'),articles=detail.querySelectorAll(':scope > article');
-  if(articles[0]){articles[0].querySelector('strong').textContent=selectedClient;articles[0].querySelector('span').textContent=selectedYear+' · '+currentClipping.subject+' · '+currentClipping.date}
-  if(articles[1]){articles[1].querySelector('strong').textContent=currentClipping.vehicle;articles[1].querySelector('span').textContent='Tier não definido · Programa / seção não informado'}
-  if(articles[2])articles[2].querySelector('strong').textContent=currentClipping.category||'Sem categoria';
+  const detail = sim.querySelector('.app-clipping-details');
+const setDetailText = (selector, value) => {
+  const element = detail.querySelector(selector);
+  if (element) element.textContent = value;
+};
+
+const vehicle = currentClipping.vehicle || 'Não informado';
+const vehicleInfo = vehicle.toUpperCase() === 'LOGOS'
+  ? { description: 'Canal de notícias da LOGOS', reach: '500 mil leitores' }
+  : { description: 'Não informada', reach: 'Não informado' };
+
+setDetailText('[data-detail-client]', selectedClient);
+setDetailText('[data-detail-year]', String(selectedYear));
+setDetailText('[data-detail-subject]', currentClipping.subject || 'Sem pauta');
+setDetailText('[data-detail-date]', currentClipping.date || 'Não informado');
+setDetailText('[data-detail-vehicle]', vehicle);
+setDetailText('[data-detail-program]', currentClipping.program || 'Não informado');
+setDetailText(
+  '[data-detail-categories]',
+  currentClipping.category || currentClipping.categories || 'Sem categoria'
+);
+setDetailText('[data-detail-tier]', currentClipping.tier || 'Sem Tier');
+setDetailText(
+  '[data-detail-excerpt]',
+  currentClipping.excerpt || currentClipping.snippet || 'Não informado'
+);
+setDetailText('[data-detail-link]', currentClipping.link || 'Sem link informado');
+setDetailText(
+  '[data-detail-notes]',
+  currentClipping.notes || 'Nenhuma observação adicionada.'
+);
+setDetailText('[data-detail-vehicle-description]', vehicleInfo.description);
+setDetailText('[data-detail-vehicle-reach]', vehicleInfo.reach);
+
+const vehicleToggle = sim.querySelector('.app-clipping-detail-vehicle-toggle');
+const vehicleExtra = sim.querySelector('.app-clipping-detail-vehicle-extra');
+
+vehicleToggle?.addEventListener('click', () => {
+  const expanded = vehicleExtra.hidden;
+  vehicleExtra.hidden = !expanded;
+  vehicleToggle.setAttribute('aria-expanded', String(expanded));
+
+  const icon = vehicleToggle.querySelector('i');
+  icon?.classList.toggle('fa-chevron-down', !expanded);
+  icon?.classList.toggle('fa-chevron-up', expanded);
+});
  }));
 })();
 
@@ -2216,6 +2424,7 @@ if (
  sim.addEventListener('input',e=>{const input=e.target.closest('.demo-date input');if(input){const clear=q('[data-date-clear]',input.closest('.demo-date'));if(clear)clear.hidden=!input.value}});
  let releaseStep=1, releaseTemplate='', releaseTemplateData=null, releaseTemplateTab='all', releaseBlockChoice='';
  let quickClientOrigin='report-client';
+ const returnFromQuickClient=()=>{setPanel('quick-client',false);if(quickClientOrigin==='clipping-client'){const picker=q('.app-clipping-client-picker');if(picker)picker.hidden=false;return;}setPanel(quickClientOrigin,true);};
  const createdReleaseTemplates=new Map();
  const releaseBlockDefaults={Título:'Título da matéria','Linha fina':'Uma apresentação breve da matéria.',Texto:'Escreva aqui o conteúdo da matéria.','Contato de imprensa':'Nome, telefone e e-mail da assessoria.','Imagem / logo':'Imagem da matéria','Botão com link':'Acessar conteúdo',Arquivo:'Baixar arquivo'};
  const initialReleaseBlocks=q('[data-release-editor]',release)?.innerHTML||'';
@@ -2370,37 +2579,59 @@ if (
      }
      setPanel(open.dataset.open,true);return;
    }
-   const close=e.target.closest('[data-close]');
-   if(close){e.preventDefault();setPanel(close.dataset.close,false);if(close.dataset.close==='slide-editor')setPanel('slide-detail',true);if(close.dataset.close==='quick-client')setPanel(quickClientOrigin,true);return}
-   if(e.target.closest('[data-action="quick-client-open"]')){
-     quickClientOrigin=e.target.closest('[data-panel="release-client"]')?'release-client':'report-client';
-     setPanel(quickClientOrigin,false);setPanel('quick-client',true);return;
-   }
-   if(e.target.closest('[data-action="quick-client-back"],[data-action="quick-client-submit"]')){
-     setPanel('quick-client',false);setPanel(quickClientOrigin,true);return;
-   }
-   const clear=e.target.closest('[data-clear]');
-   if(clear){const panel=q('[data-panel="'+clear.dataset.clear+'"]');panel?.querySelectorAll('input').forEach(x=>x.value='');return}
-   if(e.target.closest('.app-clipping-year-clear')){const input=q('.app-clipping-year-modal input');if(input)input.value='';return}
-   if(e.target.closest('.app-clipping-year-apply')){
-     const input=q('.app-clipping-year-modal input'),year=(input?.value||'2026').trim()||'2026';
-     const label=q('[data-clipping-year-label]'),note=q('[data-clipping-year-note]');
-     if(label)label.textContent=year;if(note)note.textContent='Sem data de publicação, o clipping ficará em '+year+'.';
-     setPanel('clipping-year',false);return;
-   }
-   const releaseAction=e.target.closest('[data-action^="release-"]');
-   if(releaseAction){
-     const action=releaseAction.dataset.action;
-     if(action==='release-next')releaseNext();
-     if(action==='release-back')releaseBack();
-     if(action==='release-draft'){} // rascunho sem gravação
-     if(action.startsWith('release-step-'))showReleaseStep(Number(action.slice(-1)));
-     if(action==='release-add-block'){releaseBlockChoice='';qa('[data-insert-release-block]',release).forEach(x=>x.classList.remove('selected'));const insert=q('[data-action="release-insert-block"]',release);if(insert)insert.disabled=true;setPanel('release-block-picker',true);}
-     if(action==='release-toggle-pencils'){const card=q('.demo-release-preview-card',release),button=releaseAction;if(card){card.classList.toggle('hide-pencils');button.textContent=card.classList.contains('hide-pencils')?'◉　MOSTRAR LÁPIS':'◉　OCULTAR LÁPIS';}}
-     if(action==='release-edit-preview'){const editTab=q('[data-release-content-tab="edit"]',release),previewCard=releaseAction.closest('.demo-release-preview-card'),pencils=qa('[data-action="release-edit-preview"]',previewCard),index=pencils.indexOf(releaseAction),types=['Título','Linha fina','Texto','Contato de imprensa'],type=releaseAction.dataset.releaseEditType||types[index]||'Título',block=qa('.demo-release-block',release).find(item=>item.dataset.releaseBlock===type);editTab?.click();block?.click();}
-     if(action==='release-insert-block'&&releaseBlockChoice){appendReleaseBlock(releaseBlockChoice);releaseBlockChoice='';qa('[data-insert-release-block]',release).forEach(x=>x.classList.remove('selected'));const insert=q('[data-action="release-insert-block"]',release);if(insert)insert.disabled=true;setPanel('release-block-picker',false);}
-     return;
-   }
+   const close = e.target.closest('[data-close]');
+
+    if (close) {
+      e.preventDefault();
+
+      if (close.dataset.close === 'quick-client') {
+        returnFromQuickClient();
+        return;
+      }
+
+      setPanel(close.dataset.close, false);
+
+      if (close.dataset.close === 'slide-editor') {
+        setPanel('slide-detail', true);
+      }
+
+      return;
+    }
+
+    const quickClientTrigger = e.target.closest(
+      '[data-action="quick-client-open"]'
+    );
+
+    if (quickClientTrigger) {
+      const clippingPicker = quickClientTrigger.closest(
+        '.app-clipping-client-picker'
+      );
+
+      if (clippingPicker) {
+        quickClientOrigin = 'clipping-client';
+        clippingPicker.hidden = true;
+      } else {
+        quickClientOrigin = quickClientTrigger.closest(
+          '[data-panel="release-client"]'
+        )
+          ? 'release-client'
+          : 'report-client';
+
+        setPanel(quickClientOrigin, false);
+      }
+
+      setPanel('quick-client', true);
+      return;
+    }
+
+    if (
+      e.target.closest(
+        '[data-action="quick-client-back"], [data-action="quick-client-submit"]'
+      )
+    ) {
+      returnFromQuickClient();
+      return;
+    }
    const client=e.target.closest('[data-release-client]');
    if(client){
      const label=q('[data-release-client-label]',release);
