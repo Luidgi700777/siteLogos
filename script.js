@@ -478,7 +478,7 @@ if (appSimulator) {
 
         relatorios: {
             titulo: 'Relatórios',
-            aba: 'releases',
+            aba: null,
             voltar: true
         },
 
@@ -502,7 +502,7 @@ if (appSimulator) {
 
         'novo-relatorio': {
             titulo: 'Novo relatório',
-            aba: 'releases',
+            aba: null,
             voltar: true
         },
 
@@ -524,11 +524,11 @@ if (appSimulator) {
 
         'editar-release': { titulo: 'Editar release', aba: 'releases', voltar: true },
 
-        'detalhes-relatorio': { titulo: 'Relatório', aba: 'releases', voltar: true },
+        'detalhes-relatorio': { titulo: 'Relatório', aba: null, voltar: true },
 
-        'selecionar-materias': { titulo: 'Escolher matérias', aba: 'releases', voltar: true },
+        'selecionar-materias': { titulo: 'Escolher matérias', aba: null, voltar: true },
 
-        'editar-periodo-relatorio': { titulo: 'Editar período', aba: 'releases', voltar: true },
+        'editar-periodo-relatorio': { titulo: 'Editar período', aba: null, voltar: true },
 
         'editar-slide': { titulo: 'Editar slide', aba: null, voltar: true },
 
