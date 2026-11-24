@@ -1813,9 +1813,9 @@ if (
  const yearCards=Array.from(sim.querySelectorAll('.app-clipping-groups .app-clipping-year-card'));
  const search=clientPage.querySelector('.app-clipping-search input');
  const clientFilter=clientPage.querySelector('.app-clipping-client-filter-backdrop');
- let selectedClient='Cleiton',selectedYear=2026,selectedClippings=new Set(),selection=false,currentClipping={subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:''};
+ let selectedClient='Cleiton',selectedYear=2026,selectedClippings=new Set(),selection=false,currentClipping={subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'Início 01:55 · Fim 02:35 (00:40)',duration:'00:40',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'};
  const clippingsByYear={
-  2026:{Cleiton:{count:1,subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS'},João:{count:0},Maria:{count:1,subject:'Saúde',date:'14/11/2026',vehicle:'LOGOS'}},
+  2026:{Cleiton:{count:1,subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'Início 01:55 · Fim 02:35 (00:40)',duration:'00:40',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'},João:{count:0},Maria:{count:1,subject:'Saúde',date:'14/11/2026',vehicle:'LOGOS'}},
   2025:{Cleiton:{count:0},João:{count:1,subject:'Tecnologia',date:'22/11/2025',vehicle:'LOGOS'},Maria:{count:0}}
  };
  const renderClippingYear=()=>{
@@ -1831,16 +1831,32 @@ if (
   const row=records[selectedClient]||{count:0};
   if(clippingCount)clippingCount.textContent=row.count+' clipping(s) em '+selectedYear;
   currentClipping=row.count?{...row}:null;
-  const record=clippingPage.querySelector('[data-clipping-record]'),item=record?.querySelector('.app-clipping-item'),empty=clippingPage.querySelector('.app-clipping-empty');
+   const record=clippingPage.querySelector('[data-clipping-record]'),item=record?.querySelector('.app-clipping-item'),empty=clippingPage.querySelector('.app-clipping-empty');
+   record?.classList.remove('expanded');
+   const cardToggle=record?.querySelector('.app-clipping-item-toggle');
+   cardToggle?.setAttribute('aria-expanded','false');
+   const cardIcon=cardToggle?.querySelector('i');
+   cardIcon?.classList.add('fa-chevron-down');
+   cardIcon?.classList.remove('fa-chevron-up');
   if(record)record.hidden=!row.count;
   if(item&&row.count){
    item.querySelector('[data-clipping-card-date-short]').textContent=(row.date||'').slice(0,5);
    item.querySelector('[data-clipping-card-vehicle]').textContent=row.vehicle||'';
    item.querySelector('[data-clipping-card-subject]').textContent=row.subject||'';
-   item.querySelector('[data-clipping-card-category]').textContent=row.category||'Sem categoria';
+    item.querySelector('[data-clipping-card-tier]').textContent=row.tier||'Tier não definido';
+    item.querySelector('[data-clipping-card-category]').textContent=(row.categoryShort||row.category||'Sem categoria')+(row.vehicle?' · '+row.vehicle:'');
+    item.querySelector('[data-clipping-card-duration]').textContent=row.duration||'—';
    record.querySelector('[data-clipping-card-date]').textContent=row.date||'Não informado';
-   record.querySelector('[data-clipping-card-categories]').textContent=row.category||'Não informadas';
+    record.querySelector('[data-clipping-card-categories]').textContent=row.category||'Não informadas';
    record.querySelector('[data-clipping-card-vehicle-detail]').textContent=row.vehicle||'Não informado';
+    record.querySelector('[data-clipping-card-program]').textContent=row.program||'Não informado';
+    record.querySelector('[data-clipping-card-tier-detail]').textContent=row.tier||'Tier não definido';
+    record.querySelector('[data-clipping-card-duration-detail]').textContent=row.excerpt||'Não informado';
+    record.querySelector('[data-clipping-card-files]').textContent=row.files||'Nenhum arquivo anexado';
+    const linkText=record.querySelector('[data-clipping-card-link-text]');
+    const openLink=record.querySelector('[data-clipping-card-open-link]');
+    if(linkText){linkText.textContent=row.link||'Não informado';linkText.href=row.link||'#';}
+    if(openLink){openLink.href=row.link||'#';openLink.hidden=!row.link;}
   }
   if(empty)empty.hidden=!!row.count;
  };
@@ -1966,6 +1982,16 @@ selectAllButton.addEventListener('click', () => {
 
   renderSelection();
 });
+
+clientCards.forEach(card => card.addEventListener('click', () => {
+  selectedClient = card.querySelector('strong').textContent.trim();
+  renderClippingYear();
+
+  const title = sim.querySelector('#app-screen-title');
+  queueMicrotask(() => {
+    if (title) title.textContent = selectedClient;
+  });
+}));
 
 clippingCards.forEach(card => {
   const summary = card.querySelector('.app-clipping-item');
@@ -2869,3 +2895,4 @@ vehicleToggle?.addEventListener('click', () => {
  }));
  showReleaseStep(1);
 })();
+
