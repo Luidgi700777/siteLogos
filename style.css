@@ -8757,9 +8757,9 @@ footer .social a:hover {
 
 .app-simulator .app-clipping-record {
   overflow: hidden;
-  border: 2px solid #6b86ff;
-  border-radius: 16px;
-  background: #fffcfc;
+  border: 2px solid #6578ff;
+  border-radius: 20px;
+  background: #fffbfb;
 }
 
 .app-simulator .app-clipping-item {
@@ -8771,8 +8771,8 @@ footer .social a:hover {
   align-items: center;
   gap: 5px 8px;
   width: 100%;
-  min-height: 92px;
-  padding: 10px 42px 10px 12px;
+  min-height: 116px;
+  padding: 12px 42px 12px 14px;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -8783,11 +8783,11 @@ footer .social a:hover {
 .app-simulator .app-clipping-item > span:first-child {
   grid-column: 1;
   grid-row: 1;
-  padding: 3px 6px;
-  border-radius: 7px;
+  padding: 4px 7px;
+  border-radius: 8px;
   background: #f0effb;
   color: #5170ff;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -8795,31 +8795,44 @@ footer .social a:hover {
   grid-column: 2;
   grid-row: 1;
   color: #161c29;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .app-simulator .app-clipping-item > em {
   grid-column: 3;
   grid-row: 1;
-  padding: 3px 7px;
-  border: 1px solid #ef7777;
+  padding: 4px 8px;
+  border: 1px solid #536cff;
   border-radius: 7px;
-  color: #d86c6c;
-  font-size: 10px;
+  background: #293878;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
   font-style: normal;
 }
 
 .app-simulator .app-clipping-item > strong {
   grid-column: 1 / 3;
   grid-row: 2;
-  font-size: 13px;
+  font-size: 17px;
+  line-height: 1.25;
 }
 
 .app-simulator .app-clipping-item > small {
   grid-column: 1 / 3;
   grid-row: 3;
-  color: #d86c6c;
-  font-size: 11px;
+  color: #898989;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.app-simulator .app-clipping-card-duration {
+  grid-column: 3;
+  grid-row: 3;
+  color: #161c29;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .app-simulator .app-clipping-item-toggle {
@@ -8865,38 +8878,73 @@ footer .social a:hover {
 
 .app-simulator .app-clipping-item-expanded {
   display: grid;
-  gap: 7px;
-  padding: 12px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  padding: 14px;
   color: #161c29;
-  font-size: 12px;
+  font-size: 15px;
+  line-height: 1.35;
 }
 
 .app-simulator .app-clipping-item-expanded p {
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.35;
 }
 
-.app-simulator .app-clipping-item-expanded p:nth-child(2) span,
-.app-simulator .app-clipping-item-expanded p:nth-child(n+4) span {
-  color: #d86c6c;
+.app-simulator .app-clipping-item-expanded p span {
+  color: #343a49;
 }
 
-.app-simulator .app-clipping-item-expanded > button {
-  min-height: 44px;
+.app-simulator .app-clipping-expanded-link {
+  display: grid;
+  gap: 3px;
+}
+
+.app-simulator .app-clipping-expanded-link a {
+  overflow-wrap: anywhere;
+  color: #343a49;
+  text-decoration: none;
+}
+
+.app-simulator .app-clipping-expanded-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
   margin-top: 4px;
+}
+
+.app-simulator .app-clipping-expanded-actions > a,
+.app-simulator .app-clipping-expanded-actions > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 60px;
+  padding: 10px;
   border: 0;
-  border-radius: 10px;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-simulator .app-clipping-expanded-actions > a {
+  border: 1px solid #6578ff;
+  background: #fffbfb;
+  color: #202636;
+}
+
+.app-simulator .app-clipping-expanded-actions > button {
+  border: 0;
   background: #283570;
   color: #fff;
-  font-size: 12px;
-  font-weight: 700;
 }
 
 .app-simulator .app-clipping-record:not(.expanded) .app-clipping-item-expanded {
-  display: none;
+  display: none !important;
 }
-
 .app-simulator .app-clipping-details {
   display: grid;
   align-content: start;
@@ -9296,3 +9344,4 @@ footer .social a:hover {
   font-size:12px;
   line-height:1.3;
 }
+
