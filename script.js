@@ -566,6 +566,7 @@ if (appSimulator) {
         }
 
         appCurrentScreen = screenName;
+        appScreen.classList.toggle('app-screen-preferences', screenName === 'configuracoes');
 
         // Atualizar título e botão voltar
         appTitle.textContent = route.titulo;
@@ -3225,9 +3226,36 @@ vehicleToggle?.addEventListener('click', () => {
    if(calendarDay){if(calendarTarget){calendarTarget.value=calendarDay.dataset.calendarDate;calendarTarget.dispatchEvent(new Event('input',{bubbles:true}))}setPanel('report-date-picker',false);return}
    if(e.target.closest('[data-calendar-clear]')){if(calendarTarget){calendarTarget.value='';calendarTarget.dispatchEvent(new Event('input',{bubbles:true}))}setPanel('report-date-picker',false);return}
    if(e.target.closest('[data-calendar-today]')){if(calendarTarget){calendarTarget.value='21/11/2026';calendarTarget.dispatchEvent(new Event('input',{bubbles:true}))}setPanel('report-date-picker',false);return}
-   const theme=e.target.closest('.demo-settings input[type=checkbox]');
-   if(theme){q('.demo-settings')?.classList.toggle('dark-preview',theme.checked);return}
  });
+    const preferences = q('.app-preferences');
+    const themeSwitch = preferences?.querySelector('[data-preferences-theme]');
+    const themeStatus = preferences?.querySelector('[data-preferences-theme-status]');
+    const themeStorageKey = 'logos-demo-dark-preview';
+ 
+    if (themeSwitch && themeStatus) {
+        const showTheme = () => {
+            preferences.classList.toggle('dark-preview', themeSwitch.checked);
+            themeStatus.textContent = themeSwitch.checked ? 'Ativado' : 'Desativado';
+        };
+    
+        try {
+            themeSwitch.checked = localStorage.getItem(themeStorageKey) === 'true';
+        } catch {
+            // O controle continua funcionando se o navegador bloquear o armazenamento.
+        }
+    
+        showTheme();
+    
+        themeSwitch.addEventListener('change', () => {
+            showTheme();
+        
+            try {
+                localStorage.setItem(themeStorageKey, String(themeSwitch.checked));
+            } catch {
+                // A escolha continua aplicada enquanto a página estiver aberta.
+            }
+        });
+    }
  qa('.demo-search input').forEach(input=>input.addEventListener('input',()=>{
    const value=input.value.trim().toLocaleLowerCase('pt-BR');
    const scope=input.closest('.demo-page')||sim;

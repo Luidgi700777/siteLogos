@@ -10699,3 +10699,237 @@ footer .social a:hover {
     position: static;
     margin: 0;
 }
+
+.app-simulator .app-scale {
+    container-type: inline-size;
+}
+
+.app-simulator .app-screen-preferences .app-header {
+    gap: 2.2cqw;
+    padding-inline: 4.17cqw;
+}
+
+.app-simulator .app-screen-preferences .app-back-btn {
+    width: 12.2cqw;
+    height: 12.2cqw;
+    border-radius: 4.2cqw;
+    background: #f5f1f8;
+    color: #161c29;
+    font-size: 4.45cqw;
+}
+
+.app-simulator #app-content > .app-preferences {
+    --preferences-bg: #fdf8f8;
+    --preferences-card: #fdfafa;
+    --preferences-text: #161c29;
+    --preferences-muted: #777477;
+    --preferences-blue: #4e69ff;
+    --preferences-line: #d4daff;
+    --preferences-accent-line: #a6b1ff;
+    --preferences-icon-bg: #f0effd;
+    --preferences-danger: #b82442;
+    --preferences-danger-bg: #f7eaee;
+    --preferences-danger-line: #e998a7;
+
+    box-sizing: border-box;
+    min-height: 100%;
+    padding: 5.3cqw 4.17cqw 8cqw;
+    background: var(--preferences-bg);
+    color: var(--preferences-text);
+}
+
+.app-simulator #app-content > .app-preferences.dark-preview {
+    --preferences-bg: #171d31;
+    --preferences-card: #202943;
+    --preferences-text: #f4f5fb;
+    --preferences-muted: #b5bdd2;
+    --preferences-blue: #aebaff;
+    --preferences-line: #435078;
+    --preferences-accent-line: #687ac2;
+    --preferences-icon-bg: #303b64;
+    --preferences-danger: #ff9bad;
+    --preferences-danger-bg: #482d41;
+    --preferences-danger-line: #a75870;
+}
+
+.app-simulator .app-preferences .app-preferences-intro h2 {
+    margin: 0;
+    color: var(--preferences-text);
+    font-size: 5.55cqw;
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.app-simulator .app-preferences .app-preferences-intro p {
+    margin: 1.4cqw 0 6.4cqw;
+    color: var(--preferences-muted);
+    font-size: 3.33cqw;
+    line-height: 1.45;
+}
+
+.app-preferences-profile,
+.app-preferences-row {
+    box-sizing: border-box;
+    display: grid;
+    align-items: center;
+    gap: 3.05cqw;
+    width: 100%;
+    margin: 0;
+    background: var(--preferences-card);
+    color: var(--preferences-text);
+    text-align: left;
+}
+
+.app-preferences-profile {
+    grid-template-columns: 12.8cqw minmax(0, 1fr);
+    min-height: 24.2cqw;
+    padding: 3.9cqw;
+    border: 1px solid var(--preferences-accent-line);
+    border-radius: 4.45cqw;
+}
+
+.app-preferences-avatar,
+.app-preferences-icon {
+    display: grid;
+    place-items: center;
+}
+
+.app-preferences-avatar {
+    width: 12.8cqw;
+    height: 12.8cqw;
+    border-radius: 50%;
+    background: #26326e;
+    color: #fff;
+    font-size: 3.9cqw;
+    font-weight: 750;
+}
+
+.app-preferences-copy {
+    display: grid;
+    gap: 1cqw;
+    min-width: 0;
+}
+
+.app-preferences-copy strong {
+    font-size: 3.61cqw;
+    font-weight: 650;
+    line-height: 1.25;
+}
+
+.app-preferences-profile .app-preferences-copy strong {
+    font-size: 4.17cqw;
+    font-weight: 750;
+}
+
+.app-simulator .app-preferences .app-preferences-copy small,
+.app-simulator .app-preferences .app-preferences-note {
+    color: var(--preferences-muted);
+    font-size: 3.05cqw;
+    line-height: 1.4;
+}
+
+.app-preferences-role {
+    color: var(--preferences-blue);
+    font-size: 3.05cqw;
+    font-weight: 650;
+}
+
+.app-preferences-group {
+    margin-top: 6.4cqw;
+}
+
+.app-simulator .app-preferences .app-preferences-group h3 {
+    margin: 0 0 2.8cqw;
+    color: var(--preferences-text);
+    font-size: 4.45cqw;
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.app-preferences-row {
+    grid-template-columns: 10.55cqw minmax(0, 1fr) auto;
+    min-height: 20cqw;
+    padding: 3.6cqw;
+    border: 1px solid var(--preferences-line);
+    border-radius: 4.17cqw;
+    font: inherit;
+}
+
+.app-preferences-icon {
+    width: 10.55cqw;
+    height: 10.55cqw;
+    border-radius: 3.05cqw;
+    background: var(--preferences-icon-bg);
+    color: var(--preferences-blue);
+    font-size: 4.72cqw;
+}
+
+.app-preferences-chevron {
+    margin-inline: 1.4cqw;
+    color: var(--preferences-muted);
+    font-size: 3.05cqw;
+}
+
+.app-preferences-theme {
+    border-color: var(--preferences-accent-line);
+    cursor: pointer;
+}
+
+.app-simulator .app-preferences .app-preferences-switch {
+    appearance: none;
+    position: relative;
+    box-sizing: border-box;
+    width: 11.1cqw;
+    height: 3.9cqw;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #b9c2f8;
+    cursor: pointer;
+}
+
+.app-preferences-switch::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 5.55cqw;
+    height: 5.55cqw;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+}
+
+.app-simulator .app-preferences .app-preferences-switch:checked {
+    background: var(--preferences-blue);
+}
+
+.app-preferences-switch:checked::before {
+    transform: translate(5.55cqw, -50%);
+}
+
+.app-preferences-switch:focus-visible {
+    outline: 2px solid var(--preferences-blue);
+    outline-offset: 4px;
+}
+
+.app-simulator .app-preferences .app-preferences-note {
+    margin: 2.5cqw 0 0;
+}
+
+.app-preferences-signout {
+    border-color: var(--preferences-danger-line);
+    color: var(--preferences-danger);
+}
+
+.app-preferences-signout .app-preferences-icon {
+    background: var(--preferences-danger-bg);
+    color: var(--preferences-danger);
+}
+
+.app-preferences-signout .app-preferences-chevron {
+    color: var(--preferences-danger);
+}

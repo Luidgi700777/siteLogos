@@ -2086,9 +2086,159 @@
  <div class="demo-sheet-overlay" data-panel="report-period" hidden><section class="demo-sheet"><header><div><h3>Editar período</h3><p>Relatório de novembro · Cleiton</p></div><button data-close="report-period">×</button></header><div class="demo-sheet-body"><h3>Novo período</h3><label>INÍCIO DO PERÍODO<input value="07/11/2026"></label><label>FIM DO PERÍODO<input value="19/11/2026"></label><p>Os slides atuais permanecem, mesmo se estiverem fora das novas datas. Você escolherá quais outras matérias deseja incluir.</p></div><footer><button data-close="report-period">CANCELAR</button><button data-close="report-period">REVISAR MATÉRIAS</button></footer></section></div>
 </section>
 
-<section class="demo-page demo-employees" data-view="funcionarios" hidden><div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar funcionários..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="employee-filter"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div><div class="demo-list-heading"><span>0 funcionários</span><button class="demo-primary" data-screen="convites">✉ CONVITES</button></div><div class="demo-empty"><strong>Nenhum funcionário encontrado</strong><p>Tente alterar a busca ou os filtros.</p></div><div class="demo-sheet-overlay" data-panel="employee-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Refine os funcionários exibidos</p></div><button data-close="employee-filter">×</button></header><div class="demo-sheet-body"><strong>STATUS</strong><div class="demo-pills"><button>Ativos</button><button>Inativos</button><button class="selected">Todos</button></div></div><footer><button data-close="employee-filter">LIMPAR</button><button data-close="employee-filter">APLICAR</button></footer></section></div></section>
-<section class="demo-page demo-invites" data-view="convites" hidden><div class="demo-list-heading"><span>2 convites</span><button class="demo-primary" data-action="invite-generate">GERAR CONVITE</button></div><article class="demo-card"><strong>♧　Convide alguém para a equipe</strong><p>Gere um código para um funcionário se cadastrar. Ele é válido por 7 dias e pode ser usado uma vez.</p></article><article class="demo-card demo-invite-ready"><h3>✓　Convite pronto</h3><p>Compartilhe este código com o funcionário:</p><strong>LOGOS-V2FE-86RB　▢</strong><small>Válido até 28/11/2026 às 18:00</small></article><h2>Histórico de convites</h2><p>Mais recentes primeiro</p><article class="demo-card"><strong>LOGOS-V2FE-86RB　<span class="demo-status">ATIVO</span></strong><p>Gerado por assessor</p><small>Criado em 21/11/2026 às 14:00<br>Expira em 28/11/2026 às 18:00</small></article><article class="demo-card"><strong>LOGOS-DM86-R7MB　<span class="demo-status">ATIVO</span></strong><p>Gerado por assessor</p><small>Criado em 19/11/2026 às 05:35<br>Expira em 26/11/2026 às 09:35</small></article><p class="demo-pagination">Exibindo 1–2 de 2</p></section>
-<section class="demo-page demo-settings" data-view="configuracoes" hidden><h2>Preferências</h2><p>Personalize a aparência e gerencie sua sessão.</p><article class="demo-card demo-user"><span>L</span><strong>assessor</strong><small>assessor@gmail.com<br>Assessor</small></article><h3>Aparência</h3><label class="demo-card demo-toggle"><strong>☼　Modo escuro</strong><small>Desativado<br>Sua escolha fica salva neste dispositivo.</small><input type="checkbox"></label><h3>Sessão</h3><button class="demo-card demo-signout">↪　Sair da conta　›<small>Encerrar sessão neste dispositivo</small></button></section>
+<section class="demo-page demo-employees" data-view="funcionarios" hidden>
+  <div class="demo-search-row">
+    <div class="demo-search"><input placeholder="Buscar funcionários...">
+      <button>
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <button class="demo-filter-open" data-open="employee-filter">
+      <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="demo-list-heading">
+    <span>0 funcionários</span>
+    <button class="demo-primary" data-screen="convites">✉ CONVITES</button>
+  </div>
+
+  <div class="demo-empty">
+    <strong>Nenhum funcionário encontrado</strong>
+    <p>Tente alterar a busca ou os filtros.</p>
+  </div>
+
+  <div class="demo-sheet-overlay" data-panel="employee-filter" hidden><section class="demo-sheet">
+    <header>
+      <div>
+        <h3>FILTROS</h3>
+        <p>Refine os funcionários exibidos</p>
+      </div>
+
+      <button data-close="employee-filter">×</button>
+    </header>
+
+    <div class="demo-sheet-body">
+      <strong>STATUS</strong>
+      <div class="demo-pills">
+        <button>Ativos</button>
+        <button>Inativos</button>
+        <button class="selected">Todos</button>
+      </div>
+    </div>
+
+    <footer>
+      <button data-close="employee-filter">LIMPAR</button>
+      <button data-close="employee-filter">APLICAR</button>
+    </footer
+    ></section>
+  </div>
+</section>
+
+<section class="demo-page demo-invites" data-view="convites" hidden>
+  <div class="demo-list-heading">
+    <span>2 convites</span>
+    <button class="demo-primary" data-action="invite-generate">GERAR CONVITE</button>
+  </div>
+  
+  <article class="demo-card">
+    <strong>♧　Convide alguém para a equipe</strong>
+    <p>Gere um código para um funcionário se cadastrar. Ele é válido por 7 dias e pode ser usado uma vez.</p>
+  </article>
+  
+  <article class="demo-card demo-invite-ready">
+    <h3>✓　Convite pronto</h3>
+    <p>Compartilhe este código com o funcionário:</p>
+    <strong>LOGOS-V2FE-86RB　▢</strong>
+    <small>Válido até 28/11/2026 às 18:00</small>
+  </article>
+  
+  <h2>Histórico de convites</h2>
+  <p>Mais recentes primeiro</p>
+
+  <article class="demo-card">
+    <strong>LOGOS-V2FE-86RB　<span class="demo-status">ATIVO</span></strong>
+    <p>Gerado por assessor</p>
+    <small>Criado em 21/11/2026 às 14:00<br>Expira em 28/11/2026 às 18:00</small>
+  </article>
+  
+  <article class="demo-card">
+    <strong>LOGOS-DM86-R7MB　<span class="demo-status">ATIVO</span></strong>
+    <p>Gerado por assessor</p>
+    <small>Criado em 19/11/2026 às 05:35<br>Expira em 26/11/2026 às 09:35</small>
+  </article>
+  <p class="demo-pagination">Exibindo 1–2 de 2</p>
+</section>
+
+<section class="demo-page demo-settings app-preferences"
+         data-view="configuracoes" hidden>
+    <header class="app-preferences-intro">
+        <h2>Preferências</h2>
+        <p>Personalize a aparência e gerencie sua sessão.</p>
+    </header>
+
+    <article class="app-preferences-profile">
+        <span class="app-preferences-avatar" aria-hidden="true">A</span>
+        <div class="app-preferences-copy">
+            <strong>Assessor</strong>
+            <small>assessor@gmail.com</small>
+            <span class="app-preferences-role">Assessor</span>
+        </div>
+    </article>
+
+    <section class="app-preferences-group">
+        <h3>Navegação</h3>
+        <button type="button" class="app-preferences-row" aria-disabled="true">
+            <span class="app-preferences-icon" aria-hidden="true">
+                <i class="fa-solid fa-sliders"></i>
+            </span>
+            <span class="app-preferences-copy">
+                <strong>Barra de navegação</strong>
+                <small>Personalize seus atalhos</small>
+            </span>
+            <i class="fa-solid fa-chevron-right app-preferences-chevron"
+               aria-hidden="true"></i>
+        </button>
+    </section>
+
+    <section class="app-preferences-group">
+        <h3>Aparência</h3>
+        <label class="app-preferences-row app-preferences-theme">
+            <span class="app-preferences-icon" aria-hidden="true">
+                <i class="fa-regular fa-sun"></i>
+            </span>
+            <span class="app-preferences-copy">
+                <strong id="app-preferences-theme-label">Modo escuro</strong>
+                <small data-preferences-theme-status>Desativado</small>
+            </span>
+            <input class="app-preferences-switch" type="checkbox" role="switch"
+                   data-preferences-theme
+                   aria-labelledby="app-preferences-theme-label"
+                   aria-describedby="app-preferences-theme-note">
+        </label>
+        <p class="app-preferences-note" id="app-preferences-theme-note">
+            Sua escolha fica salva neste dispositivo.
+        </p>
+    </section>
+
+    <section class="app-preferences-group">
+        <h3>Sessão</h3>
+        <button type="button" class="app-preferences-row app-preferences-signout"
+                aria-disabled="true">
+            <span class="app-preferences-icon" aria-hidden="true">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </span>
+            <span class="app-preferences-copy">
+                <strong>Sair da conta</strong>
+                <small>Encerrar sessão neste dispositivo</small>
+            </span>
+            <i class="fa-solid fa-chevron-right app-preferences-chevron"
+               aria-hidden="true"></i>
+        </button>
+    </section>
+</section>
+
 <div class="demo-modal-overlay demo-calendar-overlay" data-panel="report-date-picker" hidden><section class="demo-modal demo-calendar"><header><h3 data-calendar-heading>Data do período</h3><button data-close="report-date-picker" aria-label="Fechar">×</button></header><div class="demo-calendar-month"><button data-calendar-nav="-1" aria-label="Mês anterior">‹</button><strong data-calendar-title>Novembro 2026</strong><button data-calendar-nav="1" aria-label="Próximo mês">›</button></div><div class="demo-calendar-grid demo-calendar-week"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="demo-calendar-grid" data-calendar-days></div><footer><button data-calendar-clear>Deixar sem data</button><button data-calendar-today>Usar hoje</button></footer></section></div><!-- Fim das telas adicionadas nesta etapa -->
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
