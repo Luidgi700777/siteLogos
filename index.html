@@ -1433,110 +1433,7 @@
 </article>
 </div>
   
-  <div class="app-clipping-items-filter" hidden>
-  <section class="app-clipping-sheet app-clipping-items-filter-sheet">
-    <header>
-      <div>
-        <h4>FILTROS</h4>
-        <p data-clipping-filter-context>2026 · Cleiton</p>
-      </div>
-      <button type="button" class="app-clipping-items-filter-close" aria-label="Fechar filtros">×</button>
-    </header>
-
-    <div class="app-clipping-items-filter-body">
-      <section class="app-clipping-filter-section">
-        <strong>DATA DA PUBLICAÇÃO</strong>
-        <div class="app-clipping-filter-options" data-filter-group="publication">
-          <button type="button" class="selected" data-filter-select="all" data-filter-default>Todas</button>
-          <button type="button" data-filter-select="period">Período</button>
-          <button type="button" data-filter-select="undated">Sem data</button>
-        </div>
-        <div class="app-clipping-filter-period-fields" data-filter-period-fields hidden>
-          <input type="text" placeholder="DD/MM/AAAA" data-filter-field="date-from" aria-label="Data inicial">
-          <input type="text" placeholder="DD/MM/AAAA" data-filter-field="date-to" aria-label="Data final">
-        </div>
-      </section>
-
-      <section class="app-clipping-filter-section">
-        <strong>ORDENAÇÃO</strong>
-        <div class="app-clipping-filter-options" data-filter-group="sort">
-          <button type="button" class="selected" data-filter-select="newest" data-filter-default>Mais recentes</button>
-          <button type="button" data-filter-select="oldest">Mais antigos</button>
-          <button type="button" data-filter-select="vehicle">Veículo A–Z</button>
-          <button type="button" data-filter-select="tier">Tier 1 → 3</button>
-        </div>
-      </section>
-
-      <label class="app-clipping-filter-input">VEÍCULO
-        <input type="text" placeholder="Buscar pelo nome do veículo" data-filter-field="vehicle">
-      </label>
-
-      <label class="app-clipping-filter-input">PROGRAMA / SEÇÃO
-        <input type="text" placeholder="Nome ou parte do nome" data-filter-field="program">
-      </label>
-
-      <section class="app-clipping-filter-section">
-        <label class="app-clipping-filter-input">CATEGORIA
-          <input type="text" placeholder="Digite ou escolha uma sugestão" data-filter-field="category">
-        </label>
-        <div class="app-clipping-filter-options app-clipping-filter-category-options" data-filter-group="category" data-filter-mode="multiple">
-          <button type="button" data-filter-select="Site">Site</button>
-          <button type="button" data-filter-select="TV">TV</button>
-          <button type="button" data-filter-select="Rádio">Rádio</button>
-          <button type="button" data-filter-select="Jornal">Jornal</button>
-          <button type="button" data-filter-select="Revista">Revista</button>
-          <button type="button" data-filter-select="Podcast">Podcast</button>
-          <button type="button" data-filter-select="Redes sociais">Redes sociais</button>
-        </div>
-      </section>
-
-      <section class="app-clipping-filter-section">
-        <strong>TIER</strong>
-        <div class="app-clipping-filter-options" data-filter-group="tier">
-          <button type="button" class="selected" data-filter-select="all" data-filter-default>Todos</button>
-          <button type="button" data-filter-tier-toggle aria-expanded="false">Escolher Tier</button>
-          <div class="app-clipping-filter-tier-choices" data-filter-tier-choices hidden>
-            <button type="button" data-filter-select="tier-1">Tier 1</button>
-            <button type="button" data-filter-select="tier-2">Tier 2</button>
-            <button type="button" data-filter-select="tier-3">Tier 3</button>
-          </div>
-        </div>
-      </section>
-
-      <label class="app-clipping-filter-input">DURAÇÃO MÍNIMA
-        <input type="text" placeholder="Ex.: 01:00" data-filter-field="duration-min">
-      </label>
-
-      <label class="app-clipping-filter-input">DURAÇÃO MÁXIMA
-        <input type="text" placeholder="Ex.: 05:00" data-filter-field="duration-max">
-      </label>
-      <small class="app-clipping-filter-hint">Registros sem duração ficam fora caso esse filtro esteja ativado.</small>
-
-      <section class="app-clipping-filter-section">
-        <strong>LINK DA PUBLICAÇÃO</strong>
-        <div class="app-clipping-filter-options" data-filter-group="link">
-          <button type="button" class="selected" data-filter-select="all" data-filter-default>Todos</button>
-          <button type="button" data-filter-select="with">Com link</button>
-          <button type="button" data-filter-select="without">Sem link</button>
-        </div>
-      </section>
-
-      <section class="app-clipping-filter-section">
-        <strong>IMAGEM PARA RELATÓRIO</strong>
-        <div class="app-clipping-filter-options" data-filter-group="image">
-          <button type="button" class="selected" data-filter-select="all" data-filter-default>Todos</button>
-          <button type="button" data-filter-select="selected">Selecionada</button>
-          <button type="button" data-filter-select="unselected">Não selecionada</button>
-        </div>
-      </section>
-    </div>
-
-    <footer>
-      <button type="button" class="app-clipping-items-filter-clear">LIMPAR</button>
-      <button type="button" class="app-clipping-items-filter-apply">APLICAR</button>
-    </footer>
-  </section>
-</div>
+  <div class="app-clipping-items-filter" hidden><section class="app-clipping-sheet"><header><div><h4>FILTROS</h4><p>Refine os clippings exibidos</p></div><button class="app-clipping-items-filter-close">×</button></header><div><label>ANO DE REFERÊNCIA<input value="2026"></label><label>VEÍCULO<input placeholder="Buscar veículo"></label><label>CATEGORIA<input placeholder="Ex.: Site, Jornal, TV"></label><label>DATA DE PUBLICAÇÃO<input placeholder="DD/MM/AAAA"></label></div><footer><button class="app-clipping-items-filter-clear">LIMPAR</button><button class="app-clipping-items-filter-apply">APLICAR</button></footer></section></div>
 </section>
 <section class="app-clipping-details" data-view="detalhes-clipping" hidden>
   <div class="app-clipping-detail-actions">
@@ -1665,19 +1562,14 @@
 
   <p data-clipping-year-note>Sem data de publicação, o clipping ficará em 2026.</p>
   <h4>DADOS DA PUBLICAÇÃO</h4>
-  <label>LINK
-    <span class="app-clipping-clearable">
-      <input name="link" value="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias/ministerio-da-igualdade-racial-conecta-participacao-comunitaria-e-combate-ao-racismo-ambiental-na-cop31" placeholder="https://...">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="link" hidden>×</button>
-    </span>
-  </label>
+  <label>LINK<input name="link" value="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias/ministerio-da-igualdade-racial-conecta-participacao-comunitaria-e-combate-ao-racismo-ambiental-na-cop31" placeholder="https://..."></label>
 
   <div class="app-clipping-form-tools">
     <button class="app-clipping-search-data" disabled><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> BUSCAR DADOS</button><button class="app-clipping-capture-open" disabled>▧ CAPTURAR IMAGEM</button>
   </div>
 
   <label>DATA DE PUBLICAÇÃO<span class="app-clipping-date-field"><input name="date" placeholder="DD/MM/AAAA">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="date" hidden>×</button>
+      <button type="button" class="app-clipping-field-clear" hidden>×</button>
       <button type="button" data-open="report-date-picker" aria-label="Escolher data de publicação">▦</button>
     </span>
   </label>
@@ -1694,13 +1586,6 @@
     <span data-clipping-subject-suggestion-text></span>
   </div>
 
-  <label>VEÍCULO
-    <span class="app-clipping-clearable">
-      <input name="vehicle" placeholder="Buscar pelo nome do veículo">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="vehicle" hidden>×</button>
-    </span>
-  </label>
-
   <button type="button" class="app-clipping-vehicle-card" aria-expanded="false">
     <span class="app-clipping-vehicle-icon">
       <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
@@ -1710,8 +1595,7 @@
     <small>Tier não definido</small>
 
     <span class="app-clipping-vehicle-toggle">
-      <span data-vehicle-toggle-label>Ver detalhes</span>
-      <i class="fa-solid fa-chevron-down app-clipping-vehicle-chevron" aria-hidden="true"></i>
+      Ver detalhes <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
     </span>
 
     <p hidden>Descrição<br>Descrição não informada.</p>
@@ -1719,18 +1603,8 @@
     <p hidden>Endereços associados<br>logos.com.br · Site inteiro</p>
   </button>
 
-  <label>PROGRAMA / SEÇÃO
-    <span class="app-clipping-clearable">
-      <input name="program" placeholder="Ex.: Jornal da manhã">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="program" hidden>×</button>
-    </span>
-  </label>
-  <label>CATEGORIAS
-    <span class="app-clipping-clearable">
-      <input name="categories" placeholder="Separe as categorias por vírgula">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="categories" hidden>×</button>
-    </span>
-  </label>
+  <label>PROGRAMA / SEÇÃO<input name="program" placeholder="Ex.: Jornal da manhã"></label>
+  <label>CATEGORIAS<input name="categories" placeholder="Separe as categorias por vírgula"></label>
 
   <div class="app-clipping-category-chips">
     <button>+ Site</button><button>+ TV</button><button>+ Rádio</button><button>+ Jornal</button><button>+ Revista</button><button>+ Podcast</button><button>+ Redes sociais</button>
