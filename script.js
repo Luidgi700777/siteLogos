@@ -500,6 +500,12 @@ if (appSimulator) {
             voltar: true
         },
 
+        'barra-navegacao': {
+            titulo: 'Barra de navegação',
+            aba: null,
+            voltar: true
+        },
+
         'novo-relatorio': {
             titulo: 'Novo relatório',
             aba: null,
@@ -553,6 +559,201 @@ if (appSimulator) {
         }
     };
 
+    const navModules = {
+    clipping: ['Clipping', 'Matérias e publicações', 'fa-regular fa-file-lines'],
+    mailing: ['Mailing', 'Contatos e jornalistas', 'fa-solid fa-users'],
+    releases: ['Releases', 'Envios e resultados', 'fa-regular fa-newspaper'],
+    templates: ['Templates', 'Modelos para seus releases', 'fa-regular fa-folder'],
+    relatorios: ['Relatórios', 'Slides e acompanhamento', 'fa-solid fa-chart-column'],
+    clientes: ['Clientes', 'Clientes da assessoria', 'fa-regular fa-building'],
+    veiculos: ['Veículos', 'Veículos de comunicação', 'fa-solid fa-tower-broadcast'],
+    funcionarios: ['Funcionários', 'Pessoas e permissões', 'fa-regular fa-circle-user'],
+    convites: ['Convites', 'Acessos para novos funcionários', 'fa-regular fa-envelope']
+};
+
+const navDefaults = ['clipping', 'releases'];
+const navStorageKey = 'logos-demo-assessor-barra-v1';
+const navEditor = appContent.querySelector('[data-view="barra-navegacao"]');
+const navPreview = navEditor.querySelector('[data-nav-preview]');
+const navOptions = navEditor.querySelector('[data-nav-options]');
+const navSlotButtons = [...navEditor.querySelectorAll('[data-nav-edit-slot]')];
+const navSave = navEditor.querySelector('[data-nav-save]');
+const navFeedback = navEditor.querySelector('[data-nav-feedback]');
+const navRealSlots = [...appSimulator.querySelectorAll('[data-nav-slot]')];
+const navMore = appContent.querySelector('[data-view="mais"]');
+const navExtra = navMore.querySelector('[data-nav-extra]');
+const navExtraHeading = navMore.querySelector('[data-nav-extra-heading]');
+
+let navSaved = [...navDefaults];
+
+try {
+    const stored = JSON.parse(localStorage.getItem(navStorageKey));
+    if (
+        Array.isArray(stored) &&
+        stored.length === 2 &&
+        stored[0] !== stored[1] &&
+        stored.every((key) => Object.hasOwn(navModules, key))
+    ) {
+        navSaved = stored;
+    }
+} catch {
+    // Usa a configuração padrão se o armazenamento estiver indisponível.
+}
+
+let navDraft = [...navSaved];
+let navSelectedSlot = 0;
+
+const navIcon = (classes) => `<i class="${classes}" aria-hidden="true"></i>`;
+
+navOptions.innerHTML = Object.entries(navModules).map(([key, [name, , icon]]) => `
+    <button type="button" class="app-nav-option" data-nav-module="${key}"
+            aria-pressed="false">
+        <span class="app-nav-option-icon">${navIcon(icon)}</span>
+        <span class="app-nav-option-copy">
+            <strong>${name}</strong>
+            <small></small>
+        </span>
+        <span class="app-nav-option-check" aria-hidden="true"></span>
+    </button>
+`).join('');
+
+const navOptionButtons = [...navOptions.querySelectorAll('[data-nav-module]')];
+
+const renderNavEditor = () => {
+    const previewItems = [
+        ['Início', 'fa-solid fa-house', ''],
+        [navModules[navDraft[0]][0], navModules[navDraft[0]][2],
+            navSelectedSlot === 0 ? 'is-editing' : ''],
+        ['Novo', '', 'is-new'],
+        [navModules[navDraft[1]][0], navModules[navDraft[1]][2],
+            navSelectedSlot === 1 ? 'is-editing' : ''],
+        ['Mais', 'fa-solid fa-table-cells-large', '']
+    ];
+
+    navPreview.innerHTML = previewItems.map(([name, icon, state]) => `
+        <span class="app-nav-preview-item ${state}">
+            <span class="app-nav-preview-icon">${icon ? navIcon(icon) : '+'}</span>
+            <small>${name}</small>
+        </span>
+    `).join('');
+
+    navSlotButtons.forEach((button, slot) => {
+        button.setAttribute('aria-pressed', String(slot === navSelectedSlot));
+        button.querySelector('strong').textContent = navModules[navDraft[slot]][0];
+    });
+
+    navEditor.querySelector('#app-nav-options-title').textContent =
+        `Escolha o atalho da vaga ${navSelectedSlot + 1}`;
+
+    navOptionButtons.forEach((button) => {
+        const key = button.dataset.navModule;
+        const assignedSlot = navDraft.indexOf(key);
+        button.setAttribute('aria-pressed', String(assignedSlot === navSelectedSlot));
+        button.querySelector('small').textContent =
+            assignedSlot !== -1 && assignedSlot !== navSelectedSlot
+                ? `Na vaga ${assignedSlot + 1}`
+                : navModules[key][1];
+    });
+
+    navSave.disabled = navDraft.every((key, slot) => key === navSaved[slot]);
+};
+
+const applySavedNavigation = () => {
+    navRealSlots.forEach((button) => {
+        const key = navSaved[Number(button.dataset.navSlot)];
+        const [name, , icon] = navModules[key];
+
+        button.dataset.screen = key;
+        button.innerHTML = `${navIcon(icon)}<span>${name}</span>`;
+    });
+
+    const existingCards = [
+        ...navMore.querySelectorAll('.app-more-card[data-screen]')
+    ].filter((card) => !navExtra.contains(card));
+
+    existingCards.forEach((card) => {
+        if (Object.hasOwn(navModules, card.dataset.screen)) {
+            card.hidden = navSaved.includes(card.dataset.screen);
+        }
+    });
+
+    const existingKeys = new Set(existingCards.map((card) => card.dataset.screen));
+    const extraKeys = Object.keys(navModules).filter(
+        (key) => !navSaved.includes(key) && !existingKeys.has(key)
+    );
+
+    navExtra.innerHTML = extraKeys.map((key) => {
+        const [name, description, icon] = navModules[key];
+        return `
+            <button type="button" class="app-more-card" data-screen="${key}">
+                <span class="app-more-icon">${navIcon(icon)}</span>
+                <span class="app-more-info">
+                    <strong>${name}</strong><small>${description}</small>
+                </span>
+                <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
+            </button>
+        `;
+    }).join('');
+
+    navExtra.hidden = extraKeys.length === 0;
+    navExtraHeading.hidden = navExtra.hidden;
+
+    navMore.querySelectorAll('.app-more-list-group').forEach((group) => {
+        if (group === navExtra) return;
+        const heading = group.previousElementSibling;
+        const cards = [...group.querySelectorAll('.app-more-card')];
+        if (!cards.length || !heading?.matches('.app-more-group-title')) return;
+
+        group.hidden = cards.every((card) => card.hidden);
+        heading.hidden = group.hidden;
+    });
+};
+
+const openNavigationEditor = () => {
+    navSelectedSlot = 0;
+    navDraft = [...navSaved];
+    navFeedback.textContent = '';
+    renderNavEditor();
+};
+
+navEditor.addEventListener('click', (event) => {
+    const slotButton = event.target.closest('[data-nav-edit-slot]');
+    const optionButton = event.target.closest('[data-nav-module]');
+
+    navFeedback.textContent = '';
+
+    if (slotButton) {
+        navSelectedSlot = Number(slotButton.dataset.navEditSlot);
+    } else if (optionButton) {
+        const key = optionButton.dataset.navModule;
+        const otherSlot = 1 - navSelectedSlot;
+
+        if (navDraft[otherSlot] === key) {
+            navDraft[otherSlot] = navDraft[navSelectedSlot];
+        }
+
+        navDraft[navSelectedSlot] = key;
+    } else if (event.target.closest('[data-nav-restore]')) {
+        navDraft = [...navDefaults];
+    } else if (event.target.closest('[data-nav-save]') && !navSave.disabled) {
+        navSaved = [...navDraft];
+        applySavedNavigation();
+
+        try {
+            localStorage.setItem(navStorageKey, JSON.stringify(navSaved));
+            navFeedback.textContent = 'Barra de navegação salva.';
+        } catch {
+            navFeedback.textContent = 'Barra atualizada nesta visita.';
+        }
+    } else {
+        return;
+    }
+
+    renderNavEditor();
+});
+
+applySavedNavigation();
+
     let appCurrentScreen = 'inicio';
     const appHistory = [];
 
@@ -566,7 +767,14 @@ if (appSimulator) {
         }
 
         appCurrentScreen = screenName;
-        appScreen.classList.toggle('app-screen-preferences', screenName === 'configuracoes');
+        appScreen.classList.toggle(
+            'app-screen-preferences',
+            ['configuracoes', 'barra-navegacao'].includes(screenName)
+        );
+
+        if (screenName === 'barra-navegacao') {
+            openNavigationEditor();
+        }
 
         // Atualizar título e botão voltar
         appTitle.textContent = route.titulo;
@@ -609,7 +817,10 @@ if (appSimulator) {
         // Atualizar a navegação inferior
         appNavItems.forEach((item) => {
 
-            const activeTab = route.aba === 'mailing' ? 'mais' : route.aba;
+            const moduleTab = route.aba ?? screenName;
+            const activeTab = Object.hasOwn(navModules, moduleTab) && !navSaved.includes(moduleTab)
+                ? 'mais'
+                : moduleTab;
             const active = item.dataset.screen === activeTab;
 
             item.classList.toggle('app-nav-active', active);
@@ -624,11 +835,11 @@ if (appSimulator) {
         // Ocultar menu inferior nas Configurações
         appScreen.classList.toggle(
             'app-screen-no-nav',
-            ['configuracoes', 'selecionar-contatos', 'preview-template'].includes(screenName)
+            ['configuracoes', 'barra-navegacao', 'selecionar-contatos', 'preview-template'].includes(screenName)
         );
         appScreen.classList.toggle(
             'app-screen-no-settings',
-            ['configuracoes', 'selecionar-contatos', 'preview-template', 'novo-template', 'editar-copia-template'].includes(screenName)
+            ['configuracoes', 'barra-navegacao', 'selecionar-contatos', 'preview-template', 'novo-template', 'editar-copia-template'].includes(screenName)
         );
 
         // Voltar ao início da rolagem interna
@@ -3231,21 +3442,21 @@ vehicleToggle?.addEventListener('click', () => {
     const themeSwitch = preferences?.querySelector('[data-preferences-theme]');
     const themeStatus = preferences?.querySelector('[data-preferences-theme-status]');
     const themeStorageKey = 'logos-demo-dark-preview';
- 
+
     if (themeSwitch && themeStatus) {
         const showTheme = () => {
             preferences.classList.toggle('dark-preview', themeSwitch.checked);
             themeStatus.textContent = themeSwitch.checked ? 'Ativado' : 'Desativado';
         };
-    
+
         try {
             themeSwitch.checked = localStorage.getItem(themeStorageKey) === 'true';
         } catch {
             // O controle continua funcionando se o navegador bloquear o armazenamento.
         }
-    
+
         showTheme();
-    
+
         themeSwitch.addEventListener('change', () => {
             showTheme();
         

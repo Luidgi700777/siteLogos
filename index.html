@@ -466,7 +466,7 @@
                         class="app-avatar"
                         aria-label="Usuário da demonstração"
                     >
-                        L
+                        A
                     </span>
 
                 </div>
@@ -808,6 +808,9 @@
         <h2>Gestão da assessoria</h2>
         <p>Acesse seus templates, relatórios, equipe e outros dados da assessoria.</p>
     </div>
+
+    <h4 class="app-more-group-title" data-nav-extra-heading hidden>Outros módulos</h4>
+    <div class="app-more-list app-more-list-group" data-nav-extra hidden></div>
 
     <h4 class="app-more-group-title">Templates e relatórios</h4>
     <div class="app-more-list app-more-list-group">
@@ -2189,7 +2192,7 @@
 
     <section class="app-preferences-group">
         <h3>Navegação</h3>
-        <button type="button" class="app-preferences-row" aria-disabled="true">
+        <button type="button" class="app-preferences-row" data-screen="barra-navegacao">
             <span class="app-preferences-icon" aria-hidden="true">
                 <i class="fa-solid fa-sliders"></i>
             </span>
@@ -2239,6 +2242,48 @@
     </section>
 </section>
 
+<section class="app-nav-preferences" data-view="barra-navegacao" hidden>
+    <h2>Seus atalhos, do seu jeito</h2>
+    <p class="app-nav-intro">
+        Início, Novo e Mais são fixos. Escolha os módulos das outras duas vagas.
+    </p>
+
+    <div class="app-nav-preview" data-nav-preview aria-hidden="true"></div>
+
+    <div class="app-nav-slots" role="group" aria-label="Vaga para editar">
+        <button type="button" data-nav-edit-slot="0" aria-pressed="true">
+            <small>VAGA 1</small>
+            <strong>Clipping</strong>
+        </button>
+        <button type="button" data-nav-edit-slot="1" aria-pressed="false">
+            <small>VAGA 2</small>
+            <strong>Releases</strong>
+        </button>
+    </div>
+
+    <h3 id="app-nav-options-title">Escolha o atalho da vaga 1</h3>
+    <p class="app-nav-hint">
+        Se o módulo já estiver na outra vaga, os dois trocam de lugar.
+    </p>
+
+    <div class="app-nav-options" data-nav-options role="group"
+         aria-labelledby="app-nav-options-title"></div>
+
+    <p class="app-nav-note">
+        Os módulos fora da barra ficam em Mais. Sua escolha é salva
+        para esta conta neste dispositivo.
+    </p>
+
+    <div class="app-nav-preferences-actions">
+        <button type="button" data-nav-restore>RESTAURAR</button>
+        <button type="button" data-nav-save disabled>
+            <i class="fa-solid fa-check" aria-hidden="true"></i>
+            SALVAR
+        </button>
+    </div>
+    <div class="app-nav-feedback" data-nav-feedback role="status"></div>
+</section>
+
 <div class="demo-modal-overlay demo-calendar-overlay" data-panel="report-date-picker" hidden><section class="demo-modal demo-calendar"><header><h3 data-calendar-heading>Data do período</h3><button data-close="report-date-picker" aria-label="Fechar">×</button></header><div class="demo-calendar-month"><button data-calendar-nav="-1" aria-label="Mês anterior">‹</button><strong data-calendar-title>Novembro 2026</strong><button data-calendar-nav="1" aria-label="Próximo mês">›</button></div><div class="demo-calendar-grid demo-calendar-week"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="demo-calendar-grid" data-calendar-days></div><footer><button data-calendar-clear>Deixar sem data</button><button data-calendar-today>Usar hoje</button></footer></section></div><!-- Fim das telas adicionadas nesta etapa -->
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
@@ -2268,7 +2313,7 @@
                     <i class="fa-solid fa-house" aria-hidden="true"></i>
                     <span>Início</span>
                 </button>
-                <button type="button" class="app-nav-item" data-screen="clipping">
+                <button type="button" class="app-nav-item" data-screen="clipping" data-nav-slot="0">
                     <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
                     <span>Clipping</span>
                 </button>
@@ -2278,7 +2323,7 @@
                     <span class="app-nav-plus" aria-hidden="true">+</span>
                     <span>Novo</span>
                 </button>
-                <button type="button" class="app-nav-item" data-screen="releases">
+                <button type="button" class="app-nav-item" data-screen="releases" data-nav-slot="1">
                     <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
                     <span>Releases</span>
                 </button>
