@@ -161,6 +161,65 @@
       <div class="app-content" id="app-content">
         <div class="app-home" data-view="inicio">
 
+          <section class="home-release" aria-labelledby="home-release-heading">
+              <header class="home-release-header">
+                  <span class="home-release-icon" aria-hidden="true">
+                      <i class="fa-regular fa-paper-plane"></i>
+                  </span>
+                  <div>
+                      <h4 id="home-release-heading">Releases</h4>
+                      <small>Último release criado</small>
+                  </div>
+                  <button type="button" class="home-release-open"
+                          data-screen="detalhes-release" aria-label="Ver último release">
+                      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </button>
+              </header>         
+
+              <div class="home-release-body">
+                  <article class="home-release-summary">
+                      <div class="home-release-meta">
+                          <time datetime="2026-11-25">
+                              <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                              25/11/2026
+                          </time>
+                          <span class="home-release-status">Rascunho</span>
+                      </div>
+                      <h5>Varejo em 2026</h5>
+                      <p><i class="fa-regular fa-building" aria-hidden="true"></i> Cleiton</p>
+                  </article>          
+
+                  <div class="home-release-metrics">
+                      <div>
+                          <span>Destinatários</span><strong>1</strong>
+                          <small>Contatos selecionados</small>
+                      </div>
+                      <div>
+                          <span>Aceitos</span><strong>0</strong>
+                          <small>Pelo servidor de e-mail</small>
+                      </div>
+                      <div>
+                          <span>Falhas</span><strong>0</strong>
+                          <small>Registradas no envio</small>
+                      </div>
+                      <div>
+                          <span>Aberturas detectadas</span><strong class="home-release-pending">—</strong>
+                          <small>Aguardando ativação</small>
+                      </div>
+                  </div>          
+
+                  <p class="home-release-note">
+                      Aceites não confirmam a entrega. Aberturas são estimadas
+                      pelo carregamento de imagens.
+                  </p>          
+
+                  <button type="button" class="home-release-cta" data-screen="detalhes-release">
+                      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                      VER RELEASE
+                  </button>
+              </div>
+          </section>
+
           <!-- VISÃO GERAL -->
           <section class="app-home-overview">
             <h4 class="app-home-heading">Visão geral</h4>
@@ -269,8 +328,8 @@
 
               <button type="button" class="app-review-link"
                       data-screen="relatorios">
-                <span>VER RELATÓRIOS</span>
-                <i class="fa-solid fa-arrow-right"></i>
+                      <i class="fa-solid fa-arrow-right"></i>
+                      <span>VER RELATÓRIOS</span>
               </button>
             </div>
           </section>
@@ -283,7 +342,7 @@
               <button type="button" class="app-shortcut-item"
                       data-screen="novo-relatorio">
                 <span class="app-shortcut-icon">
-                  <i class="fa-regular fa-square-plus"></i>
+                  <i class="fa-solid fa-chart-column"></i>
                 </span>
 
                 <span class="app-shortcut-info">
@@ -298,37 +357,6 @@
 
         </div>
       </div>
-
-      <!-- MENU INFERIOR FIXO -->
-      <nav class="app-bottom-nav">
-
-        <button type="button" class="active" data-screen="inicio">
-          <i class="fa-solid fa-house"></i>
-          <small>Início</small>
-        </button>
-
-        <button type="button" data-screen="clipping">
-          <i class="fa-regular fa-file"></i>
-          <small>Clipping</small>
-        </button>
-
-        <button type="button" data-screen="mailing">
-          <i class="fa-solid fa-users"></i>
-          <small>Mailing</small>
-        </button>
-
-        <button type="button" data-screen="releases">
-          <i class="fa-regular fa-file-lines"></i>
-          <small>Releases</small>
-        </button>
-
-        <button type="button" data-screen="mais">
-          <i class="fa-solid fa-ellipsis"></i>
-          <small>Mais</small>
-        </button>
-
-      </nav>
-
     </div>
   </div>
 </div>
@@ -449,8 +477,67 @@
             <div class="app-content" id="app-content">
 
                 
-<!-- Tela inicial -->
-<div class="app-home" data-view="inicio">
+    <!-- Tela inicial -->
+    <div class="app-home" data-view="inicio">
+    
+        <section class="home-release" aria-labelledby="home-release-heading">
+        <header class="home-release-header">
+            <span class="home-release-icon" aria-hidden="true">
+                <i class="fa-regular fa-paper-plane"></i>
+            </span>
+            <div>
+                <h4 id="home-release-heading">Releases</h4>
+                <small>Último release criado</small>
+            </div>
+            <button type="button" class="home-release-open"
+                    data-screen="releases" aria-label="Ver todos os releases">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        </header>
+      
+        <div class="home-release-body">
+            <article class="home-release-summary">
+                <div class="home-release-meta">
+                    <time datetime="2026-11-25">
+                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                        25/11/2026
+                    </time>
+                    <span class="home-release-status">Rascunho</span>
+                </div>
+                <h5>Varejo em 2026</h5>
+                <p><i class="fa-regular fa-building" aria-hidden="true"></i> Cleiton</p>
+            </article>
+          
+            <div class="home-release-metrics">
+                <div>
+                    <span>Destinatários</span><strong>1</strong>
+                    <small>Contatos selecionados</small>
+                </div>
+                <div>
+                    <span>Aceitos</span><strong>0</strong>
+                    <small>Pelo servidor de e-mail</small>
+                </div>
+                <div>
+                    <span>Falhas</span><strong>0</strong>
+                    <small>Registradas no envio</small>
+                </div>
+                <div>
+                    <span>Aberturas detectadas</span><strong class="home-release-pending">—</strong>
+                    <small>Aguardando ativação</small>
+                </div>
+            </div> 
+          
+            <p class="home-release-note">
+                Aceites não confirmam a entrega. Aberturas são estimadas
+                pelo carregamento de imagens.
+            </p>
+          
+            <button type="button" class="home-release-cta" data-screen="detalhes-release">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                VER RELEASE
+            </button>
+        </div>
+    </section>
 
     <!-- Visão geral -->
     <section class="app-home-overview">
@@ -468,7 +555,7 @@
 
                 <span class="app-overview-top">
                     <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </span>
 
                 <span class="app-overview-info">
@@ -485,11 +572,11 @@
 
                 <span class="app-overview-top">
                     <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </span>
 
                 <span class="app-overview-info">
-                    <span class="app-overview-number" data-count="clippings">1</span>
+                    <span class="app-overview-number" data-count="clippings">3</span>
                     <span class="app-overview-label">Clippings</span>
                     <span class="app-overview-description">cadastrados</span>
                 </span>
@@ -502,7 +589,7 @@
 
                 <span class="app-overview-top">
                     <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </span>
 
                 <span class="app-overview-info">
@@ -519,7 +606,7 @@
 
                 <span class="app-overview-top">
                     <i class="fa-solid fa-building" aria-hidden="true"></i>
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </span>
 
                 <span class="app-overview-info">
@@ -536,7 +623,7 @@
 
                 <span class="app-overview-top">
                     <i class="fa-solid fa-users" aria-hidden="true"></i>
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </span>
 
                 <span class="app-overview-info">
@@ -553,13 +640,26 @@
 
                 <span class="app-overview-top">
                     <i class="fa-regular fa-user" aria-hidden="true"></i>
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                 </span>
 
                 <span class="app-overview-info">
-                    <span class="app-overview-number" data-count="funcionarios">1</span>
+                    <span class="app-overview-number" data-count="funcionarios">0</span>
                     <span class="app-overview-label">Equipe</span>
                     <span class="app-overview-description">na assessoria</span>
+                </span>
+            </button>
+
+            <button type="button" class="app-overview-card home-templates-card"
+                    data-screen="templates">
+                <span class="app-overview-top">
+                    <i class="fa-regular fa-folder" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <span class="app-overview-info">
+                    <span class="app-overview-number" data-count="templates">3</span>
+                    <span class="app-overview-label">Templates</span>
+                    <span class="app-overview-description">modelos de conteúdo</span>
                 </span>
             </button>
 
@@ -584,12 +684,11 @@
                 </div>
             </div>
 
-            <button type="button"
-                    class="app-review-link"
-                    data-screen="relatorios">
-
-                <span>VER RELATÓRIOS</span>
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            <button type="button" class="app-review-link" data-screen="relatorios">
+                <span class="app-review-link-content">
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    VER RELATÓRIOS
+                </span>
             </button>
 
         </div>
@@ -604,12 +703,24 @@
 
         <div class="app-shortcut-list">
 
+            <button type="button" class="app-shortcut-item"
+                    data-screen="novo-release" data-release-new>
+                <span class="app-shortcut-icon">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                </span>
+                <span class="app-shortcut-info">
+                    <strong>Novo release</strong>
+                    <small>Prepare o conteúdo e os destinatários</small>
+                </span>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
             <button type="button"
                     class="app-shortcut-item"
                     data-screen="novo-relatorio">
 
                 <span class="app-shortcut-icon">
-                    <i class="fa-regular fa-square-plus" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
                 </span>
 
                 <span class="app-shortcut-info">
@@ -646,7 +757,7 @@
 
                 <span class="app-shortcut-info">
                     <strong>Novo contato</strong>
-                    <small>Cadastre um jornalista no mailing</small>
+                    <small>Adicione um jornalista ao mailing</small>
                 </span>
 
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -678,7 +789,7 @@
 
                 <span class="app-shortcut-info">
                     <strong>Convites</strong>
-                    <small>Gerencie e convide colaboradores</small>
+                    <small>Gerencie os acessos da equipe</small>
                 </span>
 
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -749,6 +860,18 @@
                 <small>Veículos de comunicação</small>
             </span>
 
+            <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
+        </button>
+
+        <!-- Contatos -->
+        <button type="button" class="app-more-card" data-screen="mailing">
+            <span class="app-more-icon">
+                <i class="fa-solid fa-users" aria-hidden="true"></i>
+            </span>
+            <span class="app-more-info">
+                <strong>Mailing</strong>
+                <small>Contatos de imprensa</small>
+            </span>
             <i class="fa-solid fa-arrow-right app-more-arrow" aria-hidden="true"></i>
         </button>
 
@@ -1859,21 +1982,21 @@
 <section class="demo-page demo-releases" data-view="releases" hidden>
   <div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar título ou assunto..." aria-label="Buscar release"><button aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="release-filter" aria-label="Filtros"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div>
   <div class="demo-list-heading"><span>1 release</span><button class="demo-primary" data-screen="novo-release" data-release-new>＋ RELEASE</button></div>
-  <button class="demo-release-card" data-screen="detalhes-release"><strong>Varejo em 2026</strong><b>Cleiton</b><span class="demo-status draft">Rascunho</span><span>1 destinatário</span><small>19/11/2026 · luidgi</small></button>
+  <button class="demo-release-card" data-screen="detalhes-release"><strong>Varejo em 2026</strong><b>Cleiton</b><span class="demo-status draft">Rascunho</span><span>1 destinatário</span><small>19/11/2026 · Assessor</small></button>
   <div class="demo-sheet-overlay" data-panel="release-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Releases</p></div><button data-close="release-filter">×</button></header><div class="demo-sheet-body"><strong>SITUAÇÃO</strong><div class="demo-choice-stack"><button class="selected">Todos</button><button>Rascunho</button><button>Agendado</button><button>Enviando</button><button>Enviado</button></div></div><footer><button data-clear="release-filter">LIMPAR</button><button data-close="release-filter">APLICAR</button></footer></section></div>
 </section>
 <section class="demo-page demo-release-details" data-view="detalhes-release" hidden>
-  <div class="demo-actions"><button data-screen="editar-release">✎ Editar</button><button>▤ Excluir</button></div><article class="demo-card"><small>RELEASE</small><h2>Varejo em 2026</h2><b>Cleiton</b><p><span class="demo-status draft">Rascunho</span>　1 destinatário</p><small>19/11/2026 · luidgi</small></article><article class="demo-card"><h3>DESTINATÁRIOS</h3><p>Ademilson · ademilson@example.com</p></article><button class="demo-primary demo-wide" data-screen="novo-release">ABRIR FLUXO DO RELEASE</button>
+  <div class="demo-actions"><button data-screen="editar-release">✎ Editar</button><button>▤ Excluir</button></div><article class="demo-card"><small>RELEASE</small><h2>Varejo em 2026</h2><b>Cleiton</b><p><span class="demo-status draft">Rascunho</span>　1 destinatário</p><small>19/11/2026 · assessor</small></article><article class="demo-card"><h3>DESTINATÁRIOS</h3><p>Ademilson · ademilson@example.com</p></article><button class="demo-primary demo-wide" data-screen="novo-release">ABRIR FLUXO DO RELEASE</button>
 </section>
 <section class="demo-page demo-release-wizard" data-view="novo-release" hidden>
   <div class="demo-steps" aria-label="Etapas do release"><span class="current" data-step-indicator="1"><b>1</b><small>Destino</small></span><span data-step-indicator="2"><b>2</b><small>Template</small></span><span data-step-indicator="3"><b>3</b><small>Conteúdo</small></span><span data-step-indicator="4"><b>4</b><small>E-mail</small></span><span data-step-indicator="5"><b>5</b><small>Revisão</small></span></div>
   <div class="demo-step" data-release-step="1"><h2>Destinatários</h2><small>Etapa 1 de 5</small><label>TÍTULO INTERNO<input placeholder="Identifique esse release"></label><button class="demo-select-row" data-open="release-client"><small>CLIENTE</small><strong data-release-client-label>Selecione o cliente</strong><b>Selecionar</b></button><label>DESTINATÁRIOS</label><button class="demo-select-row demo-release-recipient-row" data-screen="selecionar-contatos"><span class="demo-release-recipient-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></span><span class="demo-release-recipient-copy"><strong data-recipients-summary>Selecionar contatos</strong><small>Escolha os contatos do Mailing</small></span><span class="demo-release-recipient-arrow" aria-hidden="true">›</span></button><div class="demo-two-actions"><button data-action="release-draft">SALVAR RASCUNHO</button><button class="demo-primary" data-action="release-next">PRÓXIMO</button></div><p class="demo-note">Você pode salvar o rascunho com o preenchimento incompleto.</p></div>
   <div class="demo-step" data-release-step="2" hidden><h2>Template</h2><small>Etapa 2 de 5</small><div class="demo-search"><input placeholder="Buscar template..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><div class="demo-pills"><button class="selected" data-release-template-tab="all">Todos</button><button data-release-template-tab="standard">Padrões</button><button data-release-template-tab="created">Criados</button></div><p class="demo-note" data-template-selected hidden>Modelo selecionado — Release simples</p><article class="demo-template-choice" data-release-template="Release simples" data-release-template-origin="standard"><span>▤</span><strong>Release simples</strong><small>Padrão do LOGOS</small><button>VER PRÉVIA</button><input type="radio" name="release-template" aria-label="Selecionar Release simples"></article><article class="demo-template-choice" data-release-template="Release com imagem" data-release-template-origin="standard"><span>▤</span><strong>Release com imagem</strong><small>Padrão do LOGOS</small><button>VER PRÉVIA</button><input type="radio" name="release-template" aria-label="Selecionar Release com imagem"></article><article class="demo-template-choice" data-release-template="Aviso de pauta" data-release-template-origin="standard"><span>▤</span><strong>Aviso de pauta</strong><small>Padrão do LOGOS</small><button>VER PRÉVIA</button><input type="radio" name="release-template" aria-label="Selecionar Aviso de pauta"></article><p class="demo-note" data-release-template-empty hidden>Nenhum template encontrado.</p><button class="demo-primary demo-wide" data-action="release-next" disabled>AVANÇAR PARA EDITAR CONTEÚDO</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div></div>
   <div class="demo-step" data-release-step="3" hidden><h2>Conteúdo</h2><small>Etapa 3 de 5</small><div class="demo-pills"><button class="selected" data-release-content-tab="edit">Editar blocos</button><button data-release-content-tab="preview">Prévia</button></div><p class="demo-note">Template: <span data-release-template-name>Release simples</span></p><div class="demo-release-block-list" data-release-editor><article class="demo-release-block" data-release-block="Título"><span><strong>Título</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Linha fina"><span><strong>Linha fina</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Texto"><span><strong>Texto</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Divisor"><span><strong>Divisor</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article><article class="demo-release-block" data-release-block="Contato de imprensa"><span><strong>Contato de imprensa</strong><small>Toque para editar</small></span><span class="demo-block-order"><button type="button" data-release-move="up" aria-label="Mover para cima">↑</button><button type="button" data-release-move="down" aria-label="Mover para baixo">↓</button></span></article></div><button class="demo-primary demo-wide" data-action="release-add-block">＋　ADICIONAR BLOCO</button><small class="demo-block-count">5 de 100 blocos</small><div class="demo-content-preview" data-release-preview hidden><button class="demo-wide" data-action="release-toggle-pencils">◉　OCULTAR LÁPIS</button><article class="demo-release-preview-card"><div><h2 data-release-preview-title>Título da matéria</h2><button data-action="release-edit-preview">✎</button></div><div><p data-release-preview-lead>Uma apresentação breve da matéria.</p><button data-action="release-edit-preview">✎</button></div><div><p data-release-preview-body>Escreva aqui o conteúdo da matéria.</p><button data-action="release-edit-preview">✎</button></div><hr><div><p>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</p><button data-action="release-edit-preview">✎</button></div></article></div><div class="demo-sheet-overlay" data-panel="release-block-picker" hidden><section class="demo-sheet"><header><div><h3>Adicionar bloco</h3><p>Escolha o que deseja incluir na matéria.</p></div><button data-close="release-block-picker">×</button></header><div class="demo-sheet-body"><strong>Conteúdo</strong><div class="demo-block-options"><button data-insert-release-block="Título"><b>Aa</b><strong>Título</strong><small>Destaque principal</small></button><button data-insert-release-block="Linha fina"><b>＝</b><strong>Linha fina</strong><small>Resumo da matéria</small></button><button data-insert-release-block="Texto"><b>▤</b><strong>Texto</strong><small>Parágrafos e informações</small></button><button data-insert-release-block="Contato de imprensa"><b>◉</b><strong>Contato de imprensa</strong><small>Dados da assessoria</small></button></div><strong>Mídia e links</strong><div class="demo-block-options"><button data-insert-release-block="Imagem / logo"><b>▧</b><strong>Imagem / logo</strong><small>Imagem com legenda</small></button><button data-insert-release-block="Botão com link"><b>↗</b><strong>Botão com link</strong><small>Acesso em destaque</small></button><button data-insert-release-block="Arquivo"><b>♧</b><strong>Arquivo</strong><small>Link para download</small></button></div><strong>Organização</strong><div class="demo-block-options"><button data-insert-release-block="Divisor"><b>—</b><strong>Divisor</strong><small>Linha de separação</small></button><button data-insert-release-block="Espaçamento"><b>↗</b><strong>Espaçamento</strong><small>Respiro entre blocos</small></button></div></div><footer><button data-close="release-block-picker">×　CANCELAR</button><button data-action="release-insert-block" disabled>＋　INSERIR BLOCO</button></footer></section></div><button class="demo-primary demo-wide" data-action="release-next">AVANÇAR PARA DADOS DO E-MAIL</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div><p class="demo-note">Você pode salvar o rascunho com o preenchimento incompleto.</p></div>
-  <div class="demo-step" data-release-step="4" hidden><h2>Dados do e-mail</h2><small>Etapa 4 de 5</small><label>ASSUNTO DO E-MAIL<span class="demo-input-clear"><input placeholder="O assunto que o jornalista receberá"><button class="demo-clear" type="button" aria-label="Limpar assunto">×</button></span></label><label>PRIMEIRA LINHA<span class="demo-input-clear"><input placeholder="Um resumo que complemente o assunto"><button class="demo-clear" type="button" aria-label="Limpar primeira linha">×</button></span><small>Texto exibido junto ao assunto na prévia da caixa de entrada.</small></label><label>NOME DO REMETENTE<span class="demo-input-clear"><input value="luidgi"><button class="demo-clear" type="button" aria-label="Limpar nome do remetente">×</button></span></label><label>RESPONDER PARA<span class="demo-input-clear"><input value="luidgi@gmail.com"><button class="demo-clear" type="button" aria-label="Limpar endereço de resposta">×</button></span></label><article class="demo-card demo-sender-default"><span aria-hidden="true">✉</span><div><strong>Remetente padrão do LOGOS</strong><small>O release será enviado pelo endereço de e-mail padrão do sistema.</small></div></article><p class="demo-note">As respostas dos contatos serão direcionadas a este endereço.</p><article class="demo-card demo-email-preview"><small>PRÉVIA DA CAIXA DE ENTRADA</small><strong data-email-sender-preview>luidgi</strong><b data-email-subject>Assunto do e-mail</b><small data-email-preview>A primeira linha aparecerá aqui</small></article><button class="demo-primary demo-wide" data-action="release-next">AVANÇAR PARA REVISÃO</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div><p class="demo-note">Você pode salvar o rascunho com o preenchimento incompleto.</p></div>
-  <div class="demo-step" data-release-step="5" hidden><h2>Revisão</h2><small>Etapa 5 de 5</small><h3>Prévia do release <button data-action="release-step-3">✎ EDITAR CONTEÚDO</button></h3><div class="demo-content-preview"><h2 data-release-review-title>Título da matéria</h2><p data-release-review-lead>Uma apresentação breve da matéria.</p><p data-release-review-body>Escreva aqui o conteúdo da matéria.</p><hr><p>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</p></div><h3>Dados do e-mail <button data-action="release-step-4">✎ EDITAR E-MAIL</button></h3><article class="demo-card">Assunto<br><b data-email-subject-review>A definir</b><p>Primeira linha<br><span data-email-first-line-review>Sem primeira linha</span></p>Nome do remetente<br><b data-email-sender-review>luidgi</b><p>Endereço remetente<br><b data-email-reply-review>luidgi@gmail.com</b></p></article><h3>Destino <button data-action="release-step-1">✎ EDITAR DESTINO</button></h3><article class="demo-card">Título interno<br><b data-release-title-review>A definir</b><p>Cliente<br><b data-release-review-client>Cleiton</b></p></article><button class="demo-select-row" data-screen="selecionar-contatos"><strong data-release-recipient-summary>1 contato selecionado</strong>　›<small>Ademilson</small></button><button data-open="send-test" class="demo-wide">✉　ENVIAR TESTE</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div></div>
+  <div class="demo-step" data-release-step="4" hidden><h2>Dados do e-mail</h2><small>Etapa 4 de 5</small><label>ASSUNTO DO E-MAIL<span class="demo-input-clear"><input placeholder="O assunto que o jornalista receberá"><button class="demo-clear" type="button" aria-label="Limpar assunto">×</button></span></label><label>PRIMEIRA LINHA<span class="demo-input-clear"><input placeholder="Um resumo que complemente o assunto"><button class="demo-clear" type="button" aria-label="Limpar primeira linha">×</button></span><small>Texto exibido junto ao assunto na prévia da caixa de entrada.</small></label><label>NOME DO REMETENTE<span class="demo-input-clear"><input value="Assessor"><button class="demo-clear" type="button" aria-label="Limpar nome do remetente">×</button></span></label><label>RESPONDER PARA<span class="demo-input-clear"><input value="assessor@gmail.com"><button class="demo-clear" type="button" aria-label="Limpar endereço de resposta">×</button></span></label><article class="demo-card demo-sender-default"><span aria-hidden="true">✉</span><div><strong>Remetente padrão do LOGOS</strong><small>O release será enviado pelo endereço de e-mail padrão do sistema.</small></div></article><p class="demo-note">As respostas dos contatos serão direcionadas a este endereço.</p><article class="demo-card demo-email-preview"><small>PRÉVIA DA CAIXA DE ENTRADA</small><strong data-email-sender-preview>assessor</strong><b data-email-subject>Assunto do e-mail</b><small data-email-preview>A primeira linha aparecerá aqui</small></article><button class="demo-primary demo-wide" data-action="release-next">AVANÇAR PARA REVISÃO</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div><p class="demo-note">Você pode salvar o rascunho com o preenchimento incompleto.</p></div>
+  <div class="demo-step" data-release-step="5" hidden><h2>Revisão</h2><small>Etapa 5 de 5</small><h3>Prévia do release <button data-action="release-step-3">✎ EDITAR CONTEÚDO</button></h3><div class="demo-content-preview"><h2 data-release-review-title>Título da matéria</h2><p data-release-review-lead>Uma apresentação breve da matéria.</p><p data-release-review-body>Escreva aqui o conteúdo da matéria.</p><hr><p>Contato de imprensa<br>Nome, telefone e e-mail da assessoria.</p></div><h3>Dados do e-mail <button data-action="release-step-4">✎ EDITAR E-MAIL</button></h3><article class="demo-card">Assunto<br><b data-email-subject-review>A definir</b><p>Primeira linha<br><span data-email-first-line-review>Sem primeira linha</span></p>Nome do remetente<br><b data-email-sender-review>Assessor</b><p>Endereço remetente<br><b data-email-reply-review>assessor@gmail.com</b></p></article><h3>Destino <button data-action="release-step-1">✎ EDITAR DESTINO</button></h3><article class="demo-card">Título interno<br><b data-release-title-review>A definir</b><p>Cliente<br><b data-release-review-client>Cleiton</b></p></article><button class="demo-select-row" data-screen="selecionar-contatos"><strong data-release-recipient-summary>1 contato selecionado</strong>　›<small>Ademilson</small></button><button data-open="send-test" class="demo-wide">✉　ENVIAR TESTE</button><div class="demo-two-actions"><button data-action="release-back">VOLTAR</button><button data-action="release-draft">SALVAR RASCUNHO</button></div></div>
   <div class="demo-sheet-overlay" data-panel="release-client" hidden><section class="demo-sheet"><header><h3>Selecionar cliente</h3><button data-close="release-client">×</button></header><div class="demo-sheet-body"><div class="demo-search"><input placeholder="Buscar cliente..."><button aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-link" data-action="quick-client-open">＋ Cadastro rápido de cliente</button><button data-release-client="Cleiton">Cleiton　○</button><button data-release-client="João">João　○</button><button data-release-client="Maria">Maria　○</button></div></section></div>
-  <div class="demo-modal-overlay" data-panel="send-test" hidden><section class="demo-modal"><h3>Enviar teste</h3><p>O teste será enviado somente para o endereço abaixo.</p><label>E-MAIL DE TESTE<input value="luidgi@gmail.com"></label><div class="demo-two-actions"><button data-close="send-test">CANCELAR</button><button data-close="send-test">ENVIAR</button></div></section></div>
+  <div class="demo-modal-overlay" data-panel="send-test" hidden><section class="demo-modal"><h3>Enviar teste</h3><p>O teste será enviado somente para o endereço abaixo.</p><label>E-MAIL DE TESTE<input value="assessor@gmail.com"></label><div class="demo-two-actions"><button data-close="send-test">CANCELAR</button><button data-close="send-test">ENVIAR</button></div></section></div>
 </section>
 <section class="demo-page demo-recipients" data-view="selecionar-contatos" hidden><div data-recipient-empty><div class="demo-search"><input placeholder="Buscar jornalista..." aria-label="Buscar jornalista"><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-wide" data-screen="mailing">MAILING</button><small>0 de 0 jornalistas selecionados</small><p>Nenhum contato encontrado.</p></div><div data-recipient-list hidden><div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar jornalista..." aria-label="Buscar jornalista"><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="recipient-filter"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div><div class="demo-pills" data-recipient-controls><button data-recipient-tab="selected">SELECIONADOS (0)</button><button class="demo-primary" data-action="recipient-all">SELECIONAR TODOS</button></div><button class="demo-wide" data-recipient-mailing hidden>MAILING</button><small data-recipient-count>Exibindo 1–1 de 1 jornalistas encontrados</small><label class="demo-recipient"><input type="checkbox"><span><strong>Ademilson</strong><br>ademilson@example.com<br><small>LOGOS</small></span></label></div><button class="demo-primary demo-wide demo-bottom-action" data-action="recipient-done">CONCLUIR (0)</button><div class="demo-sheet-overlay" data-panel="recipient-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Modifique os contatos exibidos</p></div><button data-close="recipient-filter">×</button></header><div class="demo-sheet-body"><strong>STATUS</strong><div class="demo-pills"><button class="selected">Ativos</button><button>Inativos</button><button>Todos</button></div><label>ESTADO<input placeholder="Ex.: São Paulo"></label><label>CIDADE<input placeholder="Ex.: Campinas"></label><label>CARGO<input placeholder="Ex.: Repórter"></label><label>VEÍCULO<input placeholder="Buscar veículo pelo nome"></label></div><footer><button data-close="recipient-filter">LIMPAR</button><button data-close="recipient-filter">APLICAR</button></footer></section></div></section>
 <!-- Relatórios -->
@@ -1964,8 +2087,8 @@
 </section>
 
 <section class="demo-page demo-employees" data-view="funcionarios" hidden><div class="demo-search-row"><div class="demo-search"><input placeholder="Buscar funcionários..."><button><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="demo-filter-open" data-open="employee-filter"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div><div class="demo-list-heading"><span>0 funcionários</span><button class="demo-primary" data-screen="convites">✉ CONVITES</button></div><div class="demo-empty"><strong>Nenhum funcionário encontrado</strong><p>Tente alterar a busca ou os filtros.</p></div><div class="demo-sheet-overlay" data-panel="employee-filter" hidden><section class="demo-sheet"><header><div><h3>FILTROS</h3><p>Refine os funcionários exibidos</p></div><button data-close="employee-filter">×</button></header><div class="demo-sheet-body"><strong>STATUS</strong><div class="demo-pills"><button>Ativos</button><button>Inativos</button><button class="selected">Todos</button></div></div><footer><button data-close="employee-filter">LIMPAR</button><button data-close="employee-filter">APLICAR</button></footer></section></div></section>
-<section class="demo-page demo-invites" data-view="convites" hidden><div class="demo-list-heading"><span>2 convites</span><button class="demo-primary" data-action="invite-generate">GERAR CONVITE</button></div><article class="demo-card"><strong>♧　Convide alguém para a equipe</strong><p>Gere um código para um funcionário se cadastrar. Ele é válido por 7 dias e pode ser usado uma vez.</p></article><article class="demo-card demo-invite-ready"><h3>✓　Convite pronto</h3><p>Compartilhe este código com o funcionário:</p><strong>LOGOS-V2FE-86RB　▢</strong><small>Válido até 28/11/2026 às 18:00</small></article><h2>Histórico de convites</h2><p>Mais recentes primeiro</p><article class="demo-card"><strong>LOGOS-V2FE-86RB　<span class="demo-status">ATIVO</span></strong><p>Gerado por luidgi</p><small>Criado em 21/11/2026 às 14:00<br>Expira em 28/11/2026 às 18:00</small></article><article class="demo-card"><strong>LOGOS-DM86-R7MB　<span class="demo-status">ATIVO</span></strong><p>Gerado por luidgi</p><small>Criado em 19/11/2026 às 05:35<br>Expira em 26/11/2026 às 09:35</small></article><p class="demo-pagination">Exibindo 1–2 de 2</p></section>
-<section class="demo-page demo-settings" data-view="configuracoes" hidden><h2>Preferências</h2><p>Personalize a aparência e gerencie sua sessão.</p><article class="demo-card demo-user"><span>L</span><strong>luidgi</strong><small>luidgi@gmail.com<br>Assessor</small></article><h3>Aparência</h3><label class="demo-card demo-toggle"><strong>☼　Modo escuro</strong><small>Desativado<br>Sua escolha fica salva neste dispositivo.</small><input type="checkbox"></label><h3>Sessão</h3><button class="demo-card demo-signout">↪　Sair da conta　›<small>Encerrar sessão neste dispositivo</small></button></section>
+<section class="demo-page demo-invites" data-view="convites" hidden><div class="demo-list-heading"><span>2 convites</span><button class="demo-primary" data-action="invite-generate">GERAR CONVITE</button></div><article class="demo-card"><strong>♧　Convide alguém para a equipe</strong><p>Gere um código para um funcionário se cadastrar. Ele é válido por 7 dias e pode ser usado uma vez.</p></article><article class="demo-card demo-invite-ready"><h3>✓　Convite pronto</h3><p>Compartilhe este código com o funcionário:</p><strong>LOGOS-V2FE-86RB　▢</strong><small>Válido até 28/11/2026 às 18:00</small></article><h2>Histórico de convites</h2><p>Mais recentes primeiro</p><article class="demo-card"><strong>LOGOS-V2FE-86RB　<span class="demo-status">ATIVO</span></strong><p>Gerado por assessor</p><small>Criado em 21/11/2026 às 14:00<br>Expira em 28/11/2026 às 18:00</small></article><article class="demo-card"><strong>LOGOS-DM86-R7MB　<span class="demo-status">ATIVO</span></strong><p>Gerado por assessor</p><small>Criado em 19/11/2026 às 05:35<br>Expira em 26/11/2026 às 09:35</small></article><p class="demo-pagination">Exibindo 1–2 de 2</p></section>
+<section class="demo-page demo-settings" data-view="configuracoes" hidden><h2>Preferências</h2><p>Personalize a aparência e gerencie sua sessão.</p><article class="demo-card demo-user"><span>L</span><strong>assessor</strong><small>assessor@gmail.com<br>Assessor</small></article><h3>Aparência</h3><label class="demo-card demo-toggle"><strong>☼　Modo escuro</strong><small>Desativado<br>Sua escolha fica salva neste dispositivo.</small><input type="checkbox"></label><h3>Sessão</h3><button class="demo-card demo-signout">↪　Sair da conta　›<small>Encerrar sessão neste dispositivo</small></button></section>
 <div class="demo-modal-overlay demo-calendar-overlay" data-panel="report-date-picker" hidden><section class="demo-modal demo-calendar"><header><h3 data-calendar-heading>Data do período</h3><button data-close="report-date-picker" aria-label="Fechar">×</button></header><div class="demo-calendar-month"><button data-calendar-nav="-1" aria-label="Mês anterior">‹</button><strong data-calendar-title>Novembro 2026</strong><button data-calendar-nav="1" aria-label="Próximo mês">›</button></div><div class="demo-calendar-grid demo-calendar-week"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="demo-calendar-grid" data-calendar-days></div><footer><button data-calendar-clear>Deixar sem data</button><button data-calendar-today>Usar hoje</button></footer></section></div><!-- Fim das telas adicionadas nesta etapa -->
 <!-- Tela temporária para módulos ainda não implementados -->
 <div class="app-view-placeholder" id="app-placeholder" hidden>
@@ -1990,55 +2113,84 @@
 </div>
             <!-- Barra de navegação inferior -->
             <nav class="app-bottom-nav" aria-label="Navegação do aplicativo">
-
-                <button
-                    type="button"
-                    class="app-nav-item app-nav-active"
-                    data-screen="inicio"
-                    aria-current="page"
-                >
+                <button type="button" class="app-nav-item app-nav-active"
+                        data-screen="inicio" aria-current="page">
                     <i class="fa-solid fa-house" aria-hidden="true"></i>
                     <span>Início</span>
                 </button>
-
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    data-screen="clipping"
-                >
-                    <i class="fa-regular fa-file" aria-hidden="true"></i>
+                <button type="button" class="app-nav-item" data-screen="clipping">
+                    <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
                     <span>Clipping</span>
                 </button>
-
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    data-screen="mailing"
-                >
-                    <i class="fa-solid fa-users" aria-hidden="true"></i>
-                    <span>Mailing</span>
+                <button type="button" class="app-nav-item app-nav-create"
+                        data-create-open aria-haspopup="dialog"
+                        aria-expanded="false" aria-controls="app-create-panel">
+                    <span class="app-nav-plus" aria-hidden="true">+</span>
+                    <span>Novo</span>
                 </button>
-
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    data-screen="releases"
-                >
+                <button type="button" class="app-nav-item" data-screen="releases">
                     <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
                     <span>Releases</span>
                 </button>
-
-                <button
-                    type="button"
-                    class="app-nav-item"
-                    data-screen="mais"
-                >
-                    <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                <button type="button" class="app-nav-item" data-screen="mais">
+                    <i class="fa-solid fa-table-cells-large" aria-hidden="true"></i>
                     <span>Mais</span>
                 </button>
-
             </nav>
 
+            <div class="app-create-overlay" data-create-overlay hidden>
+                <section class="app-create-panel" id="app-create-panel" role="dialog"
+                         aria-modal="true" aria-labelledby="app-create-title"
+                         aria-describedby="app-create-description">
+                    <header class="app-create-header">
+                        <div>
+                            <h4 id="app-create-title">O que você deseja criar?</h4>
+                            <p id="app-create-description">Selecione uma opção</p>
+                        </div>
+                        <button type="button" data-create-close aria-label="Fechar menu">
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </button>
+                    </header>
+                  
+                    <div class="app-create-options">
+                        <button type="button" data-screen="novo-release" data-release-new>
+                            <i class="fa-regular fa-paper-plane" aria-hidden="true"></i>
+                            <span><strong>Novo release</strong><small>Conteúdo e destinatários</small></span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" data-screen="novo-clipping">
+                            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                            <span><strong>Novo clipping</strong><small>Uma matéria no clipping</small></span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" data-screen="novo-contato">
+                            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                            <span><strong>Novo contato</strong><small>Um jornalista no mailing</small></span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" data-screen="novo-relatorio">
+                            <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+                            <span><strong>Novo relatório</strong><small>Slides e resultados</small></span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" data-screen="novo-cliente">
+                            <i class="fa-regular fa-building" aria-hidden="true"></i>
+                            <span><strong>Novo cliente</strong><small>Um cliente da assessoria</small></span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" data-screen="novo-veiculo">
+                            <i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i>
+                            <span><strong>Novo veículo</strong><small>Um veículo de comunicação</small></span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" data-screen="novo-template">
+                            <i class="fa-regular fa-folder" aria-hidden="true"></i>
+                            <span><strong>Novo template</strong><small>Um modelo de release</small></span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+            </div>
             
 <!-- Filtros de Clientes -->
 <div

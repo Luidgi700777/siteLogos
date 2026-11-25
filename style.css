@@ -9936,3 +9936,766 @@ footer .social a:hover {
   position: relative;
   z-index: 1;
 }
+
+/* Tela inicial e navegação do simulador LOGOS */
+.app-simulator {
+    --home-blue: #4e69ff;
+    --home-blue-soft: #f0effd;
+    --home-navy: #26326e;
+    --home-ink: #161c29;
+    --home-muted: #777477;
+    --home-page: #fdf8f8;
+    --home-card: #fdfafa;
+    --home-soft: #f8f6f9;
+    --home-line: #d4daff;
+    --home-inner-line: #e3e5fd;
+}
+
+.app-simulator .app-header {
+    height: 70px;
+    padding-inline: 16px;
+    border-bottom: 1px solid var(--home-line);
+    background: var(--home-page);
+}
+
+.app-simulator .app-brand {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.7px;
+    color: var(--home-muted);
+}
+
+.app-simulator .app-screen-title {
+    color: var(--home-blue);
+    font-size: 20px;
+    font-weight: 750;
+    letter-spacing: 0;
+}
+
+.app-simulator .app-header-actions { gap: 8px; }
+
+.app-simulator .app-settings-btn,
+.app-simulator .app-avatar {
+    width: 44px;
+    height: 44px;
+}
+
+.app-simulator .app-settings-btn {
+    border: 1px solid var(--home-inner-line);
+    border-radius: 15px;
+    background: var(--home-soft);
+    color: var(--home-blue);
+    font-size: 19px;
+}
+
+.app-simulator .app-avatar {
+    border: 2px solid #34458e;
+    background: var(--home-navy);
+    color: white;
+    font-size: 14px;
+}
+
+.app-simulator .app-home {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px 16px 52px;
+    background: var(--home-page);
+    color: var(--home-ink);
+}
+
+.app-simulator .app-home[hidden] { display: none; }
+
+.app-simulator .app-home > section { margin: 0; }
+
+.app-simulator .app-home-heading {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.4;
+}
+
+.home-release {
+    overflow: hidden;
+    border: 1px solid var(--home-line);
+    border-radius: 18px;
+    background: var(--home-card);
+}
+
+.home-release-header {
+    display: grid;
+    grid-template-columns: 42px 1fr 32px;
+    align-items: center;
+    gap: 12px;
+    min-height: 76px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--home-inner-line);
+    background: var(--home-soft);
+}
+
+.home-release-header h4,
+.home-release-summary h5 {
+    margin: 0;
+    color: var(--home-ink);
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.home-release-header h4 { font-size: 18px; }
+
+.home-release-header small {
+    display: block;
+    margin-top: 3px;
+    color: var(--home-muted);
+    font-size: 11px;
+}
+
+.home-release-icon,
+.home-release-open {
+    display: grid;
+    place-items: center;
+}
+
+.home-release-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    background: var(--home-navy);
+    color: white;
+    font-size: 20px;
+}
+
+.home-release-open {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--home-line);
+    border-radius: 11px;
+    background: var(--home-blue-soft);
+    color: var(--home-blue);
+    cursor: pointer;
+}
+
+.home-release-body { padding: 16px; }
+
+.home-release-summary,
+.home-release-metrics > div {
+    border: 1px solid var(--home-inner-line);
+    border-radius: 13px;
+    background: var(--home-soft);
+}
+
+.home-release-summary { padding: 12px; }
+
+.home-release-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5px;
+    color: var(--home-muted);
+    font-size: 10px;
+}
+
+.home-release-meta i,
+.home-release-summary p i { margin-right: 4px; }
+
+.home-release-status {
+    padding: 5px 8px;
+    border-radius: 9px;
+    background: #f1ebe9;
+    color: #91600a;
+    font-weight: 650;
+}
+
+.home-release-status::before {
+    content: "•";
+    margin-right: 5px;
+}
+
+.home-release-summary h5 {
+    margin-top: 8px;
+    font-size: 20px;
+}
+
+.home-release-summary p {
+    margin: 9px 0 0;
+    color: #187459;
+    font-size: 11px;
+}
+
+.home-release-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.home-release-metrics > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    min-height: 90px;
+    padding: 10px;
+}
+
+.home-release-metrics span,
+.home-release-metrics small,
+.home-release-note {
+    color: var(--home-muted);
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+.home-release-metrics strong {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.home-release-metrics strong.home-release-pending { color: var(--home-blue); }
+
+.home-release-note { margin: 14px 0; }
+
+.home-release-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    min-height: 42px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--home-blue);
+    color: white;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.app-simulator .app-home .app-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.app-simulator .app-home .app-overview-card,
+.app-simulator .app-home .app-review-card,
+.app-simulator .app-home .app-shortcut-list {
+    border: 1px solid var(--home-line);
+    border-radius: 16px;
+    background: var(--home-card);
+    box-shadow: none;
+}
+
+.app-simulator .app-home .app-overview-card {
+    min-height: 137px;
+    padding: 12px;
+    color: var(--home-ink);
+}
+
+.app-simulator .app-home .home-templates-card {
+    width: calc(100% + 12px);
+    max-width: 100%;
+}
+
+.app-simulator .app-home .app-overview-top,
+.app-simulator .app-home .app-overview-info {
+    display: flex;
+}
+
+.app-simulator .app-home .app-overview-top {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-simulator .app-home .app-overview-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    margin-top: 8px;
+    text-align: left;
+}
+
+.app-simulator .app-home .app-overview-number {
+    color: var(--home-ink);
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1;
+}
+
+.app-simulator .app-home .app-overview-label {
+    color: var(--home-ink);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.app-simulator .app-home .app-overview-description,
+.app-simulator .app-home .app-review-status small,
+.app-simulator .app-home .app-shortcut-info small {
+    color: var(--home-muted);
+    font-size: 11px;
+}
+
+.app-simulator .app-home .app-overview-top > :first-child,
+.app-simulator .app-home .app-shortcut-icon {
+    box-sizing: border-box;
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    border-radius: 11px;
+    background: var(--home-blue-soft);
+    color: var(--home-blue);
+}
+
+.app-simulator .app-home .app-overview-top > :last-child,
+.app-simulator .app-home .app-shortcut-item > :last-child {
+    color: var(--home-muted);
+    font-size: 11px;
+}
+
+.app-simulator .app-home .app-review-card { padding: 14px; }
+
+.app-simulator .app-home .app-review-status {
+    padding: 0 0 12px;
+    margin: 0 0 12px;
+    border-bottom: 1px solid var(--home-inner-line);
+}
+
+.app-simulator .app-home .app-review-status > :first-child {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    padding: 11px;
+    border-radius: 13px;
+    background: #eaf2ee;
+    color: #187459;
+}
+
+.app-simulator .app-home .app-review-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    min-height: 35px;
+    border: 1px solid var(--home-blue);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--home-ink);
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.app-simulator .app-home .app-shortcut-list { padding: 0 14px; }
+
+.app-simulator .app-home .app-shortcut-item {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) 12px;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 66px;
+    padding: 10px 0;
+    border: 0;
+    border-bottom: 1px solid var(--home-inner-line);
+    border-radius: 0;
+    background: transparent;
+    color: var(--home-ink);
+    text-align: left;
+}
+
+.app-simulator .app-home .app-shortcut-item:last-child { border-bottom: 0; }
+
+.app-simulator .app-home .app-shortcut-icon {
+    width: 38px;
+    height: 38px;
+}
+
+.app-simulator .app-home .app-shortcut-info {
+    display: grid;
+    gap: 4px;
+}
+
+.app-simulator .app-home .app-shortcut-info strong,
+.app-simulator .app-home .app-review-status strong {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.app-simulator .app-bottom-nav {
+    position: relative;
+    height: 72px;
+    min-height: 72px;
+    flex: 0 0 72px;
+    padding-inline: 8px;
+    border-top: 1px solid var(--home-line);
+    background: var(--home-card);
+}
+
+.app-simulator .app-bottom-nav .app-nav-item {
+    position: relative;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 10px 0 6px;
+    color: #6f747a;
+    font-family: inherit;
+}
+
+.app-simulator .app-bottom-nav .app-nav-item > i,
+.app-simulator .app-bottom-nav .app-nav-item > svg {
+    box-sizing: border-box;
+    width: 46px;
+    height: 30px;
+    padding: 5px 13px;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.app-simulator .app-bottom-nav .app-nav-item > span:last-child {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.app-simulator .app-bottom-nav .app-nav-active { color: var(--home-blue); }
+
+.app-simulator .app-bottom-nav .app-nav-active > :first-child {
+    background: var(--home-blue-soft);
+}
+
+.app-simulator .app-bottom-nav .app-nav-create {
+    justify-content: flex-end;
+    padding-bottom: 12px;
+}
+
+.app-simulator .app-bottom-nav .app-nav-plus {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    transform: translateX(-50%);
+    border-radius: 17px;
+    background: var(--home-blue);
+    box-shadow: 0 0 0 4px var(--home-card);
+    color: white;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.app-simulator .app-create-overlay {
+    position: absolute;
+    z-index: 100;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 12px 11px 90px;
+    background: rgb(0 0 0 / 42%);
+}
+
+.app-simulator .app-create-overlay[hidden] { display: none; }
+
+.app-create-panel {
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 10px;
+    border: 1px solid var(--home-line);
+    border-radius: 22px;
+    background: var(--home-card);
+    color: var(--home-ink);
+}
+
+.app-create-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 2px 7px 12px;
+}
+
+.app-create-header h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.app-create-header p {
+    margin: 5px 0 0;
+    color: var(--home-muted);
+    font-size: 11px;
+}
+
+.app-create-header button {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    border: 0;
+    background: transparent;
+    color: var(--home-muted);
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.app-create-options {
+    display: grid;
+    gap: 6px;
+}
+
+.app-create-options button {
+    display: grid;
+    grid-template-columns: 39px minmax(0, 1fr) 12px;
+    align-items: center;
+    gap: 10px;
+    min-height: 66px;
+    padding: 10px;
+    border: 0;
+    border-radius: 13px;
+    background: var(--home-soft);
+    color: var(--home-ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.app-create-options button > :first-child {
+    box-sizing: border-box;
+    display: inline-grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    padding: 10px;
+    border-radius: 12px;
+    background: var(--home-blue-soft);
+    color: var(--home-blue);
+    font-size: 18px;
+}
+
+.app-create-options button > :last-child {
+    color: var(--home-muted);
+    font-size: 11px;
+}
+
+.app-create-options strong,
+.app-create-options small {
+    display: block;
+}
+
+.app-create-options strong {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.app-create-options small {
+    margin-top: 5px;
+    color: var(--home-muted);
+    font-size: 11px;
+}
+
+.app-simulator .app-create-panel button:focus-visible,
+.app-simulator .app-nav-create:focus-visible {
+    outline: 2px solid var(--home-blue);
+    outline-offset: -2px;
+}
+
+/* Ajustes finais da tela inicial e do menu Novo */
+.app-simulator .app-scale {
+    container-type: inline-size;
+}
+
+/* O estilo antigo mantinha o cabeçalho com flex-basis de 88px. */
+.app-simulator .app-screen .app-header {
+    height: 19.4cqw;
+    min-height: 19.4cqw;
+    flex: 0 0 19.4cqw;
+    padding-inline: 4.45cqw;
+    border-bottom: 1px solid var(--home-line, #d4daff);
+}
+
+.app-simulator .app-screen .app-screen-title {
+    font-size: 5.55cqw;
+}
+
+.app-simulator .app-screen .app-brand {
+    font-size: 2.78cqw;
+}
+
+.app-simulator .app-screen .app-settings-btn,
+.app-simulator .app-screen .app-avatar {
+    width: 12.22cqw;
+    height: 12.22cqw;
+}
+
+/* Mantém espaço entre o último atalho e a barra ao fim da rolagem. */
+.app-simulator .app-home {
+    padding-bottom: 14.45cqw;
+}
+
+/* No original, o botão azul passa acima da borda da barra. */
+.app-simulator .app-bottom-nav {
+    height: 20cqw;
+    min-height: 20cqw;
+    flex: 0 0 20cqw;
+    overflow: visible;
+}
+
+.app-simulator .app-bottom-nav .app-nav-create {
+    justify-content: flex-end;
+    padding-bottom: 3.3cqw;
+}
+
+.app-simulator .app-bottom-nav .app-nav-create .app-nav-plus {
+    top: -3.9cqw;
+    width: 13.9cqw;
+    height: 13.9cqw;
+    border-radius: 4.7cqw;
+    font-size: 8.3cqw;
+}
+
+/* O fundo cobre toda a tela, inclusive a barra inferior. */
+.app-simulator .app-create-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: block;
+    padding: 0;
+    background: rgb(0 0 0 / 42%);
+}
+
+.app-simulator .app-create-overlay[hidden] {
+    display: none;
+}
+
+.app-simulator .app-create-panel {
+    position: absolute;
+    top: 53.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    width: calc(100% - 6.1cqw);
+    max-height: 86%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 2.78cqw;
+    border-radius: 6.1cqw;
+}
+
+.app-simulator .app-create-header {
+    min-height: 16.4cqw;
+    padding: 0 1.94cqw 2.78cqw;
+    box-sizing: border-box;
+}
+
+.app-simulator .app-create-header h4 {
+    font-size: 5cqw;
+}
+
+.app-simulator .app-create-header p {
+    margin-top: 1.4cqw;
+    font-size: 3.05cqw;
+}
+
+.app-simulator .app-create-header button {
+    width: 8.9cqw;
+    height: 8.9cqw;
+    flex: 0 0 8.9cqw;
+    font-size: 4.7cqw;
+}
+
+.app-simulator .app-create-options {
+    gap: 1.67cqw;
+}
+
+.app-simulator .app-create-options button {
+    grid-template-columns: 10.83cqw minmax(0, 1fr) 3.33cqw;
+    gap: 2.78cqw;
+    min-height: 18.33cqw;
+    padding: 2.78cqw;
+    border-radius: 3.6cqw;
+}
+
+.app-simulator .app-create-options button > :first-child {
+    width: 10.83cqw;
+    height: 10.83cqw;
+    padding: 2.78cqw;
+    border-radius: 3.33cqw;
+    font-size: 5cqw;
+}
+
+.app-simulator .app-create-options button > :last-child {
+    font-size: 3.05cqw;
+}
+
+.app-simulator .app-create-options strong {
+    font-size: 3.61cqw;
+}
+
+.app-simulator .app-create-options small {
+    margin-top: 1.39cqw;
+    font-size: 3.05cqw;
+}
+
+/* A tela inicial cresce com o conteúdo. A rolagem fica em .app-content. */
+.app-simulator #app-content > .app-home {
+    height: auto;
+    min-height: 100%;
+}
+
+.app-simulator #app-content > .app-home > section {
+    flex-shrink: 0;
+}
+
+.app-simulator .app-bottom-nav {
+    position: relative;
+    overflow: visible;
+}
+
+.app-simulator .app-bottom-nav .app-nav-create {
+    position: static;
+    align-self: stretch;
+    justify-content: flex-end;
+    padding: 0 0 3.2cqw;
+}
+
+.app-simulator .app-bottom-nav .app-nav-create .app-nav-plus {
+    top: -3.6cqw;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.app-simulator .app-bottom-nav .app-nav-create > span:last-child {
+    position: static;
+    font-size: 2.78cqw;
+    line-height: 1.2;
+}
+
+.app-simulator #app-content .app-home .app-review-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 8px;
+    text-align: center;
+}
+
+.app-simulator #app-content .app-review-link > .app-review-link-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin: 0;
+}
+
+.app-simulator #app-content .app-review-link-content > :is(i, svg) {
+    position: static;
+    margin: 0;
+}

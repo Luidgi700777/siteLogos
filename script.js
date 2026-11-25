@@ -389,7 +389,7 @@ if (appSimulator) {
     // Configuração das telas do aplicativo
     const appRoutes = {
         inicio: {
-            titulo: 'Olá, Luidgi',
+            titulo: 'Olá, Assessor',
             aba: 'inicio',
             voltar: false
         },
@@ -608,7 +608,8 @@ if (appSimulator) {
         // Atualizar a navegação inferior
         appNavItems.forEach((item) => {
 
-            const active = item.dataset.screen === route.aba;
+            const activeTab = route.aba === 'mailing' ? 'mais' : route.aba;
+            const active = item.dataset.screen === activeTab;
 
             item.classList.toggle('app-nav-active', active);
 
@@ -657,6 +658,60 @@ if (appSimulator) {
 
         appShowScreen(previousScreen);
     };
+
+    const createTrigger = appSimulator.querySelector('[data-create-open]');
+    const createOverlay = appSimulator.querySelector('[data-create-overlay]');
+    const createClose = createOverlay.querySelector('[data-create-close]');
+    const createButtons = [...createOverlay.querySelectorAll('button')];
+    const createBackground = [
+        appSimulator.querySelector('.app-header'),
+        appContent,
+        appSimulator.querySelector('.app-bottom-nav')
+    ];
+
+    const setCreateMenuOpen = (open) => {
+        createOverlay.hidden = !open;
+        createTrigger.setAttribute('aria-expanded', String(open));
+        createBackground.forEach((element) => {
+            element.inert = open;
+        });
+
+        if (open) {
+            createClose.focus();
+        } else {
+            createTrigger.focus();
+        }
+    };
+
+    createTrigger.addEventListener('click', () => setCreateMenuOpen(true));
+
+    createOverlay.addEventListener('click', (event) => {
+        if (event.target === createOverlay ||
+            event.target.closest('[data-create-close], button[data-screen]')) {
+            setCreateMenuOpen(false);
+        }
+    });
+
+    createOverlay.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            setCreateMenuOpen(false);
+            return;
+        }
+
+        if (event.key !== 'Tab') return;
+
+        const first = createButtons[0];
+        const last = createButtons[createButtons.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    });
 
     // Detectar cliques nos botões do aplicativo
     appSimulator.addEventListener('click', (event) => {
