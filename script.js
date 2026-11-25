@@ -1872,20 +1872,97 @@ if (
   const query=search.value.trim().toLocaleLowerCase('pt-BR');
   clientCards.forEach(card=>card.hidden=!card.textContent.toLocaleLowerCase('pt-BR').includes(query));
  });
- const clippingSearch=clippingPage.querySelector('.app-clipping-search input');
- clippingSearch?.addEventListener('input',()=>{
-  const query=clippingSearch.value.trim().toLocaleLowerCase('pt-BR');
-   clippingPage.querySelectorAll('[data-clipping-record]').forEach(card=>card.hidden=Boolean(query&&!card.textContent.toLocaleLowerCase('pt-BR').includes(query)));
- });
+
+  const clippingSearch=clippingPage.querySelector('.app-clipping-search input');
  const itemsFilter=clippingPage.querySelector('.app-clipping-items-filter');
- clippingPage.querySelector('.app-clipping-filter-open').onclick=()=>itemsFilter.hidden=false;
+ const filterContext=itemsFilter.querySelector('[data-clipping-filter-context]');
+ const selectedFilterValue=group=>itemsFilter.querySelector('[data-filter-group="'+group+'"] [data-filter-select].selected')?.dataset.filterSelect||'all';
+ const parseFilterDate=value=>{
+  const match=String(value||'').trim().match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  return match?new Date(Number(match[3]),Number(match[2])-1,Number(match[1])).getTime():null;
+ };
+ const parseFilterDuration=value=>{
+  const match=String(value||'').trim().match(/^(?:(\d+):)?(\d{1,2}):(\d{2})$/);
+  return match?(Number(match[1]||0)*3600)+(Number(match[2])*60)+Number(match[3]):null;
+ };
+ const applyClippingFilters=()=>{
+  const query=(clippingSearch?.value||'').trim().toLocaleLowerCase('pt-BR');
+  const publication=selectedFilterValue('publication');
+  const linkMode=selectedFilterValue('link');
+  const imageMode=selectedFilterValue('image');
+  const tierMode=selectedFilterValue('tier');
+  const vehicleValue=(itemsFilter.querySelector('[data-filter-field="vehicle"]')?.value||'').trim().toLocaleLowerCase('pt-BR');
+  const programValue=(itemsFilter.querySelector('[data-filter-field="program"]')?.value||'').trim().toLocaleLowerCase('pt-BR');
+  const categoryText=(itemsFilter.querySelector('[data-filter-field="category"]')?.value||'').trim().toLocaleLowerCase('pt-BR');
+  const categoryChoices=Array.from(itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select].selected')).map(button=>button.dataset.filterSelect.toLocaleLowerCase('pt-BR'));
+  const minDuration=parseFilterDuration(itemsFilter.querySelector('[data-filter-field="duration-min"]')?.value);
+  const maxDuration=parseFilterDuration(itemsFilter.querySelector('[data-filter-field="duration-max"]')?.value);
+  const fromDate=parseFilterDate(itemsFilter.querySelector('[data-filter-field="date-from"]')?.value);
+  const toDate=parseFilterDate(itemsFilter.querySelector('[data-filter-field="date-to"]')?.value);
+  const source=currentClipping||{};
+  const sourceDate=parseFilterDate(source.date);
+  const duration=parseFilterDuration(source.duration||source.excerpt||'');
+  const hasLink=Boolean(source.link);
+  const hasImage=Boolean(source.attachmentName||source.image||source.imageUrl);
+  const sourceCategories=String(source.category||source.categories||'').toLocaleLowerCase('pt-BR');
+  const matchesCategories=[...categoryChoices,...(categoryText?[categoryText]:[])];
+  clippingPage.querySelectorAll('[data-clipping-record]').forEach(card=>{
+   let visible=!query||card.textContent.toLocaleLowerCase('pt-BR').includes(query);
+   if(vehicleValue&&!String(source.vehicle||'').toLocaleLowerCase('pt-BR').includes(vehicleValue))visible=false;
+   if(programValue&&!String(source.program||'').toLocaleLowerCase('pt-BR').includes(programValue))visible=false;
+   if(matchesCategories.length&&!matchesCategories.some(value=>sourceCategories.includes(value)))visible=false;
+   if(publication==='undated'&&sourceDate!==null)visible=false;
+   if(publication==='period'&&sourceDate===null)visible=false;
+   if(publication==='period'&&fromDate!==null&&sourceDate!==null&&sourceDate<fromDate)visible=false;
+   if(publication==='period'&&toDate!==null&&sourceDate!==null&&sourceDate>toDate)visible=false;
+   if(tierMode!=='all'&&String(source.tier||'').toLocaleLowerCase('pt-BR')!==tierMode.replace('-',' ').toLocaleLowerCase('pt-BR'))visible=false;
+   if((minDuration!==null||maxDuration!==null)&&(duration===null||(minDuration!==null&&duration<minDuration)||(maxDuration!==null&&duration>maxDuration)))visible=false;
+   if(linkMode==='with'&&!hasLink)visible=false;
+   if(linkMode==='without'&&hasLink)visible=false;
+   if(imageMode==='selected'&&!hasImage)visible=false;
+   if(imageMode==='unselected'&&hasImage)visible=false;
+   card.hidden=!visible;
+  });
+ };
+ clippingPage.querySelector('.app-clipping-filter-open').onclick=()=>{
+  if(filterContext)filterContext.textContent=selectedYear+' · '+selectedClient;
+  itemsFilter.hidden=false;
+ };
  itemsFilter.querySelector('.app-clipping-items-filter-close').onclick=()=>itemsFilter.hidden=true;
  itemsFilter.addEventListener('click',event=>{if(event.target===itemsFilter)itemsFilter.hidden=true});
+ itemsFilter.querySelectorAll('[data-filter-select]').forEach(button=>button.addEventListener('click',()=>{
+  const group=button.closest('[data-filter-group]');
+  if(!group)return;
+  if(group.dataset.filterMode==='multiple'){
+   button.classList.toggle('selected');
+  }else{
+   group.querySelectorAll('[data-filter-select]').forEach(option=>option.classList.toggle('selected',option===button));
+  }
+  const periodFields=itemsFilter.querySelector('[data-filter-period-fields]');
+  if(periodFields)periodFields.hidden=selectedFilterValue('publication')!=='period';
+ }));
+ const tierToggle=itemsFilter.querySelector('[data-filter-tier-toggle]');
+ tierToggle?.addEventListener('click',()=>{
+  const choices=itemsFilter.querySelector('[data-filter-tier-choices]');
+  if(choices)choices.hidden=!choices.hidden;
+  tierToggle.setAttribute('aria-expanded',String(Boolean(choices&&!choices.hidden)));
+ });
+ clippingSearch?.addEventListener('input',applyClippingFilters);
  itemsFilter.querySelector('.app-clipping-items-filter-clear').onclick=()=>{
   itemsFilter.querySelectorAll('input').forEach(input=>input.value='');
+  itemsFilter.querySelectorAll('[data-filter-select]').forEach(button=>button.classList.toggle('selected',button.hasAttribute('data-filter-default')));
+  const choices=itemsFilter.querySelector('[data-filter-tier-choices]');
+  if(choices)choices.hidden=true;
+  if(tierToggle)tierToggle.setAttribute('aria-expanded','false');
+  const periodFields=itemsFilter.querySelector('[data-filter-period-fields]');
+  if(periodFields)periodFields.hidden=true;
+  applyClippingFilters();
   itemsFilter.hidden=true;
  };
- itemsFilter.querySelector('.app-clipping-items-filter-apply').onclick=()=>{itemsFilter.hidden=true};
+ itemsFilter.querySelector('.app-clipping-items-filter-apply').onclick=()=>{
+  applyClippingFilters();
+  itemsFilter.hidden=true;
+ };
 
  clientPage.querySelector('.app-clipping-filter-open').onclick=()=>clientFilter.hidden=false;
  clientPage.querySelector('.app-clipping-filter-close').onclick=()=>clientFilter.hidden=true;
@@ -2108,24 +2185,110 @@ endInput?.addEventListener('input', updateClippingDuration);
  editClipping?.addEventListener('click',()=>{
   selectedClient=selectedClient||'Cleiton';
 
+  const source=currentClipping||{};
+  const reference=selectedClient==='Cleiton'&&selectedYear===2026?{
+   link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',
+   program:'LOGOS',
+   categories:'Site, TV, Jornal',
+   tier:'Tier 1',
+   start:'01:55',
+   end:'02:35',
+   notes:'Dicas de marketing e conexões comerciais'
+  }:{};
+  const timeRange=(source.excerpt||source.snippet||'').match(/(\d{2}:\d{2})\s*(?:➜|→|–|-)\s*(\d{2}:\d{2})/);
+  const values={
+   subject:source.subject||'',
+   date:source.date||'',
+   link:source.link||reference.link||'',
+   vehicle:source.vehicle||'LOGOS',
+   program:source.program||reference.program||'',
+   categories:source.category||source.categories||reference.categories||'',
+   start:source.start||timeRange?.[1]||reference.start||'',
+   end:source.end||timeRange?.[2]||reference.end||'',
+   notes:(source.notes||reference.notes||'').trim()
+  };
+
+  form.classList.add('is-editing');
   form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
-  form.elements.namedItem('subject').value=currentClipping?.subject||'';
-  form.elements.namedItem('date').value=currentClipping?.date||'';
-  form.elements.namedItem('vehicle').value=currentClipping?.vehicle||'';
-  form.elements.namedItem('program').value='';
-  form.elements.namedItem('categories').value='';
-  renderVehicleCard(currentClipping?.vehicle||'LOGOS');
-  form.querySelectorAll('[data-clear-field]').forEach(button=>{button.hidden=!form.elements.namedItem(button.dataset.clearField)?.value});
+  Object.entries(values).forEach(([name,value])=>{
+   const input=form.elements.namedItem(name);
+   if(input)input.value=value;
+  });
+
+  if(yearControl){
+   yearControl.textContent='Pela data';
+   yearControl.disabled=true;
+   yearControl.removeAttribute('data-open');
+  }
+
+  const suggestion=form.querySelector('[data-clipping-subject-suggestion]');
+  const suggestionText=form.querySelector('[data-clipping-subject-suggestion-text]');
+  if(suggestionText)suggestionText.textContent=values.subject;
+  if(suggestion)suggestion.hidden=!values.subject;
+
+  const categories=new Set(values.categories.split(',').map(value=>value.trim().toLocaleLowerCase('pt-BR')));
+  form.querySelectorAll('.app-clipping-category-chips button').forEach(button=>{
+   const name=button.textContent.replace(/^\+\s*/,'').trim().toLocaleLowerCase('pt-BR');
+   button.classList.toggle('selected',categories.has(name));
+  });
+
+  const tier=source.tier||reference.tier||'Não definido';
+  form.querySelectorAll('.app-clipping-tier-options button').forEach(button=>{
+   const name=button.textContent.replace(/[◉○]/g,'').trim();
+   button.classList.toggle('selected',name===tier);
+  });
+
+  renderVehicleCard(values.vehicle);
+  form.querySelectorAll('[data-clear-field]').forEach(button=>{
+   button.hidden=!form.elements.namedItem(button.dataset.clearField)?.value;
+  });
+
+  updateLinkActions();
+  updateYearFromDate();
+  updateClippingDuration();
  });
+
+ sim.querySelectorAll('button[data-screen="novo-clipping"]').forEach(button=>{
+  button.addEventListener('click',()=>{
+   form.classList.remove('is-editing');
+   if(yearControl){
+    yearControl.textContent='Alterar';
+    yearControl.disabled=false;
+    yearControl.dataset.open='clipping-year';
+   }
+   const suggestion=form.querySelector('[data-clipping-subject-suggestion]');
+   if(suggestion)suggestion.hidden=true;
+  });
+ });
+
  form.querySelectorAll('[data-clear-field]').forEach(button=>{
   const input=form.elements.namedItem(button.dataset.clearField),update=()=>{button.hidden=!input?.value};
-  input?.addEventListener('input',update);button.addEventListener('click',()=>{if(input){input.value='';input.focus()}update()});update();
+  input?.addEventListener('input',update);
+  button.addEventListener('click',()=>{
+   if(input){
+    input.value='';
+    input.dispatchEvent(new Event('input',{bubbles:true}));
+    input.focus();
+   }
+   update();
+  });
+  update();
  });
  const picker=form.querySelector('.app-clipping-client-picker');
- form.querySelector('.app-clipping-client-open').onclick=()=>picker.hidden=false;
+ const syncClippingClientOptions=()=>{
+  form.querySelectorAll('.app-clipping-pick-client').forEach(button=>{
+   const name=button.dataset.clientName||button.textContent.replace('✓','').trim();
+   button.classList.toggle('selected',name===selectedClient);
+  });
+ };
+ form.querySelector('.app-clipping-client-open').onclick=()=>{
+  syncClippingClientOptions();
+  picker.hidden=false;
+ };
  form.querySelector('.app-clipping-client-close').onclick=()=>picker.hidden=true;
  form.querySelectorAll('.app-clipping-pick-client').forEach(button=>button.onclick=()=>{
-  selectedClient=button.textContent.replace('✓','').trim();
+  selectedClient=button.dataset.clientName||button.textContent.replace('✓','').trim();
+  syncClippingClientOptions();
   form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
   picker.hidden=true;
  });
@@ -2180,10 +2343,12 @@ endInput?.addEventListener('input', updateClippingDuration);
   card.classList.remove('is-expanded');
   card.setAttribute('aria-expanded', 'false');
 
-  const toggle = card.querySelector('.app-clipping-vehicle-toggle');
-  if (toggle) toggle.textContent = 'Ver detalhes';
+  const toggleLabel = card.querySelector('[data-vehicle-toggle-label]');
+  if (toggleLabel) toggleLabel.textContent = 'Ver detalhes';
 
-  card.querySelector('.app-clipping-vehicle-chevron').textContent = '⌄';
+  const chevron = card.querySelector('.app-clipping-vehicle-chevron');
+  chevron?.classList.remove('fa-chevron-up');
+  chevron?.classList.add('fa-chevron-down');
   card.hidden = false;
 };
 
@@ -2201,13 +2366,14 @@ vehicleCard?.addEventListener('click', event => {
     detail.hidden = !expanded;
   });
 
-  const toggle = vehicleCard.querySelector('.app-clipping-vehicle-toggle');
-  if (toggle) {
-    toggle.textContent = expanded ? 'Recolher detalhes' : 'Ver detalhes';
+   const toggleLabel = vehicleCard.querySelector('[data-vehicle-toggle-label]');
+  if (toggleLabel) {
+    toggleLabel.textContent = expanded ? 'Recolher detalhes' : 'Ver detalhes';
   }
 
-  vehicleCard.querySelector('.app-clipping-vehicle-chevron').textContent =
-    expanded ? '⌃' : '⌄';
+  const chevron = vehicleCard.querySelector('.app-clipping-vehicle-chevron');
+  chevron?.classList.toggle('fa-chevron-up', expanded);
+  chevron?.classList.toggle('fa-chevron-down', !expanded);
 });
  form.querySelector('.app-clipping-search-data').onclick=()=>dataModal.hidden=false;
  form.querySelector('.app-clipping-data-close').onclick=()=>dataModal.hidden=true;
