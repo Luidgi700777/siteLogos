@@ -9704,3 +9704,156 @@ footer .social a:hover {
   font-size: 12px;
   font-weight: 700;
 }
+
+/* Nome em destaque quando o cliente está selecionado no clipping */
+.app-simulator .demo-sheet-overlay[data-panel="clipping-client"] .demo-client-option.selected::before {
+  color: #fff;
+  font-weight: 700;
+}
+
+
+/* Mantém os dois botões do cadastro rápido com o mesmo azul */
+.app-simulator .demo-sheet-overlay[data-panel="quick-client"] .demo-sheet > footer > button {
+  border-color: #536cff !important;
+  background: #536cff !important;
+  color: #fff !important;
+}
+
+
+/* Detalhes do veículo: uma única divisória antes das informações */
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card > p {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card > p:first-of-type {
+  padding-top: 8px;
+  border-top: 1px solid #ced5fd;
+}
+
+
+/* Filtros da tela de cada cliente */
+.app-clipping-items-filter-sheet {
+  height: 82%;
+  max-height: 90%;
+  padding-bottom: 0;
+}
+.app-clipping-items-filter-sheet > header {
+  flex: 0 0 auto;
+  padding: 16px 13px 10px;
+}
+.app-clipping-items-filter-sheet > header h4 {
+  font-size: 17px;
+}
+.app-clipping-items-filter-sheet > header p {
+  margin: 2px 0 0;
+  color: #8b8b8b;
+  font-size: 12px;
+}
+.app-clipping-items-filter-sheet > header button {
+  flex: 0 0 40px;
+}
+.app-clipping-items-filter-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 13px 14px !important;
+}
+.app-clipping-filter-section {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 17px;
+}
+.app-clipping-filter-section > strong,
+.app-clipping-filter-input {
+  color: #161c29;
+  font-size: 12px;
+  font-weight: 700;
+}
+.app-clipping-filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.app-clipping-filter-options > button {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 7px 11px;
+  border: 1px solid #6578ff;
+  border-radius: 11px;
+  background: #fffbfb;
+  color: #161c29;
+  font-size: 12px;
+  font-weight: 500;
+}
+.app-clipping-filter-options > button.selected {
+  border-color: #293a78;
+  background: #293a78;
+  color: #fff;
+}
+.app-clipping-filter-input {
+  display: grid !important;
+  gap: 7px;
+  margin: 0 0 16px !important;
+}
+.app-clipping-filter-input input,
+.app-clipping-filter-period-fields input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 46px;
+  padding: 0 13px;
+  border: 1px solid #6578ff;
+  border-radius: 12px;
+  background: #f7f7f7;
+  color: #161c29;
+  font-size: 13px;
+  font-weight: 400;
+}
+.app-clipping-filter-category-options {
+  margin-top: 2px;
+}
+.app-clipping-filter-category-options > button {
+  min-height: 40px;
+  padding-inline: 11px;
+}
+.app-clipping-filter-tier-choices {
+  display: flex;
+  flex-basis: 100%;
+  gap: 7px;
+}
+.app-clipping-filter-period-fields {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 8px;
+}
+.app-clipping-filter-period-fields[hidden],
+.app-clipping-filter-tier-choices[hidden] {
+  display: none !important;
+}
+.app-clipping-filter-hint {
+  display: block;
+  margin: -7px 0 17px;
+  color: #898989;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.app-clipping-items-filter-sheet > footer {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 9px;
+  padding: 16px 13px;
+  border-top: 1px solid #6578ff;
+}
+.app-clipping-items-filter-sheet > footer button {
+  min-height: 40px;
+  border: 1px solid #6578ff;
+  border-radius: 9px;
+  background: #fffbfb;
+  color: #161c29;
+  font-size: 11px;
+  font-weight: 700;
+}
+.app-clipping-items-filter-sheet > footer button:last-child {
+  background: #536cff;
+  color: #fff;
+}
