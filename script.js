@@ -1942,12 +1942,20 @@ if (
  itemsFilter.querySelectorAll('[data-filter-select]').forEach(button=>button.addEventListener('click',()=>{
   const group=button.closest('[data-filter-group]');
   if(!group)return;
-  if(group.dataset.filterMode==='multiple'){
-   button.classList.toggle('selected');
-  }else{
-   group.querySelectorAll('[data-filter-select]').forEach(option=>option.classList.toggle('selected',option===button));
-  }
-  if(group.dataset.filterGroup==='category')syncCategoryControl();
+  if (group.dataset.filterGroup === 'category') {
+  group.querySelectorAll('[data-filter-select]').forEach(option => {
+    const selected = option === button;
+    option.classList.toggle('selected', selected);
+    option.hidden = !selected;
+  });
+  syncCategoryControl();
+} else if (group.dataset.filterMode === 'multiple') {
+  button.classList.toggle('selected');
+} else {
+  group.querySelectorAll('[data-filter-select]').forEach(option => {
+    option.classList.toggle('selected', option === button);
+  });
+}
   if(group.dataset.filterGroup==='tier-mode'){
    if(tierPanel)tierPanel.hidden=true;
    if(tierToggle){
@@ -1974,11 +1982,10 @@ if (
  });
  categoryInput?.addEventListener('input',()=>{
   if(categoryClear)categoryClear.hidden=!categoryInput.value.trim();
-  itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select]').forEach(button=>button.classList.remove('selected'));
  });
  categoryClear?.addEventListener('click',()=>{
   if(categoryInput)categoryInput.value='';
-  itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select]').forEach(button=>button.classList.remove('selected'));
+  itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select]').forEach(button=>{button.classList.remove('selected');button.hidden=false;});
   categoryClear.hidden=true;
   categoryInput?.focus();
  });
