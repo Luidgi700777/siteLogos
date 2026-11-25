@@ -1495,14 +1495,19 @@
 
       <section class="app-clipping-filter-section">
         <strong>TIER</strong>
-        <div class="app-clipping-filter-options" data-filter-group="tier">
+        <div class="app-clipping-filter-options" data-filter-group="tier-mode">
           <button type="button" class="selected" data-filter-select="all" data-filter-default>Todos</button>
           <button type="button" data-filter-tier-toggle aria-expanded="false">Escolher Tier</button>
-          <div class="app-clipping-filter-tier-choices" data-filter-tier-choices hidden>
-            <button type="button" data-filter-select="tier-1">Tier 1</button>
-            <button type="button" data-filter-select="tier-2">Tier 2</button>
-            <button type="button" data-filter-select="tier-3">Tier 3</button>
+        </div>
+        <div class="app-clipping-filter-tier-panel" data-filter-tier-panel hidden>
+          <strong>TIER</strong>
+          <div class="app-clipping-filter-options app-clipping-filter-tier-options" data-filter-group="tier">
+            <button type="button" class="selected" data-filter-select="undefined" data-filter-default>◉　Não definido</button>
+            <button type="button" data-filter-select="tier-1">○　Tier 1</button>
+            <button type="button" data-filter-select="tier-2">○　Tier 2</button>
+            <button type="button" data-filter-select="tier-3">○　Tier 3</button>
           </div>
+          <small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small>
         </div>
       </section>
 

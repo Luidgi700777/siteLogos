@@ -1876,7 +1876,16 @@ if (
   const clippingSearch=clippingPage.querySelector('.app-clipping-search input');
  const itemsFilter=clippingPage.querySelector('.app-clipping-items-filter');
  const filterContext=itemsFilter.querySelector('[data-clipping-filter-context]');
+ const categoryInput=itemsFilter.querySelector('[data-filter-field="category"]');
+ const categoryClear=itemsFilter.querySelector('[data-filter-clear="category"]');
+ const tierToggle=itemsFilter.querySelector('[data-filter-tier-toggle]');
+ const tierPanel=itemsFilter.querySelector('[data-filter-tier-panel]');
  const selectedFilterValue=group=>itemsFilter.querySelector('[data-filter-group="'+group+'"] [data-filter-select].selected')?.dataset.filterSelect||'all';
+ const syncCategoryControl=()=>{
+  const selected=Array.from(itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select].selected')).map(button=>button.dataset.filterSelect);
+  if(categoryInput)categoryInput.value=selected.join(', ');
+  if(categoryClear)categoryClear.hidden=!categoryInput?.value.trim();
+ };
  const parseFilterDate=value=>{
   const match=String(value||'').trim().match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
   return match?new Date(Number(match[3]),Number(match[2])-1,Number(match[1])).getTime():null;
@@ -1890,10 +1899,9 @@ if (
   const publication=selectedFilterValue('publication');
   const linkMode=selectedFilterValue('link');
   const imageMode=selectedFilterValue('image');
-  const tierMode=selectedFilterValue('tier');
   const vehicleValue=(itemsFilter.querySelector('[data-filter-field="vehicle"]')?.value||'').trim().toLocaleLowerCase('pt-BR');
   const programValue=(itemsFilter.querySelector('[data-filter-field="program"]')?.value||'').trim().toLocaleLowerCase('pt-BR');
-  const categoryText=(itemsFilter.querySelector('[data-filter-field="category"]')?.value||'').trim().toLocaleLowerCase('pt-BR');
+  const categoryText=(categoryInput?.value||'').split(',').map(value=>value.trim().toLocaleLowerCase('pt-BR')).filter(Boolean);
   const categoryChoices=Array.from(itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select].selected')).map(button=>button.dataset.filterSelect.toLocaleLowerCase('pt-BR'));
   const minDuration=parseFilterDuration(itemsFilter.querySelector('[data-filter-field="duration-min"]')?.value);
   const maxDuration=parseFilterDuration(itemsFilter.querySelector('[data-filter-field="duration-max"]')?.value);
@@ -1905,7 +1913,8 @@ if (
   const hasLink=Boolean(source.link);
   const hasImage=Boolean(source.attachmentName||source.image||source.imageUrl);
   const sourceCategories=String(source.category||source.categories||'').toLocaleLowerCase('pt-BR');
-  const matchesCategories=[...categoryChoices,...(categoryText?[categoryText]:[])];
+  const matchesCategories=[...categoryChoices,...categoryText];
+  const tierName=tierChoice==='undefined'?'não definido':tierChoice.replace('-',' ').toLocaleLowerCase('pt-BR');
   clippingPage.querySelectorAll('[data-clipping-record]').forEach(card=>{
    let visible=!query||card.textContent.toLocaleLowerCase('pt-BR').includes(query);
    if(vehicleValue&&!String(source.vehicle||'').toLocaleLowerCase('pt-BR').includes(vehicleValue))visible=false;
@@ -1915,7 +1924,7 @@ if (
    if(publication==='period'&&sourceDate===null)visible=false;
    if(publication==='period'&&fromDate!==null&&sourceDate!==null&&sourceDate<fromDate)visible=false;
    if(publication==='period'&&toDate!==null&&sourceDate!==null&&sourceDate>toDate)visible=false;
-   if(tierMode!=='all'&&String(source.tier||'').toLocaleLowerCase('pt-BR')!==tierMode.replace('-',' ').toLocaleLowerCase('pt-BR'))visible=false;
+   if(tierMode==='choose'&&String(source.tier||'não definido').toLocaleLowerCase('pt-BR')!==tierName)visible=false;
    if((minDuration!==null||maxDuration!==null)&&(duration===null||(minDuration!==null&&duration<minDuration)||(maxDuration!==null&&duration>maxDuration)))visible=false;
    if(linkMode==='with'&&!hasLink)visible=false;
    if(linkMode==='without'&&hasLink)visible=false;
@@ -1938,22 +1947,48 @@ if (
   }else{
    group.querySelectorAll('[data-filter-select]').forEach(option=>option.classList.toggle('selected',option===button));
   }
+  if(group.dataset.filterGroup==='category')syncCategoryControl();
+  if(group.dataset.filterGroup==='tier-mode'){
+   if(tierPanel)tierPanel.hidden=true;
+   if(tierToggle){
+    tierToggle.classList.remove('selected');
+    tierToggle.setAttribute('aria-expanded','false');
+   }
+  }
   const periodFields=itemsFilter.querySelector('[data-filter-period-fields]');
   if(periodFields)periodFields.hidden=selectedFilterValue('publication')!=='period';
  }));
- const tierToggle=itemsFilter.querySelector('[data-filter-tier-toggle]');
  tierToggle?.addEventListener('click',()=>{
-  const choices=itemsFilter.querySelector('[data-filter-tier-choices]');
-  if(choices)choices.hidden=!choices.hidden;
-  tierToggle.setAttribute('aria-expanded',String(Boolean(choices&&!choices.hidden)));
+  const open=Boolean(tierPanel?.hidden);
+  if(tierPanel)tierPanel.hidden=!open;
+  tierToggle.classList.toggle('selected',open);
+  tierToggle.setAttribute('aria-expanded',String(open));
+  const allButton=itemsFilter.querySelector('[data-filter-group="tier-mode"] [data-filter-select="all"]');
+  if(allButton)allButton.classList.toggle('selected',!open);
+  if(open){
+   const defaultTier=itemsFilter.querySelector('[data-filter-group="tier"] [data-filter-select="undefined"]');
+   if(defaultTier&&!itemsFilter.querySelector('[data-filter-group="tier"] [data-filter-select].selected')){
+    defaultTier.classList.add('selected');
+   }
+  }
+ });
+ categoryInput?.addEventListener('input',()=>{
+  if(categoryClear)categoryClear.hidden=!categoryInput.value.trim();
+  itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select]').forEach(button=>button.classList.remove('selected'));
+ });
+ categoryClear?.addEventListener('click',()=>{
+  if(categoryInput)categoryInput.value='';
+  itemsFilter.querySelectorAll('[data-filter-group="category"] [data-filter-select]').forEach(button=>button.classList.remove('selected'));
+  categoryClear.hidden=true;
+  categoryInput?.focus();
  });
  clippingSearch?.addEventListener('input',applyClippingFilters);
  itemsFilter.querySelector('.app-clipping-items-filter-clear').onclick=()=>{
   itemsFilter.querySelectorAll('input').forEach(input=>input.value='');
   itemsFilter.querySelectorAll('[data-filter-select]').forEach(button=>button.classList.toggle('selected',button.hasAttribute('data-filter-default')));
-  const choices=itemsFilter.querySelector('[data-filter-tier-choices]');
-  if(choices)choices.hidden=true;
-  if(tierToggle)tierToggle.setAttribute('aria-expanded','false');
+  if(tierPanel)tierPanel.hidden=true;
+  if(tierToggle){tierToggle.classList.remove('selected');tierToggle.setAttribute('aria-expanded','false')}
+  if(categoryClear)categoryClear.hidden=true;
   const periodFields=itemsFilter.querySelector('[data-filter-period-fields]');
   if(periodFields)periodFields.hidden=true;
   applyClippingFilters();
