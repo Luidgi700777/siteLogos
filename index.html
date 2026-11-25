@@ -1417,6 +1417,7 @@
     <p><b>Programa/seção:</b> <span data-clipping-card-program>LOGOS</span></p>
     <p><b>Tier:</b> <span data-clipping-card-tier-detail>Tier 1</span></p>
     <p><b>Trecho:</b> <span data-clipping-card-duration-detail>Início 01:55 · Fim 02:35 (00:40)</span></p>
+    <p><b>Observações:</b><span data-clipping-card-notes>Dicas de marketing e conexões comerciais</span></p>
     <p class="app-clipping-expanded-link"><b>Link:</b><a data-clipping-card-link-text href="https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/" target="_blank" rel="noopener noreferrer">https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/</a></p>
     <p><b>Arquivos:</b> <span data-clipping-card-files>1 arquivo nos detalhes</span></p>
 
@@ -1475,11 +1476,14 @@
     <div class="app-clipping-detail-meta">
       <div>
         <small>Categorias</small>
-        <span data-detail-categories>Sem categoria</span>
+        <div class="app-clipping-detail-category-chips" data-detail-categories></div>
       </div>
       <div>
         <small>Tier</small>
-        <span class="app-clipping-detail-tier" data-detail-tier>Sem Tier</span>
+        <span class="app-clipping-detail-tier">
+          <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
+          <span data-detail-tier>Tier 1</span>
+        </span>
       </div>
     </div>
 
@@ -1495,14 +1499,17 @@
   </article>
 
   <article class="app-clipping-detail-card">
-    <h4><i class="fa-regular fa-circle-info" aria-hidden="true"></i> Trecho</h4>
+    <h4><i class="fa-regular fa-clock" aria-hidden="true"></i> Trecho</h4>
     <p data-detail-excerpt>Não informado</p>
   </article>
 
-  <article class="app-clipping-detail-card">
+  <article class="app-clipping-detail-card app-clipping-detail-link-card">
     <h4><i class="fa-solid fa-link" aria-hidden="true"></i> Link da publicação</h4>
-    <p class="app-clipping-detail-missing" data-detail-link>Sem link informado</p>
-    <small>A publicação também pode ser registrada pelos arquivos anexados abaixo.</small>
+    <a class="app-clipping-detail-url" data-detail-link href="#" target="_blank" rel="noopener noreferrer"></a>
+    <a class="app-clipping-detail-open-link" data-detail-open-link href="#" target="_blank" rel="noopener noreferrer">
+      Abrir publicação
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
   </article>
 
   <article class="app-clipping-detail-card">
@@ -1512,30 +1519,151 @@
 
   <div class="app-clipping-detail-attachments">
     <header>
-      <strong>ANEXOS</strong>
+      <strong>ANEXOS <span data-detail-attachment-count>1</span></strong>
       <button type="button">＋ ADICIONAR</button>
     </header>
-    <div>
-      <i class="fa-regular fa-images" aria-hidden="true"></i>
-      Nenhum anexo adicionado
-    </div>
+
+    <article class="app-clipping-detail-attachment-card">
+      <span class="app-clipping-detail-attachment-thumb">
+        <i class="fa-regular fa-image" aria-hidden="true"></i>
+      </span>
+
+      <div class="app-clipping-detail-attachment-info">
+        <strong data-detail-attachment-name>imagem_2026-11-24_222121300.png</strong>
+        <small>
+          <span data-detail-attachment-type>IMAGEM</span> ·
+          <span data-detail-attachment-size>605.9 KB</span>
+        </small>
+        <button type="button">TOQUE PARA AMPLIAR</button>
+      </div>
+
+      <button type="button" class="app-clipping-detail-attachment-preview" aria-label="Ampliar anexo">
+        <i class="fa-solid fa-expand" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="app-clipping-detail-attachment-delete" aria-label="Excluir anexo">
+        <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+      </button>
+
+      <button type="button" class="app-clipping-detail-remove-report">
+        <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
+        REMOVER DOS RELATÓRIOS
+      </button>
+    </article>
   </div>
 </section>
 <form class="app-clipping-form" data-view="novo-clipping" id="app-clipping-form-fields" autocomplete="off" hidden>
   <article class="app-clipping-client-selector"><small>CLIENTE</small><strong data-clipping-selected-client>Selecione o cliente</strong><button class="app-clipping-client-open">Selecionar</button></article>
   
-  <article class="app-clipping-year-selector"><small>ANO DE REFERÊNCIA</small><strong data-clipping-year-label>2026</strong><button type="button" data-open="clipping-year">Alterar</button></article><p data-clipping-year-note>Sem data de publicação, o clipping ficará em 2026.</p>
-  <h4>DADOS DA PUBLICAÇÃO</h4><label>LINK<input name="link" value="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias/ministerio-da-igualdade-racial-conecta-participacao-comunitaria-e-combate-ao-racismo-ambiental-na-cop31" placeholder="https://..."></label>
-  <div class="app-clipping-form-tools"><button class="app-clipping-search-data" disabled><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> BUSCAR DADOS</button><button class="app-clipping-capture-open" disabled>▧ CAPTURAR IMAGEM</button></div>
-  <label>DATA DE PUBLICAÇÃO<span class="app-clipping-date-field"><input name="date" placeholder="DD/MM/AAAA"><button type="button" class="app-clipping-field-clear" hidden>×</button><button type="button" data-open="report-date-picker" aria-label="Escolher data de publicação">▦</button></span></label>
-  <label>PAUTA<span class="app-clipping-clearable"><input name="subject" placeholder="Assunto ou título da matéria"><button type="button" class="app-clipping-field-clear" data-clear-field="subject" hidden>×</button></span></label><label>VEÍCULO<span class="app-clipping-clearable"><input name="vehicle" placeholder="Buscar pelo nome do veículo"><button type="button" class="app-clipping-field-clear" data-clear-field="vehicle" hidden>×</button></span></label>
-  <button type="button" class="app-clipping-vehicle-card" aria-expanded="false" hidden><span class="app-clipping-vehicle-icon" aria-hidden="true"><i class="fa-solid fa-newspaper"></i></span><strong>gov</strong><small>Tier não definido</small><span class="app-clipping-vehicle-toggle">Ver detalhes</span><span class="app-clipping-vehicle-chevron" aria-hidden="true">⌄</span><p hidden></p><p hidden></p><p hidden></p></button>
-  <label>PROGRAMA / SEÇÃO<input name="program" placeholder="Ex.: Jornal da manhã"></label><label>CATEGORIAS<input name="categories" placeholder="Separe as categorias por vírgula"></label>
-  <div class="app-clipping-category-chips"><button>+ Site</button><button>+ TV</button><button>+ Rádio</button><button>+ Jornal</button><button>+ Revista</button><button>+ Podcast</button><button>+ Redes sociais</button></div>
-  <fieldset><legend>TIER</legend><div class="app-clipping-tier-options"><button class="selected">◉ Não definido</button><button>○ Tier 1</button><button>○ Tier 2</button><button>○ Tier 3</button></div><small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small></fieldset>
-  <div class="app-clipping-time-row"><label>INÍCIO<input placeholder="00:00"></label><label>FIM<input placeholder="00:00"></label></div><small>A duração será calculada com início e fim válidos.<br>Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.</small>
+  <article class="app-clipping-year-selector">
+    <small>ANO DE REFERÊNCIA</small>
+    <strong data-clipping-year-label>2026</strong>
+    <button type="button" data-open="clipping-year">Alterar</button>
+  </article>
+
+  <p data-clipping-year-note>Sem data de publicação, o clipping ficará em 2026.</p>
+  <h4>DADOS DA PUBLICAÇÃO</h4>
+  <label>LINK<input name="link" value="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias/ministerio-da-igualdade-racial-conecta-participacao-comunitaria-e-combate-ao-racismo-ambiental-na-cop31" placeholder="https://..."></label>
+
+  <div class="app-clipping-form-tools">
+    <button class="app-clipping-search-data" disabled><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> BUSCAR DADOS</button><button class="app-clipping-capture-open" disabled>▧ CAPTURAR IMAGEM</button>
+  </div>
+
+  <label>DATA DE PUBLICAÇÃO<span class="app-clipping-date-field"><input name="date" placeholder="DD/MM/AAAA">
+      <button type="button" class="app-clipping-field-clear" hidden>×</button>
+      <button type="button" data-open="report-date-picker" aria-label="Escolher data de publicação">▦</button>
+    </span>
+  </label>
+
+  <label>PAUTA
+    <span class="app-clipping-clearable">
+      <input name="subject" placeholder="Assunto ou título da matéria">
+      <button type="button" class="app-clipping-field-clear" data-clear-field="subject" hidden>×</button>
+    </span>
+  </label>
+
+  <div class="app-clipping-subject-suggestion" data-clipping-subject-suggestion hidden>
+    <span aria-hidden="true">↪</span>
+    <span data-clipping-subject-suggestion-text></span>
+  </div>
+
+  <button type="button" class="app-clipping-vehicle-card" aria-expanded="false">
+    <span class="app-clipping-vehicle-icon">
+      <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+    </span>
+
+    <strong>LOGOS</strong>
+    <small>Tier não definido</small>
+
+    <span class="app-clipping-vehicle-toggle">
+      Ver detalhes <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </span>
+
+    <p hidden>Descrição<br>Descrição não informada.</p>
+    <p hidden>Alcance<br>Alcance não informado.</p>
+    <p hidden>Endereços associados<br>logos.com.br · Site inteiro</p>
+  </button>
+
+  <label>PROGRAMA / SEÇÃO<input name="program" placeholder="Ex.: Jornal da manhã"></label>
+  <label>CATEGORIAS<input name="categories" placeholder="Separe as categorias por vírgula"></label>
+
+  <div class="app-clipping-category-chips">
+    <button>+ Site</button><button>+ TV</button><button>+ Rádio</button><button>+ Jornal</button><button>+ Revista</button><button>+ Podcast</button><button>+ Redes sociais</button>
+  </div>
+
+  <fieldset>
+    <legend>TIER</legend>
+    <div class="app-clipping-tier-options">
+      <button class="selected">◉ Não definido</button><button>○ Tier 1</button><button>○ Tier 2</button><button>○ Tier 3</button>
+    </div>
+    <small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small>
+  </fieldset>
+
+  <div class="app-clipping-time-row">
+    <label>INÍCIO
+      <span class="app-clipping-clearable">
+        <input name="start" placeholder="00:00">
+        <button type="button" class="app-clipping-field-clear" data-clear-field="start" hidden>×</button>
+      </span>
+    </label>
+    <label>FIM
+      <span class="app-clipping-clearable">
+        <input name="end" placeholder="00:00">
+        <button type="button" class="app-clipping-field-clear" data-clear-field="end" hidden>×</button>
+      </span>
+    </label>
+  </div>
+
+  <small data-clipping-duration-note>
+    A duração será calculada com início e fim válidos.<br>
+    Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.
+  </small>
   
-  <section class="app-clipping-attachments"><header><strong>ANEXOS</strong><button type="button">＋ ADICIONAR</button></header><small>JPG, PNG, WEBP, PDF, MP4, WEBM, MOV, MP3 ou WAV. Até 30 MB por arquivo. Enviados ao salvar.</small><div>▧　Nenhum anexo selecionado</div></section><label>OBSERVAÇÕES<textarea name="notes" placeholder="Informações adicionais"></textarea></label><div class="app-clipping-form-actions"><button type="button" data-screen="clipping">CANCELAR</button><button type="button" data-action="clipping-save">SALVAR</button><button type="button" data-action="clipping-save-add-another">SALVAR E ADICIONAR OUTRO</button></div>
+  <section class="app-clipping-attachments">
+    <header>
+      <strong>ANEXOS</strong>
+      <button type="button">＋ ADICIONAR</button>
+    </header>
+    
+    <small>JPG, PNG, WEBP, PDF, MP4, WEBM, MOV, MP3 ou WAV. Até 30 MB por arquivo. Enviados ao salvar.</small>
+    
+    <div>▧　Nenhum anexo selecionado</div>
+  </section>
+  
+  <label>OBSERVAÇÕES
+    <span class="app-clipping-clearable app-clipping-notes-field">
+      <textarea name="notes" placeholder="Informações adicionais"></textarea>
+      <button type="button" class="app-clipping-field-clear" data-clear-field="notes" hidden>×</button>
+    </span>
+  </label>
+  
+  <div class="app-clipping-form-actions">
+    <button type="button" data-screen="clipping">CANCELAR</button>
+    <button type="button" data-action="clipping-save">SALVAR</button>
+    <button type="button" data-action="clipping-save-add-another">SALVAR E ADICIONAR OUTRO</button>
+    <button type="button" class="app-clipping-edit-back" data-screen="detalhes-clipping">
+      VOLTAR AOS DETALHES
+    </button>
+  </div>
 
   <div class="demo-sheet-overlay app-clipping-client-picker" data-panel="clipping-client" hidden><section class="demo-sheet"><header><h3>Selecionar cliente</h3><button type="button" class="app-clipping-client-close" data-close="clipping-client" aria-label="Fechar">×</button></header><div class="demo-sheet-body"><div class="demo-search"><input placeholder="Buscar cliente..." aria-label="Buscar cliente"><button type="button" aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button type="button" class="demo-link app-clipping-quick-client" data-action="quick-client-open">＋ Cadastro rápido de cliente</button><button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="Cleiton">Cleiton</button><button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="João">João</button><button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="Maria">Maria</button></div></section></div>
 

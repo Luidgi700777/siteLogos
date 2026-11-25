@@ -9345,3 +9345,362 @@ footer .social a:hover {
   line-height:1.3;
 }
 
+.app-simulator .app-clipping-detail-category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.app-simulator .app-clipping-detail-category-chips span {
+  padding: 5px 9px;
+  border: 1px solid #d5dcff;
+  border-radius: 9px;
+  background: #f3f4ff;
+  color: #5170ff;
+  font-size: 11px;
+}
+
+.app-simulator .app-clipping-detail-tier {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border-radius: 9px;
+  background: #f3f4ff;
+  color: #202636;
+  font-size: 11px;
+}
+
+.app-simulator .app-clipping-detail-url {
+  color: #5170ff;
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.app-simulator .app-clipping-detail-open-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  border: 1px solid #d5dcff;
+  border-radius: 10px;
+  background: #f3f4ff;
+  color: #5170ff;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-simulator .app-clipping-detail-attachments > header strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-simulator .app-clipping-detail-attachments > header strong span {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #5170ff;
+  color: #fff;
+  font-size: 10px;
+}
+
+.app-simulator .app-clipping-detail-attachments > .app-clipping-detail-attachment-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 22px 22px;
+  gap: 8px;
+  align-items: center;
+  min-height: 82px;
+  padding: 8px;
+  border: 1px solid #6b86ff;
+  border-radius: 12px;
+  background: #fffcfc;
+}
+
+.app-simulator .app-clipping-detail-attachment-card[hidden] {
+  display: none !important;
+}
+
+.app-simulator .app-clipping-detail-attachment-thumb {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 48px;
+  border: 1px solid #d5dcff;
+  border-radius: 5px;
+  background: #f3f4ff;
+  color: #5170ff;
+}
+
+.app-simulator .app-clipping-detail-attachment-info {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.app-simulator .app-clipping-detail-attachment-info strong {
+  overflow: hidden;
+  color: #202636;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-simulator .app-clipping-detail-attachment-info small,
+.app-simulator .app-clipping-detail-attachment-info button {
+  color: #929292;
+  font-size: 9px;
+}
+
+.app-simulator .app-clipping-detail-attachment-info button {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #5170ff;
+}
+
+.app-simulator .app-clipping-detail-attachment-preview,
+.app-simulator .app-clipping-detail-attachment-delete {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #5170ff;
+}
+
+.app-simulator .app-clipping-detail-attachment-delete {
+  color: #ce777c;
+}
+
+.app-simulator .app-clipping-detail-remove-report {
+  grid-column: 1 / -1;
+  justify-self: start;
+  min-height: 27px;
+  padding: 0 9px;
+  border: 1px solid #1c9368;
+  border-radius: 8px;
+  background: transparent;
+  color: #16865d;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* Cores da tela Detalhes do clipping */
+.app-simulator .app-clipping-detail-vehicle > header,
+.app-simulator .app-clipping-detail-card h4 {
+  color: #161c29 !important;
+}
+
+.app-simulator .app-clipping-detail-vehicle > header i,
+.app-simulator .app-clipping-detail-card h4 i {
+  color: #536cff !important;
+}
+
+.app-simulator .app-clipping-detail-vehicle-name,
+.app-simulator .app-clipping-detail-vehicle-name [data-detail-vehicle] {
+  color: #536cff !important;
+}
+
+.app-simulator .app-clipping-detail-program small,
+.app-simulator .app-clipping-detail-meta small {
+  color: #929292 !important;
+  font-weight: 400 !important;
+}
+
+.app-simulator .app-clipping-detail-program [data-detail-program] {
+  color: #30394d !important;
+}
+
+.app-simulator .app-clipping-detail-category-chips span {
+  border-color: #d5dcff !important;
+  background: #f2f3ff !important;
+  color: #536cff !important;
+}
+
+.app-simulator .app-clipping-detail-meta .app-clipping-detail-tier,
+.app-simulator .app-clipping-detail-meta .app-clipping-detail-tier i,
+.app-simulator .app-clipping-detail-meta .app-clipping-detail-tier [data-detail-tier] {
+  color: #30394d !important;
+}
+
+.app-simulator .app-clipping-detail-card [data-detail-excerpt],
+.app-simulator .app-clipping-detail-card [data-detail-notes] {
+  color: #3b4553 !important;
+}
+
+.app-simulator .app-clipping-detail-card .app-clipping-detail-url {
+  color: #536cff !important;
+}
+
+.app-simulator .app-clipping-detail-card .app-clipping-detail-open-link {
+  color: #536cff !important;
+}
+
+.app-simulator .app-clipping-detail-attachments > header strong {
+  color: #161c29 !important;
+}
+
+.app-simulator .app-clipping-detail-attachments > header button {
+  color: #536cff !important;
+}
+
+.app-simulator .app-clipping-detail-attachment-info strong {
+  color: #202636 !important;
+}
+
+.app-simulator .app-clipping-detail-attachment-info small {
+  color: #929292 !important;
+}
+
+.app-simulator .app-clipping-detail-attachment-info button,
+.app-simulator .app-clipping-detail-attachment-preview {
+  color: #536cff !important;
+}
+
+.app-simulator .app-clipping-detail-attachment-delete {
+  color: #ce777c !important;
+}
+
+.app-simulator .app-clipping-detail-remove-report {
+  color: #16865d !important;
+}
+
+/* Editar clipping: ajustes específicos do estado de edição */
+.app-simulator .app-clipping-form.is-editing {
+  gap: 14px;
+  padding: 14px 15px 28px;
+  color: #161c29;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-year-selector button:disabled {
+  color: #9fa2a9;
+  opacity: 1;
+}
+
+.app-simulator .app-clipping-form .app-clipping-subject-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  box-sizing: border-box;
+  margin-top: -8px;
+  padding: 0 12px;
+  border: 1px solid #6b86ff;
+  border-radius: 12px;
+  background: #fffcfc;
+  color: #283570;
+  font-size: 12px;
+}
+
+.app-simulator .app-clipping-form .app-clipping-subject-suggestion[hidden] {
+  display: none !important;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 10px;
+  width: 100%;
+  min-height: 90px;
+  padding: 10px;
+  border: 1px solid #6b86ff;
+  border-radius: 14px;
+  background: #fffcfc;
+  color: #161c29;
+  text-align: left;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-icon {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #f0effa;
+  color: #5170ff;
+  font-size: 18px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card > strong,
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card > small {
+  grid-column: 2;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card > strong {
+  align-self: end;
+  font-size: 14px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card > small {
+  align-self: start;
+  color: #9fa2a9;
+  font-size: 11px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-toggle {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 24px;
+  color: #5170ff;
+  font-size: 12px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-vehicle-card > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px solid #ced5fd;
+  color: #9fa2a9;
+  font-size: 12px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-notes-field textarea {
+  box-sizing: border-box;
+  padding-right: 42px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-notes-field .app-clipping-field-clear {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: #888;
+  font-size: 20px;
+}
+
+.app-simulator .app-clipping-form .app-clipping-edit-back {
+  display: none !important;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-form-actions > button:not(.app-clipping-edit-back) {
+  display: none !important;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-form-actions > .app-clipping-edit-back {
+  display: block !important;
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 42px;
+  min-height: 42px;
+  border: 1px solid #6b86ff;
+  border-radius: 9px;
+  background: #fffcfc;
+  color: #161c29;
+  font-size: 12px;
+  font-weight: 700;
+}

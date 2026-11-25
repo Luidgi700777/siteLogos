@@ -1815,7 +1815,7 @@ if (
  const clientFilter=clientPage.querySelector('.app-clipping-client-filter-backdrop');
  let selectedClient='Cleiton',selectedYear=2026,selectedClippings=new Set(),selection=false,currentClipping={subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'Início 01:55 · Fim 02:35 (00:40)',duration:'00:40',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'};
  const clippingsByYear={
-  2026:{Cleiton:{count:1,subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'Início 01:55 · Fim 02:35 (00:40)',duration:'00:40',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'},João:{count:0},Maria:{count:1,subject:'Saúde',date:'14/11/2026',vehicle:'LOGOS'}},
+  2026:{Cleiton:{count:1,subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'01:55 ➜ 02:35 (00:40)',duration:'00:40',notes: ' Dicas de marketing e conexões comerciais',attachmentName:'imagem_2026-11-24_222121300.png',attachmentType:'IMAGEM',attachmentSize:'605.9 KB',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'},João:{count:0},Maria:{count:1,subject:'Saúde',date:'14/11/2026',vehicle:'LOGOS'}},
   2025:{Cleiton:{count:0},João:{count:1,subject:'Tecnologia',date:'22/11/2025',vehicle:'LOGOS'},Maria:{count:0}}
  };
  const renderClippingYear=()=>{
@@ -1852,6 +1852,7 @@ if (
     record.querySelector('[data-clipping-card-program]').textContent=row.program||'Não informado';
     record.querySelector('[data-clipping-card-tier-detail]').textContent=row.tier||'Tier não definido';
     record.querySelector('[data-clipping-card-duration-detail]').textContent=row.excerpt||'Não informado';
+    record.querySelector('[data-clipping-card-notes]').textContent=row.notes||'Não informado';
     record.querySelector('[data-clipping-card-files]').textContent=row.files||'Nenhum arquivo anexado';
     const linkText=record.querySelector('[data-clipping-card-link-text]');
     const openLink=record.querySelector('[data-clipping-card-open-link]');
@@ -2035,10 +2036,78 @@ clippingCards.forEach(card => {
 
 renderSelection();
 
+const dateInput = form.elements.namedItem('date');
+const yearLabel = form.querySelector('[data-clipping-year-label]');
+const yearNote = form.querySelector('[data-clipping-year-note]');
+const yearControl = form.querySelector('.app-clipping-year-selector button');
+
+const updateYearFromDate = () => {
+  const match = (dateInput?.value || '').match(/^\d{2}\/\d{2}\/(\d{4})$/);
+  const year = match ? match[1] : String(selectedYear || 2026);
+
+  if (yearLabel) yearLabel.textContent = year;
+
+  if (yearNote) {
+    yearNote.textContent = match
+      ? `O clipping será agrupado em ${year}, conforme a data da publicação.`
+      : `Sem data de publicação, o clipping ficará em ${year}.`;
+  }
+};
+
+dateInput?.addEventListener('input', updateYearFromDate);
+
+const startInput = form.elements.namedItem('start');
+const endInput = form.elements.namedItem('end');
+const durationNote = form.querySelector('[data-clipping-duration-note]');
+
+const updateClippingDuration = () => {
+  if (!durationNote) return;
+
+  const parseTime = value => {
+    const parts = (value || '').split(':').map(Number);
+
+    if ((parts.length !== 2 && parts.length !== 3) || parts.some(Number.isNaN)) {
+      return null;
+    }
+
+    return parts.length === 2
+      ? parts[0] * 60 + parts[1]
+      : parts[0] * 3600 + parts[1] * 60 + parts[2];
+  };
+
+  const start = parseTime(startInput?.value);
+  const end = parseTime(endInput?.value);
+
+  if (start === null || end === null || end < start) {
+    durationNote.innerHTML =
+      'A duração será calculada com início e fim válidos.<br>' +
+      'Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.';
+    return;
+  }
+
+  const total = end - start;
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+
+  const duration = hours
+    ? [hours, minutes, seconds].map(value => String(value).padStart(2, '0')).join(':')
+    : [minutes, seconds].map(value => String(value).padStart(2, '0')).join(':');
+
+  durationNote.innerHTML =
+    `Duração do trecho: ${duration}<br>` +
+    'Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.';
+};
+
+startInput?.addEventListener('input', updateClippingDuration);
+endInput?.addEventListener('input', updateClippingDuration);
+
  form.addEventListener('submit',event=>event.preventDefault());
+ 
  const editClipping=sim.querySelector('.app-clipping-details [data-screen="editar-clipping"]');
  editClipping?.addEventListener('click',()=>{
   selectedClient=selectedClient||'Cleiton';
+
   form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
   form.elements.namedItem('subject').value=currentClipping?.subject||'';
   form.elements.namedItem('date').value=currentClipping?.date||'';
@@ -2206,16 +2275,43 @@ setDetailText('[data-detail-subject]', currentClipping.subject || 'Sem pauta');
 setDetailText('[data-detail-date]', currentClipping.date || 'Não informado');
 setDetailText('[data-detail-vehicle]', vehicle);
 setDetailText('[data-detail-program]', currentClipping.program || 'Não informado');
-setDetailText(
-  '[data-detail-categories]',
-  currentClipping.category || currentClipping.categories || 'Sem categoria'
+const categoryList = detail.querySelector('[data-detail-categories]');
+const categories = (currentClipping.category || '')
+  .split(',')
+  .map(value => value.trim())
+  .filter(Boolean);
+
+categoryList.replaceChildren(
+  ...categories.map(category => {
+    const chip = document.createElement('span');
+    chip.textContent = category;
+    return chip;
+  })
 );
 setDetailText('[data-detail-tier]', currentClipping.tier || 'Sem Tier');
 setDetailText(
   '[data-detail-excerpt]',
   currentClipping.excerpt || currentClipping.snippet || 'Não informado'
 );
-setDetailText('[data-detail-link]', currentClipping.link || 'Sem link informado');
+const publicationUrl = currentClipping.link || '#';
+const publicationLink = detail.querySelector('[data-detail-link]');
+const openPublication = detail.querySelector('[data-detail-open-link]');
+
+publicationLink.textContent = currentClipping.link || 'Sem link informado';
+publicationLink.href = publicationUrl;
+openPublication.href = publicationUrl;
+openPublication.hidden = !currentClipping.link;
+
+const attachmentName = currentClipping.attachmentName || '';
+const attachmentCard = detail.querySelector('.app-clipping-detail-attachment-card');
+const attachmentCount = detail.querySelector('[data-detail-attachment-count]');
+
+attachmentCard.hidden = !attachmentName;
+attachmentCount.textContent = attachmentName ? '1' : '0';
+
+setDetailText('[data-detail-attachment-name]', attachmentName);
+setDetailText('[data-detail-attachment-type]', currentClipping.attachmentType || '');
+setDetailText('[data-detail-attachment-size]', currentClipping.attachmentSize || '');
 setDetailText(
   '[data-detail-notes]',
   currentClipping.notes || 'Nenhuma observação adicionada.'
