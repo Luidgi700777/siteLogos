@@ -2562,8 +2562,36 @@ endInput?.addEventListener('input', updateClippingDuration);
     if (!button || button.disabled) return;
 
     form.classList.remove('is-editing');
-    form.querySelector('[data-clipping-selected-client]').textContent = selectedClient;
-    setNewClippingLink();
+    const clientLabel = form.querySelector('[data-clipping-selected-client]');
+    const fromClippingOverview = Boolean(button.closest('[data-view="clipping"]'));
+    
+    if (fromClippingOverview) {
+        form.reset();
+        clientLabel.textContent = 'Selecione o cliente';
+    
+        form.querySelectorAll('.app-clipping-category-chips button').forEach((chip) => {
+            chip.classList.remove('selected');
+        });
+    
+        form.querySelectorAll('.app-clipping-tier-options button').forEach((option, index) => {
+            option.classList.toggle('selected', index === 0);
+        });
+    
+        form.querySelector('.app-clipping-vehicle-card').hidden = true;
+        form.querySelector('.app-clipping-attachments > div').textContent =
+            '▧　Nenhum anexo selecionado';
+    
+        form.querySelectorAll('[data-clear-field]').forEach((clearButton) => {
+            const field = form.elements.namedItem(clearButton.dataset.clearField);
+            field?.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+    
+        updateYearFromDate();
+        updateClippingDuration();
+    } else {
+        clientLabel.textContent = selectedClient;
+        setNewClippingLink();
+    }
 
     if (yearControl) {
         yearControl.textContent = 'Alterar';
@@ -2605,7 +2633,10 @@ const setNewClippingLink = () => {
  const syncClippingClientOptions=()=>{
   form.querySelectorAll('.app-clipping-pick-client').forEach(button=>{
    const name=button.dataset.clientName||button.textContent.replace('✓','').trim();
-   button.classList.toggle('selected',name===selectedClient);
+   button.classList.toggle(
+        'selected',
+        name === form.querySelector('[data-clipping-selected-client]').textContent.trim()
+    );
   });
  };
  form.querySelector('.app-clipping-client-open').onclick=()=>{
@@ -2613,18 +2644,14 @@ const setNewClippingLink = () => {
   picker.hidden=false;
  };
  form.querySelector('.app-clipping-client-close').onclick=()=>picker.hidden=true;
- form.querySelectorAll('.app-clipping-pick-client').forEach(button=>button.onclick=()=>{
-  selectedClient=button.dataset.clientName||button.textContent.replace('✓','').trim();
-  syncClippingClientOptions();
-  form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
-  picker.hidden=true;
+ form.querySelectorAll('.app-clipping-pick-client').forEach((button) => {
+    button.onclick = () => {
+        const clientLabel = form.querySelector('[data-clipping-selected-client]');
+        const previousClient = clientLabel.textContent.trim();
 
-  button.onclick = () => {
-        const previousClient = selectedClient;
         selectedClient = button.dataset.clientName || button.textContent.replace('✓', '').trim();
-
+        clientLabel.textContent = selectedClient;
         syncClippingClientOptions();
-        form.querySelector('[data-clipping-selected-client]').textContent = selectedClient;
 
         if (selectedClient !== previousClient && !form.classList.contains('is-editing')) {
             setNewClippingLink();
@@ -2632,7 +2659,7 @@ const setNewClippingLink = () => {
 
         picker.hidden = true;
     };
- });
+});
 
  const dataModal=form.querySelector('.app-clipping-data-modal');
  const linkInput=form.elements.namedItem('link'),searchData=form.querySelector('.app-clipping-search-data'),captureOpen=form.querySelector('.app-clipping-capture-open');
