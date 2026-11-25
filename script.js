@@ -2557,18 +2557,23 @@ endInput?.addEventListener('input', updateClippingDuration);
   updateClippingDuration();
  });
 
- sim.querySelectorAll('button[data-screen="novo-clipping"]').forEach(button=>{
-  button.addEventListener('click',()=>{
-   form.classList.remove('is-editing');
-   if(yearControl){
-    yearControl.textContent='Alterar';
-    yearControl.disabled=false;
-    yearControl.dataset.open='clipping-year';
-   }
-   const suggestion=form.querySelector('[data-clipping-subject-suggestion]');
-   if(suggestion)suggestion.hidden=true;
-  });
- });
+ sim.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-screen="novo-clipping"]');
+    if (!button || button.disabled) return;
+
+    form.classList.remove('is-editing');
+    form.querySelector('[data-clipping-selected-client]').textContent = selectedClient;
+    setNewClippingLink();
+
+    if (yearControl) {
+        yearControl.textContent = 'Alterar';
+        yearControl.disabled = false;
+        yearControl.dataset.open = 'clipping-year';
+    }
+
+    const suggestion = form.querySelector('[data-clipping-subject-suggestion]');
+    if (suggestion) suggestion.hidden = true;
+});
 
  form.querySelectorAll('[data-clear-field]').forEach(button=>{
   const input=form.elements.namedItem(button.dataset.clearField),update=()=>{button.hidden=!input?.value};
@@ -2583,6 +2588,19 @@ endInput?.addEventListener('input', updateClippingDuration);
   });
   update();
  });
+
+ const newClippingLinks = new Map([
+    ['Cleiton', 'https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias/ministerio-da-igualdade-racial-conecta-participacao-comunitaria-e-combate-ao-racismo-ambiental-na-cop31'],
+    ['Maria', 'https://g1.globo.com/go/goias/especial-publicitario/novamed-planos-de-saude-plano-de-saude-em-goias/noticia/2026/11/23/plano-de-saude-goiano-ganha-destaque-nacional-descubra-qual-e.ghtml'],
+    ['João', 'https://g1.globo.com/df/distrito-federal/df1/video/23a-semana-nacional-de-ciencia-e-tecnologia-comeca-hoje-24-na-esplanada-15276479.ghtml']
+]);
+
+const setNewClippingLink = () => {
+    const input = form.elements.namedItem('link');
+    input.value = newClippingLinks.get(selectedClient) ?? '';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+};
+
  const picker=form.querySelector('.app-clipping-client-picker');
  const syncClippingClientOptions=()=>{
   form.querySelectorAll('.app-clipping-pick-client').forEach(button=>{
@@ -2600,6 +2618,20 @@ endInput?.addEventListener('input', updateClippingDuration);
   syncClippingClientOptions();
   form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
   picker.hidden=true;
+
+  button.onclick = () => {
+        const previousClient = selectedClient;
+        selectedClient = button.dataset.clientName || button.textContent.replace('✓', '').trim();
+
+        syncClippingClientOptions();
+        form.querySelector('[data-clipping-selected-client]').textContent = selectedClient;
+
+        if (selectedClient !== previousClient && !form.classList.contains('is-editing')) {
+            setNewClippingLink();
+        }
+
+        picker.hidden = true;
+    };
  });
 
  const dataModal=form.querySelector('.app-clipping-data-modal');
@@ -2612,7 +2644,7 @@ endInput?.addEventListener('input', updateClippingDuration);
 
   if (!card) return;
 
-  card.querySelector('strong').textContent = isLogos ? 'LOGOS' : 'gov';
+  card.querySelector('strong').textContent = vehicle || 'Não identificado';
   card.querySelector('small').textContent = 'Tier não definido';
 
   const details = card.querySelectorAll('p');
@@ -2632,7 +2664,7 @@ endInput?.addEventListener('input', updateClippingDuration);
   }
 
   if (details[2]) {
-    const domain = isLogos ? 'logos.com.br' : 'gov.br';
+    const domain = isLogos ? 'logos.com.br' : vehicle === 'g1' ? 'g1.globo.com' : 'gov.br';
 
     details[2].innerHTML =
       '<b>Endereços associados' +
@@ -2684,22 +2716,139 @@ vehicleCard?.addEventListener('click', event => {
   chevron?.classList.toggle('fa-chevron-up', expanded);
   chevron?.classList.toggle('fa-chevron-down', !expanded);
 });
- form.querySelector('.app-clipping-search-data').onclick=()=>dataModal.hidden=false;
- form.querySelector('.app-clipping-data-close').onclick=()=>dataModal.hidden=true;
- const fillFields=all=>{
-  const values={link:'https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias/ministerio-da-igualdade-racial-conecta-participacao-comunitaria-e-combate-ao-racismo-ambiental-na-cop31',subject:'Ministério da Igualdade Racial conecta participação comunitária e combate ao racismo ambiental na COP31',date:'13/11/2026',vehicle:'gov'};
-  Object.entries(values).forEach(([name,value])=>{
-   const input=form.elements.namedItem(name);
-   if(input&&(all||!input.value))input.value=value;
-  });
-  updateLinkActions();
-  form.querySelectorAll('[data-clear-field]').forEach(button=>{button.hidden=!form.elements.namedItem(button.dataset.clearField)?.value});
-  renderVehicleCard(form.elements.namedItem('vehicle').value);
-  dataModal.hidden=true;
- };
- form.querySelector('.app-clipping-insert-all').onclick=()=>fillFields(true);
- form.querySelector('.app-clipping-fill-empty').onclick=()=>fillFields(false);
- form.querySelector('.app-clipping-capture-open').onclick=()=>form.querySelector('.app-clipping-capture-modal').hidden=false;
+ const clippingDemoArticles = new Map([
+    [newClippingLinks.get('Cleiton'), {
+        subject: 'Ministério da Igualdade Racial conecta participação comunitária e combate ao racismo ambiental na COP31',
+        date: '13/11/2026',
+        vehicle: 'gov',
+        domain: 'gov.br',
+        capture: 'original'
+    }],
+    [newClippingLinks.get('Maria'), {
+        subject: 'Plano de saúde goiano ganha destaque nacional. Descubra qual é',
+        date: '23/11/2026',
+        vehicle: 'g1',
+        domain: 'g1.globo.com',
+        capture: 'maria',
+        section: 'Goiás › Especial publicitário',
+        cover: 'Plano de saúde em Goiás',
+        coverLabel: 'ESPECIAL PUBLICITÁRIO'
+    }],
+    [newClippingLinks.get('João'), {
+        subject: '23ª Semana Nacional de Ciência e Tecnologia começa hoje (24) na Esplanada',
+        date: '',
+        vehicle: 'g1',
+        domain: 'g1.globo.com',
+        capture: 'joao',
+        section: 'Distrito Federal › DF1',
+        cover: 'Semana Nacional de Ciência e Tecnologia',
+        coverLabel: 'DF1 · CIÊNCIA E TECNOLOGIA'
+    }]
+]);
+
+const getClippingDemoArticle = () => {
+    const url = linkInput.value.trim().split(/[?#]/)[0].replace(/\/$/, '');
+    return clippingDemoArticles.get(url);
+};
+
+const [publicationCard, vehicleDataCard] = dataModal.querySelectorAll('article');
+const [publicationSubject, publicationDate] = publicationCard.querySelectorAll('p');
+const [detectedVehicle, vehicleMessage] = vehicleDataCard.querySelectorAll('p');
+const vehicleSelected = vehicleDataCard.querySelector('em');
+const insertAll = dataModal.querySelector('.app-clipping-insert-all');
+const fillEmpty = dataModal.querySelector('.app-clipping-fill-empty');
+
+searchData.onclick = () => {
+    const article = getClippingDemoArticle();
+
+    publicationSubject.textContent =
+        article?.subject ?? 'Nenhum dado demonstrativo para este endereço.';
+    publicationDate.textContent = article?.date || 'Data não disponível';
+    detectedVehicle.textContent = article?.vehicle ?? 'Não identificado';
+    vehicleSelected.hidden = !article;
+    vehicleMessage.textContent = article
+        ? `O endereço ${article.domain} já foi associado a este veículo no cadastro.`
+        : 'O simulador tem dados para os links de Cleiton, Maria e João.';
+
+    insertAll.disabled = !article;
+    fillEmpty.disabled = !article;
+    dataModal.hidden = false;
+};
+
+form.querySelector('.app-clipping-data-close').onclick = () => {
+    dataModal.hidden = true;
+};
+
+const fillFields = (all) => {
+    const article = getClippingDemoArticle();
+    if (!article) return;
+
+    const values = {
+        subject: article.subject,
+        date: article.date,
+        vehicle: article.vehicle
+    };
+
+    Object.entries(values).forEach(([name, value]) => {
+        const input = form.elements.namedItem(name);
+        if (!input || !value || (!all && input.value)) return;
+
+        input.value = value;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    renderVehicleCard(form.elements.namedItem('vehicle').value);
+    dataModal.hidden = true;
+};
+
+insertAll.onclick = () => fillFields(true);
+fillEmpty.onclick = () => fillFields(false);
+
+const capturePage = form.querySelector('.app-capture-page');
+const originalCapture = capturePage.innerHTML;
+
+captureOpen.onclick = () => {
+    const article = getClippingDemoArticle();
+
+    if (article?.capture === 'original') {
+        capturePage.innerHTML = originalCapture;
+        delete capturePage.dataset.captureArticle;
+    } else {
+        capturePage.dataset.captureArticle = article?.capture ?? 'unavailable';
+        capturePage.innerHTML = `
+            <header><b></b><small>PRÉVIA DEMONSTRATIVA</small></header>
+            <nav></nav>
+            <h4></h4>
+            <small data-capture-article-date></small>
+            <div class="app-capture-demo-cover">
+                <small></small>
+                <strong></strong>
+            </div>
+        `;
+
+        capturePage.querySelector('header b').textContent = article?.vehicle ?? 'LOGOS';
+        capturePage.querySelector('nav').textContent = article?.section ?? '';
+        capturePage.querySelector('h4').textContent =
+            article?.subject ?? 'Captura indisponível para este endereço';
+        capturePage.querySelector('[data-capture-article-date]').textContent =
+            article?.date ? `Publicado em ${article.date}` : '';
+
+        const cover = capturePage.querySelector('.app-capture-demo-cover');
+        cover.hidden = !article;
+        cover.querySelector('small').textContent = article?.coverLabel ?? '';
+        cover.querySelector('strong').textContent = article?.cover ?? '';
+    }
+
+    captureZoom = 100;
+    captureSegment = 1;
+    capturePage.style.transform = 'scale(1)';
+    capture.querySelector('.app-clipping-capture-tools > div span').textContent = '100%';
+    capture.querySelector('[data-capture-segment]').textContent = '1';
+    capture.querySelector('.app-capture-pagination button:first-child').disabled = true;
+    capture.querySelector('.app-clipping-capture-reset').click();
+
+    capture.hidden = false;
+};
  const capture=form.querySelector('.app-clipping-capture-modal'),captureCanvas=capture.querySelector('[data-capture-canvas]'),captureSelection=capture.querySelector('.app-capture-selection');
  let captureStart=null,captureZoom=100,captureSegment=1,captureMode='crop';
  form.querySelectorAll('.app-clipping-capture-close').forEach(button=>button.onclick=()=>capture.hidden=true);
