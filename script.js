@@ -2081,6 +2081,7 @@ if (
  const search=clientPage.querySelector('.app-clipping-search input');
  const clientFilter=clientPage.querySelector('.app-clipping-client-filter-backdrop');
  let selectedClient='Cleiton',selectedYear=2026,selectedClippings=new Set(),selection=false,currentClipping={subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'Início 01:55 · Fim 02:35 (00:40)',duration:'00:40',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'};
+ let clippingReferenceYear = new Date().getFullYear();
  const clippingsByYear={
   2026:{Cleiton:{count:1,subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'01:55 ➜ 02:35 (00:40)',duration:'00:40',notes: ' Dicas de marketing e conexões comerciais',attachmentName:'imagem_2026-11-24_222121300.png',attachmentType:'IMAGEM',attachmentSize:'605.9 KB',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'},João:{count:0},Maria:{count:1,subject:'Saúde',date:'14/11/2026',vehicle:'LOGOS'}},
   2025:{Cleiton:{count:0},João:{count:1,subject:'Tecnologia',date:'22/11/2025',vehicle:'LOGOS'},Maria:{count:0}}
@@ -2429,7 +2430,14 @@ const yearControl = form.querySelector('.app-clipping-year-selector button');
 
 const updateYearFromDate = () => {
   const match = (dateInput?.value || '').match(/^\d{2}\/\d{2}\/(\d{4})$/);
-  const year = match ? match[1] : String(selectedYear || 2026);
+
+  if (match) {
+    clippingReferenceYear = Number(match[1]);
+  }
+
+  const year = match
+    ? match[1]
+    : String(clippingReferenceYear || new Date().getFullYear());
 
   if (yearLabel) yearLabel.textContent = year;
 
@@ -2439,6 +2447,33 @@ const updateYearFromDate = () => {
       : `Sem data de publicação, o clipping ficará em ${year}.`;
   }
 };
+
+const clippingYearModal = form.querySelector('.app-clipping-year-modal');
+const clippingYearInput = clippingYearModal?.querySelector('input');
+const clippingYearApply = form.querySelector('.app-clipping-year-apply');
+
+yearControl?.addEventListener('click', () => {
+  if (clippingYearInput) {
+    clippingYearInput.value =
+      yearLabel?.textContent.trim() ||
+      String(clippingReferenceYear);
+  }
+});
+
+clippingYearApply?.addEventListener('click', () => {
+  const value = clippingYearInput?.value.trim() || '';
+
+  if (!/^\d{4}$/.test(value)) {
+    clippingYearInput?.focus();
+    return;
+  }
+
+  clippingReferenceYear = Number(value);
+  updateYearFromDate();
+  if (clippingYearModal) clippingYearModal.hidden = true;
+});
+
+dateInput?.addEventListener('input', updateYearFromDate);
 
 dateInput?.addEventListener('input', updateYearFromDate);
 
@@ -2574,6 +2609,7 @@ endInput?.addEventListener('input', updateClippingDuration);
  sim.addEventListener('click', (event) => {
     const button = event.target.closest('button[data-screen="novo-clipping"]');
     if (!button || button.disabled) return;
+    clippingReferenceYear = new Date().getFullYear();
 
     form.classList.remove('is-editing');
     const clientLabel = form.querySelector('[data-clipping-selected-client]');
