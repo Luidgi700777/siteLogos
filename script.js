@@ -2444,30 +2444,45 @@ dateInput?.addEventListener('input', updateYearFromDate);
 
 const startInput = form.elements.namedItem('start');
 const endInput = form.elements.namedItem('end');
-const durationNote = form.querySelector('[data-clipping-duration-note]');
+const durationNote = form.querySelector('.data-clipping-duration-note');
+
+const durationLabel = durationNote?.querySelector('small');
 
 const updateClippingDuration = () => {
-  if (!durationNote) return;
+  if (!durationNote || !durationLabel) return;
 
   const parseTime = value => {
-    const parts = (value || '').split(':').map(Number);
+    const normalized = (value || '').trim();
+    const parts = normalized.split(':');
 
-    if ((parts.length !== 2 && parts.length !== 3) || parts.some(Number.isNaN)) {
+    if (
+      (parts.length !== 2 && parts.length !== 3) ||
+      parts.some(part => !/^\d+$/.test(part))
+    ) {
       return null;
     }
 
-    return parts.length === 2
-      ? parts[0] * 60 + parts[1]
-      : parts[0] * 3600 + parts[1] * 60 + parts[2];
+    const values = parts.map(Number);
+
+    if (values.length === 2) {
+      const [minutes, seconds] = values;
+      if (seconds > 59) return null;
+      return minutes * 60 + seconds;
+    }
+
+    const [hours, minutes, seconds] = values;
+    if (minutes > 59 || seconds > 59) return null;
+
+    return hours * 3600 + minutes * 60 + seconds;
   };
 
   const start = parseTime(startInput?.value);
   const end = parseTime(endInput?.value);
 
   if (start === null || end === null || end < start) {
-    durationNote.innerHTML =
-      'A duração será calculada com início e fim válidos.<br>' +
-      'Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.';
+    durationNote.classList.remove('is-valid');
+    durationLabel.textContent =
+      'A duração será calculada com início e fim válidos.';
     return;
   }
 
@@ -2480,9 +2495,8 @@ const updateClippingDuration = () => {
     ? [hours, minutes, seconds].map(value => String(value).padStart(2, '0')).join(':')
     : [minutes, seconds].map(value => String(value).padStart(2, '0')).join(':');
 
-  durationNote.innerHTML =
-    `Duração do trecho: ${duration}<br>` +
-    'Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.';
+  durationNote.classList.add('is-valid');
+  durationLabel.textContent = `Duração do trecho: ${duration}`;
 };
 
 startInput?.addEventListener('input', updateClippingDuration);

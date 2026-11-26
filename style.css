@@ -9710,8 +9710,12 @@ footer .social a:hover {
   font-weight: 700;
 }
 
-.data-clipping-duration-note{
-    color: #5170ff;
+.data-clipping-duration-note {
+  color: #898989;
+}
+
+.data-clipping-duration-note.is-valid {
+  color: #5170ff;
 }
 
 .app-clipping-date-field {
