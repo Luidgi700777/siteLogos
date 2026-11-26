@@ -11380,3 +11380,123 @@ footer .social a:hover {
 .app-bottom-nav .app-nav-create .app-nav-plus {
   top: -4cqw !important;
 }
+
+/* Menu do botão +: painel inferior conforme o print */
+.app-simulator .app-create-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: flex !important;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 0 95px;
+  background: rgb(0 0 0 / 42%);
+}
+
+.app-simulator .app-create-overlay[hidden] {
+  display: none !important;
+}
+
+.app-simulator .app-create-panel {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  box-sizing: border-box;
+  width: 95.5%;
+  max-height: calc(100% - 90px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 10px;
+  border: 1px solid var(--home-line, #d4daff);
+  border-radius: 22px;
+  background: var(--home-card, #fdfafa);
+  color: var(--home-ink, #161c29);
+}
+
+.app-simulator .app-create-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 0;
+  padding: 2px 7px 12px;
+}
+
+.app-simulator .app-create-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.app-simulator .app-create-header p {
+  margin: 5px 0 0;
+  color: var(--home-muted, #777477);
+  font-size: 11px;
+}
+
+.app-simulator .app-create-header button {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--home-muted, #777477);
+  font-size: 17px;
+}
+
+.app-simulator .app-create-options {
+  display: grid;
+  gap: 6px;
+}
+
+.app-simulator .app-create-options button {
+  display: grid;
+  grid-template-columns: 39px minmax(0, 1fr) 12px;
+  align-items: center;
+  gap: 10px;
+  min-height: 66px;
+  padding: 10px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--home-soft, #f8f6f9);
+  color: var(--home-ink, #161c29);
+  font: inherit;
+  text-align: left;
+}
+
+.app-simulator .app-create-options button > :first-child {
+  box-sizing: border-box;
+  display: inline-grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--home-blue-soft, #f0effd);
+  color: var(--home-blue, #4e69ff);
+  font-size: 18px;
+}
+
+.app-simulator .app-create-options button > :last-child {
+  color: var(--home-muted, #777477);
+  font-size: 11px;
+}
+
+.app-simulator .app-create-options strong,
+.app-simulator .app-create-options small {
+  display: block;
+}
+
+.app-simulator .app-create-options strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.app-simulator .app-create-options small {
+  margin-top: 5px;
+  color: var(--home-muted, #777477);
+  font-size: 11px;
+}
