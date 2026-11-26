@@ -1484,7 +1484,7 @@
 </section>
 <section class="app-clipping-client-page" data-view="clipping-cliente" hidden>
   <div class="app-clipping-search-row"><div class="app-clipping-search"><input placeholder="Buscar pauta, veículo..."><button aria-label="Buscar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button class="app-clipping-filter-open" aria-label="Filtrar clippings"><i class="fa-solid fa-sliders" aria-hidden="true"></i></button></div>
-  <div class="app-clipping-client-meta"><p class="app-clipping-count">1 clipping(s) em 2026</p><div class="app-clipping-client-toolbar"><button type="button" aria-label="Exportar clippings" title="Exportar"><i class="fa-solid fa-download" aria-hidden="true"></i></button><button type="button" aria-label="Importar clippings" title="Importar"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i></button><button type="button" data-screen="novo-clipping">＋ CLIPPING</button></div></div>
+  <div class="app-clipping-client-meta"><p class="app-clipping-count">1 clipping(s) em 2026</p><div class="app-clipping-client-toolbar"><button type="button" aria-label="Exportar clippings" title="Exportar"><i class="fa-solid fa-download" aria-hidden="true"></i></button><button type="button" aria-label="Importar clippings" title="Importar"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i></button><button type="button" data-screen="novo-clipping">＋ NOVO</button></div></div>
   <button type="button" class="app-clipping-select-trigger">
   <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
   SELECIONAR CLIPPINGS
@@ -1558,6 +1558,11 @@
   </div>
 </article>
 </div>
+
+  <article class="app-clipping-empty" role="status" hidden>
+    <strong>Nenhum clipping encontrado</strong>
+    <small>Cadastre uma publicação para este cliente e ano.</small>
+  </article>
   
   <div class="app-clipping-items-filter" hidden>
   <section class="app-clipping-sheet app-clipping-items-filter-sheet">
@@ -1788,145 +1793,168 @@
     </article>
   </div>
 </section>
+
 <form class="app-clipping-form" data-view="novo-clipping" id="app-clipping-form-fields" autocomplete="off" hidden>
-  <article class="app-clipping-client-selector"><small>CLIENTE</small><strong data-clipping-selected-client>Selecione o cliente</strong><button class="app-clipping-client-open">Alterar</button></article>
-  
-  <article class="app-clipping-year-selector">
-    <small>ANO DE REFERÊNCIA</small>
-    <strong data-clipping-year-label>2026</strong>
-    <button type="button" data-open="clipping-year">Alterar</button>
-  </article>
+  <section class="app-clipping-edit-section">
+    <h3>Cliente e referência</h3>
+    <article class="app-clipping-client-selector">
+      <small>CLIENTE</small>
+      <strong data-clipping-selected-client>Selecione o cliente</strong>
+      <button class="app-clipping-client-open">Alterar</button>
+    </article>
 
-  <p data-clipping-year-note>O clipping será agrupado em 2026, conforme a data da publicação.</p>
-  <h4>DADOS DA PUBLICAÇÃO</h4>
-  <label>LINK
-    <span class="app-clipping-clearable">
-      <input name="link" placeholder="https://...">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="link" hidden>×</button>
-    </span>
-  </label>
+    <article class="app-clipping-year-selector">
+      <small>ANO DE REFERÊNCIA</small>
+      <strong data-clipping-year-label>2026</strong>
+      <button type="button" data-open="clipping-year">Alterar</button>
+    </article>
 
-  <div class="app-clipping-form-tools">
-    <button class="app-clipping-search-data" disabled><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> BUSCAR DADOS</button><button class="app-clipping-capture-open" disabled>▧ CAPTURAR IMAGEM</button>
-  </div>
+    <p data-clipping-year-note>O clipping será agrupado em 2026, conforme a data da publicação.</p>
+  </section>
 
-  <label>DATA DE PUBLICAÇÃO
-    <span class="app-clipping-date-field">
+  <section class="app-clipping-edit-section">
+    <h3>Dados da publicação</h3>
+    <label>LINK
       <span class="app-clipping-clearable">
-        <input name="date" placeholder="DD/MM/AAAA">
-        <button type="button" class="app-clipping-field-clear" data-clear-field="date" hidden>×</button>
+        <input name="link" placeholder="https://...">
+        <button type="button" class="app-clipping-field-clear" data-clear-field="link" hidden>×</button>
       </span>
-        <button type="button" data-open="report-date-picker" aria-label="Escolher data de publicação">▦</button>
-    </span>
-  </label>
+    </label>
 
-  <label>PAUTA
-    <span class="app-clipping-clearable">
-      <input name="subject" placeholder="Assunto ou título da matéria">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="subject" hidden>×</button>
-    </span>
-  </label>
-
-  <div class="app-clipping-subject-suggestion" data-clipping-subject-suggestion hidden>
-    <span aria-hidden="true">↪</span>
-    <span data-clipping-subject-suggestion-text></span>
-  </div>
-
-  <label>VEÍCULO
-    <span class="app-clipping-clearable">
-      <input name="vehicle" placeholder="Buscar pelo nome do veículo">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="vehicle" hidden>×</button>
-    </span>
-  </label>
-
-  <button type="button" class="app-clipping-vehicle-card" aria-expanded="false">
-    <span class="app-clipping-vehicle-icon">
-      <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
-    </span>
-
-    <strong>LOGOS</strong>
-    <small>Tier não definido</small>
-
-    <span class="app-clipping-vehicle-toggle">
-      <span data-vehicle-toggle-label>Ver detalhes</span>
-      <i class="fa-solid fa-chevron-down app-clipping-vehicle-chevron" aria-hidden="true"></i>
-    </span>
-
-    <p hidden>Descrição<br>Descrição não informada.</p>
-    <p hidden>Alcance<br>Alcance não informado.</p>
-    <p hidden>Endereços associados<br>logos.com.br · Site inteiro</p>
-  </button>
-
-  <label>PROGRAMA / SEÇÃO
-    <span class="app-clipping-clearable">
-      <input name="program" placeholder="Ex.: Jornal da manhã">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="program" hidden>×</button>
-    </span>
-  </label>
-
-  <label>CATEGORIAS
-    <span class="app-clipping-clearable">
-      <input name="categories" placeholder="Separe as categorias por vírgula">
-      <button type="button" class="app-clipping-field-clear" data-clear-field="categories" hidden>×</button>
-    </span>
-  </label>
-
-  <div class="app-clipping-category-chips">
-    <button>+ Site</button><button>+ TV</button><button>+ Rádio</button><button>+ Jornal</button><button>+ Revista</button><button>+ Podcast</button><button>+ Redes sociais</button>
-  </div>
-
-  <fieldset>
-    <legend>TIER</legend>
-    <div class="app-clipping-tier-options">
-      <button class="selected">◉ Não definido</button><button>○ Tier 1</button><button>○ Tier 2</button><button>○ Tier 3</button>
+    <div class="app-clipping-form-tools">
+      <button class="app-clipping-search-data" disabled><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> BUSCAR DADOS</button><button class="app-clipping-capture-open" disabled>▧ CAPTURAR IMAGEM</button>
     </div>
-    <small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small>
-  </fieldset>
 
-  <div class="app-clipping-time-row">
-    <label>INÍCIO
-      <span class="app-clipping-clearable">
-        <input name="start" placeholder="00:00">
-        <button type="button" class="app-clipping-field-clear" data-clear-field="start" hidden>×</button>
+    <label>DATA DE PUBLICAÇÃO
+      <span class="app-clipping-date-field">
+        <span class="app-clipping-clearable">
+          <input name="date" placeholder="DD/MM/AAAA">
+          <button type="button" class="app-clipping-field-clear" data-clear-field="date" hidden>×</button>
+        </span>
+          <button type="button" data-open="report-date-picker" aria-label="Escolher data de publicação">▦</button>
       </span>
     </label>
-    <label>FIM
+
+    <label>PAUTA
       <span class="app-clipping-clearable">
-        <input name="end" placeholder="00:00">
-        <button type="button" class="app-clipping-field-clear" data-clear-field="end" hidden>×</button>
+        <input name="subject" placeholder="Assunto ou título da matéria">
+        <button type="button" class="app-clipping-field-clear" data-clear-field="subject" hidden>×</button>
       </span>
     </label>
-  </div>
 
-  <div class="app-clipping-duration-row">
-    <div class="data-clipping-duration-note">
+    <div class="app-clipping-subject-suggestion" data-clipping-subject-suggestion hidden>
+      <span aria-hidden="true">↪</span>
+      <span data-clipping-subject-suggestion-text></span>
+    </div>
+  </section>
+
+  <section class="app-clipping-edit-section">
+    <h3>Veículo e classificação</h3>
+    <label>VEÍCULO
+      <span class="app-clipping-clearable">
+        <input name="vehicle" placeholder="Buscar pelo nome do veículo">
+        <button type="button" class="app-clipping-field-clear" data-clear-field="vehicle" hidden>×</button>
+      </span>
+    </label>
+
+    <button type="button" class="app-clipping-vehicle-card" aria-expanded="false">
+      <span class="app-clipping-vehicle-icon">
+        <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+      </span>
+
+      <strong>LOGOS</strong>
+      <small>Tier não definido</small>
+
+      <span class="app-clipping-vehicle-toggle">
+        <span data-vehicle-toggle-label>Ver detalhes</span>
+        <i class="fa-solid fa-chevron-down app-clipping-vehicle-chevron" aria-hidden="true"></i>
+      </span>
+
+      <p hidden>Descrição<br>Descrição não informada.</p>
+      <p hidden>Alcance<br>Alcance não informado.</p>
+      <p hidden>Endereços associados<br>logos.com.br · Site inteiro</p>
+    </button>
+
+    <label>PROGRAMA / SEÇÃO
+      <span class="app-clipping-clearable">
+        <input name="program" placeholder="Ex.: Jornal da manhã">
+        <button type="button" class="app-clipping-field-clear" data-clear-field="program" hidden>×</button>
+      </span>
+    </label>
+
+    <label>CATEGORIAS
+      <span class="app-clipping-clearable">
+        <input name="categories" placeholder="Separe as categorias por vírgula">
+        <button type="button" class="app-clipping-field-clear" data-clear-field="categories" hidden>×</button>
+      </span>
+    </label>
+
+    <div class="app-clipping-category-chips">
+      <button>+ Site</button><button>+ TV</button><button>+ Rádio</button><button>+ Jornal</button><button>+ Revista</button><button>+ Podcast</button><button>+ Redes sociais</button>
+    </div>
+
+    <fieldset>
+     <div class="app-clipping-tier-info">
+      <legend class="app-clipping-tier-legend">TIER</legend>
+        <div class="app-clipping-tier-options">
+          <button class="selected">◉ Não definido</button><button>○ Tier 1</button><button>○ Tier 2</button><button>○ Tier 3</button>
+        </div>
+        <small>Tier 1: mais conhecidos · Tier 2: intermediários · Tier 3: menos conhecidos.</small>
+        <small>O Tier selecionado será registrado neste clipping. Você pode ajusta-lo para esta publicação.</small>
+      </div>
+    </fieldset>
+  </section>
+
+  <section class="app-clipping-edit-section">
+    <h3>Trecho e anexos</h3>
+    <div class="app-clipping-time-row">
+      <label>INÍCIO
+        <span class="app-clipping-clearable">
+          <input name="start" placeholder="00:00">
+          <button type="button" class="app-clipping-field-clear" data-clear-field="start" hidden>×</button>
+        </span>
+      </label>
+      <label>FIM
+        <span class="app-clipping-clearable">
+          <input name="end" placeholder="00:00">
+          <button type="button" class="app-clipping-field-clear" data-clear-field="end" hidden>×</button>
+        </span>
+      </label>
+    </div>
+
+    <div class="app-clipping-duration-row">
+      <div class="data-clipping-duration-note">
+        <small>
+          A duração será calculada com início e fim válidos.
+        </small>
+      </div>
+
       <small>
-        A duração será calculada com início e fim válidos.
+        Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.
       </small>
     </div>
 
-    <small>
-      Ex.: 02:10 (2min e 10seg) ou 01:05:30 para incluir horas.
-    </small>
-  </div>
-  
-  <section class="app-clipping-attachments">
-    <header>
-      <strong>ANEXOS</strong>
-      <button type="button">＋ ADICIONAR</button>
-    </header>
-    
-    <small>JPG, PNG, WEBP, PDF, MP4, WEBM, MOV, MP3 ou WAV. Até 30 MB por arquivo. Enviados ao salvar.</small>
-    
-    <div>▧　Nenhum anexo selecionado</div>
+    <section class="app-clipping-attachments">
+      <header>
+        <strong>ANEXOS</strong>
+        <button type="button">＋ ADICIONAR</button>
+      </header>
+
+      <small>JPG, PNG, WEBP, PDF, MP4, WEBM, MOV, MP3 ou WAV. Até 30 MB por arquivo. Enviados ao salvar.</small>
+
+      <div>▧　Nenhum anexo selecionado</div>
+    </section>
   </section>
-  
-  <label>OBSERVAÇÕES
-    <span class="app-clipping-clearable app-clipping-notes-field">
-      <textarea name="notes" placeholder="Informações adicionais"></textarea>
-      <button type="button" class="app-clipping-field-clear" data-clear-field="notes" hidden>×</button>
-    </span>
-  </label>
+
+  <section class="app-clipping-edit-section">
+    <h3>Informações adicionais</h3>
+    <label>OBSERVAÇÕES
+      <span class="app-clipping-clearable app-clipping-notes-field">
+        <textarea name="notes" placeholder="Informações adicionais"></textarea>
+        <button type="button" class="app-clipping-field-clear" data-clear-field="notes" hidden>×</button>
+      </span>
+    </label>
+  </section>
 
   <div class="app-clipping-form-actions">
     <button type="button" data-screen="clipping">CANCELAR</button>
@@ -1937,9 +1965,79 @@
     </button>
   </div>
 
-  <div class="demo-sheet-overlay app-clipping-client-picker" data-panel="clipping-client" hidden><section class="demo-sheet"><header><h3>Selecionar cliente</h3><button type="button" class="app-clipping-client-close" data-close="clipping-client" aria-label="Fechar">×</button></header><div class="demo-sheet-body"><div class="demo-search"><input placeholder="Buscar cliente..." aria-label="Buscar cliente"><button type="button" aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><button type="button" class="demo-link app-clipping-quick-client" data-action="quick-client-open">＋ Cadastro rápido de cliente</button><button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="Cleiton">Cleiton</button><button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="João">João</button><button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="Maria">Maria</button></div></section></div>
+  <section class="app-clipping-edit-save" data-edit-save-panel hidden>
+    <div class="app-clipping-edit-save-heading">
+      <span><i class="fa-regular fa-floppy-disk" aria-hidden="true"></i></span>
+      <div>
+        <strong>Salvar alterações</strong>
+        <small data-edit-save-status>Nenhuma alteração pendente.</small>
+      </div>
+    </div>
 
-  <div class="app-clipping-data-modal" hidden><section><header><div><h4>Dados encontrados</h4><p>Confira os dados antes de preencher o clipping.</p></div><button class="app-clipping-data-close">×</button></header><article><small>PUBLICAÇÃO</small><b>PAUTA</b><p>Ministério da Igualdade Racial conecta participação comunitária e combate ao racismo ambiental na COP31</p><b>DATA</b><p>13/11/2026</p></article><article><small>VEÍCULO</small><b>IDENTIFICADO NO LINK</b><p>gov</p><em>✓ VEÍCULO SELECIONADO</em><p>O endereço gov.br já foi associado a este veículo no cadastro.</p></article><footer><strong>Como deseja preencher?</strong><button class="app-clipping-insert-all"><b>INSERIR TUDO</b><small>Substitui os campos atuais</small></button><button class="app-clipping-fill-empty"><b>SÓ VAZIOS</b><small>Preserva o que já existe</small></button></footer></section></div>
+    <div class="app-clipping-edit-save-actions">
+      <button type="button" data-screen="detalhes-clipping">CANCELAR</button>
+      <button type="button" data-action="clipping-save" disabled>✓ SALVAR</button>
+    </div>
+  </section>
+
+  <div class="demo-sheet-overlay app-clipping-client-picker" data-panel="clipping-client" hidden>
+    <section class="demo-sheet">
+      <header>
+        <h3>Selecionar cliente</h3>
+        <button type="button" class="app-clipping-client-close" data-close="clipping-client" aria-label="Fechar">×</button>
+      </header>
+      <div class="demo-sheet-body">
+      <div class="demo-search">
+        <input placeholder="Buscar cliente..." aria-label="Buscar cliente">
+        <button type="button" aria-label="Pesquisar">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        </button>
+      </div>
+      <button type="button" class="demo-link app-clipping-quick-client" data-action="quick-client-open">＋ Cadastro rápido de cliente</button>
+      <button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="Cleiton">Cleiton</button>
+      <button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="João">João</button>
+      <button type="button" class="demo-client-option app-clipping-pick-client" data-client-name="Maria">Maria</button>
+    </div>
+  </section>
+</div>
+
+<div class="app-clipping-data-modal" hidden>
+  <section>
+    <header>
+      <div>
+        <h4>Dados encontrados</h4>
+        <p>Confira os dados antes de preencher o clipping.</p>
+      </div>
+      <button class="app-clipping-data-close">×</button>
+    </header>
+    <article>
+      <small>PUBLICAÇÃO</small>
+      <b>PAUTA</b>
+      <p>Ministério da Igualdade Racial conecta participação comunitária e combate ao racismo ambiental na COP31</p>
+      <b>DATA</b>
+      <p>13/11/2026</p>
+    </article>
+    <article>
+      <small>VEÍCULO</small>
+      <b>IDENTIFICADO NO LINK</b>
+      <p>gov</p>
+      <em>✓ VEÍCULO SELECIONADO</em>
+      <p>O endereço gov.br já foi associado a este veículo no cadastro.</p>
+    </article>
+    <footer>
+      <strong>Como deseja preencher?</strong>
+      <button class="app-clipping-insert-all">
+        <b>INSERIR TUDO</b>
+        <small>Substitui os campos atuais</small>
+      </button>
+      <button class="app-clipping-fill-empty">
+        <b>SÓ VAZIOS</b>
+        <small>Preserva o que já existe</small>
+      </button>
+    </footer>
+  </section>
+</div>
+
   <div class="app-clipping-capture-modal" hidden><section><header><div><strong>Capturar imagem</strong><small>Escolha a parte da página que deseja usar.</small></div><button class="app-clipping-capture-close" aria-label="Fechar">×</button></header><div class="app-clipping-capture-tools"><button class="selected" type="button">RECORTAR</button><button type="button">NAVEGAR</button><div><button type="button" data-capture-zoom="-1" aria-label="Diminuir zoom">−</button><span>100%</span><button type="button" data-capture-zoom="1" aria-label="Aumentar zoom">＋</button></div></div><p>Arraste sobre a imagem para marcar o recorte.</p><div class="app-clipping-capture-preview" data-capture-canvas><div class="app-capture-page"><header><b>gov.br</b><small>Institucional　 Acessibilidade　 Participe　 Serviços</small></header><nav>☰　› Assuntos　› Notícias　› Igualdade Racial</nav><h4>Ministério da Igualdade Racial conecta participação comunitária e combate ao racismo ambiental na COP31</h4><p>Ministério da Igualdade Racial anuncia participação comunitária na COP31 e reforça a agenda de combate ao racismo ambiental.</p><small>Publicado em 13/11/2026 · Atualizado em 18/11/2026</small><div class="app-capture-hero"><small>COP 31 · AGENDA MIR</small><span>AGENDA<br><b>MIR NA COP31</b></span><i>Participação e justiça climática</i></div></div><div class="app-capture-selection" hidden></div></div><a href="#" class="app-clipping-capture-reset">Refazer captura</a><small class="app-capture-step-label">IR PARA TRECHO</small><div class="app-capture-pagination"><button type="button" disabled>‹　ANTERIOR</button><span data-capture-segment>1</span><button type="button" data-capture-next>IR　PRÓXIMO　›</button></div><footer><button class="app-clipping-capture-close">CANCELAR</button><button data-capture-use disabled>USAR RECORTE</button></footer></section></div>
   <div class="app-clipping-year-modal" data-panel="clipping-year" hidden><section><header><strong>Ano de referência</strong><button type="button" data-close="clipping-year">×</button></header><label>ANO<div><input value="2026" inputmode="numeric" aria-label="Ano de referência"><button type="button" class="app-clipping-year-clear">×</button></div></label><button type="button" class="app-clipping-year-apply">APLICAR ANO</button></section></div>
 </form>

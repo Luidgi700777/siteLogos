@@ -6669,7 +6669,7 @@ footer .social a:hover {
 .app-simulator>.app-screen{aspect-ratio:545 / 1230}
 .app-simulator .app-scale{position:absolute;inset:0;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}
 .app-clipping-client-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 12px}
-.app-clipping-count{margin:0;color:#898989;font-size:12px}
+.app-clipping-count{display:inline-flex;align-items:center;box-sizing:border-box;min-height:34px;margin:0;padding:0 12px;border-radius:12px;background:#f4f2f8;color:#8f9097;font-size:12px}
 .app-clipping-client-page .app-clipping-search-row{margin-bottom:8px}
 .app-clipping-client-toolbar{align-items:center;justify-content:flex-end;margin:0}
 .app-clipping-client-toolbar button{width:42px;min-height:40px;flex:0 0 42px;border:1px solid #6578ff;border-radius:12px;background:#fffbfb;color:#18202d;font-size:17px}
@@ -11499,4 +11499,147 @@ footer .social a:hover {
   margin-top: 5px;
   color: var(--home-muted, #777477);
   font-size: 11px;
+}
+
+.app-simulator .app-clipping-details .app-clipping-detail-date,
+.app-simulator .app-clipping-details .app-clipping-detail-date > i,
+.app-simulator .app-clipping-details .app-clipping-detail-date [data-detail-date] {
+  color: #161c29 !important;
+  background-color: #f3f4ff;
+}
+
+.app-simulator .app-clipping-details .app-clipping-detail-card
+[data-detail-excerpt] .app-clipping-detail-duration {
+  color: #929292 !important;
+}
+
+.app-simulator .app-clipping-form.is-editing > .app-clipping-edit-section {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid #d5dbff;
+  border-radius: 16px;
+  background: #fffcfc;
+}
+
+.app-simulator .app-clipping-form.is-editing > .app-clipping-edit-section > h3 {
+  margin: 0 0 2px;
+  color: #161c29;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-edit-section > label {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  color: #18202d;
+  font-size: 14px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-edit-section > .app-clipping-form-tools {
+  display: flex;
+  gap: 8px;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-edit-save[hidden] {
+  display: none !important;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-form-actions {
+  display: none !important;
+}
+
+.app-simulator .app-clipping-form.is-editing .app-clipping-edit-save:not([hidden]) {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  display: grid;
+  gap: 10px;
+  box-sizing: border-box;
+  margin: 0 -15px -28px;
+  padding: 12px;
+  border: 1px solid #d5dbff;
+  border-radius: 18px;
+  background: #fffcfc;
+}
+
+.app-clipping-edit-save-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-clipping-edit-save-heading > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #f0effa;
+  color: #5170ff;
+}
+
+.app-clipping-edit-save-heading > div {
+  display: grid;
+  gap: 3px;
+}
+
+.app-clipping-edit-save-heading strong {
+  color: #161c29;
+  font-size: 12px;
+}
+
+.app-clipping-edit-save-heading small {
+  color: #9fa2a9;
+  font-size: 10px;
+}
+
+.app-clipping-edit-save-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.app-clipping-edit-save-actions button {
+  min-height: 42px;
+  border: 1px solid #6b86ff;
+  border-radius: 9px;
+  background: #fffcfc;
+  color: #161c29;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.app-clipping-edit-save-actions button[data-action="clipping-save"] {
+  background: #5170ff;
+  color: #fff;
+}
+
+.app-clipping-edit-save-actions button:disabled {
+  border-color: #aeb8ff;
+  background: #aeb8ff;
+  color: #fff;
+  opacity: 1;
+}
+
+.app-clipping-tier-info {
+  display: grid;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 8px;
+  background: #fffcfc;
+}
+
+.app-clipping-tier-info .app-clipping-tier-legend {
+  margin: 0;
+  line-height: 1.2;
+  transform: translateY(2px);
+}
+
+.app-simulator .app-clipping-client-toolbar button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }

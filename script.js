@@ -947,6 +947,16 @@ applySavedNavigation();
         }
     }
 
+    if (
+      destination === 'clipping-clientes' &&
+      button.classList.contains('app-clipping-year-card')
+    ) {
+      const year = button.querySelector('strong')?.textContent.trim();
+    
+      if (year) {
+        appRoutes[destination].titulo = `Clientes ${year}`;
+      }
+    }
         appNavigate(destination, isMainTab);
     });
 
@@ -2083,8 +2093,73 @@ if (
  let selectedClient='Cleiton',selectedYear=2026,selectedClippings=new Set(),selection=false,currentClipping={subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'Início 01:55 · Fim 02:35 (00:40)',duration:'00:40',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'};
  let clippingReferenceYear = new Date().getFullYear();
  const clippingsByYear={
-  2026:{Cleiton:{count:1,subject:'Varejo',date:'19/11/2026',vehicle:'LOGOS',category:'Site, TV, Jornal',categoryShort:'Site, TV +1',tier:'Tier 1',program:'LOGOS',excerpt:'01:55 ➜ 02:35 (00:40)',duration:'00:40',notes: ' Dicas de marketing e conexões comerciais',attachmentName:'imagem_2026-11-24_222121300.png',attachmentType:'IMAGEM',attachmentSize:'605.9 KB',link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',files:'1 arquivo nos detalhes'},João:{count:0},Maria:{count:1,subject:'Saúde',date:'14/11/2026',vehicle:'LOGOS'}},
-  2025:{Cleiton:{count:0},João:{count:1,subject:'Tecnologia',date:'22/11/2025',vehicle:'LOGOS'},Maria:{count:0}}
+  2026:{
+    Cleiton:{count:1,
+        subject:'Varejo',
+        date:'19/11/2026',
+        vehicle:'LOGOS',
+        category:'Site, TV, Jornal',
+        categoryShort:'Site, TV +1',
+        tier:'Tier 1',program:'LOGOS',
+        excerpt:'01:55 ➜ 02:35 (00:40)',
+        duration:'00:40',
+        notes: ' Dicas de marketing e conexões comerciais',
+        attachmentName:'imagem_2026-11-24_222121300.png',
+        attachmentType:'IMAGEM',
+        attachmentSize:'605.9 KB',
+        link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',
+        files:'1 arquivo nos detalhes'
+    },
+    João:{
+        count:0
+    },
+    Maria: {
+        count: 1,
+        subject: 'Saúde',
+        date: '14/11/2026',
+        vehicle: 'LOGOS',
+        category: 'Jornal, TV, Revista',
+        categoryShort: 'Jornal, TV +1',
+        tier: 'Tier 2',
+        program: 'LOGOS',
+        excerpt: '07:15 ➜ 08:52 (01:37)',
+        duration: '01:37',
+        notes: ' Plano de saúde goiano ganha destaque nacional',
+        attachmentName: 'Captura de tela 2026-11-25 042359.png',
+        attachmentType: 'IMAGEM',
+        attachmentSize: '601.1 KB',
+        link: 'https://g1.globo.com/go/goias/especial-publicitario/novamed-planos-de-saude-plano-de-saude-em-goias/noticia/2026/11/23/plano-de-saude-goiano-ganha-destaque-nacional-descubra-qual-e.ghtml',
+        files: '1 arquivo nos detalhes'
+    }
+  },
+  2025:{
+    Cleiton:{
+        count:0
+    },
+    João: {
+      count: 1,
+      subject: 'Tecnologia',
+      date: '22/11/2025',
+      vehicle: 'LOGOS',
+      program: 'LOGOS',
+      category: 'Redes sociais, Revista',
+      categoryShort: 'Redes sociais, Revista',
+      tier: 'Tier 3',
+      start: '05:23',
+      end: '09:45',
+      excerpt: '05:23 → 09:45 (04:22)',
+      duration: '04:22',
+      notes: '23ª Semana Nacional de Ciência e Tecnologia',
+      link: 'https://g1.globo.com/df/distrito-federal/df1/video/23a-semana-nacional-de-ciencia-e-tecnologia-comeca-hoje-24-na-esplanada-15276479.ghtml',
+      attachmentName: 'Captura de tela 2026-11-25 042359.png',
+      attachmentType: 'IMAGEM',
+      attachmentSize: '601.1 KB',
+      files: '1 arquivo nos detalhes'
+    },
+    Maria:{
+        count:0
+    }
+  }
  };
  const renderClippingYear=()=>{
   const records=clippingsByYear[selectedYear]||clippingsByYear[2026];
@@ -2097,8 +2172,20 @@ if (
   queueMicrotask(()=>{if(groupTitle&&sim.querySelector('.app-clipping-clients:not([hidden])'))groupTitle.textContent='Clientes '+selectedYear});
   const clippingCount=clippingPage.querySelector('.app-clipping-count');
   const row=records[selectedClient]||{count:0};
-  if(clippingCount)clippingCount.textContent=row.count+' clipping(s) em '+selectedYear;
+  if(clippingCount){clippingCount.textContent=`${row.count} clipping${row.count===1?'':'s'} em ${selectedYear}`;}
   currentClipping=row.count?{...row}:null;
+  const selectClippingsButton =
+  clippingPage.querySelector('.app-clipping-select-trigger');
+    if (selectClippingsButton) {
+      selectClippingsButton.hidden = !row.count;
+    }
+
+    const importClippingsButton =
+      clippingPage.querySelector('.app-clipping-client-toolbar [aria-label="Importar clippings"]');
+
+    if (importClippingsButton) {
+      importClippingsButton.disabled = !row.count;
+    }
    const record=clippingPage.querySelector('[data-clipping-record]'),item=record?.querySelector('.app-clipping-item'),empty=clippingPage.querySelector('.app-clipping-empty');
    record?.classList.remove('expanded');
    const cardToggle=record?.querySelector('.app-clipping-item-toggle');
@@ -2537,34 +2624,60 @@ const updateClippingDuration = () => {
 startInput?.addEventListener('input', updateClippingDuration);
 endInput?.addEventListener('input', updateClippingDuration);
 
- form.addEventListener('submit',event=>event.preventDefault());
+form.addEventListener('submit',event=>event.preventDefault());
  
- const editClipping=sim.querySelector('.app-clipping-details [data-screen="editar-clipping"]');
+const editClipping=sim.querySelector('.app-clipping-details [data-screen="editar-clipping"]');
+const editSavePanel = form.querySelector('[data-edit-save-panel]');
+const editSaveButton = editSavePanel?.querySelector('[data-action="clipping-save"]');
+const editSaveStatus = editSavePanel?.querySelector('[data-edit-save-status]');
+let editBaseline = '';
+
+const getEditSnapshot = () => JSON.stringify({
+  fields: [...form.querySelectorAll('input[name], textarea[name]')]
+    .map(field => [field.name, field.value]),
+  categories: [...form.querySelectorAll('.app-clipping-category-chips button.selected')]
+    .map(button => button.textContent.replace(/^\+\s*/, '').trim()),
+  tier: form.querySelector('.app-clipping-tier-options button.selected')?.textContent.trim() || ''
+});
+
+const updateEditSaveState = () => {
+  if (!form.classList.contains('is-editing')) return;
+
+  const changed = getEditSnapshot() !== editBaseline;
+  if (editSaveStatus) {
+    editSaveStatus.textContent = changed
+      ? 'Alterações pendentes.'
+      : 'Nenhuma alteração pendente.';
+  }
+  if (editSaveButton) editSaveButton.disabled = !changed;
+};
+
+form.addEventListener('input', updateEditSaveState);
+form.addEventListener('change', updateEditSaveState);
+form.addEventListener('click', event => {
+  if (event.target.closest(
+    '.app-clipping-category-chips button, .app-clipping-tier-options button'
+  )) {
+    setTimeout(updateEditSaveState, 0);
+  }
+});
  editClipping?.addEventListener('click',()=>{
   selectedClient=selectedClient||'Cleiton';
 
-  const source=currentClipping||{};
-  const reference=selectedClient==='Cleiton'&&selectedYear===2026?{
-   link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',
-   program:'LOGOS',
-   categories:'Site, TV, Jornal',
-   tier:'Tier 1',
-   start:'01:55',
-   end:'02:35',
-   notes:'Dicas de marketing e conexões comerciais'
-  }:{};
-  const timeRange=(source.excerpt||source.snippet||'').match(/(\d{2}:\d{2})\s*(?:➜|→|–|-)\s*(\d{2}:\d{2})/);
-  const values={
-   subject:source.subject||'',
-   date:source.date||'',
-   link:source.link||reference.link||'',
-   vehicle:source.vehicle||'LOGOS',
-   program:source.program||reference.program||'',
-   categories:source.category||source.categories||reference.categories||'',
-   start:source.start||timeRange?.[1]||reference.start||'',
-   end:source.end||timeRange?.[2]||reference.end||'',
-   notes:(source.notes||reference.notes||'').trim()
-  };
+const source = currentClipping || {};
+const timeRange = (source.excerpt || source.snippet || '')
+  .match(/(\d{2}:\d{2})\s*(?:➜|→|–|-)\s*(\d{2}:\d{2})/);
+const values = {
+  subject: source.subject || '',
+  date: source.date || '',
+  link: source.link || '',
+  vehicle: source.vehicle || '',
+  program: source.program || '',
+  categories: source.category || source.categories || '',
+  start: source.start || timeRange?.[1] || '',
+  end: source.end || timeRange?.[2] || '',
+  notes: (source.notes || '').trim()
+};
 
   form.classList.add('is-editing');
   form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
@@ -2590,7 +2703,7 @@ endInput?.addEventListener('input', updateClippingDuration);
    button.classList.toggle('selected',categories.has(name));
   });
 
-  const tier=source.tier||reference.tier||'Não definido';
+  const tier = source.tier || 'Não definido';
   form.querySelectorAll('.app-clipping-tier-options button').forEach(button=>{
    const name=button.textContent.replace(/[◉○]/g,'').trim();
    button.classList.toggle('selected',name===tier);
@@ -2604,6 +2717,10 @@ endInput?.addEventListener('input', updateClippingDuration);
   updateLinkActions();
   updateYearFromDate();
   updateClippingDuration();
+
+  if (editSavePanel) editSavePanel.hidden = false;
+    editBaseline = getEditSnapshot();
+    updateEditSaveState();
  });
 
  sim.addEventListener('click', (event) => {
@@ -2612,6 +2729,7 @@ endInput?.addEventListener('input', updateClippingDuration);
     clippingReferenceYear = new Date().getFullYear();
 
     form.classList.remove('is-editing');
+    if (editSavePanel) editSavePanel.hidden = true;
     const clientLabel = form.querySelector('[data-clipping-selected-client]');
     const fromClippingOverview = Boolean(button.closest('[data-view="clipping"]'));
     
@@ -2990,10 +3108,28 @@ categoryList.replaceChildren(
   })
 );
 setDetailText('[data-detail-tier]', currentClipping.tier || 'Sem Tier');
-setDetailText(
-  '[data-detail-excerpt]',
-  currentClipping.excerpt || currentClipping.snippet || 'Não informado'
+const excerptValue = String(
+  currentClipping.excerpt || currentClipping.snippet || ''
 );
+
+const excerptMatch = excerptValue.match(
+  /(?:Início\s*)?(\d{2}:\d{2})\s*(?:·\s*Fim|➜|→)\s*(\d{2}:\d{2})\s*\((\d{2}:\d{2})\)/i
+);
+
+const excerptElement = detail.querySelector('[data-detail-excerpt]');
+
+if (excerptElement && excerptMatch) {
+  const times = document.createElement('span');
+  times.textContent = `${excerptMatch[1]} ➜ ${excerptMatch[2]}`;
+
+  const duration = document.createElement('span');
+  duration.className = 'app-clipping-detail-duration';
+  duration.textContent = ` (${excerptMatch[3]})`;
+
+  excerptElement.replaceChildren(times, duration);
+} else if (excerptElement) {
+  excerptElement.textContent = excerptValue || 'Não informado';
+}
 const publicationUrl = currentClipping.link || '#';
 const publicationLink = detail.querySelector('[data-detail-link]');
 const openPublication = detail.querySelector('[data-detail-open-link]');
