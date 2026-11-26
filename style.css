@@ -11258,3 +11258,125 @@ footer .social a:hover {
         ),
         linear-gradient(125deg, #182859, #4c4189);
 }
+
+.app-simulator:has(.app-clipping-import:not([hidden])) .app-bottom-nav {
+  height: 12.3cqw !important;
+  min-height: 12.3cqw !important;
+  flex: 0 0 12.3cqw !important;
+}
+
+.app-simulator:has(.app-clipping-import:not([hidden])) .app-nav-create .app-nav-plus {
+  top: -2.4cqw !important;
+  width: 8.7cqw !important;
+  height: 8.7cqw !important;
+  border-radius: 2.8cqw !important;
+  font-size: 4.2cqw !important;
+}
+
+.app-simulator .app-clipping-import-footer {
+  padding: 14px 15px 32px;
+}
+
+.app-simulator .app-clipping-import-footer button:disabled {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: #aeb8ff !important;
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+.app-simulator .app-bottom-nav {
+  height: 12.3cqw !important;
+  min-height: 12.3cqw !important;
+  flex: 0 0 12.3cqw !important;
+}
+
+.app-simulator .app-bottom-nav .app-nav-create .app-nav-plus {
+  top: -4cqw !important;
+  width: 8.7cqw !important;
+  height: 8.7cqw !important;
+  border-radius: 2.8cqw !important;
+  font-size: 4.3cqw !important;
+  box-shadow: 0 0 0 1.2cqw var(--home-card, #fffcfc) !important;
+}
+
+/* Cabeçalho uniforme em todas as telas do app */
+.app-simulator .app-screen > .app-scale > .app-header {
+  box-sizing: border-box;
+  height: 70px !important;
+  min-height: 70px !important;
+  flex: 0 0 70px !important;
+  padding-inline: 16px !important;
+  gap: 8px !important;
+}
+
+.app-simulator .app-screen > .app-scale > .app-header .app-header-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.app-simulator .app-screen > .app-scale > .app-header .app-back-btn:not([hidden]) {
+  display: grid !important;
+  place-items: center;
+  box-sizing: border-box;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: #f5f1f8;
+  color: #161c29;
+  font-size: 16px;
+}
+
+.app-simulator .app-screen > .app-scale > .app-header .app-back-btn[hidden] {
+  display: none !important;
+}
+
+.app-simulator .app-screen > .app-scale > .app-header .app-brand {
+  font-size: 10px !important;
+}
+
+.app-simulator .app-screen > .app-scale > .app-header .app-screen-title {
+  font-size: 20px !important;
+  line-height: 1.1;
+}
+
+.app-simulator .app-screen > .app-scale > .app-header .app-settings-btn,
+.app-simulator .app-screen > .app-scale > .app-header .app-avatar {
+  box-sizing: border-box;
+  flex: 0 0 44px !important;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.app-simulator .app-screen > .app-scale > .app-header .app-settings-btn {
+  border-radius: 15px;
+  background: #f8f6f9;
+}
+
+.app-simulator:has(.app-clipping-import:not([hidden])) .app-clipping-import-footer {
+  z-index: 1 !important;
+}
+
+.app-simulator:has(.app-clipping-import:not([hidden])) .app-bottom-nav {
+  position: relative;
+  z-index: 4;
+  overflow: visible;
+}
+
+.app-simulator:has(.app-clipping-import:not([hidden])) .app-bottom-nav .app-nav-create {
+  overflow: visible;
+}
+
+.app-simulator:has(.app-clipping-import:not([hidden])) .app-bottom-nav .app-nav-plus {
+  z-index: 5;
+  box-shadow: 0 0 0 4px var(--home-card, #fdfafa);
+}
+
+.app-simulator:has(.app-clipping-import:not([hidden]))
+.app-bottom-nav .app-nav-create .app-nav-plus {
+  top: -4cqw !important;
+}
