@@ -11513,7 +11513,7 @@ footer .social a:hover {
   color: #929292 !important;
 }
 
-.app-simulator .app-clipping-form.is-editing > .app-clipping-edit-section {
+.app-simulator .app-clipping-form > .app-clipping-edit-section {
   display: grid;
   gap: 12px;
   min-width: 0;
@@ -11524,14 +11524,14 @@ footer .social a:hover {
   background: #fffcfc;
 }
 
-.app-simulator .app-clipping-form.is-editing > .app-clipping-edit-section > h3 {
+.app-simulator .app-clipping-form > .app-clipping-edit-section > h3 {
   margin: 0 0 2px;
   color: #161c29;
   font-size: 14px;
   font-weight: 600;
 }
 
-.app-simulator .app-clipping-form.is-editing .app-clipping-edit-section > label {
+.app-simulator .app-clipping-form .app-clipping-edit-section > label {
   display: grid;
   gap: 8px;
   margin: 0;
@@ -11539,7 +11539,7 @@ footer .social a:hover {
   font-size: 14px;
 }
 
-.app-simulator .app-clipping-form.is-editing .app-clipping-edit-section > .app-clipping-form-tools {
+.app-simulator .app-clipping-form .app-clipping-edit-section > .app-clipping-form-tools {
   display: flex;
   gap: 8px;
 }
@@ -11642,4 +11642,21 @@ footer .social a:hover {
 .app-simulator .app-clipping-client-toolbar button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+}
+
+.app-simulator .app-clipping-form .app-clipping-edit-section > [data-clipping-year-note] {
+  margin: -4px 0 0;
+  color: #9fa2a9;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.app-simulator .app-clipping-form .app-clipping-tier-info {
+  padding: 0;
+  background: transparent;
+}
+
+.app-simulator .app-clipping-form:not(.is-editing)
+.app-clipping-tier-info > small:last-child {
+  display: none !important;
 }

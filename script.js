@@ -2680,6 +2680,7 @@ const values = {
 };
 
   form.classList.add('is-editing');
+  form.querySelector('.app-clipping-client-open').textContent = 'Alterar';
   form.querySelector('[data-clipping-selected-client]').textContent=selectedClient;
   Object.entries(values).forEach(([name,value])=>{
    const input=form.elements.namedItem(name);
@@ -2729,6 +2730,7 @@ const values = {
     clippingReferenceYear = new Date().getFullYear();
 
     form.classList.remove('is-editing');
+    form.querySelector('.app-clipping-client-open').textContent = 'Selecionar';
     if (editSavePanel) editSavePanel.hidden = true;
     const clientLabel = form.querySelector('[data-clipping-selected-client]');
     const fromClippingOverview = Boolean(button.closest('[data-view="clipping"]'));
