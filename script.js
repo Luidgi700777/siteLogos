@@ -2096,7 +2096,7 @@ if (
   2026:{
     Cleiton:{count:1,
         subject:'Varejo',
-        date:'19/11/2026',
+        date:'25/11/2026',
         vehicle:'LOGOS',
         category:'Site, TV, Jornal',
         categoryShort:'Site, TV +1',
@@ -2108,7 +2108,12 @@ if (
         attachmentType:'IMAGEM',
         attachmentSize:'605.9 KB',
         link:'https://al.agenciasebrae.com.br/cultura-empreendedora/vitrine-do-varejo-do-sebrae-reune-pitches-de-venda-dicas-de-marketing-e-conexoes-comerciais/',
-        files:'1 arquivo nos detalhes'
+        files:'1 arquivo nos detalhes',
+        linkedReport: {
+          title: 'Vitrine do Varejo',
+          dateRange: '20/11/2026 a 25/11/2026',
+          slides: '1 matéria'
+        }
     },
     João:{
         count:0
@@ -2116,7 +2121,7 @@ if (
     Maria: {
         count: 1,
         subject: 'Saúde',
-        date: '14/11/2026',
+        date: '23/11/2026',
         vehicle: 'LOGOS',
         category: 'Jornal, TV, Revista',
         categoryShort: 'Jornal, TV +1',
@@ -2129,7 +2134,12 @@ if (
         attachmentType: 'IMAGEM',
         attachmentSize: '601.1 KB',
         link: 'https://g1.globo.com/go/goias/especial-publicitario/novamed-planos-de-saude-plano-de-saude-em-goias/noticia/2026/11/23/plano-de-saude-goiano-ganha-destaque-nacional-descubra-qual-e.ghtml',
-        files: '1 arquivo nos detalhes'
+        files: '1 arquivo nos detalhes',
+        linkedReport: {
+          title: 'Plano de saúde goiano',
+          dateRange: '17/11/2026 a 23/11/2026',
+          slides: '1 matéria'
+        }
     }
   },
   2025:{
@@ -2139,7 +2149,7 @@ if (
     João: {
       count: 1,
       subject: 'Tecnologia',
-      date: '22/11/2025',
+      date: '24/11/2025',
       vehicle: 'LOGOS',
       program: 'LOGOS',
       category: 'Redes sociais, Revista',
@@ -2149,12 +2159,17 @@ if (
       end: '09:45',
       excerpt: '05:23 → 09:45 (04:22)',
       duration: '04:22',
-      notes: '23ª Semana Nacional de Ciência e Tecnologia',
+      notes: ' 23ª Semana Nacional de Ciência e Tecnologia',
       link: 'https://g1.globo.com/df/distrito-federal/df1/video/23a-semana-nacional-de-ciencia-e-tecnologia-comeca-hoje-24-na-esplanada-15276479.ghtml',
       attachmentName: 'Captura de tela 2026-11-25 042359.png',
       attachmentType: 'IMAGEM',
       attachmentSize: '601.1 KB',
-      files: '1 arquivo nos detalhes'
+      files: '1 arquivo nos detalhes',
+      linkedReport: {
+      title: '23ª Semana Nacional de Ciência e Tecnologia',
+      dateRange: '19/11/2025 a 24/11/2025',
+      slides: '1 matéria'
+    }
     },
     Maria:{
         count:0
@@ -3157,6 +3172,27 @@ setDetailText(
 );
 setDetailText('[data-detail-vehicle-description]', vehicleInfo.description);
 setDetailText('[data-detail-vehicle-reach]', vehicleInfo.reach);
+
+const linkedReport = currentClipping.linkedReport;
+const linkedReportsSection = detail.querySelector('[data-detail-linked-reports]');
+const linkedReportCard = detail.querySelector('[data-detail-linked-report]');
+
+if (linkedReportsSection) {
+  linkedReportsSection.hidden = !linkedReport;
+}
+
+if (linkedReportCard) {
+  linkedReportCard.hidden = !linkedReport;
+}
+
+setDetailText('[data-detail-linked-count]', linkedReport ? '1' : '0');
+
+if (linkedReport) {
+  setDetailText('[data-detail-report-title]', linkedReport.title);
+  setDetailText('[data-detail-report-client]', selectedClient);
+  setDetailText('[data-detail-report-range]', linkedReport.dateRange);
+  setDetailText('[data-detail-report-slides]', linkedReport.slides);
+}
 
 const vehicleToggle = sim.querySelector('.app-clipping-detail-vehicle-toggle');
 const vehicleExtra = sim.querySelector('.app-clipping-detail-vehicle-extra');

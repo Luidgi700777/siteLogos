@@ -11660,3 +11660,109 @@ footer .social a:hover {
 .app-clipping-tier-info > small:last-child {
   display: none !important;
 }
+
+.app-simulator .app-clipping-detail-duplicate {
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 0 0 10px;
+  border: 1px solid #6b86ff;
+  border-radius: 10px;
+  background: #fffcfc;
+  color: #161c29;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.app-simulator .app-clipping-linked-reports {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #d5dbff;
+}
+
+.app-simulator .app-clipping-linked-reports > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-simulator .app-clipping-linked-reports > header strong {
+  font-size: 13px;
+}
+
+.app-simulator .app-clipping-linked-reports > header p {
+  margin: 4px 0 0;
+  color: #9fa2a9;
+  font-size: 11px;
+}
+
+.app-simulator .app-clipping-linked-reports > header > span {
+  min-width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #f3f2f9;
+  color: #898989;
+  font-size: 11px;
+}
+
+.app-simulator .app-clipping-linked-report {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid #d5dbff;
+  border-radius: 15px;
+  background: #fffcfc;
+}
+
+.app-simulator .app-clipping-linked-report-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #536cff;
+  font-size: 10px;
+}
+
+.app-simulator .app-clipping-linked-report-meta > span {
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: #f1f0fa;
+}
+
+.app-simulator .app-clipping-linked-report-meta small {
+  align-self: center;
+}
+
+.app-simulator .app-clipping-linked-report h4 {
+  margin: 2px 34px 0 0;
+  font-size: 14px;
+}
+
+.app-simulator .app-clipping-linked-report p,
+.app-simulator .app-clipping-linked-report-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: #898989;
+  font-size: 11px;
+}
+
+.app-simulator .app-clipping-linked-report > button {
+  position: absolute;
+  top: 42px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 9px;
+  background: #f3f4ff;
+  color: #536cff;
+}

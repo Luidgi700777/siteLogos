@@ -1687,6 +1687,11 @@
     </button>
   </div>
 
+  <button type="button" class="app-clipping-detail-duplicate">
+    <i class="fa-regular fa-copy" aria-hidden="true"></i>
+    DUPLICAR
+  </button>
+
   <article class="app-clipping-detail-hero">
     <header>
       <strong data-detail-client>Cleiton</strong>
@@ -1792,6 +1797,32 @@
       </button>
     </article>
   </div>
+
+    <section class="app-clipping-linked-reports" data-detail-linked-reports hidden>
+      <header>
+        <div>
+          <strong>Relatórios vinculados</strong>
+          <p>Relatórios que contêm este clipping entre os slides.</p>
+        </div>
+        <span data-detail-linked-count>1</span>
+      </header>
+    
+      <article class="app-clipping-linked-report" data-detail-linked-report>
+        <div class="app-clipping-linked-report-meta">
+          <span><i class="fa-solid fa-rotate" aria-hidden="true"></i> Inclusão automática ativa</span>
+          <small><i class="fa-regular fa-file-lines" aria-hidden="true"></i> <b data-detail-report-slides>1 matéria</b></small>
+        </div>
+        <h4 data-detail-report-title></h4>
+        <p><i class="fa-solid fa-building" aria-hidden="true"></i> <span data-detail-report-client></span></p>
+        <div class="app-clipping-linked-report-date">
+          <i class="fa-regular fa-calendar-days" aria-hidden="true"></i>
+          <span data-detail-report-range></span>
+        </div>
+        <button type="button" aria-label="Abrir relatório">
+          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </article>
+    </section>
 </section>
 
 <form class="app-clipping-form" data-view="novo-clipping" id="app-clipping-form-fields" autocomplete="off" hidden>
