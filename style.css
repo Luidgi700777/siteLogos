@@ -11766,3 +11766,222 @@ footer .social a:hover {
   background: #f3f4ff;
   color: #536cff;
 }
+
+.app-simulator .app-vehicles-search,
+.app-simulator .app-vehicles-filter-open {
+  height: 44px;
+  box-sizing: border-box;
+}
+
+.app-simulator .app-vehicles-search-submit {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border: 0;
+  border-radius: 10px;
+  background: #283570;
+  color: #fff;
+}
+
+.app-simulator .app-vehicles-filter-open {
+  width: 44px;
+  flex: 0 0 44px;
+}
+
+.app-simulator .app-vehicles-list-heading > span {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border-radius: 12px;
+  background: #f3f2f9;
+  color: #898989;
+  font-size: 11px;
+}
+
+.app-simulator .app-vehicles-list-heading > span strong {
+  font-weight: 500;
+}
+
+.app-simulator .app-vehicles-new {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+.app-simulator .app-vehicles-select-trigger {
+  min-height: 36px;
+  padding: 8px;
+  border-radius: 11px;
+  font-size: 10px;
+}
+
+.app-simulator .app-vehicle-card {
+  min-height: 74px;
+  box-sizing: border-box;
+  gap: 10px;
+  padding: 10px 11px;
+  border-color: #d5dbff;
+  border-radius: 14px;
+  background: #fffcfc;
+}
+
+.app-simulator .app-vehicle-card-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 10px;
+  background: #f1effa;
+  color: #536cff;
+  font-size: 16px;
+}
+
+.app-simulator .app-vehicle-card-main {
+  gap: 2px;
+}
+
+.app-simulator .app-vehicle-card-main strong {
+  font-size: 13px;
+}
+
+.app-simulator .app-vehicle-card-main small {
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.app-simulator .app-vehicle-card-main .app-vehicle-card-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #16865d;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.app-simulator .app-vehicle-card-chevron {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  flex: 0 0 24px;
+  place-items: center;
+  border-radius: 8px;
+  background: #f3f4ff;
+  color: #536cff;
+  font-size: 11px;
+}
+
+/* Checkbox dos veículos: estados desmarcado e marcado */
+.app-simulator .app-vehicles-selection-active .app-vehicle-card-check {
+  position: relative;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #6b86ff;
+  border-radius: 8px;
+  background: #fffcfc;
+  color: transparent;
+}
+
+/* Esconde o ícone de quadrado interno; o próprio span será a checkbox */
+.app-simulator .app-vehicles-selection-active .app-vehicle-card-check i,
+.app-simulator .app-vehicles-selection-active .app-vehicle-card-check svg {
+  display: none !important;
+}
+
+/* Estado selecionado */
+.app-simulator
+  .app-vehicles-selection-active
+  .app-vehicle-card[aria-pressed="true"]
+  .app-vehicle-card-check {
+  border-color: #293a78;
+  background: #293a78;
+}
+
+/* Marca de seleção branca */
+.app-simulator
+  .app-vehicles-selection-active
+  .app-vehicle-card[aria-pressed="true"]
+  .app-vehicle-card-check::after {
+  content: "✓";
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Esconde o botão quando o JavaScript ativa a seleção */
+.app-vehicles-select-trigger[hidden] {
+  display: none !important;
+}
+
+/* Na seleção, o card permanece com o fundo claro do app original */
+.app-simulator .app-vehicles-selection-active
+.app-vehicle-card[aria-pressed="true"] {
+  border-color: #ced5fd !important;
+  background: #fffcfc !important;
+  color: #161c29 !important;
+}
+
+/* Mantém as informações legíveis no card selecionado */
+.app-simulator .app-vehicles-selection-active
+.app-vehicle-card[aria-pressed="true"]
+.app-vehicle-card-main > small:not(.app-vehicle-card-count) {
+  color: #9fa2a9 !important;
+}
+
+.app-simulator .app-vehicles-selection-active
+.app-vehicle-card[aria-pressed="true"]
+.app-vehicle-card-main > .app-vehicle-card-count {
+  color: #008568 !important;
+}
+
+/* Esconde a seta enquanto a lista está em modo de seleção */
+.app-simulator .app-vehicles-selection-active .app-vehicle-card-chevron {
+  display: none !important;
+}
+
+/* Checkbox vazia */
+.app-simulator .app-vehicles-selection-active .app-vehicle-card-check {
+  position: relative;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #6b86ff;
+  border-radius: 8px;
+  background: #fffcfc;
+}
+
+/* Remove o ícone de quadrado interno */
+.app-simulator .app-vehicles-selection-active
+.app-vehicle-card-check i,
+.app-simulator .app-vehicles-selection-active
+.app-vehicle-card-check svg {
+  display: none !important;
+}
+
+/* Checkbox marcada */
+.app-simulator .app-vehicles-selection-active
+.app-vehicle-card[aria-pressed="true"]
+.app-vehicle-card-check {
+  border-color: #293a78;
+  background: #293a78;
+}
+
+.app-simulator .app-vehicles-selection-active
+.app-vehicle-card[aria-pressed="true"]
+.app-vehicle-card-check::after {
+  content: "✓";
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
